@@ -1,7 +1,7 @@
 ---
 name: recordsmanager
 description: Expert record keeping system with paperless-ngx integration, country-specific taxonomies, and intelligent document management
-version: 2.0.0
+version: 1.0.0
 author: madeinoz67
 capabilities: [document-management, records-organization, taxonomy-expertise, paperless-ngx-integration, trust-management, workflow-automation, multi-entity-support]
 triggers:
@@ -498,12 +498,12 @@ Required environment variables (set in `$PAI_DIR/.env`):
 
 ```bash
 # Paperless-ngx connection
-PAPERLESS_URL="https://paperless.example.com"
-PAPERLESS_API_TOKEN="your-api-token-here"
+MADEINOZ_RECORDMANAGER_PAPERLESS_URL="https://paperless.example.com"
+MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN="your-api-token-here"
 
 # Records Manager settings
-RECORDS_COUNTRY="Australia"  # Your country for compliance
-RECORDS_DEFAULT_DOMAIN="household"  # household | corporate | projects
+MADEINOZ_RECORDMANAGER_RECORDS_COUNTRY="Australia"  # Your country for compliance
+MADEINOZ_RECORDMANAGER_RECORDS_DEFAULT_DOMAIN="household"  # household | corporate | projects
 ```
 
 ---
@@ -589,7 +589,7 @@ RECORDS_DEFAULT_DOMAIN="household"  # household | corporate | projects
 
 **Problem:** "Cannot reach paperless-ngx API"
 
-**Solution:** Verify PAPERLESS_URL includes protocol (https://) and instance is running
+**Solution:** Verify MADEINOZ_RECORDMANAGER_PAPERLESS_URL includes protocol (https://) and instance is running
 
 **Problem:** "API authentication failed"
 
@@ -603,7 +603,7 @@ RECORDS_DEFAULT_DOMAIN="household"  # household | corporate | projects
 
 ## Credits
 
-- **Original concept**: madeinoz - developed for personal document management
+- **Original concept**: madeinoz67 - developed for personal document management
 - **Taxonomy sources**: National archives of Australia, IRS, HMRC
 - **Inspired by**: paperless-ngx community best practices
 
@@ -611,7 +611,7 @@ RECORDS_DEFAULT_DOMAIN="household"  # household | corporate | projects
 
 ## Version History
 
-### 2.0.0 (2025-01-17)
+### 1.0.0 (2025-01-17)
 - **NEW:** TrustExpert with ATO-compliant trust management (unit, discretionary, family trusts)
 - **NEW:** WorkflowExpert for paperless-ngx workflow automation and analysis
 - **NEW:** EntityCreator for dynamic multi-entity support
@@ -621,8 +621,6 @@ RECORDS_DEFAULT_DOMAIN="household"  # household | corporate | projects
 - Interactive entity creation with type-specific configuration
 - Automated workflow recommendations based on document patterns
 - Trust document validation and compliance checking
-
-### 1.0.0 (2026-01-17)
 - Initial release
 - Paperless-ngx API integration
 - Taxonomy expert for AU, US, UK

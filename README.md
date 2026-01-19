@@ -169,7 +169,7 @@ User Request
    - `retention` - Check retention requirements for documents
 
 4. **DeleteConfirmation Workflow** (`src/workflows/DeleteConfirmation.md`)
-   - MANGATORY approval step before any deletion
+   - MANDATORY approval step before any deletion
    - Explains what will be deleted and consequences
    - Requires explicit confirmation from principal
    - Logs all deletion requests for audit trail
@@ -325,24 +325,24 @@ bun run $PAI_DIR/tools/RecordManager.ts delete \
 ```bash
 # $PAI_DIR/.env
 # Paperless-ngx connection
-PAPERLESS_URL="https://paperless.example.com"
-PAPERLESS_API_TOKEN="your-api-token-here"
+MADEINOZ_RECORDMANAGER_PAPERLESS_URL="https://paperless.example.com"
+MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN="your-api-token-here"
 
 # Records Manager settings
 RECORDS_COUNTRY="Australia"  # Your country for compliance
-RECORDS_DEFAULT_DOMAIN="household"  # household | corporate | projects
+MADEINOZ_RECORDMANAGER_RECORDS_DEFAULT_DOMAIN="household"  # household | corporate | projects
 
 # Optional: Custom taxonomy paths
-RECORDS_TAXONOMY_PATH="$PAI_DIR/skills/RECORDSMANAGER/Taxonomies/"
+MADEINOZ_RECORDMANAGER_RECORDS_TAXONOMY_PATH="$PAI_DIR/skills/RECORDSMANAGER/Taxonomies/"
 ```
 
 **Option 2: Shell profile** (for manual installation):
 ```bash
 # Add to ~/.zshrc or ~/.bashrc
-export PAPERLESS_URL="https://paperless.example.com"
-export PAPERLESS_API_TOKEN="your-api-token-here"
-export RECORDS_COUNTRY="Australia"
-export RECORDS_DEFAULT_DOMAIN="household"
+export MADEINOZ_RECORDMANAGER_PAPERLESS_URL="https://paperless.example.com"
+export MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN="your-api-token-here"
+export MADEINOZ_RECORDMANAGER_RECORDS_COUNTRY="Australia"
+export MADEINOZ_RECORDMANAGER_RECORDS_DEFAULT_DOMAIN="household"
 ```
 
 ---
