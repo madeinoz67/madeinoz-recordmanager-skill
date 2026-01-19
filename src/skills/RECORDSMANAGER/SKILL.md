@@ -1,8 +1,8 @@
 ---
-name: RECORDSMANAGER
+name: recordsmanager
 description: Expert record keeping system with paperless-ngx integration, country-specific taxonomies, and intelligent document management
 version: 2.0.0
-author: madeinoz
+author: madeinoz67
 capabilities: [document-management, records-organization, taxonomy-expertise, paperless-ngx-integration, trust-management, workflow-automation, multi-entity-support]
 triggers:
   - upload.*document

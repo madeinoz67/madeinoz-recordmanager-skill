@@ -5,7 +5,7 @@
  */
 
 import { describe, it, expect } from 'bun:test';
-import { SensitivityExpert, SensitivityLevel } from './SensitivityExpert';
+import { SensitivityExpert, SensitivityLevel } from '../lib/SensitivityExpert';
 
 describe('SensitivityExpert', () => {
   const expert = new SensitivityExpert();

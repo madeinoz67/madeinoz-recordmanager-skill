@@ -66,3 +66,11 @@ credentials/
 .claude/pai_updates/
 .claude/pai_backups/
 .claude/.pai-sync-history
+
+# Codanna
+.codanna/
+.fastembed_cache/
+
+
+# MkDocs build output
+site/
