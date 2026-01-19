@@ -1,25 +1,6 @@
 ---
-name: recordsmanager
-description: Expert record keeping system with paperless-ngx integration, country-specific taxonomies, and intelligent document management
-version: 1.0.0
-author: madeinoz67
-capabilities: [document-management, records-organization, taxonomy-expertise, paperless-ngx-integration, trust-management, workflow-automation, multi-entity-support]
-triggers:
-  - upload.*document
-  - store.*file
-  - organize.*records
-  - find.*document
-  - search.*papers
-  - tag.*documents
-  - delete.*records
-  - retention.*check
-  - archive.*documents
-  - add.*entity
-  - create.*trust
-  - validate.*trust
-  - workflow.*create
-  - fte.*check
-dependencies: []
+name: RecordsManager
+description: Expert record keeping system with paperless-ngx integration, country-specific taxonomies, and intelligent document management. USE WHEN upload document, store file, organize records, find document, search papers, tag documents, delete records, retention check, archive documents, add entity, create trust, validate trust, workflow create, FTE check.
 ---
 
 # Records Manager Skill
@@ -74,6 +55,35 @@ curl -s -X POST http://localhost:8888/notify \
 | "Review workflow" | `Workflows/WorkflowReview.md` | Analyze workflow effectiveness |
 | "Trust documents" | `Workflows/TrustValidation.md` | Validate trust document completeness |
 | "FTE retention" | `Workflows/FTECheck.md` | Check Family Trust Election retention |
+
+---
+
+## Examples
+
+**Example 1: Upload a tax document**
+```
+User: "Store this medical receipt for tax"
+→ Invokes Upload workflow
+→ TaxonomyExpert suggests tags: medical, receipt, tax-deductible, 2024
+→ Uploads to paperless-ngx with metadata
+→ Returns: "Document uploaded as #1234 with tags: medical, receipt, tax-deductible"
+```
+
+**Example 2: Check retention before deletion**
+```
+User: "Can I delete my 2019 tax returns?"
+→ Invokes Retention workflow
+→ Checks ATO requirements: 5 years from lodgment
+→ Returns: "⚠️ Retain until 2025-06-30. 2019 returns filed in 2020 must be kept 5 years."
+```
+
+**Example 3: Validate trust compliance**
+```
+User: "Validate Smith Family Trust documents"
+→ Invokes TrustValidation workflow
+→ Checks required documents against trust type checklist
+→ Returns: "8/10 documents found. Missing: Beneficiary Declaration, 2024 Distribution Minutes"
+```
 
 ---
 

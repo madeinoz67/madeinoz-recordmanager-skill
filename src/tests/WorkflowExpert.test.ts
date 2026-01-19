@@ -5,9 +5,9 @@
  */
 
 import { describe, it, expect, beforeEach } from 'bun:test';
-import { WorkflowExpert, Workflow, WorkflowRecommendation, WorkflowReview } from '../lib/WorkflowExpert';
-import { PaperlessClient, Document, Tag, DocumentType, Correspondent, StoragePath, SearchResult } from '../lib/PaperlessClient';
-import { TaxonomyExpert } from '../lib/TaxonomyExpert';
+import { WorkflowExpert, Workflow, WorkflowRecommendation, WorkflowReview } from '../skills/RecordsManager/Lib/WorkflowExpert';
+import { PaperlessClient, Document, Tag, DocumentType, Correspondent, StoragePath, SearchResult } from '../skills/RecordsManager/Lib/PaperlessClient';
+import { TaxonomyExpert } from '../skills/RecordsManager/Lib/TaxonomyExpert';
 
 // Mock data
 const mockDocuments = [

@@ -2,10 +2,10 @@
 // $PAI_DIR/src/tests/EntityCreator.test.ts
 
 import { describe, it, expect, beforeEach, afterEach } from 'bun:test';
-import { EntityCreator } from '../lib/EntityCreator';
-import { PaperlessClient } from '../lib/PaperlessClient';
-import { TaxonomyExpert } from '../lib/TaxonomyExpert';
-import { Tag, StoragePath, CustomField } from '../lib/PaperlessClient.js';
+import { EntityCreator } from '../skills/RecordsManager/Lib/EntityCreator';
+import { PaperlessClient } from '../skills/RecordsManager/Lib/PaperlessClient';
+import { TaxonomyExpert } from '../skills/RecordsManager/Lib/TaxonomyExpert';
+import { Tag, StoragePath, CustomField } from '../skills/RecordsManager/Lib/PaperlessClient';
 
 // Mock PaperlessClient implementation
 const mockPaperlessClient = {

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'bun:test';
-import { TrustExpert, TrustType } from '../lib/TrustExpert';
+import { TrustExpert, TrustType } from '../skills/RecordsManager/Lib/TrustExpert';
 
 describe('TrustExpert', () => {
   let expert: TrustExpert;

@@ -5,8 +5,8 @@
  * Main interface for all record keeping operations
  */
 
-import { PaperlessClient, createClientFromEnv } from '../lib/recordsmanager/PaperlessClient';
-import { TaxonomyExpert, createExpertFromEnv, Domain } from '../lib/recordsmanager/TaxonomyExpert';
+import { PaperlessClient, createClientFromEnv } from '../Lib/PaperlessClient';
+import { TaxonomyExpert, createExpertFromEnv, Domain } from '../Lib/TaxonomyExpert';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
 

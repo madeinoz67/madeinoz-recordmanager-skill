@@ -5,8 +5,8 @@
  */
 
 import { describe, test, expect, beforeAll } from 'bun:test';
-import { TaxonomyExpert, Domain } from '../lib/TaxonomyExpert';
-import { PaperlessClient, PaperlessConfig } from '../lib/PaperlessClient';
+import { TaxonomyExpert, Domain } from '../skills/RecordsManager/Lib/TaxonomyExpert';
+import { PaperlessClient, PaperlessConfig } from '../skills/RecordsManager/Lib/PaperlessClient';
 
 // Mock environment variables for testing
 process.env.MADEINOZ_RECORDMANAGER_PAPERLESS_URL = 'https://test-paperless.example.com';
