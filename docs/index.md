@@ -83,20 +83,31 @@ The Records Manager Skill is a comprehensive document management system that tra
 
 ## Quick Start
 
-```bash
-# 1. Install the skill to your PAI environment
-git clone https://github.com/madeinoz67/madeinoz-recordmanager-skill.git \
-  ~/.claude/skills/RecordsManager
+1. **Download the latest release** from [GitHub Releases](https://github.com/madeinoz67/madeinoz-recordmanager-skill/releases)
 
-# 2. Configure your paperless-ngx connection
-export MADEINOZ_RECORDMANAGER_PAPERLESS_URL="https://paperless.example.com"
-export MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN="your-api-token"
+2. **Extract to your Packs directory**:
+   ```bash
+   mkdir -p ~/pai/Packs
+   unzip madeinoz-recordmanager-skill-*.zip -d ~/pai/Packs/
+   ```
 
-# 3. Upload your first document
-bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts upload \
-  --file ~/Documents/invoice.pdf \
-  --domain household
-```
+3. **Open Claude Code in the pack directory**:
+   ```bash
+   cd ~/pai/Packs/madeinoz-recordmanager-skill
+   claude
+   ```
+
+4. **Tell the AI**: "Install this pack"
+
+   The AI will handle the rest:
+   - Copy the skill to `$PAI_DIR/skills/`
+   - Configure environment variables
+   - Verify installation
+
+5. **Start managing records**:
+   ```
+   Upload this invoice and organize it properly
+   ```
 
 ---
 
