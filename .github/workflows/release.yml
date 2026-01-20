@@ -20,12 +20,15 @@ jobs:
         id: version
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
+          VERSION_UNDERSCORES=${VERSION//./_}
           echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version_underscores=$VERSION_UNDERSCORES" >> $GITHUB_OUTPUT
           echo "Release version: $VERSION"
+          echo "Archive version: $VERSION_UNDERSCORES"
 
       - name: Create release archive
         run: |
-          FILENAME="madeinoz-recordmanager-skill-v${{ steps.version.outputs.version }}.zip"
+          FILENAME="madeinoz-recordmanager-skill-v${{ steps.version.outputs.version_underscores }}.zip"
           echo "Creating archive: $FILENAME"
 
           # Create zip with proper content
@@ -52,14 +55,15 @@ jobs:
         id: release_notes
         run: |
           VERSION="${{ steps.version.outputs.version }}"
+          VERSION_UNDERSCORES="${{ steps.version.outputs.version_underscores }}"
           NOTES_FILE="release_notes_${VERSION}.md"
 
-          cat > "$NOTES_FILE" << 'EOF'
+          cat > "$NOTES_FILE" << EOF
           # Records Manager Skill v${VERSION}
 
           ## 📦 Download
 
-          **Archive:** \`madeinoz-recordmanager-skill-v${VERSION}.zip\`
+          **Archive:** \`madeinoz-recordmanager-skill-v${VERSION_UNDERSCORES}.zip\`
 
           ## 🚀 Quick Start
 
@@ -67,7 +71,7 @@ jobs:
           2. **Extract** to your PAI Packs directory:
              ```bash
              mkdir -p ~/pai/Packs
-             unzip madeinoz-recordmanager-skill-v${VERSION}.zip -d ~/pai/Packs/
+             unzip madeinoz-recordmanager-skill-v${VERSION_UNDERSCORES}.zip -d ~/pai/Packs/
              ```
           3. **Open Claude Code** in the pack directory:
              ```bash
