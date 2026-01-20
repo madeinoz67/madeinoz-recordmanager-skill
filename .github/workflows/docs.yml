@@ -33,6 +33,6 @@ jobs:
           restore-keys: |
             mkdocs-material-
 
-      - run: pip install mkdocs-material mkdocs-minify-plugin mkdocs-git-revision-date-localized-plugin
+      - run: pip install -r requirements-docs.txt
 
       - run: mkdocs gh-deploy --force
