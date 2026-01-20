@@ -4,6 +4,56 @@
 
 ---
 
+## Fastest Test: Skill Connection Check (30 seconds)
+
+The quickest way to verify everything is working is to run the built-in `status` command:
+
+```bash
+export PAI_DIR="${PAI_DIR:-$HOME/.claude}"
+source "$PAI_DIR/.env"
+
+bun run "$PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts" status
+```
+
+**Expected Output:**
+
+```
+🔍 Records Manager - Connection Test & Status
+
+──────────────────────────────────────────────────
+
+1️⃣  Environment Configuration
+   ✅ PAPERLESS_URL: https://your-instance.com
+   ✅ API_TOKEN: Set (40 chars)
+   ✅ COUNTRY: Australia
+   ✅ DEFAULT_DOMAIN: household
+
+2️⃣  API Connectivity
+   ✅ API endpoint reachable
+
+3️⃣  Authentication & Data Access
+   ✅ Tags accessible: 25 tags found
+   ✅ Document types accessible: 12 types found
+   ✅ Documents accessible: 150 total documents
+
+4️⃣  Taxonomy Expert
+   ✅ Taxonomy loaded for: Australia
+   ✅ Document types: 12 defined
+   ✅ Tag categories: 6 categories
+
+──────────────────────────────────────────────────
+
+✅ All checks passed - Records Manager is ready!
+```
+
+**If any check fails**, the command will show specific errors and exit with code 1.
+
+**Pass Criteria:** All 4 sections show ✅ checks
+
+**Fail Action:** Review the error messages and check the troubleshooting section below
+
+---
+
 ## Quick Verification (5 minutes)
 
 Run these quick checks to verify basic installation:
@@ -511,6 +561,42 @@ fi
 
 ---
 
+## Final Step: Verify Skill Integration
+
+After all checks pass, verify the skill triggers correctly in Claude Code:
+
+**In a Claude Code session, say:**
+
+```
+check status
+```
+
+**Expected Behavior:**
+
+1. Claude Code recognizes the intent and invokes the Records Manager skill
+2. The StatusCheck workflow is triggered
+3. The `status` command runs and displays connection test results
+4. All 4 check categories show green checkmarks
+
+**This confirms:**
+- Skill routing is working (USE WHEN triggers)
+- Workflow file is found and executed
+- CLI tool integrates correctly with the skill
+- End-to-end skill functionality is operational
+
+**Alternative triggers that should also work:**
+- "test connection"
+- "system status"
+- "verify paperless connection"
+- "is records manager working?"
+
+**If the skill doesn't trigger:**
+1. Verify SKILL.md is in correct location: `$PAI_DIR/skills/RecordsManager/SKILL.md`
+2. Check the description includes "check status" in USE WHEN triggers
+3. Restart Claude Code session to reload skills
+
+---
+
 ## Troubleshooting
 
 ### Common Issues
@@ -580,5 +666,6 @@ Use this checklist for manual verification:
 - [ ] SKILL.md file exists and is valid
 - [ ] DeleteConfirmation workflow exists
 - [ ] Integration test passed (optional)
+- [ ] **"check status" triggers skill correctly in Claude Code**
 
 **All checks should pass before using the skill in production.**

@@ -1,7 +1,7 @@
 ---
 name: Records Manager Skill
-pack-id: madeinoz-recordmanager-skill-v1.1.0
-version: 1.1.0
+pack-id: madeinoz-recordmanager-skill-v1.2.0
+version: 1.2.0
 author: madeinoz
 description: Subject matter expert in record keeping and paperless-ngx API integration with country-specific taxonomies and deletion confirmation safeguards
 type: skill
@@ -422,6 +422,13 @@ export MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN="household"
 ---
 
 ## Changelog
+
+### 1.2.0 - 2026-01-20
+
+- Added `status` command to CLI for connection testing
+- Added StatusCheck workflow for skill-based verification
+- Updated VERIFY.md with comprehensive connection test documentation
+- Final verification step now uses skill invocation ("check status")
 
 ### 1.1.0 - 2026-01-20
 - Standardized env variables to `MADEINOZ_RECORDMANAGER_*` prefix

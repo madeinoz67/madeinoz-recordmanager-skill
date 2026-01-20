@@ -341,11 +341,103 @@ fi
 
 ### Step 3: Create Environment Configuration
 
-Create or update `$PAI_DIR/.env` with paperless-ngx configuration:
+**Check for existing configuration first:**
+
+```bash
+PAI_CHECK="${PAI_DIR:-$HOME/.claude}"
+ENV_FILE="$PAI_CHECK/.env"
+
+echo "=== Checking Existing Configuration ==="
+
+# Function to check and prompt for env variable
+check_env_var() {
+  local VAR_NAME="$1"
+  local VAR_DESC="$2"
+  local DEFAULT_VALUE="$3"
+  local IS_SECRET="$4"
+
+  # Check if already set in .env file
+  if [ -f "$ENV_FILE" ] && grep -q "^${VAR_NAME}=" "$ENV_FILE" 2>/dev/null; then
+    CURRENT_VALUE=$(grep "^${VAR_NAME}=" "$ENV_FILE" | cut -d'=' -f2- | tr -d '"')
+    if [ "$IS_SECRET" = "true" ]; then
+      echo "✓ $VAR_NAME is already configured (value hidden)"
+    else
+      echo "✓ $VAR_NAME is already configured: $CURRENT_VALUE"
+    fi
+    echo "  Keep existing value? [Y/n]: "
+    read -r KEEP_EXISTING
+    if [ "$KEEP_EXISTING" = "n" ] || [ "$KEEP_EXISTING" = "N" ]; then
+      echo "  Enter new value for $VAR_DESC: "
+      read -r NEW_VALUE
+      echo "$NEW_VALUE"
+    else
+      echo "$CURRENT_VALUE"
+    fi
+  else
+    echo "⚠️  $VAR_NAME not configured"
+    echo "  Enter value for $VAR_DESC${DEFAULT_VALUE:+ (default: $DEFAULT_VALUE)}: "
+    read -r NEW_VALUE
+    if [ -z "$NEW_VALUE" ] && [ -n "$DEFAULT_VALUE" ]; then
+      echo "$DEFAULT_VALUE"
+    else
+      echo "$NEW_VALUE"
+    fi
+  fi
+}
+
+# Check each configuration variable
+echo ""
+echo "Checking paperless-ngx configuration..."
+
+PAPERLESS_URL=$(check_env_var "MADEINOZ_RECORDMANAGER_PAPERLESS_URL" "Paperless-ngx URL" "" "false")
+PAPERLESS_TOKEN=$(check_env_var "MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN" "API Token" "" "true")
+RECORDS_COUNTRY=$(check_env_var "MADEINOZ_RECORDMANAGER_COUNTRY" "Country for compliance" "Australia" "false")
+DEFAULT_DOMAIN=$(check_env_var "MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN" "Default domain" "household" "false")
+
+echo ""
+echo "Configuration summary:"
+echo "  URL: $PAPERLESS_URL"
+echo "  Token: ${PAPERLESS_TOKEN:+SET (hidden)}"
+echo "  Country: $RECORDS_COUNTRY"
+echo "  Domain: $DEFAULT_DOMAIN"
+```
+
+**Apply configuration (preserving other .env content):**
+
+```bash
+# Backup existing .env if it exists
+if [ -f "$ENV_FILE" ]; then
+  cp "$ENV_FILE" "$ENV_FILE.bak"
+  echo "✓ Backed up existing .env to .env.bak"
+fi
+
+# Remove old MADEINOZ_RECORDMANAGER_* entries (we'll add fresh ones)
+if [ -f "$ENV_FILE" ]; then
+  grep -v "^MADEINOZ_RECORDMANAGER_" "$ENV_FILE" > "$ENV_FILE.tmp" || true
+  mv "$ENV_FILE.tmp" "$ENV_FILE"
+fi
+
+# Append new configuration
+cat >> "$ENV_FILE" << EOF
+
+# Records Manager Skill Configuration (added $(date +%Y-%m-%d))
+# Paperless-ngx connection
+MADEINOZ_RECORDMANAGER_PAPERLESS_URL="$PAPERLESS_URL"
+MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN="$PAPERLESS_TOKEN"
+
+# Records Manager settings
+MADEINOZ_RECORDMANAGER_COUNTRY="$RECORDS_COUNTRY"
+MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN="$DEFAULT_DOMAIN"
+EOF
+
+echo "✓ Configuration saved to $ENV_FILE"
+```
+
+**Reference: Full .env template:**
 
 ```bash
 # File: $PAI_DIR/.env
-# Add these variables to your existing .env file
+# Records Manager Skill Configuration
 
 # Paperless-ngx connection
 MADEINOZ_RECORDMANAGER_PAPERLESS_URL="https://paperless.example.com"

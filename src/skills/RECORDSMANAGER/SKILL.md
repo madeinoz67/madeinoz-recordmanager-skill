@@ -1,6 +1,6 @@
 ---
 name: RecordsManager
-description: Expert record keeping system with paperless-ngx integration, country-specific taxonomies, and intelligent document management. USE WHEN upload document, store file, organize records, find document, search papers, tag documents, delete records, retention check, archive documents, add entity, create trust, validate trust, workflow create, FTE check.
+description: Expert record keeping system with paperless-ngx integration, country-specific taxonomies, and intelligent document management. USE WHEN upload document, store file, organize records, find document, search papers, tag documents, delete records, retention check, archive documents, add entity, create trust, validate trust, workflow create, FTE check, connection test, system status, check status.
 ---
 
 # Records Manager Skill
@@ -55,6 +55,7 @@ curl -s -X POST http://localhost:8888/notify \
 | "Review workflow" | `Workflows/WorkflowReview.md` | Analyze workflow effectiveness |
 | "Trust documents" | `Workflows/TrustValidation.md` | Validate trust document completeness |
 | "FTE retention" | `Workflows/FTECheck.md` | Check Family Trust Election retention |
+| "Check status" | `Workflows/StatusCheck.md` | Test connection and verify system status |
 
 ---
 
@@ -620,6 +621,11 @@ MADEINOZ_RECORDMANAGER_RECORDS_DEFAULT_DOMAIN="household"  # household | corpora
 ---
 
 ## Version History
+
+### 1.2.0 (2026-01-20)
+- **NEW:** `status` CLI command for comprehensive connection testing
+- **NEW:** StatusCheck workflow for skill-based system verification
+- **ENHANCED:** VERIFY.md with "check status" final verification step
 
 ### 1.0.0 (2025-01-17)
 - **NEW:** TrustExpert with ATO-compliant trust management (unit, discretionary, family trusts)

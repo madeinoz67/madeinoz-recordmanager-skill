@@ -242,6 +242,120 @@ async function retention(options: CommandOptions): Promise<void> {
 }
 
 /**
+ * Test connection and show system status
+ */
+async function status(): Promise<void> {
+  console.log(`\n🔍 Records Manager - Connection Test & Status\n`);
+  console.log(`${'─'.repeat(50)}\n`);
+
+  let allPassed = true;
+
+  // 1. Check environment variables
+  console.log(`1️⃣  Environment Configuration`);
+  const url = process.env.MADEINOZ_RECORDMANAGER_PAPERLESS_URL;
+  const token = process.env.MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN;
+  const country = process.env.MADEINOZ_RECORDMANAGER_COUNTRY || 'Australia';
+  const domain = process.env.MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN || 'household';
+
+  if (url) {
+    console.log(`   ✅ PAPERLESS_URL: ${url}`);
+  } else {
+    console.log(`   ❌ PAPERLESS_URL: NOT SET`);
+    allPassed = false;
+  }
+
+  if (token) {
+    console.log(`   ✅ API_TOKEN: Set (${token.length} chars)`);
+  } else {
+    console.log(`   ❌ API_TOKEN: NOT SET`);
+    allPassed = false;
+  }
+
+  console.log(`   ✅ COUNTRY: ${country}`);
+  console.log(`   ✅ DEFAULT_DOMAIN: ${domain}`);
+  console.log('');
+
+  if (!url || !token) {
+    console.log(`\n❌ Cannot continue - missing required environment variables\n`);
+    console.log(`Set these in your .env file:`);
+    console.log(`  MADEINOZ_RECORDMANAGER_PAPERLESS_URL=https://your-instance.com`);
+    console.log(`  MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN=your-token\n`);
+    process.exit(1);
+  }
+
+  // 2. Test API connectivity
+  console.log(`2️⃣  API Connectivity`);
+  try {
+    const response = await fetch(`${url}/api/`, {
+      method: 'GET',
+      headers: { 'Authorization': `Token ${token}` },
+    });
+
+    if (response.ok) {
+      console.log(`   ✅ API endpoint reachable`);
+    } else if (response.status === 401) {
+      console.log(`   ❌ API reachable but authentication failed (401)`);
+      allPassed = false;
+    } else {
+      console.log(`   ⚠️  API returned unexpected status: ${response.status}`);
+    }
+  } catch (error) {
+    console.log(`   ❌ Cannot reach API: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    allPassed = false;
+  }
+  console.log('');
+
+  // 3. Test authenticated operations
+  console.log(`3️⃣  Authentication & Data Access`);
+  try {
+    const client = createClientFromEnv();
+
+    // Test tags endpoint
+    const tags = await client.getTags();
+    console.log(`   ✅ Tags accessible: ${tags.length} tags found`);
+
+    // Test document types endpoint
+    const docTypes = await client.getDocumentTypes();
+    console.log(`   ✅ Document types accessible: ${docTypes.length} types found`);
+
+    // Test documents endpoint
+    const docs = await client.searchDocuments({ page_size: 1 });
+    console.log(`   ✅ Documents accessible: ${docs.count} total documents`);
+
+  } catch (error) {
+    console.log(`   ❌ Data access failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    allPassed = false;
+  }
+  console.log('');
+
+  // 4. Test taxonomy expert
+  console.log(`4️⃣  Taxonomy Expert`);
+  try {
+    const expert = createExpertFromEnv();
+    const docTypes = expert.getDocumentTypes();
+    const tagCategories = expert.getTagCategories();
+
+    console.log(`   ✅ Taxonomy loaded for: ${country}`);
+    console.log(`   ✅ Document types: ${docTypes.length} defined`);
+    console.log(`   ✅ Tag categories: ${Object.keys(tagCategories).length} categories`);
+  } catch (error) {
+    console.log(`   ❌ Taxonomy error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    allPassed = false;
+  }
+  console.log('');
+
+  // Summary
+  console.log(`${'─'.repeat(50)}`);
+  if (allPassed) {
+    console.log(`\n✅ All checks passed - Records Manager is ready!\n`);
+    process.exit(0);
+  } else {
+    console.log(`\n❌ Some checks failed - review errors above\n`);
+    process.exit(1);
+  }
+}
+
+/**
  * Parse tag names to IDs
  */
 async function parseTagIds(client: PaperlessClient, tagNamesStr: string): Promise<number[]> {
@@ -308,6 +422,10 @@ async function main() {
         await retention(options);
         break;
 
+      case 'status':
+        await status();
+        break;
+
       case 'delete':
         console.error('❌ Deletion requires explicit approval');
         console.error('   Use the DeleteConfirmation workflow instead');
@@ -344,6 +462,9 @@ Commands:
 
   retention                  Show retention requirements for document types
     --domain <domain>        Domain to show
+
+  status                     Test connection and show system status
+                             Verifies env vars, API connectivity, auth, and taxonomy
 
   delete <query>             ⚠️  REQUIRES EXPLICIT APPROVAL
                              Must use DeleteConfirmation workflow
