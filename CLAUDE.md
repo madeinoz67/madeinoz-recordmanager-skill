@@ -327,8 +327,9 @@ Hop 3: "Analyze top candidates in detail"
 - Report feels incomplete (score <8) → Identify gaps and iterate
 
 ## Active Technologies
-- N/A (asset generation, no code) + PAI Art skill (Generate.ts with gpt-image-1 or nano-banana-pro model) (002-pack-icon)
-- PNG file at `icons/madeinoz-recordmanager-skill.png` (002-pack-icon)
+- Python 3.11+ (MkDocs runtime), Markdown (content), YAML (configuration) + mkdocs-material, mkdocs-minify-plugin, mkdocs-git-revision-date-localized-plugin, pymdownx.superfences (Mermaid) (001-mkdocs-documentation)
+- Static files on GitHub Pages (no database) (001-mkdocs-documentation)
 
 ## Recent Changes
-- 002-pack-icon: Added N/A (asset generation, no code) + PAI Art skill (Generate.ts with gpt-image-1 or nano-banana-pro model)
+- 001-mkdocs-documentation: Added Python 3.11+ (MkDocs runtime), Markdown (content), YAML (configuration) + mkdocs-material, mkdocs-minify-plugin, mkdocs-git-revision-date-localized-plugin, pymdownx.superfences (Mermaid)
+
