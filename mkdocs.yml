@@ -1,0 +1,131 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+
+site_name: Records Manager Skill (PAI Pack)
+site_url: https://madeinoz67.github.io/madeinoz-recordmanager-skill/
+site_description: Expert record keeping with paperless-ngx integration
+
+repo_url: https://github.com/madeinoz67/madeinoz-recordmanager-skill
+repo_name: madeinoz67/madeinoz-recordmanager-skill
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  logo: assets/icon.svg
+  favicon: assets/favicon.svg
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - navigation.instant
+    - navigation.instant.progress
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+plugins:
+  - search:
+      lang: en
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago
+      fallback_to_build_date: true
+  - mermaid2
+  - panzoom:
+      include_selectors:
+        - .mermaid
+      always_show_hint: true
+      key: none
+      full_screen: true
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - getting-started/index.md
+      - Installation: getting-started/installation.md
+      - Prerequisites: getting-started/prerequisites.md
+      - Quick Start: getting-started/quickstart.md
+  - User Guide:
+      - user-guide/index.md
+      - Daily Usage: user-guide/daily-usage.md
+      - Search: user-guide/search.md
+      - Tagging: user-guide/tagging.md
+      - Retention: user-guide/retention.md
+      - Trusts: user-guide/trusts.md
+      - Workflows: user-guide/workflows.md
+  - Configuration:
+      - configuration/index.md
+      - Environment Variables: configuration/environment.md
+      - paperless-ngx Setup: configuration/paperless-setup.md
+      - Country Selection: configuration/country-selection.md
+  - Tutorials:
+      - tutorials/index.md
+      - First Upload: tutorials/first-upload.md
+      - Entity Creation: tutorials/entity-creation.md
+      - Retention Check: tutorials/retention-check.md
+      - Batch Import: tutorials/batch-import.md
+  - Reference:
+      - reference/index.md
+      - CLI Commands: reference/cli.md
+      - Agents: reference/agents.md
+      - Taxonomy Data Structure: reference/taxonomy-data-structure.md
+      - Changelog: reference/changelog.md
+  - Extending:
+      - extending/index.md
+      - Taxonomies: extending/taxonomies.md
+      - Custom Entities: extending/custom-entities.md
+      - Custom Taxonomies: extending/custom-taxonomies.md
+      - Validation: extending/validation.md
+  - Examples:
+      - examples/index.md
+      - Example Prompts: examples/prompts.md
+  - Architecture:
+      - architecture/index.md
+      - Overview: architecture/overview.md
+      - Layers: architecture/layers.md
+      - Upload Workflow: architecture/upload-workflow.md
+      - Retention Lifecycle: architecture/retention-lifecycle.md
+  - Troubleshooting: troubleshooting.md

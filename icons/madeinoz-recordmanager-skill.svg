@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <!-- Background folder -->
+  <rect x="48" y="64" width="160" height="144" rx="12" fill="#4a90d9"/>
+  <path d="M48 88 C48 75 58 64 71 64 L110 64 L125 79 L185 79 C198 79 208 89 208 102 L208 88 C208 75 198 64 185 64 L125 64 L110 79 L71 79 C58 79 48 89 48 102 Z" fill="#3a7bc8"/>
+
+  <!-- Documents inside folder -->
+  <rect x="70" y="95" width="116" height="12" rx="3" fill="white" opacity="0.9"/>
+  <rect x="70" y="115" width="116" height="12" rx="3" fill="white" opacity="0.9"/>
+  <rect x="70" y="135" width="90" height="12" rx="3" fill="white" opacity="0.7"/>
+
+  <!-- Accent highlight (purple) -->
+  <circle cx="195" cy="185" r="24" fill="#8b5cf6" opacity="0.3"/>
+  <circle cx="195" cy="185" r="12" fill="#8b5cf6"/>
+  <path d="M190 180 L193 188 L200 182" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

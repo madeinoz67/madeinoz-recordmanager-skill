@@ -325,3 +325,10 @@ Hop 3: "Analyze top candidates in detail"
 - Agent analyzes structure but not patterns → Ask for pattern analysis
 - Agent misses complexity assessment → Ask for difficulty ratings
 - Report feels incomplete (score <8) → Identify gaps and iterate
+
+## Active Technologies
+- Python 3.11+ (MkDocs runtime), Markdown (content), YAML (configuration) + mkdocs-material, mkdocs-minify-plugin, mkdocs-git-revision-date-localized-plugin, pymdownx.superfences (Mermaid) (001-mkdocs-documentation)
+- Static files on GitHub Pages (no database) (001-mkdocs-documentation)
+
+## Recent Changes
+- 001-mkdocs-documentation: Added Python 3.11+ (MkDocs runtime), Markdown (content), YAML (configuration) + mkdocs-material, mkdocs-minify-plugin, mkdocs-git-revision-date-localized-plugin, pymdownx.superfences (Mermaid)

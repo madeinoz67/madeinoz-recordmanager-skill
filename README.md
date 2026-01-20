@@ -2,7 +2,7 @@
 name: Records Manager Skill
 pack-id: madeinoz-recordmanager-skill-v1.2.0
 version: 1.2.0
-author: madeinoz
+author: madeinoz67
 description: Subject matter expert in record keeping and paperless-ngx API integration with country-specific taxonomies and deletion confirmation safeguards
 type: skill
 purpose-type: [productivity, automation, organization]
@@ -12,34 +12,107 @@ keywords: [records, management, paperless-ngx, documents, taxonomy, archiving, h
 ---
 
 <p align="center">
-  <img src="icons/madeinoz-recordmanager-skill.png" alt="Records Manager Skill" width="256">
+  <img src="icons/madeinoz-recordmanager-skill.svg" alt="Records Manager Skill" width="256">
 </p>
 
 # Records Manager Skill
 
+[![Documentation](https://github.com/madeinoz67/madeinoz-recordmanager-skill/actions/workflows/docs.yml/badge.svg)](https://github.com/madeinoz67/madeinoz-recordmanager-skill/actions/workflows/docs.yml)
+
 > Expert record keeping system with paperless-ngx integration, country-specific taxonomies, and intelligent document management
 
-## Installation Prompt
+## Quick Start
 
-You are receiving a PAI Pack - a modular upgrade for AI agent systems.
+```bash
+# Clone to PAI skills directory
+git clone https://github.com/madeinoz67/madeinoz-recordmanager-skill.git ~/.claude/skills/RecordsManager
 
-**What is PAI?** See: [PAI Project Overview](../../README.md#what-is-pai)
+# Configure environment
+export MADEINOZ_RECORDMANAGER_PAPERLESS_URL="https://your-paperless-url.com"
+export MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN="your-api-token"
+export MADEINOZ_RECORDMANAGER_COUNTRY="Australia"
+export MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN="household"
 
-**What is a Pack?** See: [Pack System](../../README.md#the-journey-pai-v1x--v20)
+# Verify installation
+bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts --help
+```
 
-This pack adds expert record keeping capabilities to your AI assistant. The Records Manager Skill is a comprehensive document management system that integrates with paperless-ngx to provide:
+## Features
 
-- **Intelligent Document Organization**: Automatic tagging, categorization, and taxonomic structure
-- **Country-Specific Compliance**: Record keeping guidelines tailored to your jurisdiction
-- **Safe Operations**: Deletion confirmation workflow prevents catastrophic data loss
-- **Search Optimization**: Data structures optimized for finding relevant documents quickly
-- **Expert Taxonomies**: Household, corporate, and project management record structures
+- **Intelligent Document Organization** - Automatic tagging, categorization, and taxonomic structure
+- **Country-Specific Compliance** - Record keeping guidelines for Australia, US, and UK
+- **Safe Operations** - Deletion confirmation workflow prevents catastrophic data loss
+- **Search Optimization** - Data structures optimized for finding relevant documents quickly
+- **Expert Taxonomies** - Household, corporate, trust, and project management record structures
+- **Specialized Agents** - Records Keeper, Compliance Guardian, Archive Architect, Deletion Auditor, Sensitivity Scanner, and Retention Monitor
+
+## How It Works
+
+The Records Manager Skill uses a **three-layer architecture**:
+
+1. **Intent Layer** - Detects record keeping intent and routes to workflows
+2. **Expertise Layer** - Provides domain-specific knowledge (taxonomies, compliance, trust management)
+3. **Execution Layer** - Performs operations via CLI and paperless-ngx API
 
 **Core principle**: Organize once, find forever. Your AI assistant becomes an expert records manager that knows how to properly categorize, tag, and manage documents according to best practices and local requirements.
 
-Please follow the installation instructions below to integrate this pack into your infrastructure.
+## Example Usage
 
----
+```bash
+# Upload document with intelligent tagging
+bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts upload \
+  --file ~/Downloads/invoice.pdf \
+  --domain household
+
+# Search for documents
+bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts search \
+  --tags "invoice,2024" \
+  --domain household
+
+# Check retention status
+bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts retention \
+  --domain household
+```
+
+**Deletion Safety**: All deletions require explicit confirmation through the Deletion Auditor agent - cannot be bypassed.
+
+## Documentation
+
+📖 **[Full Documentation](https://madeinoz67.github.io/madeinoz-recordmanager-skill/)**
+
+- **[Installation Guide](https://madeinoz67.github.io/madeinoz-recordmanager-skill/getting-started/installation/)** - Complete setup instructions
+- **[User Guide](https://madeinoz67.github.io/madeinoz-recordmanager-skill/user-guide/)** - Daily workflows and operations
+- **[CLI Reference](https://madeinoz67.github.io/madeinoz-recordmanager-skill/reference/cli/)** - Complete command documentation
+- **[Architecture](https://madeinoz67.github.io/madeinoz-recordmanager-skill/architecture/)** - System design and diagrams
+- **[Tutorials](https://madeinoz67.github.io/madeinoz-recordmanager-skill/tutorials/)** - Step-by-step guides
+
+## For AI Assistants 🤖
+
+**If you are an AI coding assistant (Claude, Cursor, Copilot, etc.), read [INSTALL.md](./INSTALL.md) before attempting installation.**
+
+The INSTALL.md file contains:
+- Prerequisites and dependencies
+- Pre-installation system analysis
+- Step-by-step installation workflow
+- Environment variable configuration
+- Verification and testing procedures
+- Troubleshooting common issues
+
+## Configuration
+
+**Environment Variables** (required):
+
+```bash
+# Paperless-ngx connection
+export MADEINOZ_RECORDMANAGER_PAPERLESS_URL="https://your-paperless-url.com"
+export MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN="your-api-token"
+
+# Records Manager settings
+export MADEINOZ_RECORDMANAGER_COUNTRY="Australia"  # Australia | US | UK
+export MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN="household"  # household | corporate | unit-trust | discretionary-trust | family-trust | project
+```
+
+See [Environment Variables Reference](https://madeinoz67.github.io/madeinoz-recordmanager-skill/configuration/environment/) for complete configuration options.
 
 ## What's Included
 
@@ -48,399 +121,52 @@ Please follow the installation instructions below to integrate this pack into yo
 | Skill definition | `src/skills/RecordsManager/SKILL.md` | Main skill routing and workflow definitions |
 | Paperless API client | `src/lib/PaperlessClient.ts` | Complete paperless-ngx API integration |
 | Taxonomy expert | `src/lib/TaxonomyExpert.ts` | Country-specific record keeping taxonomies |
+| Trust expert | `src/lib/TrustExpert.ts` | Trust document management (FTE, deeds) |
 | Record manager CLI | `src/skills/RecordsManager/Tools/RecordManager.ts` | Main CLI tool for all record operations |
 | Delete confirmation | `src/workflows/DeleteConfirmation.md` | Mandatory workflow for deletion approval |
 | Test suite | `src/tests/RecordManager.test.ts` | Comprehensive test coverage |
-| Environment template | `src/config/.env.template` | Configuration template with all variables |
 
 **Summary:**
-- **Files created:** 7
-- **Skills registered:** 1
-- **Dependencies:** None (uses bun runtime)
-- **External services:** paperless-ngx instance required
+- **Files**: 7 core components
+- **Skills**: 1 registered skill
+- **Dependencies**: None (uses bun runtime)
+- **External services**: paperless-ngx instance required
 
----
+## Design Principles
 
-## The Concept and/or Problem
+1. **Safety First** - Deletion requires explicit approval through Deletion Auditor
+2. **Taxonomy-Driven** - Structure emerges from domain expertise, not ad-hoc decisions
+3. **Country-Aware** - Record keeping rules vary by jurisdiction
+4. **Search-Optimized** - Structures designed for finding, not just storing
+5. **Complete** - Every component from API client to confirmation workflow included
 
-Digital document management is universally broken. Across households, small businesses, and organizations, the same problems repeat:
+## Contributing
 
-**For Households:**
-- Important documents lost in disorganized folders
-- Tax documents scattered across email, downloads, and paper
-- Insurance policies, warranties, and receipts impossible to find when needed
-- No system for knowing what to keep and for how long
-- Family members can't find documents after the "keeper of the papers" is unavailable
+Contributions are welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) for:
+- Code contribution guidelines
+- Documentation development workflow
+- Testing and pull request process
+- Local preview setup (`mkdocs serve`)
 
-**For Small Business:**
-- Corporate records compliance requirements misunderstood or ignored
-- Invoice and receipt chaos makes accounting painful
-- No audit trail for important business decisions
-- Contract management is ad-hoc and unreliable
-- Regulatory deadlines missed because records aren't tracked
+## License
 
-**For Project Management:**
-- Project documentation scattered across multiple systems
-- No clear structure for what belongs in a project record
-- Difficulty finding historical project data when planning new work
-- Lessons learned not captured or accessible
-- Handoffs between team members are incomplete
-
-**For Everyone:**
-- Search is only as good as your taxonomy
-- Naming conventions break down at scale
-- Consistent tagging requires discipline most people don't have
-- Deletion is terrifying because recovery is uncertain
-- Re-organizing is a nightmare because moving documents breaks links
-
-**The Fundamental Problem:**
-
-Most document management systems are just storage with a search box. They don't know:
-- What documents you have based on your life/business situation
-- How long you're legally required to keep things
-- What taxonomy structure makes sense for your use case
-- How to safely delete when you're sure you don't need something
-- How to optimize structures for finding, not just storing
-
-Without a records manager expert, your documents are stored but not managed. Every search is a treasure hunt. Every deletion is a risk. Compliance is accidental.
-
----
-
-## The Solution
-
-The Records Manager Skill solves this through **intelligent, taxonomy-driven document management** with paperless-ngx as the storage engine.
-
-**High-Level Architecture:**
-
-```
-User Request
-    ↓
-┌─────────────────────────────────────────────────────────┐
-│  RECORDS MANAGER SKILL                                  │
-│  - Triggers on record/document intent                   │
-│  - Routes to appropriate workflow                       │
-└─────────────────────────────────────────────────────────┘
-    ↓
-┌─────────────────────────────────────────────────────────┐
-│  TAXONOMY EXPERT                                        │
-│  - Country-specific guidelines (from setup)             │
-│  - Domain expertise (household/corporate/projects)      │
-│  - Suggests tags, document types, retention periods     │
-└─────────────────────────────────────────────────────────┘
-    ↓
-┌─────────────────────────────────────────────────────────┐
-│  PAPERLESS-NGX API CLIENT                               │
-│  - Complete API integration                             │
-│  - Document upload, tagging, searching                  │
-│  - Metadata management                                  │
-└─────────────────────────────────────────────────────────┘
-    ↓
-┌─────────────────────────────────────────────────────────┐
-│  DELETION CONFIRMATION (SPECIAL CASE)                   │
-│  - Explicit approval required                           │
-│  - Explains consequences                                │
-│  - Cannot be bypassed                                   │
-└─────────────────────────────────────────────────────────┘
-```
-
-**Key Components:**
-
-1. **TaxonomyExpert Library** (`src/lib/TaxonomyExpert.ts`)
-   - Country-specific record keeping requirements
-   - Household taxonomies (financial, medical, legal, insurance, education)
-   - Corporate taxonomies (invoices, contracts, compliance, HR)
-   - Project management taxonomies (plans, deliverables, communications)
-   - Retention period recommendations based on document type
-
-2. **PaperlessClient Library** (`src/lib/PaperlessClient.ts`)
-   - Full paperless-ngx REST API wrapper
-   - Document upload with OCR
-   - Tag and document type management
-   - Search with filters
-   - Batch operations
-   - **NO DELETE METHODS** (must use confirmation workflow)
-
-3. **RecordManager CLI** (`src/skills/RecordsManager/Tools/RecordManager.ts`)
-   - `upload` - Add documents with intelligent tagging
-   - `search` - Find documents by tag, type, date, content
-   - `organize` - Suggest and apply taxonomy improvements
-   - `tag` - Add or modify tags on documents
-   - `info` - Get document details and metadata
-   - `retention` - Check retention requirements for documents
-
-4. **DeleteConfirmation Workflow** (`src/workflows/DeleteConfirmation.md`)
-   - MANDATORY approval step before any deletion
-   - Explains what will be deleted and consequences
-   - Requires explicit confirmation from principal
-   - Logs all deletion requests for audit trail
-
-**Design Principles:**
-
-1. **Safety First**: Deletion is catastrophic - approval cannot be bypassed
-2. **Taxonomy-Driven**: Structure emerges from domain expertise, not ad-hoc decisions
-3. **Country-Aware**: Record keeping rules vary by jurisdiction
-4. **Search-Optimized**: Structures designed for finding, not just storing
-5. **Complete**: Every component from API client to confirmation workflow included
-
----
-
-## What Makes This Different
-
-Most "document management" approaches are just filing cabinets with search. The Records Manager Skill is fundamentally different because it's **taxonomy-driven expertise**, not just storage.
-
-**Architectural Innovation:**
-
-The skill has 3 explicit layers that transform intent into action:
-
-```
-1. INTENT LAYER (SKILL.md)
-   - Detects record keeping intent
-   - Routes to appropriate workflow
-   - Contextualizes request (domain, country, urgency)
-
-2. EXPERTISE LAYER (TaxonomyExpert)
-   - Country-specific guidelines
-   - Domain taxonomies (household/corporate/projects)
-   - Retention requirements
-   - Best practices for document types
-
-3. EXECUTION LAYER (PaperlessClient + RecordManager)
-   - API operations
-   - Batch processing
-   - Metadata management
-   - Search optimization
-```
-
-**Why This Architecture Matters:**
-
-- **Separation of concerns**: Expertise is separate from execution
-- **Explicit routing**: Clear path from user intent to action
-- **Deterministic outcomes**: Same request produces consistent taxonomy
-- **Knowledge capture**: Taxonomy structure is explicit and inspectable
-- **Safe by default**: Deletion requires explicit workflow, not direct API call
-
-**WITHOUT this architecture**, you'd have:
-- Ad-hoc tagging with no consistency
-- No country-specific compliance
-- Search that degrades over time
-- Risky deletions without approval
-
-**WITH this architecture**, you get:
-- Expert-level organization without being an expert
-- Compliance-aware retention automatically
-- Search that improves as structure refines
-- Deletions that are intentional and traceable
-
----
-
-## Why This Is Different
-
-This sounds similar to file managers which also organize documents. What makes this approach different?
-
-File managers treat organization as a manual task - you create folders, you name files, you remember where things are. The Records Manager Skill treats organization as **expert knowledge applied systematically**. It knows that tax records have different retention than medical records. It knows that invoices need different tags than contracts. It encodes this expertise so you don't have to be a records management expert.
-
-- Taxonomy-driven organization instead of manual folder creation
-- Country-specific retention rules instead of guessing how long to keep things
-- Search-optimized structures instead of hierarchical nesting
-- Mandatory deletion approval instead of catastrophic accidental loss
-- AI-powered tagging suggestions instead of inconsistent manual tagging
-
----
-
-## Invocation Scenarios
-
-The Records Manager Skill triggers on document and record keeping intent:
-
-| Trigger | Example | Workflow | Action |
-|---------|---------|----------|--------|
-| Upload intent | "Store this invoice" | UploadWorkflow | Add document with suggested tags |
-| Search intent | "Find insurance policies" | SearchWorkflow | Query by tags and types |
-| Organize intent | "Organize my receipts" | OrganizeWorkflow | Suggest taxonomy improvements |
-| Tag intent | "Tag this as tax document" | TagWorkflow | Add metadata to documents |
-| Delete intent | "Delete these old papers" | DeleteConfirmation | **Requires approval** |
-| Retention check | "What can I shred?" | RetentionWorkflow | Check retention requirements |
-
-**Special Case - Deletion:**
-
-Deletion requests ALWAYS route through `DeleteConfirmation` workflow which:
-1. Explains what will be deleted
-2. Describes consequences
-3. Requires explicit approval
-4. Logs the decision for audit trail
-5. Cannot be bypassed
-
----
-
-## Example Usage
-
-### Example 1: Uploading with Intelligent Tagging
-
-```bash
-# User: "Store this medical bill"
-bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts upload \
-  --file "~/Downloads/medical-bill.pdf" \
-  --domain household \
-  --country Australia
-
-# Skill automatically:
-# - Detects it's a medical document
-# - Suggests tags: medical, receipt, health-insurance
-# - Sets document type: Medical Receipt
-# - Recommends retention: 7 years (ATO requirement)
-# - Applies ASSET tags for household accounting
-```
-
-### Example 2: Searching by Taxonomy
-
-```bash
-# User: "Find all tax documents for 2024"
-bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search \
-  --tags "tax,financial,2024" \
-  --domain household
-
-# Returns structured results with document types, dates, and retention status
-```
-
-### Example 3: Deletion with Confirmation
-
-```bash
-# User: "Delete old insurance documents"
-bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts delete \
-  --query "tag:insurance, before:2020"
-
-# System invokes DeleteConfirmation workflow:
-# - Shows: 12 documents will be deleted
-# - Warns: "These are expired policies, but shred receipts first"
-# - Requires: Type "I understand this cannot be undone" to proceed
-# - Logs: Decision to audit trail
-```
-
----
-
-## Configuration
-
-**Environment variables:**
-
-**Option 1: `.env` file** (recommended - created by PAI setup wizard):
-```bash
-# $PAI_DIR/.env
-# Paperless-ngx connection
-MADEINOZ_RECORDMANAGER_PAPERLESS_URL="https://paperless.example.com"
-MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN="your-api-token-here"
-
-# Records Manager settings
-MADEINOZ_RECORDMANAGER_COUNTRY="Australia"  # Your country for compliance
-MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN="household"  # household | corporate | projects
-
-# Optional: Custom taxonomy paths
-MADEINOZ_RECORDMANAGER_TAXONOMY_PATH="$PAI_DIR/skills/RecordsManager/Taxonomies/"
-```
-
-**Option 2: Shell profile** (for manual installation):
-```bash
-# Add to ~/.zshrc or ~/.bashrc
-export MADEINOZ_RECORDMANAGER_PAPERLESS_URL="https://paperless.example.com"
-export MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN="your-api-token-here"
-export MADEINOZ_RECORDMANAGER_COUNTRY="Australia"
-export MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN="household"
-```
-
----
-
-## Customization
-
-### Recommended Customization
-
-**What to Customize:** Country-specific taxonomies and domain structures
-
-**Why:** Default taxonomies are generic - customizing to your specific country and use case dramatically improves relevance and compliance
-
-**Process:**
-1. During setup, specify your country when prompted
-2. Review the suggested taxonomy structure for your domain
-3. Add custom tags specific to your situation (e.g., specific tax forms, insurance types)
-4. Save custom taxonomy to `$PAI_DIR/skills/RecordsManager/Taxonomies/{country}/{domain}/custom.md`
-
-**Expected Outcome:** Record suggestions are highly relevant to your jurisdiction and situation, with accurate retention periods
-
----
-
-### Optional Customization
-
-| Customization | File | Impact |
-|--------------|------|--------|
-| Custom retention periods | `Taxonomies/{country}/retention.md` | Override default retention rules |
-| Additional tag sets | `Taxonomies/{country}/tags.md` | Add domain-specific tags |
-| Search presets | `config/search-presets.json` | Quick access to common queries |
-| Archive workflows | `workflows/Archive.md` | Custom archive-to-cold-storage procedures |
-
----
-
-## Credits
-
-- **Original concept**: madeinoz - developed for personal document management needs
-- **Inspired by**: paperless-ngx project, national archives retention guidelines, records management best practices
-
----
-
-## Related Work
-
-- [paperless-ngx](https://docs.paperless-ngx.com/) - Document management system this skill integrates with
-- [National Archives of Australia](https://www.naa.gov.au/) - Retention guidelines reference
-
----
-
-## Works Well With
-
-- **pai-brightdata-skill** - For fetching documents from web sources
-- **pai-osint-skill** - For background research on document sources
-- **pai-research-skill** - For investigating record keeping requirements
-
----
-
-## Recommended
-
-- **pai-hook-system** - For automatic session capture of record keeping operations
-- **pai-voice-system** - For spoken confirmation of deletion requests
-
----
-
-## Relationships
-
-### Parent Of
-*None specified.*
-
-### Child Of
-*None specified.*
-
-### Sibling Of
-*None specified.*
-
-### Part Of Collection
-*None specified.*
-
----
+MIT License - see [LICENSE](LICENSE) for details
 
 ## Changelog
 
-### 1.2.0 - 2026-01-20
+See [CHANGELOG.md](./CHANGELOG.md) or [Changelog Documentation](https://madeinoz67.github.io/madeinoz-recordmanager-skill/reference/changelog/) for version history.
 
-- Added `status` command to CLI for connection testing
+### Latest Release: v1.2.0 (2026-01-20)
+
+- Added `status` command for connection testing
 - Added StatusCheck workflow for skill-based verification
-- Updated VERIFY.md with comprehensive connection test documentation
-- Final verification step now uses skill invocation ("check status")
+- Updated documentation with MkDocs Material theme
+- Added comprehensive architecture diagrams
 
-### 1.1.0 - 2026-01-20
-- Standardized env variables to `MADEINOZ_RECORDMANAGER_*` prefix
-- Fixed skill directory naming to TitleCase (`RecordsManager`)
-- Moved tool paths to skill-level (`skills/RecordsManager/Tools/`)
-- Added mandatory .env backup to installation workflow
-- Updated backup location to `~/.madeinoz-backup/recordsmanager/`
+---
 
-### 1.0.0 - 2026-01-17
-- Initial release
-- Paperless-ngx API integration
-- Taxonomy expert with country-specific guidelines
-- Deletion confirmation workflow
-- CLI tool with upload, search, organize, tag, info, retention commands
-- Comprehensive test suite
+**Links**:
+- [Documentation](https://madeinoz67.github.io/madeinoz-recordmanager-skill/)
+- [GitHub Repository](https://github.com/madeinoz67/madeinoz-recordmanager-skill)
+- [Issues](https://github.com/madeinoz67/madeinoz-recordmanager-skill/issues)
+- [paperless-ngx](https://docs.paperless-ngx.com/)
