@@ -1,5 +1,5 @@
-// $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts
 #!/usr/bin/env bun
+// $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts
 /**
  * Records Manager CLI Tool
  * Main interface for all record keeping operations

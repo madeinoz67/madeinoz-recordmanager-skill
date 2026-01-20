@@ -32,6 +32,15 @@ Before installing this skill, you must have:
 
 ## Pre-Installation: System Analysis
 
+> **🚨 FOR AI ASSISTANTS - MANDATORY STEPS:**
+> 1. **Step 0.1-0.2**: Run detection commands to understand current state
+> 2. **Step 0.3**: **MUST USE `AskUserQuestion`** to get user decision (upgrade/reinstall/cancel)
+> 3. **Step 0.3**: **MUST SHOW existing env values** and ask user to confirm or reconfigure
+> 4. **Step 0.5**: Create backup ONLY AFTER user confirms
+> 5. **DO NOT** proceed with installation until user explicitly approves
+>
+> **Failure to ask user = installation failure. No exceptions.**
+
 **IMPORTANT:** Before installing, analyze the current system state to detect conflicts and ensure dependencies are met.
 
 ### Step 0.1: Detect Current Configuration
@@ -121,19 +130,70 @@ else
 fi
 ```
 
-### Step 0.3: Conflict Resolution Matrix
+### Step 0.3: MANDATORY User Decision Point
 
-Based on the detection above, follow the appropriate path:
+**⚠️ CRITICAL: DO NOT PROCEED WITHOUT USER CONFIRMATION**
 
-| Scenario | Existing State | Action |
-|----------|---------------|--------|
-| **Clean Install** | No PAI_DIR, no conflicts | Proceed normally with Step 1 |
-| **Directory Exists** | PAI_DIR has files | Review files, backup if needed, then proceed |
-| **Skill Exists** | RecordsManager skill present | Backup old skill, compare versions, then replace |
-| **Tool Exists** | RecordManager.ts present | Backup old tool, then replace |
-| **.env Exists** | Paperless variables configured | Review existing config, merge updates |
+After running the detection commands above, you MUST use `AskUserQuestion` to get explicit user approval before proceeding.
 
-### Step 0.4: MANDATORY Backup Before Installation or Update
+#### If Existing Installation Detected:
+
+When `$PAI_CHECK/skills/RecordsManager` exists, you MUST ask:
+
+```
+AskUserQuestion:
+  header: "Installation"
+  question: "Existing Records Manager installation detected. How would you like to proceed?"
+  options:
+    - label: "Upgrade (Recommended)"
+      description: "Keep existing configuration, update code files only. Your .env settings and entities.json will be preserved."
+    - label: "Fresh Install"
+      description: "Backup existing, then remove and start fresh. You will need to reconfigure paperless-ngx connection."
+    - label: "Cancel"
+      description: "Abort installation and make no changes."
+```
+
+**DO NOT PROCEED** until user selects an option.
+
+#### If Existing Environment Configuration Detected:
+
+When `.env` contains `MADEINOZ_RECORDMANAGER_*` variables, you MUST display them and ask:
+
+```
+Show the user:
+  "Existing configuration found in .env:"
+  "  PAPERLESS_URL: https://paperless.example.com/"
+  "  API_TOKEN: ******** (configured)"
+  "  COUNTRY: Australia"
+  "  DEFAULT_DOMAIN: household"
+
+AskUserQuestion:
+  header: "Configuration"
+  question: "Keep existing paperless-ngx configuration?"
+  options:
+    - label: "Keep Existing (Recommended)"
+      description: "Use the configuration shown above. No changes to .env file."
+    - label: "Reconfigure"
+      description: "Enter new paperless-ngx URL, API token, country, and domain settings."
+```
+
+**DO NOT PROCEED** until user confirms configuration choice.
+
+### Step 0.4: Conflict Resolution Matrix
+
+Based on the detection and user decisions above, follow the appropriate path:
+
+| Scenario | User Choice | Action |
+|----------|-------------|--------|
+| **Clean Install** (no existing) | N/A | Proceed to Step 1, then configure env |
+| **Upgrade** | Keep config | Backup, copy new files, skip env setup |
+| **Upgrade** | Reconfigure | Backup, copy new files, then configure env |
+| **Fresh Install** (existing found) | N/A | **Backup first**, then remove old, full install |
+| **Cancel** | N/A | Exit immediately, make no changes |
+
+> **⚠️ SAFETY RULE:** Backup is MANDATORY for both Upgrade AND Fresh Install when existing installation is detected. Never delete without backup.
+
+### Step 0.5: MANDATORY Backup Before Installation or Update
 
 **ALWAYS create a backup before installing or updating.** This step is REQUIRED regardless of whether conflicts were detected:
 
@@ -172,7 +232,7 @@ fi
 echo "Backup complete: $BACKUP_DIR"
 ```
 
-**After completing system analysis, proceed to Step 1.**
+**After user confirms their choice (Step 0.3) and backup completes (Step 0.5), proceed to Step 1.**
 
 ---
 
@@ -2015,61 +2075,113 @@ Create taxonomy documentation files for each country with:
 
 ### Step 9: Verify Installation
 
-Run these verification steps:
+**⚠️ MANDATORY: Run verification and display results to user**
+
+After copying all files, you MUST run the `status` command and display a verification summary to the user showing all checks and their pass/fail status.
+
+#### 9.1: Run Status Check
 
 ```bash
-# 1. Check all files exist
-ls -la $PAI_DIR/lib/recordsmanager/
-# Should show: PaperlessClient.ts, TaxonomyExpert.ts
-
-ls -la $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts
-# Should show the CLI tool
-
-ls -la $PAI_DIR/skills/RecordsManager/
-# Should show: SKILL.md, Workflows/, Taxonomies/, Tools/, Context/, entities.json
-
-# 2. Verify Bun can run the tool
-bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts --help
-# Should show usage information
-
-# 3. Test paperless-ngx connection
-bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search
-# Should return documents or empty result set
-
-# 4. Check environment variables
-echo "PAPERLESS_URL: $MADEINOZ_RECORDMANAGER_PAPERLESS_URL"
-echo "COUNTRY: $MADEINOZ_RECORDMANAGER_COUNTRY"
-echo "Entities configured:"
-echo "$MADEINOZ_RECORDMANAGER_ENTITIES" | jq '.'
+export $(grep -v '^#' $PAI_DIR/.env | xargs 2>/dev/null)
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts status
 ```
 
-**Verify entity configuration:**
+This will output a structured status report showing:
+- Environment configuration (4 checks)
+- API connectivity (1 check)
+- Authentication & data access (3 checks)
+- Taxonomy expert (3 checks)
+
+#### 9.2: MANDATORY - Display Verification Summary to User
+
+After running the status command, you MUST output a verification summary table to the user in this exact format:
+
+```
+=== INSTALLATION VERIFICATION SUMMARY ===
+
+| # | Check                        | Status |
+|---|------------------------------|--------|
+| 1 | PAPERLESS_URL configured     | ✅ PASS / ❌ FAIL |
+| 2 | API_TOKEN configured         | ✅ PASS / ❌ FAIL |
+| 3 | COUNTRY configured           | ✅ PASS / ❌ FAIL |
+| 4 | DEFAULT_DOMAIN configured    | ✅ PASS / ❌ FAIL |
+| 5 | API endpoint reachable       | ✅ PASS / ❌ FAIL |
+| 6 | API authentication valid     | ✅ PASS / ❌ FAIL |
+| 7 | Tags accessible              | ✅ PASS / ❌ FAIL |
+| 8 | Document types accessible    | ✅ PASS / ❌ FAIL |
+| 9 | Documents accessible         | ✅ PASS / ❌ FAIL |
+| 10| Taxonomy loaded              | ✅ PASS / ❌ FAIL |
+| 11| CLI tool executable          | ✅ PASS / ❌ FAIL |
+| 12| Skill files installed        | ✅ PASS / ❌ FAIL |
+| 13| Connection test (end-to-end) | ✅ PASS / ❌ FAIL |
+| 14| Skill invocation test        | ✅ PASS / ❌ FAIL |
+
+RESULT: X/14 checks passed
+
+[If all pass]: ✅ INSTALLATION SUCCESSFUL - Records Manager is ready!
+[If any fail]: ❌ INSTALLATION INCOMPLETE - See failed checks above
+```
+
+**Check Details:**
+
+| Check | How to Verify |
+|-------|---------------|
+| 1-4   | Environment variables are set in .env |
+| 5     | `curl -I $URL/api/` returns 200 |
+| 6     | API call with token succeeds (not 401/403) |
+| 7-9   | Status command returns data counts |
+| 10    | TaxonomyExpert loads country rules |
+| 11    | `--help` outputs usage text |
+| 12    | All expected files exist (6 lib, 2 skill, 3 tools, 14 workflows) |
+| 13    | `status` command completes with "All checks passed" |
+| 14    | Skill can be triggered (e.g., "Records Manager, check status") |
+
+**DO NOT** mark installation as complete without showing this summary to the user.
+
+#### 9.3: Additional File Verification (Optional)
+
+If needed, verify file installation manually:
 
 ```bash
-# Check entities.json was created
-cat "$PAI_DIR/skills/RecordsManager/entities.json"
+# Check library files exist
+ls $PAI_DIR/lib/recordsmanager/*.ts | wc -l
+# Expected: 6 files
 
-# Verify each entity has tags in paperless-ngx
-echo "Checking entity tags in paperless-ngx..."
-bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --tags "household"
-bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --tags "corporate"
-bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --tags "family-trust"
-bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --tags "unit-trust"
+# Check skill files exist
+ls $PAI_DIR/skills/RecordsManager/*.md | wc -l
+# Expected: 2 files (SKILL.md, AGENTS.md)
+
+# Check tools exist
+ls $PAI_DIR/skills/RecordsManager/Tools/*.ts | wc -l
+# Expected: 3 files
+
+# Check workflows exist
+ls $PAI_DIR/skills/RecordsManager/Workflows/*.md | wc -l
+# Expected: 14 files
 ```
 
-**Test entity-specific features:**
+#### 9.4: Failure Handling
 
-```bash
-# Test trust-specific retention check
-echo "Testing trust retention for family trusts..."
-bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts retention --domain family-trust
+If any verification check fails:
+1. **DO NOT** tell user installation is complete
+2. Identify which specific check failed
+3. Provide remediation steps for that specific failure
+4. Re-run verification after remediation
 
-# Test workflow creation
-echo "Testing workflow analysis..."
-# The WorkflowExpert agent will analyze existing documents
-```
+| Failed Check | Remediation |
+|--------------|-------------|
+| PAPERLESS_URL | Check .env file, ensure URL is correct |
+| API_TOKEN | Regenerate token in paperless-ngx UI |
+| API unreachable | Check URL, network, firewall |
+| Auth failed (6) | Token may be expired or invalid, regenerate in paperless-ngx |
+| Data access (7-9) | Check token has read permissions |
+| Taxonomy (10) | Verify COUNTRY is supported (Australia, UnitedStates, UnitedKingdom) |
+| CLI (11) | Check shebang line is first line in RecordManager.ts |
+| Files missing (12) | Re-run copy steps |
+| Connection test (13) | Run `status` command manually, check for specific error |
+| Skill invocation (14) | Verify SKILL.md is in correct location, check skill triggers |
 
-If all checks pass, installation is complete!
+Only after ALL 14 checks pass should you declare installation complete.
 
 ---
 
