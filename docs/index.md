@@ -12,17 +12,20 @@
     **The project owner and contributors are NOT responsible for any data loss, accidental deletions, or damages caused by using this software.**
 
     This tool interacts with your paperless-ngx instance and can delete documents. Despite safety features including:
+
     - Mandatory deletion confirmation workflows
     - Deletion Auditor agent approval requirements
     - Explicit confirmation prompts
 
     **You are solely responsible for:**
+
     - **Backing up your data** before using this tool
     - **Verifying all deletion operations** before confirming
     - **Understanding your legal retention requirements**
     - **Following paperless-ngx security best practices**
 
     **Before using this tool, you MUST:**
+    
     1. ✅ **Set up a dedicated PAI user** with limited permissions - see [Security Best Practices](configuration/paperless-setup.md#pai-user-security-best-practices)
     2. ✅ **Enable paperless-ngx backup and recovery** - see [paperless-ngx backup documentation](https://docs.paperless-ngx.com/advanced_usage/#backing-up-paperless-ngx)
     3. ✅ **Test the deletion confirmation workflow** in a safe environment
