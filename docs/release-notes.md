@@ -26,12 +26,12 @@ The AI handles installation, configuration, and setup.
 
 ## ✨ Key Features
 
-- **🏷️ Intelligent Organization** - Automatic tagging and categorization
-- **🌍 Country-Specific Compliance** - AU, US, UK retention guidelines
-- **🛡️ Safe Deletions** - Mandatory confirmation workflow with Deletion Auditor
-- **🔍 Powerful Search** - Find documents by tags, types, dates, content
-- **🤖 Six Specialized Agents** - Records Keeper, Compliance Guardian, Archive Architect, Deletion Auditor, Sensitivity Scanner, Retention Monitor
-- **🔧 Extensible** - Custom entity types and taxonomies
+*   **🏷️ Intelligent Organization** - Automatic tagging and categorization
+*   **🌍 Country-Specific Compliance** - AU, US, UK retention guidelines
+*   **🛡️ Safe Deletions** - Mandatory confirmation workflow with Deletion Auditor
+*   **🔍 Powerful Search** - Find documents by tags, types, dates, content
+*   **🤖 Six Specialized Agents** - Records Keeper, Compliance Guardian, Archive Architect, Deletion Auditor, Sensitivity Scanner, Retention Monitor
+*   **🔧 Extensible** - Custom entity types and taxonomies
 
 ## 📚 Documentation
 
@@ -53,15 +53,17 @@ Safety features include:
 
 ## 📦 Requirements
 
-- PAI (Personal AI Infrastructure)
-- paperless-ngx instance with API access
-- Bun runtime
+*   PAI (Personal AI Infrastructure)
+*   paperless-ngx instance with API access
+*   Bun runtime
 
 ## 🔗 Links
 
-- [GitHub Repository](https://github.com/madeinoz67/madeinoz-recordmanager-skill)
-- [Documentation](https://madeinoz67.github.io/madeinoz-recordmanager-skill/)
-- [Issues](https://github.com/madeinoz67/madeinoz-recordmanager-skill/issues)
+*   [GitHub Repository](https://github.com/madeinoz67/madeinoz-recordmanager-skill)
+
+*   [Documentation](https://madeinoz67.github.io/madeinoz-recordmanager-skill/)
+
+*   [Issues](https://github.com/madeinoz67/madeinoz-recordmanager-skill/issues)
 
 ---
 

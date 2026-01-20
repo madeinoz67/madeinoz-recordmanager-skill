@@ -8,16 +8,21 @@ Document retention is a critical legal requirement. Records Manager helps you co
 
 Tax authorities and regulatory bodies mandate minimum retention periods:
 
-- **ATO (Australia)**: 7 years for most tax documents
-- **IRS (United States)**: 3-7 years depending on document type
-- **HMRC (United Kingdom)**: 7 years for self-assessment records
+* **ATO (Australia)**: 7 years for most tax documents
+
+* **IRS (United States)**: 3-7 years depending on document type
+
+* **HMRC (United Kingdom)**: 7 years for self-assessment records
 
 ### Consequences of Non-Compliance
 
-- Penalties for missing records during audit
-- Inability to substantiate tax deductions
-- Legal exposure in disputes
-- Trust compliance issues
+* Penalties for missing records during audit
+
+* Inability to substantiate tax deductions
+
+* Legal exposure in disputes
+
+* Trust compliance issues
 
 ## Retention Periods (Australia)
 
@@ -161,9 +166,9 @@ AI: "Family Trust Election Date: 2020-02-01"
 ```
 
 **Why this matters:**
-- EOFY is June 30, but FTE lodgment could be any date
-- Deleting FTE before 5 years from lodgment risks entire trust structure
-- ATO can request FTE during audits to verify trust eligibility
+*   EOFY is June 30, but FTE lodgment could be any date
+*   Deleting FTE before 5 years from lodgment risks entire trust structure
+*   ATO can request FTE during audits to verify trust eligibility
 
 ### Pre-EOFY Trustee Resolutions
 
@@ -183,11 +188,15 @@ AI: "Trustee Resolutions - Retention Status:"
 
 Some documents should essentially never be destroyed:
 
-- **Trust Deeds**: Foundational trust documents
-- **Wills**: Estate planning documents
-- **Powers of Attorney**: Legal authority documents
-- **Birth/Marriage/Death Certificates**: Vital records
-- **Company Constitutions**: Corporate governance documents
+* **Trust Deeds**: Foundational trust documents
+
+* **Wills**: Estate planning documents
+
+* **Powers of Attorney**: Legal authority documents
+
+* **Birth/Marriage/Death Certificates**: Vital records
+
+* **Company Constitutions**: Corporate governance documents
 
 ## Retention Audit Workflow
 
@@ -235,23 +244,31 @@ AI: "Quarterly Retention Status:"
 
 ### Australia (Default)
 
-- Tax records: 7 years
-- Trust deeds: 15 years (permanent)
-- FTE: 5 years from FTE date (special rule)
+* Tax records: 7 years
+
+* Trust deeds: 15 years (permanent)
+
+* FTE: 5 years from FTE date (special rule)
 
 ### United States
 
-- Tax returns: 7 years (IRS recommendation)
-- Supporting documents: 7 years
-- Employment records: 7 years
-- Insurance policies: Until expired + claims period
+* Tax returns: 7 years (IRS recommendation)
+
+* Supporting documents: 7 years
+
+* Employment records: 7 years
+
+* Insurance policies: Until expired + claims period
 
 ### United Kingdom
 
-- Self-assessment records: 7 years (HMRC)
-- SA302 forms: 7 years
-- P60/P11D: 7 years
-- Medical records: 10 years (NHS guidance)
+* Self-assessment records: 7 years (HMRC)
+
+* SA302 forms: 7 years
+
+* P60/P11D: 7 years
+
+* Medical records: 10 years (NHS guidance)
 
 ## Retention Best Practices
 
@@ -289,9 +306,11 @@ retention:fte-2025-02-01
 For critical retention dates:
 
 ```
-- FTE Retention Review: 30 days before expiration
-- EOFY Document Review: May each year
-- Annual Retention Audit: First week of new financial year
+* FTE Retention Review: 30 days before expiration
+
+* EOFY Document Review: May each year
+
+* Annual Retention Audit: First week of new financial year
 ```
 
 ### 5. Archive, Don't Delete
@@ -299,9 +318,11 @@ For critical retention dates:
 For documents past retention but with potential value:
 
 ```
-- Move to archive storage
-- Remove from active search
-- Keep for "just in case" scenarios
+* Move to archive storage
+
+* Remove from active search
+
+* Keep for "just in case" scenarios
 ```
 
 ## Deletion Safety
@@ -362,23 +383,30 @@ bun run RecordManager.ts retention --audit
 
 ### Monthly
 
-- Check for documents nearing retention expiration
-- Review FTE retention status (if applicable)
+* Check for documents nearing retention expiration
+
+* Review FTE retention status (if applicable)
 
 ### Quarterly
 
-- Review retention status for quarter
-- Plan archival for expiring documents
+* Review retention status for quarter
+
+* Plan archival for expiring documents
 
 ### Annually (EOFY)
 
-- Full retention audit
-- Archive expired documents
-- Update retention tracking
-- Review trust document completeness
+* Full retention audit
+
+* Archive expired documents
+
+* Update retention tracking
+
+* Review trust document completeness
 
 ### Multi-Year
 
-- Trust deeds: Keep forever (essentially permanent)
-- Wills and powers of attorney: Keep forever
-- Vital records: Keep forever
+* Trust deeds: Keep forever (essentially permanent)
+
+* Wills and powers of attorney: Keep forever
+
+* Vital records: Keep forever

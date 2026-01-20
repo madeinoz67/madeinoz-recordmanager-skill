@@ -366,11 +366,17 @@ AI: "Analyzing documents for cleanup..."
 ## Daily Usage Tips
 
 1. **Upload Immediately**: Process documents as soon as they arrive to prevent backlog
+
 2. **Consistent Tagging**: Let the system suggest tags, but review for accuracy
+
 3. **Search Before Upload**: Check if similar documents exist before adding
+
 4. **Weekly Organization**: Spend 10 minutes weekly organizing new documents
+
 5. **Monthly Review**: Check retention status and workflow performance
+
 6. **EOFY Preparation**: Start gathering tax documents in May, not June
+
 7. **Trust Compliance**: Validate trust documents quarterly, not annually
 
 ## Keyboard Shortcuts (CLI)
@@ -407,7 +413,9 @@ AI: "No exact matches found. Similar documents:"
 User: "Upload this document"
 AI: "Upload failed. Possible reasons:"
     "  1. File doesn't exist"
+    ""
     "  2. Paperless-ngx connection issue"
+    ""
     "  3. File type not supported"
     "Run 'check status' to verify connection"
 ```

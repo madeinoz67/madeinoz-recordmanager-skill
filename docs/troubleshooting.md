@@ -57,14 +57,20 @@ mkdocs serve -a localhost:8001
 ```
 
 **Changes not reflecting**:
-- Hard refresh browser (Ctrl+Shift+R or Cmd+Shift+R)
-- Check file saved in correct location (docs/ directory)
-- Restart server
+
+*   Hard refresh browser (Ctrl+Shift+R or Cmd+Shift+R)
+
+*   Check file saved in correct location (docs/ directory)
+
+*   Restart server
 
 **Blank pages**:
-- Check browser console for JavaScript errors
-- Verify Mermaid syntax is correct
-- Try `mkdocs build --strict` to find errors
+
+*   Check browser console for JavaScript errors
+
+*   Verify Mermaid syntax is correct
+
+*   Try `mkdocs build --strict` to find errors
 
 ---
 
@@ -96,9 +102,9 @@ mkdocs serve -a localhost:8001
    ```
 
 4. **Check network/firewall**
-   - Ensure paperless-ngx URL is accessible from your network
-   - Check if VPN is required
-   - Verify no firewall blocking connections
+*   Ensure paperless-ngx URL is accessible from your network
+*   Check if VPN is required
+*   Verify no firewall blocking connections
 
 ---
 
@@ -109,12 +115,12 @@ mkdocs serve -a localhost:8001
 **Solutions**:
 
 1. **Regenerate API token** in paperless-ngx:
-   - Go to Settings → Tokens
-   - Create new token with "Read/Write" permissions
-   - Update environment variable
+*   Go to Settings → Tokens
+*   Create new token with "Read/Write" permissions
+*   Update environment variable
 
 2. **Verify token permissions**:
-   - Token must have "Read/Write" access
+*   Token must have "Read/Write" access
    - "Read only" tokens cannot upload documents
 
 3. **Check token format**:
@@ -173,19 +179,19 @@ mkdocs serve -a localhost:8001
 **Solutions**:
 
 1. **Check paperless-ngx OCR status**:
-   - Go to paperless-ngx web UI
-   - Check "Tasks" in left menu
-   - Verify OCR tasks are processing
+*   Go to paperless-ngx web UI
+*   Check "Tasks" in left menu
+*   Verify OCR tasks are processing
 
 2. **Wait for OCR to complete**:
-   - Large PDFs can take 30-60 seconds
-   - Image-heavy documents take longer
-   - Check document in paperless-ngx UI for "Processing" status
+*   Large PDFs can take 30-60 seconds
+*   Image-heavy documents take longer
+*   Check document in paperless-ngx UI for "Processing" status
 
 3. **Reduce file size**:
-   - Scan at lower DPI (200 DPI instead of 300)
-   - Remove unnecessary pages
-   - Compress PDF before upload
+*   Scan at lower DPI (200 DPI instead of 300)
+*   Remove unnecessary pages
+*   Compress PDF before upload
 
 ---
 
@@ -196,14 +202,14 @@ mkdocs serve -a localhost:8001
 **Solutions**:
 
 1. **Wait for OCR completion**:
-   - Tags are applied after OCR finishes
-   - Check document in paperless-ngx UI
-   - Wait 30-60 seconds for processing
+*   Tags are applied after OCR finishes
+*   Check document in paperless-ngx UI
+*   Wait 30-60 seconds for processing
 
 2. **Verify document has text**:
-   - OCR must extract text from document
-   - Image-only PDFs won't be tagged
-   - Check if document text is selectable in paperless-ngx
+*   OCR must extract text from document
+*   Image-only PDFs won't be tagged
+*   Check if document text is selectable in paperless-ngx
 
 3. **Check domain taxonomy**:
    ```bash
@@ -230,9 +236,9 @@ mkdocs serve -a localhost:8001
 **Solutions**:
 
 1. **Wait for OCR processing**:
-   - Search works on extracted text
-   - Wait 30-60 seconds after upload
-   - Check document in paperless-ngx UI
+*   Search works on extracted text
+*   Wait 30-60 seconds after upload
+*   Check document in paperless-ngx UI
 
 2. **Broader search terms**:
    ```bash
@@ -272,10 +278,10 @@ mkdocs serve -a localhost:8001
    ```
 
 2. **Check document type**:
-   - Different document types have different retention
-   - Tax documents: 7 years in Australia
-   - Medical records: 7 years for tax purposes
-   - Insurance policies: While active + retention period
+*   Different document types have different retention
+*   Tax documents: 7 years in Australia
+*   Medical records: 7 years for tax purposes
+*   Insurance policies: While active + retention period
 
 3. **Update document type**:
    ```bash
@@ -298,15 +304,15 @@ mkdocs serve -a localhost:8001
 **Solutions**:
 
 1. **Understand the workflow**:
-   - Deletion Auditor is a **safety feature**
-   - Prevents accidental data loss
-   - Requires explicit confirmation
+*   Deletion Auditor is a **safety feature**
+*   Prevents accidental data loss
+*   Requires explicit confirmation
 
 2. **Follow the approval process**:
-   - Review what will be deleted
-   - Verify retention periods are truly expired
-   - Check documents aren't needed for audit
-   - Type exact approval phrase when prompted
+*   Review what will be deleted
+*   Verify retention periods are truly expired
+*   Check documents aren't needed for audit
+*   Type exact approval phrase when prompted
 
 3. **If you truly need to delete**:
    ```bash
@@ -332,15 +338,15 @@ mkdocs serve -a localhost:8001
 
 3. **Create a new issue**:
    Include:
-   - Your OS and version
-   - paperless-ngx version
-   - Error message (full output)
-   - Steps to reproduce the problem
-   - What you expected to happen
+*   Your OS and version
+*   paperless-ngx version
+*   Error message (full output)
+*   Steps to reproduce the problem
+*   What you expected to happen
 
 4. **Check paperless-ngx documentation**:
    - [paperless-ngx Docs](https://docs.paperless-ngx.com/)
-   - Many issues are related to paperless-ngx configuration
+*   Many issues are related to paperless-ngx configuration
 
 ---
 

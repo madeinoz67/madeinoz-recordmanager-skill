@@ -33,9 +33,12 @@ bun run src/skills/RecordsManager/Tools/RecordManager.ts status
 ```
 
 **Troubleshooting:**
-- If connection fails, verify `MADEINOZ_RECORDMANAGER_PAPERLESS_URL` is correct
-- If API token fails, regenerate in paperless-ngx (Settings → API Tokens)
-- Check network connectivity to your paperless-ngx instance
+
+* If connection fails, verify `MADEINOZ_RECORDMANAGER_PAPERLESS_URL` is correct
+
+* If API token fails, regenerate in paperless-ngx (Settings → API Tokens)
+
+* Check network connectivity to your paperless-ngx instance
 
 ## Step 2: Prepare Your Document
 
@@ -97,11 +100,16 @@ records-manager upload /path/to/document.pdf \
 ## Step 5: Verify Upload in paperless-ngx
 
 1. Open your paperless-ngx web interface
+
 2. Navigate to **Documents**
+
 3. Your document should appear with:
-   - The assigned title
-   - Domain-based tags
-   - Correct document type
+
+   * The assigned title
+
+   * Domain-based tags
+
+   * Correct document type
 
 ## Expected Outcomes
 
@@ -117,29 +125,43 @@ After completing this tutorial, you should be able to:
 ### Issue: "API token invalid"
 
 **Solution:** Regenerate your API token in paperless-ngx:
+
 1. Go to **Settings** → **API Tokens**
+
 2. Click **Create new token**
+
 3. Copy and update `MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN`
 
 ### Issue: "Document upload failed"
 
 **Solution:** Check file format support:
-- Supported: PDF, PNG, JPEG, TIFF
-- Max size: Depends on paperless-ngx configuration (typically 100MB)
-- Verify file path is absolute, not relative
+
+* Supported: PDF, PNG, JPEG, TIFF
+
+* Max size: Depends on paperless-ngx configuration (typically 100MB)
+
+* Verify file path is absolute, not relative
 
 ### Issue: "Domain not recognized"
 
 **Solution:** Use valid domain values:
-- `household` - Personal documents
-- `corporate` - Business documents
-- `unit-trust` - Unit trust documents
-- `discretionary-trust` - Discretionary trust documents
-- `family-trust` - Family trust documents
-- `project` - Project-specific documents
+
+* `household` - Personal documents
+
+* `corporate` - Business documents
+
+* `unit-trust` - Unit trust documents
+
+* `discretionary-trust` - Discretionary trust documents
+
+* `family-trust` - Family trust documents
+
+* `project` - Project-specific documents
 
 ## Next Steps
 
-- Learn how to [Create Custom Entities](./entity-creation.md)
-- Check [Retention Compliance](./retention-check.md)
-- Explore [Batch Import](./batch-import.md) for multiple documents
+* Learn how to [Create Custom Entities](./entity-creation.md)
+
+* Check [Retention Compliance](./retention-check.md)
+
+* Explore [Batch Import](./batch-import.md) for multiple documents

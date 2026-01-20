@@ -60,8 +60,11 @@ RecordsManager/
 ### Step 1: Obtain paperless-ngx Credentials
 
 1. Log in to your paperless-ngx instance
+
 2. Navigate to **Settings** → **API Tokens**
+
 3. Create a new API token with read/write permissions
+
 4. Copy the token (you won't see it again)
 
 ### Step 2: Set Environment Variables
@@ -134,9 +137,12 @@ Expected output:
 ```
 
 If connection fails:
-- Verify your paperless-ngx URL is correct
-- Check that your API token has valid permissions
-- Ensure paperless-ngx is accessible from your network
+
+* Verify your paperless-ngx URL is correct
+
+* Check that your API token has valid permissions
+
+* Ensure paperless-ngx is accessible from your network
 
 ### Step 3: Test Upload (Optional)
 
@@ -241,6 +247,7 @@ bun --version
 **Problem**: Cannot connect to paperless-ngx
 
 **Solution**:
+
 1. Verify paperless-ngx is running
 2. Check firewall rules
 3. Ensure URL includes protocol (https://)
@@ -251,6 +258,7 @@ bun --version
 **Problem**: paperless-ngx rejects API token
 
 **Solution**:
+
 1. Regenerate API token in paperless-ngx
 2. Verify token has read/write permissions
 3. Check for extra characters in environment variable
@@ -288,10 +296,10 @@ After successful installation:
 
 If you encounter issues during installation:
 
-- **Check logs**: `~/.claude/MEMORY/` for PAI session logs
-- **Verify configuration**: Run `bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts status`
-- **Review prerequisites**: Ensure all system requirements are met
-- **Open an issue**: [GitHub Issues](https://github.com/madeinoz/madeinoz-recordmanager-skill/issues)
+*   **Check logs**: `~/.claude/MEMORY/` for PAI session logs
+*   **Verify configuration**: Run `bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts status`
+*   **Review prerequisites**: Ensure all system requirements are met
+*   **Open an issue**: [GitHub Issues](https://github.com/madeinoz/madeinoz-recordmanager-skill/issues)
 
 ---
 

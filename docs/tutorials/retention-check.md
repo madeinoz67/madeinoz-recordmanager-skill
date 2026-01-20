@@ -23,10 +23,14 @@ Records Manager includes built-in retention expertise for several jurisdictions:
 | **United Kingdom** | HMRC | 6 years (tax), 10+ years (legal) |
 
 **Australia-specific examples:**
-- Tax documents: 5 years from EOFY
-- Trust deeds: Permanent
-- Family Trust Election: 5+ years from FTE date
-- Employment records: 7 years after termination
+
+* Tax documents: 5 years from EOFY
+
+* Trust deeds: Permanent
+
+* Family Trust Election: 5+ years from FTE date
+
+* Employment records: 7 years after termination
 
 ## Step 2: Check Overall Retention Status
 
@@ -50,12 +54,12 @@ Compliant: 231 (93.5%)
 ❌ Overdue: 4 (1.6%)
 
 Documents Approaching Deadline:
-- Invoice #12345 (expires in 30 days)
-- Receipt ABC-999 (expires in 45 days)
+*   Invoice #12345 (expires in 30 days)
+*   Receipt ABC-999 (expires in 45 days)
 
 Overdue Documents:
-- 2020 Tax Return (expired 180 days ago)
-- Employment Contract (expired 365 days ago)
+*   2020 Tax Return (expired 180 days ago)
+*   Employment Contract (expired 365 days ago)
 ```
 
 ## Step 3: Check Specific Entity
@@ -77,8 +81,8 @@ Compliant: 87 (97.8%)
 Review Required: 2 (2.2%)
 
 Approaching Deadline:
-- 2020-06-15: Vendor Invoice #INV-2020-089 (30 days)
-- 2020-07-22: Expense Receipt (45 days)
+*   2020-06-15: Vendor Invoice #INV-2020-089 (30 days)
+*   2020-07-22: Expense Receipt (45 days)
 ```
 
 ## Step 4: Get Detailed Document Report
@@ -113,7 +117,9 @@ Generated: 2025-01-20
 ## Recommended Actions
 
 1. Review 2 overdue contracts for archiving or extension
+
 2. Process 5 documents approaching 60-day threshold
+
 3. Archive expired documents following deletion workflow
 ```
 
@@ -145,24 +151,24 @@ records-manager retention rules --country AU
 🇦🇺 Australian Retention Requirements
 
 Income Tax Documents: 5 years after EOFY
-- Tax returns, assessments, notices
-- Payment summaries
-- Business activity statements
+*   Tax returns, assessments, notices
+*   Payment summaries
+*   Business activity statements
 
 GST Records: 5 years
-- Tax invoices
-- Credit/debit notes
-- Accounting records
+*   Tax invoices
+*   Credit/debit notes
+*   Accounting records
 
 Employee Records: 7 years after termination
-- Tax file declarations
-- Payment summaries
-- Superannuation contributions
+*   Tax file declarations
+*   Payment summaries
+*   Superannuation contributions
 
 Trust Documents: Special rules
-- Trust deeds: Permanent retention
-- Family Trust Election: 5+ years from FTE date
-- Distribution minutes: 5 years from EOFY
+*   Trust deeds: Permanent retention
+*   Family Trust Election: 5+ years from FTE date
+*   Distribution minutes: 5 years from EOFY
 
 Source: Australian Taxation Office (ATO)
 ```
@@ -182,8 +188,11 @@ After completing this tutorial, you should be able to:
 ### Issue: "No documents found"
 
 **Solution:** Ensure documents are uploaded:
+
 1. Check documents exist in paperless-ngx
+
 2. Verify document dates are set correctly
+
 3. Confirm entity configuration
 
 ### Issue: "Jurisdiction not configured"
@@ -197,16 +206,23 @@ export MADEINOZ_RECORDMANAGER_RECORDS_COUNTRY=AU
 ### Issue: "Incorrect retention calculated"
 
 **Solution:** Verify document metadata:
+
 1. Check `created` date is accurate
+
 2. Ensure `document-type` is correctly assigned
+
 3. For trusts, verify `trust-deed-date` is set
 
 ## Best Practices
 
 1. **Run monthly** retention checks to stay ahead of deadlines
+
 2. **Export reports** for audit trails and compliance evidence
+
 3. **Set calendar reminders** for quarterly reviews
+
 4. **Archive, don't delete** - use the deletion workflow for confirmation
+
 5. **Keep trust deeds permanently** - they should never expire
 
 ## Taking Action on Non-Compliant Documents
@@ -214,22 +230,33 @@ export MADEINOZ_RECORDMANAGER_RECORDS_COUNTRY=AU
 When documents are overdue or approaching deadline:
 
 1. **Review required** (30-60 days):
-   - Determine if document should be kept longer
-   - Check if legal/tax obligation extends retention
-   - Document reason for extended retention
+
+   * Determine if document should be kept longer
+
+   * Check if legal/tax obligation extends retention
+
+   * Document reason for extended retention
 
 2. **Overdue** (past retention):
-   - Verify no active legal/tax requirement
-   - Use deletion workflow for confirmation
-   - Archive if uncertain rather than delete
+
+   * Verify no active legal/tax requirement
+
+   * Use deletion workflow for confirmation
+
+   * Archive if uncertain rather than delete
 
 3. **Trust documents**:
-   - Never delete trust deeds
-   - Keep FTE documents for 5+ years from FTE date
-   - Maintain distribution records
+
+   * Never delete trust deeds
+
+   * Keep FTE documents for 5+ years from FTE date
+
+   * Maintain distribution records
 
 ## Next Steps
 
-- Review [Deletion Workflow](../workflows/deletion-confirmation.md) for safe document removal
-- Set up [Automated Retention Monitoring](../workflows/index.md)
-- Learn [Batch Import](./batch-import.md) for existing document migrations
+* Review [Deletion Workflow](../workflows/deletion-confirmation.md) for safe document removal
+
+* Set up [Automated Retention Monitoring](../workflows/index.md)
+
+* Learn [Batch Import](./batch-import.md) for existing document migrations

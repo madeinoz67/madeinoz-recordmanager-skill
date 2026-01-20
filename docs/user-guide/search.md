@@ -37,9 +37,10 @@ AI: [Returns all documents where 'Smith' appears in content]
 ```
 
 **Tips for content search:**
-- Use specific terms: "invoice" instead of "payment document"
-- Include names: "Dr Smith" instead of "doctor"
-- Search dates: "January 2024" instead of "early this year"
+
+*   Use specific terms: "invoice" instead of "payment document"
+*   Include names: "Dr Smith" instead of "doctor"
+*   Search dates: "January 2024" instead of "early this year"
 
 ### By Tags
 
@@ -54,9 +55,10 @@ AI: [Returns documents with both tags]
 ```
 
 **Tag search patterns:**
-- Single tag: `medical`
-- Multiple tags: `financial tax 2024`
-- Tag categories: `insurance vehicle`
+
+*   Single tag: `medical`
+*   Multiple tags: `financial tax 2024`
+*   Tag categories: `insurance vehicle`
 
 ### By Document Type
 
@@ -71,9 +73,9 @@ AI: [Returns documents with type 'Medical Receipt']
 ```
 
 **Common document types:**
-- Invoice, Receipt, Tax Return, Bank Statement
-- Insurance Policy, Contract, Legal Document
-- Trust Deed, Distribution Minutes, Trustee Resolution
+*   Invoice, Receipt, Tax Return, Bank Statement
+*   Insurance Policy, Contract, Legal Document
+*   Trust Deed, Distribution Minutes, Trustee Resolution
 
 ### By Date Range
 
@@ -252,18 +254,18 @@ Good search starts with good organization:
 
 ### Tag Strategy
 
-- **Category tags**: financial, medical, insurance, legal
-- **Year tags**: 2024, 2023, 2022
-- **Status tags**: tax-deductible, paid, pending, archived
-- **Entity tags**: household, corporate, trust-name
+*   **Category tags**: financial, medical, insurance, legal
+*   **Year tags**: 2024, 2023, 2022
+*   **Status tags**: tax-deductible, paid, pending, archived
+*   **Entity tags**: household, corporate, trust-name
 
 ### Document Type Assignment
 
 Always assign document types (not just tags):
 
-- Invoices should have type "Invoice"
-- Tax documents should have type "Tax Return" or "Tax Assessment"
-- Insurance documents should have type "Insurance Policy"
+*   Invoices should have type "Invoice"
+*   Tax documents should have type "Tax Return" or "Tax Assessment"
+*   Insurance documents should have type "Insurance Policy"
 
 ### Consistent Naming
 
@@ -364,7 +366,11 @@ AI: "Document #1234 matched because:"
 ## Search Performance Tips
 
 1. **Use tags first**: Tag-based search is faster than content search
+
 2. **Add year filters**: Reduces search space significantly
+
 3. **Specify document types**: Narrowing by type improves results
+
 4. **Search recent first**: Limit to recent years when possible
+
 5. **Combine filters**: Multiple specific filters beat one vague filter

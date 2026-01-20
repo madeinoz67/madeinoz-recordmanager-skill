@@ -6,8 +6,8 @@ This section provides comprehensive reference documentation for the Records Mana
 
 The Records Manager Skill provides expert record keeping with paperless-ngx integration, country-specific taxonomies, and intelligent document management. This reference section covers:
 
-- **[CLI Commands](cli.md)** - Complete command-line interface reference
-- **[Taxonomy Data Structure](taxonomy-data-structure.md)** - Entity types, categories, tags, and retention rules
+*   **[CLI Commands](cli.md)** - Complete command-line interface reference
+*   **[Taxonomy Data Structure](taxonomy-data-structure.md)** - Entity types, categories, tags, and retention rules
 
 ## Key Components
 
@@ -42,9 +42,9 @@ All paperless-ngx configuration uses the `MADEINOZ_RECORDMANAGER_` prefix:
 
 ## Supported Countries
 
-- **Australia** (AU) - Full household, corporate, and trust support
-- **United States** (US) - Household records
-- **United Kingdom** (UK) - Household records
+*   **Australia** (AU) - Full household, corporate, and trust support
+*   **United States** (US) - Household records
+*   **United Kingdom** (UK) - Household records
 
 ## Entity Types
 
@@ -64,6 +64,6 @@ All paperless-ngx configuration uses the `MADEINOZ_RECORDMANAGER_` prefix:
 
 ## Related Documentation
 
-- [Getting Started](../getting-started/index.md) - Installation and setup
-- [User Guide](../user-guide/index.md) - Usage patterns and workflows
-- [Architecture](../architecture/index.md) - System design details
+*   [Getting Started](../getting-started/index.md) - Installation and setup
+*   [User Guide](../user-guide/index.md) - Usage patterns and workflows
+*   [Architecture](../architecture/index.md) - System design details

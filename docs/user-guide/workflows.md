@@ -28,17 +28,22 @@ The Upload workflow handles document ingestion with automatic tagging and classi
 
 ### When to Use
 
-- Adding new documents to your records
-- Scanning and storing receipts, invoices, or statements
-- Archiving important documents
+*   Adding new documents to your records
+*   Scanning and storing receipts, invoices, or statements
+*   Archiving important documents
 
 ### Process
 
 1. **Provide File**: Specify the file path or document to upload
+
 2. **Determine Domain**: System identifies domain (household/corporate/trust) from context or asks
+
 3. **Suggest Tags**: TaxonomyExpert analyzes filename and suggests appropriate tags
+
 4. **Create Tags**: Tags are created in paperless-ngx if they don't exist
+
 5. **Upload**: Document is uploaded with all metadata
+
 6. **Confirm**: System returns document ID and applied tags
 
 ### Example
@@ -65,16 +70,20 @@ The Search workflow finds documents matching your criteria.
 
 ### When to Use
 
-- Locating specific documents
-- Reviewing documents by category or date
-- Preparing for tax time or audits
+*   Locating specific documents
+*   Reviewing documents by category or date
+*   Preparing for tax time or audits
 
 ### Process
 
 1. **Parse Criteria**: Extract search terms from your request
+
 2. **Build Query**: Combine tags, types, dates, and text search
+
 3. **Execute Search**: Query paperless-ngx API
+
 4. **Present Results**: Show matches with document details
+
 5. **Refine Option**: Offer to narrow or expand search
 
 ### Example
@@ -87,10 +96,10 @@ bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search \
 
 ### Search Tips
 
-- Use specific terms: "invoice 2024" instead of "recent documents"
-- Combine filters: tags + date range for precise results
-- Use document types: "Tax Return" for official tax documents
-- Search content: paperless-ngx indexes document text
+*   Use specific terms: "invoice 2024" instead of "recent documents"
+*   Combine filters: tags + date range for precise results
+*   Use document types: "Tax Return" for official tax documents
+*   Search content: paperless-ngx indexes document text
 
 ## Organize Workflow
 
@@ -98,17 +107,22 @@ The Organize workflow analyzes and improves document structure.
 
 ### When to Use
 
-- Cleaning up untagged or poorly tagged documents
-- Improving overall document organization
-- Implementing consistent tagging practices
+*   Cleaning up untagged or poorly tagged documents
+*   Improving overall document organization
+*   Implementing consistent tagging practices
 
 ### Process
 
 1. **Scan Documents**: Find untagged or sparsely tagged documents
+
 2. **Analyze Patterns**: TaxonomyExpert suggests improvements
+
 3. **Show Suggestions**: Display proposed tags and types
+
 4. **Get Approval**: Ask before applying changes
+
 5. **Update Metadata**: Apply approved changes in paperless-ngx
+
 6. **Report Changes**: Summary of modifications made
 
 ### Example
@@ -129,16 +143,20 @@ The Tag workflow adds or modifies tags on existing documents.
 
 ### When to Use
 
-- Adding category tags to multiple documents
-- Implementing new tagging scheme
-- Correcting incorrect tags
+*   Adding category tags to multiple documents
+*   Implementing new tagging scheme
+*   Correcting incorrect tags
 
 ### Process
 
 1. **Identify Documents**: Get document IDs to tag
+
 2. **Verify Existence**: Confirm documents exist in paperless-ngx
+
 3. **Create Tags**: Create new tags if needed
+
 4. **Apply Tags**: Update document metadata
+
 5. **Confirm Changes**: Show what was tagged
 
 ### Example
@@ -232,47 +250,60 @@ sequenceDiagram
 
     The system provides recommendations based on general taxonomies and common retention periods, but these may not apply to your specific situation. You should:
 
-    - **Verify retention periods** apply to your jurisdiction and use case
-    - **Consult with legal or tax professionals** for compliance-critical documents
-    - **Understand that deletion is permanent** - once deleted, documents cannot be recovered
-    - **Consider maintaining backups** of important documents, even after retention expires
-    - **Review audit trails** regularly to track deletion decisions
+*   **Verify retention periods** apply to your jurisdiction and use case
+*   **Consult with legal or tax professionals** for compliance-critical documents
+*   **Understand that deletion is permanent** - once deleted, documents cannot be recovered
+*   **Consider maintaining backups** of important documents, even after retention expires
+*   **Review audit trails** regularly to track deletion decisions
 
     The Records Manager Skill and its agents provide tools to assist with document management, but **compliance is your responsibility**.
 
 ### When to Use
 
-- Removing documents past retention period
-- Cleaning up duplicate documents
-- Purging obsolete records
+*   Removing documents past retention period
+*   Cleaning up duplicate documents
+*   Purging obsolete records
 
 ### Mandatory Approval Process
 
 1. **Show Documents**: Display all documents that will be deleted (ID, title, date, tags)
+
 2. **Check Retention**: Warn if any documents are within retention period
+
 3. **Explain Consequences**: Explicitly state deletion is permanent and irreversible
+
 4. **Require Exact Phrase**: You must type the exact confirmation phrase
+
 5. **Execute Deletion**: Only after confirmation, delete documents
+
 6. **Log Decision**: Record deletion to audit trail
 
 ### Safety Features
 
 #### Deletion Auditor Agent Review
-- **Adversarial Analysis**: Agent actively looks for what could go wrong
-- **Risk Assessment**: Identifies potential business impact and data loss
-- **Compliance Check**: Validates retention periods and regulatory requirements
-- **Relationship Analysis**: Ensures dependent documents aren't affected
+* **Adversarial Analysis**: Agent actively looks for what could go wrong
+
+* **Risk Assessment**: Identifies potential business impact and data loss
+
+* **Compliance Check**: Validates retention periods and regulatory requirements
+
+* **Relationship Analysis**: Ensures dependent documents aren't affected
 
 #### Multi-Agent Validation
-- **Compliance Guardian**: Verifies legal compliance of deletion
-- **Retention Monitor**: Confirms documents are past retention periods
-- **Records Keeper**: Assesses impact on document relationships
+* **Compliance Guardian**: Verifies legal compliance of deletion
+
+* **Retention Monitor**: Confirms documents are past retention periods
+
+* **Records Keeper**: Assesses impact on document relationships
 
 #### Emergency Safeguards
-- **Exact Phrase Requirement**: Cannot be bypassed or automated
-- **Explicit Warnings**: Clear statement of permanent consequences
-- **Audit Trail**: Complete documentation of deletion decision
-- **Rollback Capability**: System state can be restored from backups
+* **Exact Phrase Requirement**: Cannot be bypassed or automated
+
+* **Explicit Warnings**: Clear statement of permanent consequences
+
+* **Audit Trail**: Complete documentation of deletion decision
+
+* **Rollback Capability**: System state can be restored from backups
 
 ### Mandatory Confirmation Phrase
 
@@ -281,11 +312,15 @@ I understand this cannot be undone and I want to proceed with deleting N documen
 ```
 
 The system will NOT accept:
-- "yes"
-- "do it"
-- "proceed"
-- "delete them"
-- Any casual confirmation
+* "yes"
+
+* "do it"
+
+* "proceed"
+
+* "delete them"
+
+* Any casual confirmation
 
 ### Example
 
@@ -310,16 +345,20 @@ The Retention workflow checks how long documents must be kept.
 
 ### When to Use
 
-- Determining what documents can be shredded
-- Planning document storage
-- Preparing for end of financial year
+*   Determining what documents can be shredded
+*   Planning document storage
+*   Preparing for end of financial year
 
 ### Process
 
 1. **Get Document Type**: Identify category or specific documents
+
 2. **Lookup Requirements**: Query retention rules for country and type
+
 3. **Show Retention Period**: Display years and legal reason
+
 4. **Calculate Date**: Show when retention expires
+
 5. **Advise Action**: Recommend archive, keep, or safe to delete
 
 ### Retention Periods (Australia)
@@ -339,9 +378,9 @@ The Info workflow retrieves detailed metadata for a specific document.
 
 ### When to Use
 
-- Checking document tags and metadata
-- Verifying document details before operations
-- Reviewing retention status
+*   Checking document tags and metadata
+*   Verifying document details before operations
+*   Reviewing retention status
 
 ### Example
 
@@ -356,18 +395,18 @@ The Add Entity workflow creates new entity structures in paperless-ngx.
 
 ### When to Use
 
-- Setting up a new trust
-- Adding a business entity
-- Creating project organization
+*   Setting up a new trust
+*   Adding a business entity
+*   Creating project organization
 
 ### Entity Types
 
-- **Household**: Personal records organization
-- **Corporate**: Business entity with ABN/TFN tracking
-- **Unit Trust**: Unit trust with unit registry
-- **Discretionary Trust**: Discretionary trust with beneficiary management
-- **Family Trust**: Family trust with FTE tracking
-- **Project**: Project-based document organization
+*   **Household**: Personal records organization
+*   **Corporate**: Business entity with ABN/TFN tracking
+*   **Unit Trust**: Unit trust with unit registry
+*   **Discretionary Trust**: Discretionary trust with beneficiary management
+*   **Family Trust**: Family trust with FTE tracking
+*   **Project**: Project-based document organization
 
 ### Example
 
@@ -389,17 +428,22 @@ The Workflow Creator analyzes document patterns and recommends automated workflo
 
 ### When to Use
 
-- Automating repetitive document tagging
-- Creating consistent document processing
-- Reducing manual organization effort
+*   Automating repetitive document tagging
+*   Creating consistent document processing
+*   Reducing manual organization effort
 
 ### Process
 
 1. **Get Sample Documents**: Analyze existing documents
+
 2. **Detect Patterns**: Identify commonalities in filename, content, tags
+
 3. **Recommend Configuration**: Suggest match patterns and assignments
+
 4. **Show Confidence**: Indicate reliability of recommendation
+
 5. **Create Workflow**: Build workflow in paperless-ngx after approval
+
 6. **Test Effectiveness**: Report match rate and accuracy
 
 ## Workflow Review
@@ -408,9 +452,9 @@ The Workflow Review analyzes existing workflow performance.
 
 ### When to Use
 
-- Troubleshooting workflow issues
-- Improving match accuracy
-- Optimizing automated processing
+*   Troubleshooting workflow issues
+*   Improving match accuracy
+*   Optimizing automated processing
 
 ## Trust Validation
 
@@ -418,16 +462,20 @@ The Trust Validation workflow verifies trust document completeness.
 
 ### When to Use
 
-- End of financial year preparation
-- Trust establishment review
-- Compliance auditing
+*   End of financial year preparation
+*   Trust establishment review
+*   Compliance auditing
 
 ### Process
 
 1. **Get Trust Type**: Identify trust structure
+
 2. **Load Checklist**: Retrieve required documents for trust type
+
 3. **Search Documents**: Find existing documents in paperless-ngx
+
 4. **Compare Results**: Identify missing documents
+
 5. **Report Status**: Show completeness with warnings
 
 ### Example
@@ -475,9 +523,9 @@ The Status Check workflow verifies paperless-ngx connectivity and system health.
 
 ### When to Use
 
-- Troubleshooting connection issues
-- Verifying installation
-- Pre-operation system check
+*   Troubleshooting connection issues
+*   Verifying installation
+*   Pre-operation system check
 
 ### Example
 
@@ -504,7 +552,11 @@ bun run src/skills/RecordsManager/Tools/RecordManager.ts status
 ## Workflow Best Practices
 
 1. **Always Review Suggestions**: Upload workflow suggests tags—review before confirming
+
 2. **Check Retention First**: Use Retention workflow before any deletion
+
 3. **Validate Regularly**: Run Trust Validation before EOFY for compliance
+
 4. **Monitor Workflows**: Review workflow effectiveness monthly
+
 5. **Use Specific Search**: Combine filters for faster document location

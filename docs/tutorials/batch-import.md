@@ -37,10 +37,14 @@ Organize your documents for efficient import:
 ```
 
 **Tips for organization:**
-- Group by entity (corporate, household, trust)
-- Separate by document type (invoices, receipts, contracts)
-- Use date-based folders for chronological sorting
-- Keep filenames descriptive but consistent
+
+* Group by entity (corporate, household, trust)
+
+* Separate by document type (invoices, receipts, contracts)
+
+* Use date-based folders for chronological sorting
+
+* Keep filenames descriptive but consistent
 
 ## Step 2: Single Folder Bulk Import
 
@@ -82,8 +86,8 @@ Summary:
 ⏱️  Duration: 2m 15s
 
 Next steps:
-- Review uploaded documents at: https://your-instance.com/documents
-- Run: records-manager search --tag "2024,invoice"
+*   Review uploaded documents at: https://your-instance.com/documents
+*   Run: records-manager search --tag "2024,invoice"
 ```
 
 ## Step 3: Recursive Import with Date Parsing
@@ -118,10 +122,14 @@ records-manager upload ~/Documents/Import/ \
 ```
 
 **Features:**
-- Detects document type from content (invoice, receipt, contract, etc.)
-- Generates tags from folder structure
-- Suggests titles from filenames
-- Creates document dates from file metadata
+
+* Detects document type from content (invoice, receipt, contract, etc.)
+
+* Generates tags from folder structure
+
+* Suggests titles from filenames
+
+* Creates document dates from file metadata
 
 ## Step 5: Import with CSV Metadata
 
@@ -201,8 +209,11 @@ After completing this tutorial, you should be able to:
 ### Issue: "No matching files found"
 
 **Solution:** Check your path and permissions:
+
 1. Verify the path is absolute (not relative)
+
 2. Check file permissions on the folder
+
 3. Ensure the path ends with `/` for folders
 
 ### Issue: "Date extraction failed"
@@ -219,9 +230,13 @@ echo "invoice-2024-01.pdf" | grep -E ".*-(\d{4})-(\d{2})\.pdf$"
 ### Issue: "Some uploads failed"
 
 **Solution:** Review failed files:
+
 1. Check file sizes (may exceed upload limit)
+
 2. Verify file formats are supported
+
 3. Ensure paperless-ngx has sufficient storage
+
 4. Re-run with `--verbose` for specific error details
 
 ## Performance Tips
@@ -233,17 +248,25 @@ echo "invoice-2024-01.pdf" | grep -E ".*-(\d{4})-(\d{2})\.pdf$"
 | `--sequential` | Slower | Large files, limited resources |
 
 **Recommended settings by import size:**
-- **< 100 files**: Default settings
-- **100-1000 files**: Add `--parallel` with concurrency of 5
-- **1000+ files**: Consider multiple smaller imports by folder
+
+* **< 100 files**: Default settings
+
+* **100-1000 files**: Add `--parallel` with concurrency of 5
+
+* **1000+ files**: Consider multiple smaller imports by folder
 
 ## Best Practices
 
 1. **Test with a small batch first** - Run 5-10 files to verify settings
+
 2. **Use descriptive filenames** - Makes title suggestions more accurate
+
 3. **Organize before importing** - Folder structure becomes tags
+
 4. **Keep CSVs as records** - Save import.csv for audit trail
+
 5. **Run verification after import** - Confirm document counts match
+
 6. **Handle failures separately** - Export failed list for retry
 
 ## Example: Complete Migration Workflow
@@ -280,6 +303,8 @@ records-manager search --domain corporate --tag "migration" --count-only
 
 ## Next Steps
 
-- Verify [Retention Compliance](./retention-check.md) after import
-- Set up [Automated Workflows](../workflows/index.md) for ongoing processing
-- Configure [Monitoring](../configuration/index.md) for import alerts
+* Verify [Retention Compliance](./retention-check.md) after import
+
+* Set up [Automated Workflows](../workflows/index.md) for ongoing processing
+
+* Configure [Monitoring](../configuration/index.md) for import alerts

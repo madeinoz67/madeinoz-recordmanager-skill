@@ -227,46 +227,74 @@ Tags are organized into categories for consistent classification. Below are the 
 Each entity type has specific validation requirements:
 
 #### Household
-- `householdName` (required, 2+ characters)
-- `startYear` (optional, valid year)
+
+*   `householdName` (required, 2+ characters)
+
+*   `startYear` (optional, valid year)
 
 #### Corporate
-- `businessName` (required, 2+ characters)
-- `abn` (optional, 11 digits if provided)
-- `businessType` (required: sole-trader, company, partnership)
+
+*   `businessName` (required, 2+ characters)
+
+*   `abn` (optional, 11 digits if provided)
+
+*   `businessType` (required: sole-trader, company, partnership)
 
 #### Unit Trust
-- `trustName` (required, 2+ characters)
-- `trusteeName` (required, 2+ characters)
-- `abn` (required, 11 digits)
-- `tfn` (optional, 8-9 digits)
-- `unitCount` (optional, positive number)
+
+*   `trustName` (required, 2+ characters)
+
+*   `trusteeName` (required, 2+ characters)
+
+*   `abn` (required, 11 digits)
+
+*   `tfn` (optional, 8-9 digits)
+
+*   `unitCount` (optional, positive number)
 
 #### Discretionary Trust
-- `trustName` (required, 2+ characters)
-- `trusteeName` (required, 2+ characters)
-- `abn` (required, 11 digits)
-- `tfn` (optional, 8-9 digits)
-- `beneficiaries` (optional, comma-separated list)
+
+*   `trustName` (required, 2+ characters)
+
+*   `trusteeName` (required, 2+ characters)
+
+*   `abn` (required, 11 digits)
+
+*   `tfn` (optional, 8-9 digits)
+
+*   `beneficiaries` (optional, comma-separated list)
 
 #### Family Trust
-- `trustName` (required, 2+ characters)
-- `trusteeName` (required, 2+ characters)
-- `abn` (required, 11 digits)
-- `tfn` (optional, 8-9 digits)
-- `fteDate` (required, valid date) - **CRITICAL for retention**
+
+*   `trustName` (required, 2+ characters)
+
+*   `trusteeName` (required, 2+ characters)
+
+*   `abn` (required, 11 digits)
+
+*   `tfn` (optional, 8-9 digits)
+
+*   `fteDate` (required, valid date) - **CRITICAL for retention**
 
 #### Project
-- `projectName` (required, 2+ characters)
-- `projectType` (required: software, construction, research, creative, other)
-- `startDate` (optional, valid date)
+
+*   `projectName` (required, 2+ characters)
+
+*   `projectType` (required: software, construction, research, creative, other)
+
+*   `startDate` (optional, valid date)
 
 #### Person
-- `fullName` (required, 2+ characters)
-- `relationship` (required: self, spouse, child, parent, sibling, other)
-- `dateOfBirth` (optional, valid date)
-- `email` (optional, valid email format)
-- `phone` (optional)
+
+*   `fullName` (required, 2+ characters)
+
+*   `relationship` (required: self, spouse, child, parent, sibling, other)
+
+*   `dateOfBirth` (optional, valid date)
+
+*   `email` (optional, valid email format)
+
+*   `phone` (optional)
 
 ### Storage Path Mapping
 
@@ -306,6 +334,6 @@ Each entity type has an associated tag color:
 
 ## Related Documentation
 
-- [CLI Command Reference](cli.md) - Using taxonomies from the CLI
-- [Entity Management](../user-guide/entity-management.md) - Creating and managing entities
-- [Trust Documents](../user-guide/trust-documents.md) - Trust-specific document handling
+*   [CLI Command Reference](cli.md) - Using taxonomies from the CLI
+*   [Entity Management](../user-guide/entity-management.md) - Creating and managing entities
+*   [Trust Documents](../user-guide/trust-documents.md) - Trust-specific document handling

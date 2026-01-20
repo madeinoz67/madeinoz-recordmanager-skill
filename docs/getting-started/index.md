@@ -8,10 +8,13 @@ Welcome to the Records Manager Skill. This section will guide you through instal
 
 The Records Manager Skill is a PAI (Personal AI Infrastructure) pack that transforms your AI assistant into an expert records manager. It provides:
 
-- **Intelligent document organization** with automatic tagging and categorization
-- **Country-specific compliance** for record retention (Australia, US, UK)
-- **Safe operations** with mandatory deletion confirmation
-- **Powerful search** optimized for finding documents quickly
+* **Intelligent document organization** with automatic tagging and categorization
+
+* **Country-specific compliance** for record retention (Australia, US, UK)
+
+* **Safe operations** with mandatory deletion confirmation
+
+* **Powerful search** optimized for finding documents quickly
 
 ---
 
@@ -20,8 +23,11 @@ The Records Manager Skill is a PAI (Personal AI Infrastructure) pack that transf
 Before you begin, ensure you have:
 
 1. **A PAI installation** - The skill integrates with your PAI environment
+
 2. **A paperless-ngx instance** - For document storage and management
+
 3. **Bun runtime** - For running TypeScript tools
+
 4. **API credentials** - paperless-ngx URL and API token
 
 See [Prerequisites](prerequisites.md) for detailed requirements.
@@ -66,17 +72,22 @@ bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts retention \
 ## Next Steps
 
 1. **Configure your environment** - Set up paperless-ngx connection
+
 2. **Upload your first document** - Follow the quickstart tutorial
+
 3. **Explore taxonomies** - Learn about entity types and tagging
+
 4. **Set up retention** - Configure country-specific retention rules
 
 ---
 
 ## Need Help?
 
-- **Troubleshooting**: See the [Troubleshooting](../troubleshooting.md) section
-- **Configuration Guide**: See [Configuration](../configuration/)
-- **API Reference**: See [CLI Commands](../reference/cli.md)
+* **Troubleshooting**: See the [Troubleshooting](../troubleshooting.md) section
+
+* **Configuration Guide**: See [Configuration](../configuration/)
+
+* **API Reference**: See [CLI Commands](../reference/cli.md)
 
 ---
 
@@ -84,7 +95,10 @@ bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts retention \
 
 After completing the getting started guide:
 
-- **User Guide**: Learn daily workflows for document management
-- **Tutorials**: Step-by-step guides for common tasks
-- **Extending**: Create custom taxonomies and entity types
-- **Architecture**: Understand system design and components
+* **User Guide**: Learn daily workflows for document management
+
+* **Tutorials**: Step-by-step guides for common tasks
+
+* **Extending**: Create custom taxonomies and entity types
+
+* **Architecture**: Understand system design and components

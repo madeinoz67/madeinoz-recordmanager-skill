@@ -7,10 +7,14 @@ This guide shows you how to create custom entity types beyond the built-in house
 ## Overview
 
 A custom entity defines a specific scope for document organization with its own:
-- **Configuration requirements** (questions asked during creation)
-- **Document types** (categories of documents you'll manage)
-- **Tag structure** (how documents are tagged and organized)
-- **Retention rules** (how long to keep different document types)
+
+* **Configuration requirements** (questions asked during creation)
+
+* **Document types** (categories of documents you'll manage)
+
+* **Tag structure** (how documents are tagged and organized)
+
+* **Retention rules** (how long to keep different document types)
 
 ### Use Cases for Custom Entities
 
@@ -30,8 +34,10 @@ A custom entity defines a specific scope for document organization with its own:
 ### 1.1 Choose an Entity Type Name
 
 Select a descriptive, lowercase name with hyphens:
-- Good: `legal-practice`, `medical-clinic`, `real-estate-agency`
-- Bad: `Legal Practice`, `medical clinic`, `RealEstateAgency`
+
+* Good: `legal-practice`, `medical-clinic`, `real-estate-agency`
+
+* Bad: `Legal Practice`, `medical clinic`, `RealEstateAgency`
 
 ### 1.2 Define Configuration Questions
 
@@ -370,9 +376,13 @@ bun run recordmanager validate --all
 Test the complete workflow:
 
 1. Create a legal practice entity
+
 2. Upload various document types
+
 3. Verify automatic tagging and retention
+
 4. Test search functionality
+
 5. Verify storage path structure
 
 ---
@@ -487,16 +497,20 @@ export interface MedicalPracticeConfig {
 ### Common Issues
 
 **Issue**: Entity not recognized in creation
-- **Solution**: Check EntityType includes your new type
+
+* **Solution**: Check EntityType includes your new type
 
 **Issue**: Questions not showing during creation
-- **Solution**: Verify `getQuestionsForEntityType` mapping
+
+* **Solution**: Verify `getQuestionsForEntityType` mapping
 
 **Issue**: Tags not being created
-- **Solution**: Check `requiredTags` mapping and tag creation logic
+
+* **Solution**: Check `requiredTags` mapping and tag creation logic
 
 **Issue**: Wrong storage path
-- **Solution**: Verify `pathMap` in `createStoragePath` method
+
+* **Solution**: Verify `pathMap` in `createStoragePath` method
 
 ### Debug Commands
 
@@ -521,8 +535,11 @@ bun run recordmanager validate --extensions
 Once you've created your custom entity:
 
 1. **Create Custom Taxonomies** if you need more specialized document types
+
 2. **Add Validation Rules** for quality assurance
+
 3. **Update Documentation** for your team
+
 4. **Test Integration** with existing workflows
 
 See [Custom Taxonomies](custom-taxonomies.md) for advanced configuration options.

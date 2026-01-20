@@ -27,9 +27,9 @@ If not specified, the default is `Australia`.
 **Authority:** Australian Taxation Office (ATO)
 
 **Key Regulations:**
-- Tax Administration Act 1953, Section 254
-- Family Trust Election (Section 272-80 ITAA 1936)
-- Corporations Act 2001
+*   Tax Administration Act 1953, Section 254
+*   Family Trust Election (Section 272-80 ITAA 1936)
+*   Corporations Act 2001
 
 **Standard Retention Periods:**
 
@@ -55,25 +55,34 @@ If not specified, the default is `Australia`.
 | Trustee Resolutions | 7 years | Governance evidence |
 
 **Supported Domains:**
-- `household` - Personal records with comprehensive coverage
-- `corporate` - Business records, Fair Work Act compliance
-- `unit-trust` - Unit trust structures
-- `discretionary-trust` - Family trusts with discretionary distributions
-- `family-trust` - Family trusts with FTE (including interpositionary and loss trust elections)
+
+*   `household` - Personal records with comprehensive coverage
+
+*   `corporate` - Business records, Fair Work Act compliance
+
+*   `unit-trust` - Unit trust structures
+
+*   `discretionary-trust` - Family trusts with discretionary distributions
+
+*   `family-trust` - Family trusts with FTE (including interpositionary and loss trust elections)
 
 **Special Considerations:**
-- **Family Trust Election (FTE):** Critical document - 5-year retention from FTE date, NOT end of financial year. Affects entire trust structure.
-- **Trust Deeds:** Should be kept permanently - never discard
-- **Superannuation:** 7-year retention for contribution and balance records
-- **Pets:** 10-year retention for veterinary records, lifetime for microchip/ownership documents
+
+*   **Family Trust Election (FTE):** Critical document - 5-year retention from FTE date, NOT end of financial year. Affects entire trust structure.
+
+*   **Trust Deeds:** Should be kept permanently - never discard
+
+*   **Superannuation:** 7-year retention for contribution and balance records
+
+*   **Pets:** 10-year retention for veterinary records, lifetime for microchip/ownership documents
 
 ### United States
 
 **Authority:** IRS (Internal Revenue Service)
 
 **Key Regulations:**
-- IRS Revenue Procedure 97-58
-- IRS Publication 552
+*   IRS Revenue Procedure 97-58
+*   IRS Publication 552
 
 **Standard Retention Periods:**
 
@@ -90,20 +99,24 @@ If not specified, the default is `Australia`.
 | Legal Documents | 15+ years | Estate planning documents |
 
 **Supported Domains:**
-- `household` - Personal records
+
+*   `household` - Personal records
 
 **Special Considerations:**
-- IRS minimum is 3 years for most documents, but 7 years is recommended
-- Keep records indefinitely if you filed a fraudulent return
-- Keep employment tax records for 4 years
+
+*   IRS minimum is 3 years for most documents, but 7 years is recommended
+
+*   Keep records indefinitely if you filed a fraudulent return
+
+*   Keep employment tax records for 4 years
 
 ### United Kingdom
 
 **Authority:** HMRC (HM Revenue & Customs)
 
 **Key Regulations:**
-- Self Assessment requirements
-- Financial Conduct Authority (FCA) guidance
+*   Self Assessment requirements
+*   Financial Conduct Authority (FCA) guidance
 
 **Standard Retention Periods:**
 
@@ -120,20 +133,27 @@ If not specified, the default is `Australia`.
 | Bank Statements | 7 years | HMRC income verification |
 
 **Supported Domains:**
-- `household` - Personal records
+
+*   `household` - Personal records
 
 **Special Considerations:**
-- Self-employed: Keep records for at least 5 years after the 31 January submission deadline
-- Company directors: Records for 6 years from end of accounting period
-- VAT: 6 years (or 10 years for errors)
+
+*   Self-employed: Keep records for at least 5 years after the 31 January submission deadline
+
+*   Company directors: Records for 6 years from end of accounting period
+
+*   VAT: 6 years (or 10 years for errors)
 
 ## Choosing Your Country
 
 Consider these factors when selecting your country:
 
 1. **Tax residency** - Where do you file tax returns?
+
 2. **Legal jurisdiction** - Which country's laws apply to your records?
+
 3. **Document source** - Where were the documents issued?
+
 4. **Entity location** - Where is your business or trust registered?
 
 For complex situations (e.g., expatriates, cross-border entities), consult a tax professional.
@@ -165,7 +185,9 @@ MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN="household"
 If your country is not supported, the system will fall back to `Australia` with a warning. For unsupported countries, consider:
 
 1. **Use Australia as base** - Retention periods are generally conservative and safe
+
 2. **Customize retention** - Use override variables for specific document types
+
 3. **Consult local authorities** - Verify retention requirements for your jurisdiction
 
 ## Customizing Retention Periods
@@ -202,13 +224,16 @@ Supported Domains: household, corporate, projects, unit-trust, discretionary-tru
 
 The Records Manager Skill provides guidance based on publicly available record keeping requirements. However:
 
-- **This is not legal advice** - Consult a qualified professional for your specific situation
-- **Regulations change** - Stay informed about updates to record keeping requirements
-- **Special circumstances** - Complex entities, cross-border situations, and specific industries may have different requirements
-- **Professional verification** - Have your record keeping practices reviewed by a qualified accountant or lawyer
+*   **This is not legal advice** - Consult a qualified professional for your specific situation
+
+*   **Regulations change** - Stay informed about updates to record keeping requirements
+
+*   **Special circumstances** - Complex entities, cross-border situations, and specific industries may have different requirements
+
+*   **Professional verification** - Have your record keeping practices reviewed by a qualified accountant or lawyer
 
 ## Next Steps
 
-- Configure [environment variables](environment.md)
-- Set up [paperless-ngx](paperless-setup.md)
-- Learn about [retention policies](../usage/retention.md)
+*   Configure [environment variables](environment.md)
+*   Set up [paperless-ngx](paperless-setup.md)
+*   Learn about [retention policies](../usage/retention.md)

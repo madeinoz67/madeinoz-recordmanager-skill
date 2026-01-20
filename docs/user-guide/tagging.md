@@ -16,57 +16,83 @@ Records Manager uses several tag categories:
 
 Identify the entity or context:
 
-- `household` - Personal records
-- `corporate` - Business records
-- `unit-trust` - Unit trust documents
-- `discretionary-trust` - Discretionary trust documents
-- `family-trust` - Family trust documents
-- `project` - Project-based documents
+* `household` - Personal records
+
+* `corporate` - Business records
+
+* `unit-trust` - Unit trust documents
+
+* `discretionary-trust` - Discretionary trust documents
+
+* `family-trust` - Family trust documents
+
+* `project` - Project-based documents
 
 ### Category Tags
 
 High-level document classification:
 
-- `financial` - Money-related documents
-- `medical` - Health and medical records
-- `insurance` - Insurance policies and claims
-- `legal` - Contracts and legal documents
-- `hr` - Human resources records
-- `compliance` - Regulatory and audit documents
-- `reporting` - Financial statements and reports
-- `governance` - Trust governance documents
-- `household` - Home and utility records
-- `vehicle` - Car and vehicle records
-- `pet` - Pet-related documents
-- `identity` - Identity documents
+* `financial` - Money-related documents
+
+* `medical` - Health and medical records
+
+* `insurance` - Insurance policies and claims
+
+* `legal` - Contracts and legal documents
+
+* `hr` - Human resources records
+
+* `compliance` - Regulatory and audit documents
+
+* `reporting` - Financial statements and reports
+
+* `governance` - Trust governance documents
+
+* `household` - Home and utility records
+
+* `vehicle` - Car and vehicle records
+
+* `pet` - Pet-related documents
+
+* `identity` - Identity documents
 
 ### Document Type Tags
 
 Specific document identification:
 
-- `invoice`, `receipt`, `contract`
-- `tax-return`, `bank-statement`
-- `insurance-policy`, `insurance-claim`
-- `trust-deed`, `trustee-resolution`
-- `distribution-minutes`
+* `invoice`, `receipt`, `contract`
+
+* `tax-return`, `bank-statement`
+
+* `insurance-policy`, `insurance-claim`
+
+* `trust-deed`, `trustee-resolution`
+
+* `distribution-minutes`
 
 ### Status Tags
 
 Document state or purpose:
 
-- `tax-deductible` - Claimable on tax return
-- `paid`, `unpaid` - Payment status
-- `pending` - Awaiting action
-- `archived` - No longer active
-- `critical` - Important documents (FTE, trust deeds)
+* `tax-deductible` - Claimable on tax return
+
+* `paid`, `unpaid` - Payment status
+
+* `pending` - Awaiting action
+
+* `archived` - No longer active
+
+* `critical` - Important documents (FTE, trust deeds)
 
 ### Temporal Tags
 
 Time-based organization:
 
-- `2024`, `2023`, `2022` - Financial years
-- `q1`, `q2`, `q3`, `q4` - Quarters
-- `january`, `february`, etc. - Months
+* `2024`, `2023`, `2022` - Financial years
+
+* `q1`, `q2`, `q3`, `q4` - Quarters
+
+* `january`, `february`, etc. - Months
 
 ## Tag Suggestion System
 
@@ -77,9 +103,11 @@ Records Manager automatically suggests tags based on:
 ```
 File: "medical-receipt-dr-smith-2024.pdf"
 Suggested tags:
-  - medical (from "medical")
-  - receipt (from "receipt")
-  - 2024 (from "2024")
+*   medical (from "medical")
+
+*   receipt (from "receipt")
+
+*   2024 (from "2024")
 ```
 
 ### Content Analysis
@@ -87,8 +115,9 @@ Suggested tags:
 ```
 File: "scan001.pdf" (content includes "Tax Return for 2023")
 Suggested tags:
-  - tax (from content)
-  - 2023 (from content)
+*   tax (from content)
+
+*   2023 (from content)
 ```
 
 ### Domain Patterns
@@ -126,8 +155,11 @@ When uploading documents, tags are suggested automatically:
 User: "Upload medical-receipt.pdf"
 AI: "Suggested tags:"
     "  - medical (category)"
+    ""
     "  - receipt (document type)"
+    ""
     "  - 2024 (year)"
+    ""
     "  - tax-deductible (potential deduction)"
     ""
     "Accept these tags? (yes/no/modify)"
@@ -306,8 +338,11 @@ AI: "Tag 'new-tag' created and applied to document #1234"
 Rename through paperless-ngx UI for bulk changes:
 
 1. Access paperless-ngx
+
 2. Go to Tags section
+
 3. Edit tag name
+
 4. All documents update automatically
 
 ### Merging Tags
@@ -315,15 +350,19 @@ Rename through paperless-ngx UI for bulk changes:
 Combine similar tags:
 
 1. Identify duplicates: `receipt` and `receipts`
+
 2. Choose primary tag
+
 3. Use Tag workflow to reapply
+
 4. Remove unused tag
 
 ### Deleting Tags
 
 Remove unused tags through paperless-ngx:
-- Tag deletion doesn't delete documents
-- Documents simply lose that tag
+* Tag deletion doesn't delete documents
+
+* Documents simply lose that tag
 
 ## Tag Cleanup Workflow
 
@@ -350,20 +389,29 @@ AI: "Found 15 documents with inconsistent tagging:"
 
 ### DO
 
-- **Use lowercase**: `tax-deductible`, not `Tax-Deductible`
-- **Hyphenate multi-word**: `tax-deductible`, not `tax deductible`
-- **Use year tags**: Always include `2024`, `2023`, etc.
-- **Tag by category**: Always include category tag
-- **Tag for search**: Tag how you'll search later
-- **Be consistent**: Use same tags for similar documents
+* **Use lowercase**: `tax-deductible`, not `Tax-Deductible`
+
+* **Hyphenate multi-word**: `tax-deductible`, not `tax deductible`
+
+* **Use year tags**: Always include `2024`, `2023`, etc.
+
+* **Tag by category**: Always include category tag
+
+* **Tag for search**: Tag how you'll search later
+
+* **Be consistent**: Use same tags for similar documents
 
 ### DON'T
 
-- **Don't over-tag**: 3-5 tags is usually enough
-- **Don't use vague tags**: `document`, `pdf`, `file` are useless
-- **Don't tag for content**: Content search finds words; tags find categories
-- **Don't create single-use tags**: Tags should apply to multiple documents
-- **Don't tag everything**: Not every document needs every relevant tag
+* **Don't over-tag**: 3-5 tags is usually enough
+
+* **Don't use vague tags**: `document`, `pdf`, `file` are useless
+
+* **Don't tag for content**: Content search finds words; tags find categories
+
+* **Don't create single-use tags**: Tags should apply to multiple documents
+
+* **Don't tag everything**: Not every document needs every relevant tag
 
 ## Tag Examples by Document Type
 
@@ -372,10 +420,13 @@ AI: "Found 15 documents with inconsistent tagging:"
 ```
 File: "invoice-acme-supply-2024-03-15.pdf"
 Tags:
-  - financial (category)
-  - invoice (type)
-  - 2024 (year)
-  - unpaid (status)
+  * financial (category)
+
+  * invoice (type)
+
+  * 2024 (year)
+
+  * unpaid (status)
 ```
 
 ### Medical Receipt
@@ -383,10 +434,13 @@ Tags:
 ```
 File: "receipt-dr-smith-2024-02-20.pdf"
 Tags:
-  - medical (category)
-  - receipt (type)
-  - 2024 (year)
-  - tax-deductible (purpose)
+  * medical (category)
+
+  * receipt (type)
+
+  * 2024 (year)
+
+  * tax-deductible (purpose)
 ```
 
 ### Insurance Policy
@@ -394,11 +448,15 @@ Tags:
 ```
 File: "home-insurance-policy-2024.pdf"
 Tags:
-  - insurance (category)
-  - home (type)
-  - household (domain)
-  - 2024 (year)
-  - insurance-policy (type)
+  * insurance (category)
+
+  * home (type)
+
+  * household (domain)
+
+  * 2024 (year)
+
+  * insurance-policy (type)
 ```
 
 ### Trust Deed
@@ -406,11 +464,15 @@ Tags:
 ```
 File: "smith-family-trust-deed.pdf"
 Tags:
-  - family-trust (domain)
-  - governance (category)
-  - trust-deed (type)
-  - critical (importance)
-  - permanent (retention)
+  * family-trust (domain)
+
+  * governance (category)
+
+  * trust-deed (type)
+
+  * critical (importance)
+
+  * permanent (retention)
 ```
 
 ### Tax Return
@@ -418,11 +480,15 @@ Tags:
 ```
 File: "tax-return-2024.pdf"
 Tags:
-  - household (domain)
-  - financial (category)
-  - tax-return (type)
-  - 2024 (year)
-  - tax (purpose)
+  * household (domain)
+
+  * financial (category)
+
+  * tax-return (type)
+
+  * 2024 (year)
+
+  * tax (purpose)
 ```
 
 ## Advanced Tagging
@@ -460,20 +526,27 @@ sensitivity:secret
 ## Tag Maintenance Schedule
 
 ### Weekly
-- Tag new uploads properly
-- Fix any mis-tagged documents
+* Tag new uploads properly
+
+* Fix any mis-tagged documents
 
 ### Monthly
-- Review tag consistency
-- Merge duplicate tags
-- Remove unused tags
+* Review tag consistency
+
+* Merge duplicate tags
+
+* Remove unused tags
 
 ### Quarterly
-- Audit tag usage
-- Identify tag gaps
-- Update tag conventions
+* Audit tag usage
+
+* Identify tag gaps
+
+* Update tag conventions
 
 ### Annually
-- Archive old year tags
-- Create new year tags
-- Review entire tag structure
+* Archive old year tags
+
+* Create new year tags
+
+* Review entire tag structure

@@ -31,11 +31,11 @@ bun run src/skills/RecordsManager/Tools/RecordManager.ts upload invoice.pdf --do
 
 **Output:**
 
-- Suggested document type
-- Suggested tags
-- Retention period and reason
-- Created tag and document type IDs
-- Uploaded document ID
+*   Suggested document type
+*   Suggested tags
+*   Retention period and reason
+*   Created tag and document type IDs
+*   Uploaded document ID
 
 ---
 
@@ -68,8 +68,8 @@ bun run src/skills/RecordsManager/Tools/RecordManager.ts search --type "Tax Retu
 
 **Output:**
 
-- Total document count
-- Document ID, title, created date, and tags for each result
+*   Total document count
+*   Document ID, title, created date, and tags for each result
 
 ---
 
@@ -98,9 +98,9 @@ bun run src/skills/RecordsManager/Tools/RecordManager.ts organize --domain house
 
 **Output:**
 
-- Count of untagged documents
-- Suggested tags and document type for each document
-- Confirmation when tags are applied (with `--apply`)
+*   Count of untagged documents
+*   Suggested tags and document type for each document
+*   Confirmation when tags are applied (with `--apply`)
 
 ---
 
@@ -129,8 +129,8 @@ bun run src/skills/RecordsManager/Tools/RecordManager.ts tag "123" important
 
 **Output:**
 
-- Tag IDs that were created/found
-- Confirmation for each tagged document
+*   Tag IDs that were created/found
+*   Confirmation for each tagged document
 
 ---
 
@@ -154,14 +154,14 @@ bun run src/skills/RecordsManager/Tools/RecordManager.ts info 12345
 
 **Output:**
 
-- Document ID and title
-- Filename
-- Created and modified dates
-- Tags (with colors)
-- Document type
-- Retention period and reason (if applicable)
-- Keep until date
-- Whether deletion is allowed
+*   Document ID and title
+*   Filename
+*   Created and modified dates
+*   Tags (with colors)
+*   Document type
+*   Retention period and reason (if applicable)
+*   Keep until date
+*   Whether deletion is allowed
 
 ---
 
@@ -192,9 +192,9 @@ bun run src/skills/RecordsManager/Tools/RecordManager.ts retention --domain fami
 
 **Output:**
 
-- All document types for the domain
-- Retention period in years
-- Legal or regulatory reason for retention
+*   All document types for the domain
+*   Retention period in years
+*   Legal or regulatory reason for retention
 
 ---
 
@@ -209,24 +209,36 @@ bun run src/skills/RecordsManager/Tools/RecordManager.ts status
 **Output:**
 
 **1. Environment Configuration**
-- PAPERLESS_URL (required)
-- API_TOKEN (required)
-- COUNTRY
-- DEFAULT_DOMAIN
+
+*   PAPERLESS_URL (required)
+
+*   API_TOKEN (required)
+
+*   COUNTRY
+
+*   DEFAULT_DOMAIN
 
 **2. API Connectivity**
-- API endpoint reachability
-- Authentication status
+
+*   API endpoint reachability
+
+*   Authentication status
 
 **3. Authentication & Data Access**
-- Tag count
-- Document type count
-- Total document count
+
+*   Tag count
+
+*   Document type count
+
+*   Total document count
 
 **4. Taxonomy Expert**
-- Loaded country
-- Document types defined
-- Tag categories available
+
+*   Loaded country
+
+*   Document types defined
+
+*   Tag categories available
 
 **Exit Codes:** `0` (all checks passed), `1` (checks failed)
 

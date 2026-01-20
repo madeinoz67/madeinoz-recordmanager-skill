@@ -23,14 +23,20 @@ Ensure you have:
 
 ## What You'll Learn
 
-- How to upload documents with automatic tagging
-- How to create and manage custom entities
-- How to verify retention compliance for your jurisdiction
-- How to perform bulk operations efficiently
-- Best practices for document organization
+* How to upload documents with automatic tagging
+
+* How to create and manage custom entities
+
+* How to verify retention compliance for your jurisdiction
+
+* How to perform bulk operations efficiently
+
+* Best practices for document organization
 
 ## Need Help?
 
-- See the [Configuration Guide](../configuration/index.md) for setup instructions
-- Check the [Reference](../reference/index.md) for complete command documentation
-- Review the [Workflows](../workflows/index.md) for advanced automation patterns
+* See the [Configuration Guide](../configuration/index.md) for setup instructions
+
+* Check the [Reference](../reference/index.md) for complete command documentation
+
+* Review the [Workflows](../workflows/index.md) for advanced automation patterns

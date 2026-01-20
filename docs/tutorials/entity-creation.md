@@ -153,12 +153,18 @@ After completing this tutorial, you should be able to:
 ### Issue: "Entity type not recognized"
 
 **Solution:** Use valid entity types:
-- `household`
-- `corporate`
-- `unit-trust`
-- `discretionary-trust`
-- `family-trust`
-- `project`
+
+* `household`
+
+* `corporate`
+
+* `unit-trust`
+
+* `discretionary-trust`
+
+* `family-trust`
+
+* `project`
 
 ### Issue: "Trust deed date required"
 
@@ -171,6 +177,7 @@ After completing this tutorial, you should be able to:
 ### Issue: "Entity already exists"
 
 **Solution:** Entity names must be unique. Either:
+
 1. Use a different name
 2. Delete the existing entity first (requires confirmation)
 3. Update the existing entity instead
@@ -178,22 +185,31 @@ After completing this tutorial, you should be able to:
 ## Best Practices
 
 1. **Plan your entity structure** before creating multiple entities
+
 2. **Use descriptive names** that clearly identify the entity
+
 3. **Set appropriate retention** based on your jurisdiction
+
 4. **Document trust dates** accurately for compliance
+
 5. **Test with a few uploads** before bulk importing
 
 ## Next Steps
 
-- Learn about [Retention Checking](./retention-check.md) for your entities
-- Set up [Batch Import](./batch-import.md) for existing documents
-- Configure [Automated Workflows](../workflows/index.md)
+* Learn about [Retention Checking](./retention-check.md) for your entities
+
+* Set up [Batch Import](./batch-import.md) for existing documents
+
+* Configure [Automated Workflows](../workflows/index.md)
 
 ## Reference: Entity Naming Convention
 
 Entity IDs follow the pattern: `{type}_{slugified-name}`
 
 Examples:
-- `household_my-household` → `My Household`
-- `corporate_acme-corp` → `ACME Corp`
-- `discretionary-trust_smith-family` → `Smith Family Trust`
+
+* `household_my-household` → `My Household`
+
+* `corporate_acme-corp` → `ACME Corp`
+
+* `discretionary-trust_smith-family` → `Smith Family Trust`

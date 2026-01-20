@@ -238,78 +238,121 @@ AI: "Family Trust Election - Smith Family Trust:"
 ### Unit Trust Documents
 
 **Required Documents:**
-- Trust Deed
-- Unit Registry
-- Trustee Appointment
-- ABN Registration
-- TFN Registration
-- Annual Financial Statements
-- Unit Distribution Statement
-- Tax Return
+* Trust Deed
+
+* Unit Registry
+
+* Trustee Appointment
+
+* ABN Registration
+
+* TFN Registration
+
+* Annual Financial Statements
+
+* Unit Distribution Statement
+
+* Tax Return
 
 **Optional Documents:**
-- Unit Application Form
-- Unit Transfer Documentation
-- Unitholder Agreement
-- Trustee Resolution
+* Unit Application Form
+
+* Unit Transfer Documentation
+
+* Unitholder Agreement
+
+* Trustee Resolution
 
 **Retention Periods:**
-- Trust Deed: 15 years (permanent)
-- Unit Registry: 15 years (permanent)
-- Distribution Statements: 7 years
-- Tax Returns: 7 years
+* Trust Deed: 15 years (permanent)
+
+* Unit Registry: 15 years (permanent)
+
+* Distribution Statements: 7 years
+
+* Tax Returns: 7 years
 
 ### Discretionary Trust Documents
 
 **Required Documents:**
-- Trust Deed
-- Trustee Appointment
-- Beneficiary Declaration
-- ABN Registration
-- TFN Registration
-- Annual Financial Statements
-- **Trustee Resolution (Pre-EOFY)** - Critical!
-- **Distribution Minutes** - Critical!
-- Tax Return
+* Trust Deed
+
+* Trustee Appointment
+
+* Beneficiary Declaration
+
+* ABN Registration
+
+* TFN Registration
+
+* Annual Financial Statements
+
+* **Trustee Resolution (Pre-EOFY)** - Critical!
+
+* **Distribution Minutes** - Critical!
+
+* Tax Return
 
 **Optional Documents:**
-- Variation to Trust Deed
-- Beneficiary Consent Forms
-- Trustee Change Notification
-- Asset Register
+* Variation to Trust Deed
+
+* Beneficiary Consent Forms
+
+* Trustee Change Notification
+
+* Asset Register
 
 **Retention Periods:**
-- Trust Deed: 15 years (permanent)
-- Trustee Appointments: 15 years (permanent)
-- Pre-EOFY Resolutions: 7 years
-- Distribution Minutes: 7 years
+* Trust Deed: 15 years (permanent)
+
+* Trustee Appointments: 15 years (permanent)
+
+* Pre-EOFY Resolutions: 7 years
+
+* Distribution Minutes: 7 years
 
 ### Family Trust Documents
 
 **Required Documents:**
-- Trust Deed
-- **Family Trust Election (FTE)** - Critical!
-- Trustee Appointment
-- Beneficiary Declaration
-- ABN Registration
-- TFN Registration
-- Annual Financial Statements
-- **Trustee Resolution (Pre-EOFY)** - Critical!
-- **Distribution Minutes** - Critical!
-- Tax Return
+* Trust Deed
+
+* **Family Trust Election (FTE)** - Critical!
+
+* Trustee Appointment
+
+* Beneficiary Declaration
+
+* ABN Registration
+
+* TFN Registration
+
+* Annual Financial Statements
+
+* **Trustee Resolution (Pre-EOFY)** - Critical!
+
+* **Distribution Minutes** - Critical!
+
+* Tax Return
 
 **Optional Documents:**
-- Variation to Trust Deed
-- Beneficiary Consent Forms
-- **Interposed Entity Election**
-- Trustee Change Notification
-- Asset Register
+* Variation to Trust Deed
+
+* Beneficiary Consent Forms
+
+* **Interposed Entity Election**
+
+* Trustee Change Notification
+
+* Asset Register
 
 **Retention Periods:**
-- Trust Deed: 15 years (permanent)
-- **FTE: 5 years from FTE date** - Special rule!
-- Pre-EOFY Resolutions: 7 years
-- Distribution Minutes: 7 years
+* Trust Deed: 15 years (permanent)
+
+* **FTE: 5 years from FTE date** - Special rule!
+
+* Pre-EOFY Resolutions: 7 years
+
+* Distribution Minutes: 7 years
 
 ## Trust Validation Workflow
 
@@ -355,9 +398,9 @@ AI: "Smith Family Trust - Document Validation"
 
 Trustee resolutions made before June 30 document the trustee's intention to distribute income for the financial year. These are critical for:
 
-- **ATO Compliance**: Evidence of distribution decisions
-- **Section 100A**: Protects against reallocating distributions
-- **Beneficiary Entitlements**: Documents who receives what
+*   **ATO Compliance**: Evidence of distribution decisions
+*   **Section 100A**: Protects against reallocating distributions
+*   **Beneficiary Entitlements**: Documents who receives what
 
 ### Creating Pre-EOFY Resolutions
 
@@ -518,27 +561,39 @@ AI: "Creating Smith Family Trust entity..."
 
 ### Before June 30 (EOFY)
 
-- [ ] Create Pre-EOFY Trustee Resolution
-- [ ] Document intended beneficiary distributions
-- [ ] Confirm all income documents uploaded
-- [ ] Verify capital gains calculations
-- [ ] Review trust deed for any changes
+* [ ] Create Pre-EOFY Trustee Resolution
+
+* [ ] Document intended beneficiary distributions
+
+* [ ] Confirm all income documents uploaded
+
+* [ ] Verify capital gains calculations
+
+* [ ] Review trust deed for any changes
 
 ### After July 1 (Post-EOFY)
 
-- [ ] Prepare Annual Financial Statements
-- [ ] Create Distribution Minutes
-- [ ] Document actual distributions made
-- [ ] Prepare Tax Return
-- [ ] Upload all documents to trust records
-- [ ] Run trust validation
+* [ ] Prepare Annual Financial Statements
+
+* [ ] Create Distribution Minutes
+
+* [ ] Document actual distributions made
+
+* [ ] Prepare Tax Return
+
+* [ ] Upload all documents to trust records
+
+* [ ] Run trust validation
 
 ### Ongoing
 
-- [ ] Monitor FTE retention (check quarterly)
-- [ ] Upload trust correspondence as received
-- [ ] Document any trust deed variations
-- [ ] Record trustee changes
+* [ ] Monitor FTE retention (check quarterly)
+
+* [ ] Upload trust correspondence as received
+
+* [ ] Document any trust deed variations
+
+* [ ] Record trustee changes
 
 ## FTE Compliance Best Practices
 
@@ -567,9 +622,9 @@ The FTE is the foundation of the trust's tax structure:
 
 ``⚠️  DO NOT DELETE before 2025-02-01
 Deleting FTE early risks:
-  - Loss of family group tax status
-  - ATO audit issues
-  - Trust structure invalidation
+*   Loss of family group tax status
+*   ATO audit issues
+*   Trust structure invalidation
 ```
 
 ### 4. Archive After Retention
@@ -578,9 +633,9 @@ After 5 years, archive rather than delete:
 
 ```
 After 2025-02-01:
-  - Move FTE to archive storage
-  - Tag as 'archived'
-  - Keep for trust records (permanent)
+*   Move FTE to archive storage
+*   Tag as 'archived'
+*   Keep for trust records (permanent)
 ```
 
 ## Trust Document CLI Commands

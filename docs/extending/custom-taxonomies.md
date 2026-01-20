@@ -7,24 +7,27 @@ This guide explains how to create custom taxonomies with specialized document ty
 ## Configuration Overview
 
 Taxonomies are defined using YAML or JSON format that specifies:
-- **Document Types**: Categories of documents you manage
-- **Tag Categories**: Logical groupings for tags
-- **Retention Rules**: How long to keep each document type
+
+* **Document Types**: Categories of documents you manage
+
+* **Tag Categories**: Logical groupings for tags
+
+* **Retention Rules**: How long to keep each document type
 
 ### Format Structure
 
 ```yaml
 entity_type_name:
   document_types:
-    - Document Type Name
-    - Another Document Type
+*   Document Type Name
+*   Another Document Type
   tag_categories:
     category_name:
-      - tag_name_1
-      - tag_name_2
+*   tag_name_1
+*   tag_name_2
     another_category:
-      - tag_a
-      - tag_b
+*   tag_a
+*   tag_b
   retention_rules:
     Document Type Name:
       years: 7
@@ -78,18 +81,18 @@ extends: base-australia
 extensions:
   legal-practice:
     document_types:
-      - Client File
-      - Court Filing
-      - Legal Agreement
+*   Client File
+*   Court Filing
+*   Legal Agreement
     tag_categories:
       legal-practice:
-        - client-matter
-        - court-filing
-        - billing
+*   client-matter
+*   court-filing
+*   billing
       document-type:
-        - pleading
-        - contract
-        - opinion
+*   pleading
+*   contract
+*   opinion
     retention_rules:
       Client File:
         years: 7
@@ -129,60 +132,60 @@ const extendedTaxonomies = {
 ```yaml
 legal-practice:
   document_types:
-    - Client File
-    - Court Filing
-    - Legal Agreement
-    - Billing Invoice
-    - Cost Estimate
-    - Legal Opinion
-    - Barrister Brief
-    - Evidence Document
-    - Court Order
-    - Subpoena
-    - Affidavit
-    - Will
-    - Power of Attorney
-    - Trust Deed
-    - Property Contract
-    - Shareholders Agreement
+*   Client File
+*   Court Filing
+*   Legal Agreement
+*   Billing Invoice
+*   Cost Estimate
+*   Legal Opinion
+*   Barrister Brief
+*   Evidence Document
+*   Court Order
+*   Subpoena
+*   Affidavit
+*   Will
+*   Power of Attorney
+*   Trust Deed
+*   Property Contract
+*   Shareholders Agreement
 
   tag_categories:
     legal-practice:
-      - client-matter
-      - court-filing
-      - billing
-      - cost-estimate
-      - legal-opinion
+*   client-matter
+*   court-filing
+*   billing
+*   cost-estimate
+*   legal-opinion
     practice-area:
-      - corporate
-      - litigation
-      - family-law
-      - property
-      - wills-estates
-      - employment
+*   corporate
+*   litigation
+*   family-law
+*   property
+*   wills-estates
+*   employment
     document-type:
-      - pleading
-      - contract
-      - opinion
-      - evidence
-      - administrative
-      - correspondence
+*   pleading
+*   contract
+*   opinion
+*   evidence
+*   administrative
+*   correspondence
     status:
-      - active
-      - closed
-      - archived
-      - draft
-      - filed
+*   active
+*   closed
+*   archived
+*   draft
+*   filed
     priority:
-      - urgent
-      - normal
-      - routine
-      - follow-up
+*   urgent
+*   normal
+*   routine
+*   follow-up
     confidentiality:
-      - confidential
-      - restricted
-      - public
-      - internal-only
+*   confidential
+*   restricted
+*   public
+*   internal-only
 
   retention_rules:
     Client File:
@@ -240,78 +243,78 @@ legal-practice:
 ```yaml
 medical-practice:
   document_types:
-    - Patient Record
-    - Medical Certificate
-    - Pathology Report
-    - Imaging Report
-    - Referral Letter
-    - Prescription
-    - Bulk Bill
-    - Private Invoice
-    - Medicare Claim
-    - Health Fund Claim
-    - Consent Form
-    - Treatment Plan
-    - Discharge Summary
-    - Specialist Report
-    - Mental Health Plan
-    - Immunization Record
-    - Surgical Report
-    - Pathology Request
-    - Blood Test Results
-    - X-Ray Report
-    - MRI Report
-    - CT Scan Report
-    - Ultrasound Report
-    - ECG Report
-    - Specialist Referral
-    - Care Plan
-    - Progress Note
+*   Patient Record
+*   Medical Certificate
+*   Pathology Report
+*   Imaging Report
+*   Referral Letter
+*   Prescription
+*   Bulk Bill
+*   Private Invoice
+*   Medicare Claim
+*   Health Fund Claim
+*   Consent Form
+*   Treatment Plan
+*   Discharge Summary
+*   Specialist Report
+*   Mental Health Plan
+*   Immunization Record
+*   Surgical Report
+*   Pathology Request
+*   Blood Test Results
+*   X-Ray Report
+*   MRI Report
+*   CT Scan Report
+*   Ultrasound Report
+*   ECG Report
+*   Specialist Referral
+*   Care Plan
+*   Progress Note
 
   tag_categories:
     medical-practice:
-      - patient-record
-      - billing
-      - pathology
-      - imaging
-      - prescription
-      - referral
+*   patient-record
+*   billing
+*   pathology
+*   imaging
+*   prescription
+*   referral
     document-type:
-      - clinical
-      - administrative
-      - billing
-      - compliance
-      - diagnostic
-      - treatment
+*   clinical
+*   administrative
+*   billing
+*   compliance
+*   diagnostic
+*   treatment
     status:
-      - active
-      - archived
-      - review
-      - completed
-      - pending
-      - cancelled
+*   active
+*   archived
+*   review
+*   completed
+*   pending
+*   cancelled
     priority:
-      - urgent
-      - routine
-      - follow-up
-      - routine-review
+*   urgent
+*   routine
+*   follow-up
+*   routine-review
     confidentiality:
-      - confidential
-      - restricted
-      - public
-      - internal-only
+*   confidential
+*   restricted
+*   public
+*   internal-only
     provider:
-      - doctor
-      - specialist
-      - nurse
-      - admin
-      - pathologist
-      - radiologist
+*   doctor
+*   specialist
+*   nurse
+*   admin
+*   pathologist
+*   radiologist
     patient-type:
-      - new
-      - existing
-      - follow-up
-      - chronic-care
+*   new
+*   existing
+*   follow-up
+*   chronic-care
 
   retention_rules:
     Patient Record:
@@ -390,84 +393,84 @@ medical-practice:
 ```yaml
 real-estate:
   document_types:
-    - Listing Agreement
-    - Sale Contract
-    - Purchase Contract
-    - Lease Agreement
-    - Property Inspection Report
-    - Building Inspection Report
-    - Pest Inspection Report
-    - Valuation Report
-    - Market Appraisal
-    - Vendor Statement
-    - Contract of Sale
-    - Cooling Off Notice
-    - Finance Approval
-    - Settlement Statement
-    - Transfer of Land
-    - Body Corporate Report
-    - Strata Report
-    - Council Rates
-    - Water Rates
-    - Land Tax Notice
-    - Rental Application
-    - Tenancy Agreement
-    - Bond lodgement
-    - Condition Report
-    - Rent Roll
-    - Commission Statement
-    - Marketing Material
-    - Photography Release
-    - Open House Register
-    - Buyer Profile
-    - Seller Profile
+*   Listing Agreement
+*   Sale Contract
+*   Purchase Contract
+*   Lease Agreement
+*   Property Inspection Report
+*   Building Inspection Report
+*   Pest Inspection Report
+*   Valuation Report
+*   Market Appraisal
+*   Vendor Statement
+*   Contract of Sale
+*   Cooling Off Notice
+*   Finance Approval
+*   Settlement Statement
+*   Transfer of Land
+*   Body Corporate Report
+*   Strata Report
+*   Council Rates
+*   Water Rates
+*   Land Tax Notice
+*   Rental Application
+*   Tenancy Agreement
+*   Bond lodgement
+*   Condition Report
+*   Rent Roll
+*   Commission Statement
+*   Marketing Material
+*   Photography Release
+*   Open House Register
+*   Buyer Profile
+*   Seller Profile
 
   tag_categories:
     real-estate:
-      - listing
-      - sale
-      - lease
-      - inspection
-      - valuation
-      - marketing
+*   listing
+*   sale
+*   lease
+*   inspection
+*   valuation
+*   marketing
     transaction-type:
-      - sale
-      - purchase
-      - lease
-      - rental
-      - management
+*   sale
+*   purchase
+*   lease
+*   rental
+*   management
     property-type:
-      - house
-      - unit
-      - townhouse
-      - commercial
-      - industrial
-      - rural
+*   house
+*   unit
+*   townhouse
+*   commercial
+*   industrial
+*   rural
     document-type:
-      - agreement
-      - contract
-      - inspection
-      - valuation
-      - report
-      - application
-      - statement
-      - notice
+*   agreement
+*   contract
+*   inspection
+*   valuation
+*   report
+*   application
+*   statement
+*   notice
     status:
-      - active
-      - pending
-      - completed
-      - cancelled
-      - expired
+*   active
+*   pending
+*   completed
+*   cancelled
+*   expired
     priority:
-      - urgent
-      - normal
-      - routine
-      - follow-up
+*   urgent
+*   normal
+*   routine
+*   follow-up
     confidentiality:
-      - confidential
-      - restricted
-      - public
-      - client-only
+*   confidential
+*   restricted
+*   public
+*   client-only
 
   retention_rules:
     Listing Agreement:
@@ -569,44 +572,68 @@ real-estate:
 ### Naming Conventions
 
 **Document Types**:
-- Use clear, descriptive names
-- Start with capital letters
-- Use consistent formatting
-- Avoid abbreviations unless universally understood
+
+* Use clear, descriptive names
+
+* Start with capital letters
+
+* Use consistent formatting
+
+* Avoid abbreviations unless universally understood
 
 **Tag Categories**:
-- Use lowercase with hyphens
-- Be descriptive but concise
-- Group related tags logically
-- Follow established patterns when extending existing entities
+
+* Use lowercase with hyphens
+
+* Be descriptive but concise
+
+* Group related tags logically
+
+* Follow established patterns when extending existing entities
 
 **Retention Rules**:
-- Use specific, verifiable reasons
-- Reference legal or business requirements
-- Be consistent across similar document types
-- Document exceptions clearly
+
+* Use specific, verifiable reasons
+
+* Reference legal or business requirements
+
+* Be consistent across similar document types
+
+* Document exceptions clearly
 
 ### Organizational Tips
 
 1. **Group Related Document Types**
-   - Keep similar documents together
-   - Use logical hierarchies
-   - Avoid overlap between categories
+
+   * Keep similar documents together
+
+   * Use logical hierarchies
+
+   * Avoid overlap between categories
 
 2. **Consistent Tag Structure**
-   - Use a standard tag naming convention
-   - Create hierarchical relationships
-   - Balance specificity and flexibility
+
+   * Use a standard tag naming convention
+
+   * Create hierarchical relationships
+
+   * Balance specificity and flexibility
 
 3. **Realistic Retention Periods**
-   - Base on legal requirements first
-   - Consider business needs second
-   - Document special cases clearly
+
+   * Base on legal requirements first
+
+   * Consider business needs second
+
+   * Document special cases clearly
 
 4. **Future-Proofing**
-   - Leave room for new document types
-   - Use flexible category structures
-   - Plan for organizational changes
+
+   * Leave room for new document types
+
+   * Use flexible category structures
+
+   * Plan for organizational changes
 
 ### Validation Rules
 
@@ -689,10 +716,10 @@ retention_rules:
     years:
       base: 7
       conditions:
-        - if: practice_area == "litigation"
+*   if: practice_area == "litigation"
           years: 10
           reason: "Extended litigation potential"
-        - if: priority == "urgent"
+*   if: priority == "urgent"
           years: 10
           reason: "High-priority matter"
     reason: "Standard client file retention"
@@ -716,8 +743,8 @@ extensions:
   # Add US-specific version
   legal-practice-us:
     document_types:
-      - Attorney-Client Privilege
-      - Discovery Document
+*   Attorney-Client Privilege
+*   Discovery Document
     retention_rules:
       Attorney-Client Privilege:
         years: 15
@@ -755,20 +782,28 @@ generateDynamicTags(content: string, entityType: string): string[] {
 ### Common Configuration Issues
 
 **Issue**: Document types not recognized
-- **Solution**: Verify exact spelling in configuration
-- **Solution**: Check case sensitivity and formatting
+
+* **Solution**: Verify exact spelling in configuration
+
+* **Solution**: Check case sensitivity and formatting
 
 **Issue**: Tags not being applied
-- **Solution**: Verify tag category definitions
-- **Solution**: Check tag naming conventions
+
+* **Solution**: Verify tag category definitions
+
+* **Solution**: Check tag naming conventions
 
 **Issue**: Wrong retention periods
-- **Solution**: Verify retention rule syntax
-- **Solution**: Check document type matching
+
+* **Solution**: Verify retention rule syntax
+
+* **Solution**: Check document type matching
 
 **Issue**: Entity not available
-- **Solution**: Verify entity type registration
-- **Solution**: Check TaxonomyExpert imports
+
+* **Solution**: Verify entity type registration
+
+* **Solution**: Check TaxonomyExpert imports
 
 ### Debug Commands
 
@@ -793,32 +828,41 @@ bun run recordmanager test --tags --file sample.pdf --domain legal-practice --sh
 ### Upgrading Existing Taxonomies
 
 1. **Backup Current Configuration**
+
    ```bash
    cp TaxonomyExpert.ts TaxonomyExpert.ts.backup
    ```
 
 2. **Apply New Configuration**
+
    ```bash
    # Merge new taxonomy with existing
    python merge-taxonomies.py new-taxonomy.yaml >> TaxonomyExpert.ts
    ```
 
 3. **Validate Migration**
+
    ```bash
    bun run recordmanager validate --migration
    bun run recordmanager test --integration
    ```
 
 4. **Update Documentation**
-   - Document new document types
-   - Update user guides
-   - Train team members
+
+   * Document new document types
+
+   * Update user guides
+
+   * Train team members
 
 ### Data Migration Considerations
 
 1. **Existing Documents**: Review metadata for affected documents
+
 2. **Search Queries**: Update search strategies for new tags
+
 3. **Retention Policies**: Verify new rules don't conflict with existing
+
 4. **User Training**: Ensure users understand new categorization
 
 ---

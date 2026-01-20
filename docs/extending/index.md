@@ -14,11 +14,15 @@ Base Taxonomy → Country Guidelines → Entity Types → Custom Extensions
 
 ### Key Concepts
 
-- **Entity Types**: Define the scope of your document organization (household, corporate, projects, trusts)
-- **Document Types**: Categorize specific kinds of documents within each entity
-- **Tag Categories**: Organize tags into logical groups for easier management
-- **Retention Rules**: Define how long documents should be kept based on legal and business requirements
-- **Country Variations**: Adapt taxonomies to local jurisdictional requirements
+* **Entity Types**: Define the scope of your document organization (household, corporate, projects, trusts)
+
+* **Document Types**: Categorize specific kinds of documents within each entity
+
+* **Tag Categories**: Organize tags into logical groups for easier management
+
+* **Retention Rules**: Define how long documents should be kept based on legal and business requirements
+
+* **Country Variations**: Adapt taxonomies to local jurisdictional requirements
 
 ---
 
@@ -36,20 +40,30 @@ Base Taxonomy → Country Guidelines → Entity Types → Custom Extensions
 ## Getting Started
 
 1. **Choose Your Extension Path**:
-   - [Custom Entities](custom-entities.md) - For new organizational scopes
-   - [Custom Taxonomies](custom-taxonomies.md) - For specialized document management
-   - [Validation](validation.md) - For quality assurance and compliance
+
+   * [Custom Entities](custom-entities.md) - For new organizational scopes
+
+   * [Custom Taxonomies](custom-taxonomies.md) - For specialized document management
+
+   * [Validation](validation.md) - For quality assurance and compliance
 
 2. **Understand the Inheritance Model**:
-   - Base definitions provide common patterns
-   - Country guidelines add jurisdiction-specific rules
-   - Entity types define organizational boundaries
-   - Custom extensions personalize for your needs
+
+   * Base definitions provide common patterns
+
+   * Country guidelines add jurisdiction-specific rules
+
+   * Entity types define organizational boundaries
+
+   * Custom extensions personalize for your needs
 
 3. **Test Your Extensions**:
-   - Use the built-in validation commands
-   - Test with sample documents
-   - Verify retention calculations
+
+   * Use the built-in validation commands
+
+   * Test with sample documents
+
+   * Verify retention calculations
 
 ---
 
@@ -93,32 +107,44 @@ graph TD
 ## Best Practices
 
 ### 1. Start with Existing Patterns
-- Leverage the built-in entity types when possible
-- Follow established naming conventions for tags and document types
-- Use existing tag categories as a foundation
+
+* Leverage the built-in entity types when possible
+
+* Follow established naming conventions for tags and document types
+
+* Use existing tag categories as a foundation
 
 ### 2. Maintain Compliance
-- Document retention rules should align with legal requirements
-- Consult with legal professionals for jurisdiction-specific rules
-- Regularly review and update retention periods
+
+* Document retention rules should align with legal requirements
+
+* Consult with legal professionals for jurisdiction-specific rules
+
+* Regularly review and update retention periods
 
 ### 3. Keep it Simple
-- Avoid over-complicating tag structures
-- Use consistent naming conventions
-- Limit the number of document types to essential categories
+
+* Avoid over-complicating tag structures
+
+* Use consistent naming conventions
+
+* Limit the number of document types to essential categories
 
 ### 4. Test Thoroughly
-- Validate metadata suggestions with real documents
-- Test retention calculations with various dates
-- Verify search functionality with your new tags
+
+* Validate metadata suggestions with real documents
+
+* Test retention calculations with various dates
+
+* Verify search functionality with your new tags
 
 ---
 
 ## Next Steps
 
-- [Custom Entities](custom-entities.md) - Step-by-step guide for adding new entity types
-- [Custom Taxonomies](custom-taxonomies.md) - Configuration format and examples
-- [Validation](validation.md) - CLI validation and troubleshooting
+*   [Custom Entities](custom-entities.md) - Step-by-step guide for adding new entity types
+*   [Custom Taxonomies](custom-taxonomies.md) - Configuration format and examples
+*   [Validation](validation.md) - CLI validation and troubleshooting
 
 ---
 

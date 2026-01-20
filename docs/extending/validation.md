@@ -8,10 +8,13 @@ This guide explains how to validate your custom taxonomies, troubleshoot common 
 
 The validation system helps ensure your taxonomies are correctly configured and will work properly with the document management system. It checks for:
 
-- **Syntax Errors**: Invalid YAML/JSON formatting
-- **Structure Validation**: Correct taxonomy organization
-- **Data Integrity**: Valid document types, tags, and retention rules
-- **System Integration**: Proper registration and availability
+* **Syntax Errors**: Invalid YAML/JSON formatting
+
+* **Structure Validation**: Correct taxonomy organization
+
+* **Data Integrity**: Valid document types, tags, and retention rules
+
+* **System Integration**: Proper registration and availability
 
 ---
 
@@ -89,36 +92,36 @@ bun run recordmanager validate --security --domain legal-practice
 ```bash
 bun run recordmanager validate --quick
 ```
-- Checks basic syntax
-- Verifies required fields
-- Ensures no obvious errors
+*   Checks basic syntax
+*   Verifies required fields
+*   Ensures no obvious errors
 
 ### Mode 2: Standard Validation
 ```bash
 bun run recordmanager validate --standard
 ```
-- All quick checks
-- Document type validation
-- Tag format validation
-- Basic retention rule checking
+*   All quick checks
+*   Document type validation
+*   Tag format validation
+*   Basic retention rule checking
 
 ### Mode 3: Comprehensive Validation
 ```bash
 bun run recordmanager validate --comprehensive
 ```
-- All standard checks
-- Integration testing
-- Performance analysis
-- Conflict detection
+*   All standard checks
+*   Integration testing
+*   Performance analysis
+*   Conflict detection
 
 ### Mode 4: Production Validation
 ```bash
 bun run recordmanager validate --production
 ```
-- All comprehensive checks
-- Data migration safety
-- User permission verification
-- Audit trail testing
+*   All comprehensive checks
+*   Data migration safety
+*   User permission verification
+*   Audit trail testing
 
 ---
 
@@ -129,10 +132,14 @@ bun run recordmanager validate --production
 **Error Message**: `Invalid YAML syntax in custom-taxonomy.yaml`
 
 **Causes**:
-- Missing colons or incorrect indentation
-- Unbalanced quotes or brackets
-- Invalid date formats
-- Special characters in strings
+
+* Missing colons or incorrect indentation
+
+* Unbalanced quotes or brackets
+
+* Invalid date formats
+
+* Special characters in strings
 
 **Solutions**:
 ```bash
@@ -151,9 +158,12 @@ bun run recordmanager validate --schema custom-taxonomy.yaml
 **Error Message**: `Missing required field: document_types in legal-practice`
 
 **Causes**:
-- Required sections missing from configuration
-- Incorrect field names
-- Case sensitivity issues
+
+* Required sections missing from configuration
+
+* Incorrect field names
+
+* Case sensitivity issues
 
 **Solutions**:
 ```yaml
@@ -169,9 +179,12 @@ legal-practice:
 **Error Message**: `Duplicate document type: "Client File" found in multiple categories`
 
 **Causes**:
-- Same document type defined in multiple places
-- Inconsistent naming conventions
-- Merge conflicts during configuration updates
+
+* Same document type defined in multiple places
+
+* Inconsistent naming conventions
+
+* Merge conflicts during configuration updates
 
 **Solutions**:
 ```bash
@@ -187,19 +200,23 @@ grep -r "Client File" TaxonomyExpert.ts
 **Error Message**: `Invalid tag format: "Client File" - must be lowercase with hyphens`
 
 **Causes**:
-- Uppercase letters in tags
-- Spaces instead of hyphens
-- Special characters
-- Starting/ending hyphens
+
+* Uppercase letters in tags
+
+* Spaces instead of hyphens
+
+* Special characters
+
+* Starting/ending hyphens
 
 **Solutions**:
 ```yaml
 # Correct tag format
 tag_categories:
   legal-practice:
-    - client-file        # ✓ Correct
-    - billing           # ✓ Correct
-    - urgent-priority   # ✓ Correct
+*   client-file        # ✓ Correct
+*   billing           # ✓ Correct
+*   urgent-priority   # ✓ Correct
 
   # Incorrect examples:
   # - Client File    ✗ (spaces)
@@ -212,9 +229,12 @@ tag_categories:
 **Error Message**: `Invalid retention period: -1 years for "Court Filing"`
 
 **Causes**:
-- Negative retention periods
-- Non-numeric values
-- Impossible date calculations
+
+* Negative retention periods
+
+* Non-numeric values
+
+* Impossible date calculations
 
 **Solutions**:
 ```yaml
@@ -235,9 +255,12 @@ retention_rules:
 **Error Message**: `Entity type 'legal-practice' not found in TaxonomyExpert`
 
 **Causes**:
-- Missing registration in Domain type
-- Not added to COUNTRY_TAXONOMIES
-- Import/export issues
+
+* Missing registration in Domain type
+
+* Not added to COUNTRY_TAXONOMIES
+
+* Import/export issues
 
 **Solutions**:
 ```typescript
@@ -253,8 +276,10 @@ export type Domain = 'legal-practice' | /* other types */;
 **Error Message**: `Country 'New Zealand' not supported for entity 'legal-practice'`
 
 **Causes**:
-- Requesting country not in supported list
-- Missing country configuration for entity
+
+* Requesting country not in supported list
+
+* Missing country configuration for entity
 
 **Solutions**:
 ```typescript
@@ -327,19 +352,28 @@ bun run recordmanager validate --database --domain legal-practice
 Create test documents to validate your taxonomy:
 
 **Legal Practice Test Documents**:
-- `client-agreement.pdf` (should map to "Legal Agreement")
-- `court-filing-2024.pdf` (should map to "Court Filing")
-- `billing-invoice-2024.pdf` (should map to "Billing Invoice")
+
+* `client-agreement.pdf` (should map to "Legal Agreement")
+
+* `court-filing-2024.pdf` (should map to "Court Filing")
+
+* `billing-invoice-2024.pdf` (should map to "Billing Invoice")
 
 **Medical Practice Test Documents**:
-- `patient-record-john-doe.pdf` (should map to "Patient Record")
-- `pathology-results.pdf` (should map to "Pathology Report")
-- `prescription-medication.pdf` (should map to "Prescription")
+
+* `patient-record-john-doe.pdf` (should map to "Patient Record")
+
+* `pathology-results.pdf` (should map to "Pathology Report")
+
+* `prescription-medication.pdf` (should map to "Prescription")
 
 **Real Estate Test Documents**:
-- `sale-contract.pdf` (should map to "Sale Contract")
-- `lease-agreement.pdf` (should map to "Lease Agreement")
-- `property-inspection.pdf` (should map to "Property Inspection Report")
+
+* `sale-contract.pdf` (should map to "Sale Contract")
+
+* `lease-agreement.pdf` (should map to "Lease Agreement")
+
+* `property-inspection.pdf` (should map to "Property Inspection Report")
 
 ### Test Scenarios
 
@@ -405,26 +439,26 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+*   uses: actions/checkout@v3
 
-      - name: Setup Node.js
+*   name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name: Install dependencies
+*   name: Install dependencies
         run: npm install -g bun && bun install
 
-      - name: Validate taxonomies
+*   name: Validate taxonomies
         run: bun run recordmanager validate --taxonomies
 
-      - name: Test custom entities
+*   name: Test custom entities
         run: |
           bun run recordmanager validate --entity legal-practice
           bun run recordmanager validate --entity medical-practice
           bun run recordmanager validate --entity real-estate
 
-      - name: Integration test
+*   name: Integration test
         run: bun run recordmanager validate --integration
 ```
 
@@ -446,29 +480,44 @@ fi
 ## Best Practices
 
 ### 1. Regular Validation
-- Run validation after every configuration change
-- Use pre-commit hooks to prevent invalid configurations
-- Schedule periodic production validation
+
+* Run validation after every configuration change
+
+* Use pre-commit hooks to prevent invalid configurations
+
+* Schedule periodic production validation
 
 ### 2. Documentation
-- Document validation errors and their solutions
-- Keep test documents and expected results
-- Maintain a troubleshooting guide
+
+* Document validation errors and their solutions
+
+* Keep test documents and expected results
+
+* Maintain a troubleshooting guide
 
 ### 3. Performance Monitoring
-- Track validation performance over time
-- Monitor for new error types
-- Set up alerts for validation failures
+
+* Track validation performance over time
+
+* Monitor for new error types
+
+* Set up alerts for validation failures
 
 ### 4. User Testing
-- Test with real user documents
-- Gather feedback on tagging accuracy
-- Validate retention period expectations
+
+* Test with real user documents
+
+* Gather feedback on tagging accuracy
+
+* Validate retention period expectations
 
 ### 5. Backup and Recovery
-- Keep validated configuration backups
-- Test restore procedures
-- Document rollback procedures
+
+* Keep validated configuration backups
+
+* Test restore procedures
+
+* Document rollback procedures
 
 ---
 

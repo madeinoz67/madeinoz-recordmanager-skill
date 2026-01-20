@@ -72,8 +72,10 @@ MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN="household"
 The full URL to your paperless-ngx instance.
 
 **Examples:**
-- `https://paperless.example.com` (remote instance with SSL)
-- `http://localhost:8000` (local development instance)
+
+*   `https://paperless.example.com` (remote instance with SSL)
+
+*   `http://localhost:8000` (local development instance)
 
 **Important:** Always include the protocol (`https://` or `http://`).
 
@@ -82,11 +84,17 @@ The full URL to your paperless-ngx instance.
 API token for authenticating with paperless-ngx.
 
 **To generate:**
+
 1. Log in to paperless-ngx
+
 2. Go to **Settings** → **Tokens**
+
 3. Click **Create new token**
+
 4. Give it a descriptive name (e.g., "Records Manager")
+
 5. Ensure **Read/Write** permissions are enabled
+
 6. Copy the token and paste it into your `.env` file
 
 ### MADEINOZ_RECORDMANAGER_COUNTRY
@@ -130,9 +138,12 @@ MADEINOZ_RECORDMANAGER_TAXONOMY_PATH="$PAI_DIR/skills/RecordsManager/Taxonomies/
 Override default retention periods for specific document categories.
 
 **Available overrides:**
-- `MADEINOZ_RECORDMANAGER_RETENTION_TAX_YEARS` - Tax documents
-- `MADEINOZ_RECORDMANAGER_RETENTION_MEDICAL_YEARS` - Medical records
-- `MADEINOZ_RECORDMANAGER_RETENTION_INSURANCE_YEARS` - Insurance policies
+
+*   `MADEINOZ_RECORDMANAGER_RETENTION_TAX_YEARS` - Tax documents
+
+*   `MADEINOZ_RECORDMANAGER_RETENTION_MEDICAL_YEARS` - Medical records
+
+*   `MADEINOZ_RECORDMANAGER_RETENTION_INSURANCE_YEARS` - Insurance policies
 
 **Example:**
 ```bash
@@ -158,10 +169,14 @@ Country: Australia
 Default Domain: household
 
 Available Commands:
-  - upload: Add documents with intelligent tagging
-  - search: Find documents by tag, type, or content
-  - retention: Check retention requirements
-  - status: Verify connection and configuration
+
+*   upload: Add documents with intelligent tagging
+
+*   search: Find documents by tag, type, or content
+
+*   retention: Check retention requirements
+
+*   status: Verify connection and configuration
 ```
 
 ## Troubleshooting
@@ -171,7 +186,9 @@ Available Commands:
 If a variable isn't being read:
 
 1. Ensure the `.env` file is in your PAI directory (`$PAI_DIR/.env`)
+
 2. Verify the variable name matches exactly (case-sensitive)
+
 3. Restart your shell or run `source ~/.zshrc`
 
 ### Connection Failed
@@ -179,8 +196,11 @@ If a variable isn't being read:
 If connection to paperless-ngx fails:
 
 1. Verify `MADEINOZ_RECORDMANAGER_PAPERLESS_URL` includes the protocol
+
 2. Test the URL in your browser
+
 3. Confirm the API token is valid and has Read/Write permissions
+
 4. Check for firewall or SSL certificate issues
 
 ### Country Fallback

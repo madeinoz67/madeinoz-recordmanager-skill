@@ -32,10 +32,14 @@ cat ~/.claude/VERSION 2>/dev/null || echo "Version file not found"
 If you don't have PAI installed, follow the [PAI Installation Guide](https://github.com/danielmiessler/PAI#installation).
 
 **Key PAI Components Used**:
-- Skill system for loading the Records Manager
-- Agent system for specialized document management agents
-- Configuration system for environment variables
-- Hook system for session capture
+
+* Skill system for loading the Records Manager
+
+* Agent system for specialized document management agents
+
+* Configuration system for environment variables
+
+* Hook system for session capture
 
 ---
 
@@ -75,10 +79,14 @@ docker compose up -d
 
 **Required Permissions**:
 The API token must have:
-- **Read permissions** - For searching and retrieving documents
-- **Write permissions** - For uploading and tagging documents
-- **Tag management** - For creating and modifying tags
-- **Document type management** - For creating document types
+
+* **Read permissions** - For searching and retrieving documents
+
+* **Write permissions** - For uploading and tagging documents
+
+* **Tag management** - For creating and modifying tags
+
+* **Document type management** - For creating document types
 
 ---
 
@@ -105,10 +113,14 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 ```
 
 **Why Bun?**
-- Fast startup and execution
-- Native TypeScript support
-- Compatible with Node.js ecosystems
-- Low memory footprint
+
+* Fast startup and execution
+
+* Native TypeScript support
+
+* Compatible with Node.js ecosystems
+
+* Low memory footprint
 
 ---
 
@@ -158,8 +170,8 @@ export ELEVENLABS_API_KEY="your-elevenlabs-api-key"
 ### macOS
 
 **Requirements**:
-- macOS 11 (Big Sur) or later
-- Xcode Command Line Tools
+*   macOS 11 (Big Sur) or later
+*   Xcode Command Line Tools
 
 **Setup**:
 ```bash
@@ -173,8 +185,8 @@ xcode-select --install
 ### Linux (Ubuntu/Debian)
 
 **Requirements**:
-- Ubuntu 20.04 or later / Debian 11 or later
-- Standard build tools
+*   Ubuntu 20.04 or later / Debian 11 or later
+*   Standard build tools
 
 **Setup**:
 ```bash
@@ -188,8 +200,8 @@ sudo apt-get install -y git curl build-essential
 ### Windows
 
 **Requirements**:
-- Windows 10 or later
-- WSL (Windows Subsystem for Linux) recommended
+*   Windows 10 or later
+*   WSL (Windows Subsystem for Linux) recommended
 
 **Setup**:
 ```bash
@@ -217,8 +229,9 @@ The Records Manager Skill requires:
 ### Firewall Configuration
 
 Ensure your firewall allows:
-- HTTPS (443) outbound to your paperless-ngx instance
-- Local network access if paperless-ngx is self-hosted
+
+*   HTTPS (443) outbound to your paperless-ngx instance
+*   Local network access if paperless-ngx is self-hosted
 
 ---
 
@@ -248,13 +261,19 @@ The paperless-ngx server requirements are separate:
 
 Before installing the Records Manager Skill, verify:
 
-- [ ] PAI v2.0+ is installed
-- [ ] paperless-ngx v1.13+ is running and accessible
-- [ ] Bun v1.0+ is installed
-- [ ] Git is installed
-- [ ] You have a paperless-ngx API token with read/write permissions
-- [ ] You know your paperless-ngx URL
-- [ ] Network connectivity to paperless-ngx is working
+* [ ] PAI v2.0+ is installed
+
+* [ ] paperless-ngx v1.13+ is running and accessible
+
+* [ ] Bun v1.0+ is installed
+
+* [ ] Git is installed
+
+* [ ] You have a paperless-ngx API token with read/write permissions
+
+* [ ] You know your paperless-ngx URL
+
+* [ ] Network connectivity to paperless-ngx is working
 
 ---
 
@@ -316,7 +335,9 @@ chmod +x check-prerequisites.sh
 Once all prerequisites are verified:
 
 1. **Proceed to Installation** - Complete the setup process
+
 2. **Configure Environment** - Set up paperless-ngx connection
+
 3. **Run Quickstart** - Upload your first document
 
 ---
@@ -325,10 +346,10 @@ Once all prerequisites are verified:
 
 If you're having trouble with prerequisites:
 
-- **PAI Installation**: See [PAI Documentation](https://github.com/danielmiessler/PAI)
-- **paperless-ngx Setup**: See [paperless-ngx Documentation](https://docs.paperless-ngx.com/)
-- **Bun Installation**: See [Bun Documentation](https://bun.sh/docs/installation)
-- **Community Support**: [GitHub Discussions](https://github.com/madeinoz/madeinoz-recordmanager-skill/discussions)
+*   **PAI Installation**: See [PAI Documentation](https://github.com/danielmiessler/PAI)
+*   **paperless-ngx Setup**: See [paperless-ngx Documentation](https://docs.paperless-ngx.com/)
+*   **Bun Installation**: See [Bun Documentation](https://bun.sh/docs/installation)
+*   **Community Support**: [GitHub Discussions](https://github.com/madeinoz/madeinoz-recordmanager-skill/discussions)
 
 ---
 

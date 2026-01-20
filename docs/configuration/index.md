@@ -9,16 +9,19 @@ The Records Manager Skill requires configuration to connect to your paperless-ng
 ## Quick Start
 
 1. **Copy the environment template** to your PAI directory:
+
    ```bash
    cp src/config/.env.example $PAI_DIR/.env
    ```
 
 2. **Edit the configuration** with your paperless-ngx details:
+
    ```bash
    nano $PAI_DIR/.env
    ```
 
 3. **Verify the connection**:
+
    ```bash
    bun run src/skills/RecordsManager/Tools/RecordManager.ts status
    ```
@@ -33,9 +36,9 @@ The Records Manager Skill requires configuration to connect to your paperless-ng
 
 ## Configuration Sections
 
-- **[Environment Variables](environment.md)** - Complete reference of all configuration variables
-- **[paperless-ngx Setup](paperless-setup.md)** - Guide to configuring paperless-ngx integration
-- **[Country Selection](country-selection.md)** - Choosing and configuring country-specific compliance
+*   **[Environment Variables](environment.md)** - Complete reference of all configuration variables
+*   **[paperless-ngx Setup](paperless-setup.md)** - Guide to configuring paperless-ngx integration
+*   **[Country Selection](country-selection.md)** - Choosing and configuring country-specific compliance
 
 ## Validation
 
@@ -59,7 +62,9 @@ bun run src/skills/RecordsManager/Tools/RecordManager.ts status
 If the status check fails:
 
 1. Verify your paperless-ngx URL is accessible
+
 2. Confirm the API token has Read/Write permissions
+
 3. Check for SSL certificate issues (use `http://` for local testing)
 
 ### Country Not Supported
@@ -77,6 +82,8 @@ Valid domains are: `household`, `corporate`, `projects`, `unit-trust`, `discreti
 
 ## Next Steps
 
-- Configure [environment variables](environment.md)
-- Set up [paperless-ngx](paperless-setup.md)
-- Choose your [country](country-selection.md)
+*   Configure [environment variables](environment.md)
+
+*   Set up [paperless-ngx](paperless-setup.md)
+
+*   Choose your [country](country-selection.md)

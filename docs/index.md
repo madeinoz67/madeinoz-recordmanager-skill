@@ -47,37 +47,58 @@ The Records Manager Skill is a comprehensive document management system that tra
 ## Key Features
 
 ### Intelligent Document Organization
-- Automatic tagging and categorization based on document content
-- Domain-specific taxonomies for household, corporate, and project records
-- Smart suggestions for document types and metadata
+
+* Automatic tagging and categorization based on document content
+
+* Domain-specific taxonomies for household, corporate, and project records
+
+* Smart suggestions for document types and metadata
 
 ### Country-Specific Compliance
-- Record keeping guidelines tailored to your jurisdiction (Australia, US, UK)
-- Automatic retention period recommendations
-- ATO-compliant trust document management for Australian users
+
+* Record keeping guidelines tailored to your jurisdiction (Australia, US, UK)
+
+* Automatic retention period recommendations
+
+* ATO-compliant trust document management for Australian users
 
 ### Safe Operations
-- **Mandatory deletion confirmation workflow** prevents catastrophic data loss
-- Explicit approval required for any document destruction
-- Complete audit trail for compliance and legal protection
+
+* **Mandatory deletion confirmation workflow** prevents catastrophic data loss
+
+* Explicit approval required for any document destruction
+
+* Complete audit trail for compliance and legal protection
 
 ### Powerful Search
-- Optimized data structures for finding relevant documents quickly
-- Search by tags, document types, dates, and content
-- Filterable results with retention status indicators
+
+* Optimized data structures for finding relevant documents quickly
+
+* Search by tags, document types, dates, and content
+
+* Filterable results with retention status indicators
 
 ### Specialized Agents
-- **Records Keeper** - Taxonomy design and organization
-- **Compliance Guardian** - Legal retention requirements
-- **Archive Architect** - Storage and retrieval strategy
-- **Deletion Auditor** - Safety checkpoint for all deletions
-- **Sensitivity Scanner** - Data classification and DLP
-- **Retention Monitor** - Time-based compliance tracking
+
+* **Records Keeper** - Taxonomy design and organization
+
+* **Compliance Guardian** - Legal retention requirements
+
+* **Archive Architect** - Storage and retrieval strategy
+
+* **Deletion Auditor** - Safety checkpoint for all deletions
+
+* **Sensitivity Scanner** - Data classification and DLP
+
+* **Retention Monitor** - Time-based compliance tracking
 
 ### Extensible Architecture
-- Create custom entity types with their own taxonomies
-- Define country-specific retention rules
-- Add domain-specific tags and categories
+
+* Create custom entity types with their own taxonomies
+
+* Define country-specific retention rules
+
+* Add domain-specific tags and categories
 
 ---
 
@@ -86,12 +107,14 @@ The Records Manager Skill is a comprehensive document management system that tra
 1. **Download the latest release** from [GitHub Releases](https://github.com/madeinoz67/madeinoz-recordmanager-skill/releases)
 
 2. **Extract to your Packs directory**:
+
    ```bash
    mkdir -p ~/pai/Packs
    unzip madeinoz-recordmanager-skill-*.zip -d ~/pai/Packs/
    ```
 
 3. **Open Claude Code in the pack directory**:
+
    ```bash
    cd ~/pai/Packs/madeinoz-recordmanager-skill
    claude
@@ -100,11 +123,12 @@ The Records Manager Skill is a comprehensive document management system that tra
 4. **Tell the AI**: "Install this pack"
 
    The AI will handle the rest:
-   - Copy the skill to `$PAI_DIR/skills/`
-   - Configure environment variables
-   - Verify installation
+*   Copy the skill to `$PAI_DIR/skills/`
+*   Configure environment variables
+*   Verify installation
 
 5. **Start managing records**:
+
    ```
    Upload this invoice and organize it properly
    ```
@@ -127,12 +151,15 @@ The Records Manager Skill is a comprehensive document management system that tra
 ## Get Started
 
 ### [Installation Guide](getting-started/installation.md)
+
 Complete setup instructions for PAI integration and paperless-ngx configuration.
 
 ### [Quickstart Tutorial](getting-started/quickstart.md)
+
 Step-by-step walkthrough for uploading your first document with intelligent tagging.
 
 ### [Prerequisites](getting-started/prerequisites.md)
+
 System requirements including PAI, paperless-ngx, and Bun runtime.
 
 ---
@@ -140,21 +167,27 @@ System requirements including PAI, paperless-ngx, and Bun runtime.
 ## Documentation Sections
 
 ### [User Guide](user-guide/)
+
 Daily workflows for upload, search, tagging, and retention management.
 
 ### [Configuration](configuration/)
+
 Environment variables, paperless-ngx setup, and country selection.
 
 ### [Tutorials](tutorials/)
+
 Step-by-step guides for common tasks and advanced workflows.
 
 ### [API Reference](reference/)
+
 CLI commands, library functions, and agent documentation.
 
 ### [Extending](extending/)
+
 Create custom taxonomies, add entity types, and extend the system.
 
 ### [Architecture](architecture/)
+
 System design, component interaction, and data flows.
 
 ---
@@ -170,6 +203,7 @@ If you are an AI coding assistant (Claude, Cursor, Copilot, etc.):
 ## Example Usage
 
 ### Upload with Intelligent Tagging
+
 ```bash
 bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts upload \
   --file ~/Downloads/medical-bill.pdf \
@@ -184,6 +218,7 @@ bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts upload \
 ```
 
 ### Search by Taxonomy
+
 ```bash
 bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts search \
   --tags "tax,financial,2024" \
@@ -191,6 +226,7 @@ bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts search \
 ```
 
 ### Retention Check
+
 ```bash
 bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts retention \
   --domain corporate
@@ -239,10 +275,10 @@ User Request
 
 The Records Manager Skill has a critical safety feature: **deletion always requires explicit confirmation**.
 
-- The `PaperlessClient` has **NO delete methods** - they are intentionally excluded
-- All deletion requests route through the `DeleteConfirmation` workflow
-- The Deletion Auditor agent must approve any deletion
-- Full audit trail maintained for compliance
+*   The `PaperlessClient` has **NO delete methods** - they are intentionally excluded
+*   All deletion requests route through the `DeleteConfirmation` workflow
+*   The Deletion Auditor agent must approve any deletion
+*   Full audit trail maintained for compliance
 
 This prevents catastrophic data loss from accidental bulk deletions.
 
@@ -262,10 +298,10 @@ Contributions are welcome! Please read our contributing guidelines and submit pu
 
 ## Links
 
-- **GitHub Repository**: [madeinoz67/madeinoz-recordmanager-skill](https://github.com/madeinoz67/madeinoz-recordmanager-skill)
-- **Issue Tracker**: [GitHub Issues](https://github.com/madeinoz67/madeinoz-recordmanager-skill/issues)
-- **PAI Project**: [danielmiessler/PAI](https://github.com/danielmiessler/PAI)
-- **paperless-ngx**: [paperless-ngx/docs](https://docs.paperless-ngx.com/)
+*   **GitHub Repository**: [madeinoz67/madeinoz-recordmanager-skill](https://github.com/madeinoz67/madeinoz-recordmanager-skill)
+*   **Issue Tracker**: [GitHub Issues](https://github.com/madeinoz67/madeinoz-recordmanager-skill/issues)
+*   **PAI Project**: [danielmiessler/PAI](https://github.com/danielmiessler/PAI)
+*   **paperless-ngx**: [paperless-ngx/docs](https://docs.paperless-ngx.com/)
 
 ---
 

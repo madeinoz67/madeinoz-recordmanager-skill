@@ -196,7 +196,11 @@ bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts upload \
 ## Tips and Best Practices
 
 1. **Always specify the domain** - This ensures proper taxonomy application
+
 2. **Use descriptive tags** - This makes searching easier later
+
 3. **Check retention regularly** - Especially for time-sensitive documents
+
 4. **Use workflows for automation** - Reduce manual work for repetitive tasks
+
 5. **Test queries before batch operations** - Verify search patterns work as expected

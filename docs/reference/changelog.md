@@ -11,19 +11,19 @@ For the most detailed changelog with version history and release notes, please r
 ### GitHub Changelog
 
 You can also view the changelog on GitHub at:
-- [Changelog on GitHub](https://github.com/your-repo/records-manager-skill/blob/main/CHANGELOG.md)
+*   [Changelog on GitHub](https://github.com/your-repo/records-manager-skill/blob/main/CHANGELOG.md)
 
 The GitHub version includes all commit history and pull request references alongside the structured release notes.
 
 ## Version Navigation
 
-- **Latest Release**: [1.0.0](../../CHANGELOG.md#100---2024-01-19)
-- **Development**: See the [CHANGELOG.md](../../CHANGELOG.md) for unreleased changes
+*   **Latest Release**: [1.0.0](../../CHANGELOG.md#100---2024-01-19)
+*   **Development**: See the [CHANGELOG.md](../../CHANGELOG.md) for unreleased changes
 
 Each version entry includes:
-- Release date
-- Added features
-- Changed functionality
-- Deprecated features
-- Fixed issues
-- Security updates
+*   Release date
+*   Added features
+*   Changed functionality
+*   Deprecated features
+*   Fixed issues
+*   Security updates

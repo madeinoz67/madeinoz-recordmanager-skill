@@ -18,15 +18,22 @@ This tutorial will guide you through uploading your first document, understandin
 Find a document you'd like to upload. For this tutorial, we'll use an invoice as an example.
 
 **Supported formats**:
-- PDF (preferred for documents with text/OCR)
-- Images (PNG, JPG, JPEG - will be OCR-processed)
-- Office documents (DOCX, XLSX - converted to PDF)
+
+* PDF (preferred for documents with text/OCR)
+
+* Images (PNG, JPG, JPEG - will be OCR-processed)
+
+* Office documents (DOCX, XLSX - converted to PDF)
 
 **Example document**:
-- An invoice from a supplier
-- A medical receipt
-- An insurance policy document
-- A tax statement
+
+* An invoice from a supplier
+
+* A medical receipt
+
+* An insurance policy document
+
+* A tax statement
 
 ---
 
@@ -43,9 +50,13 @@ bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts upload \
 **What happens**:
 
 1. **Document Upload** - The file is uploaded to paperless-ngx
+
 2. **OCR Processing** - paperless-ngx extracts text from the document
+
 3. **Intelligent Classification** - The Records Manager analyzes the content
+
 4. **Tag Application** - Relevant tags are automatically applied
+
 5. **Retention Assignment** - Retention period is set based on document type
 
 **Expected output**:
@@ -60,10 +71,14 @@ Document Analysis:
   Vendor: ABC Supplies
 
 Suggested Tags:
-  - invoice
-  - supplier
-  - 2024
-  - household
+
+  * invoice
+
+  * supplier
+
+  * 2024
+
+  * household
 
 Document Type: Supplier Invoice
 Retention: 7 years (financial record)
@@ -82,10 +97,14 @@ The Records Manager applies tags based on:
 ### Content Analysis
 
 The document content is analyzed for:
-- Document type (invoice, receipt, statement, policy)
-- Dates (document date, tax year)
-- Entities (vendor names, organizations)
-- Amounts (for financial documents)
+
+* Document type (invoice, receipt, statement, policy)
+
+* Dates (document date, tax year)
+
+* Entities (vendor names, organizations)
+
+* Amounts (for financial documents)
 
 ### Domain Taxonomy
 
@@ -171,10 +190,14 @@ Content:
   Document Date: 2024-01-15
 
 Tags:
-  - invoice (green)
-  - supplier (blue)
-  - 2024 (yellow)
-  - household (purple)
+
+  * invoice (green)
+
+  * supplier (blue)
+
+  * 2024 (yellow)
+
+  * household (purple)
 
 Retention:
   Period: 7 years
@@ -209,8 +232,10 @@ bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts tag \
 Adding tags to document 1234...
 
 Added tags:
-  - home-office
-  - deductible
+
+  * home-office
+
+  * deductible
 
 Current tags: invoice, supplier, 2024, household, home-office, deductible
 ```
@@ -234,16 +259,22 @@ Retention Status for: household
 Documents Retained: 234
 
 By Retention Period:
+
   5 years:    45 documents
+
   7 years:   156 documents (financial records)
+
   Permanent:  33 documents (legal, insurance)
 
 Expiring Soon (within 90 days):
-  - Old tax documents (2016) - safe to review for deletion
+
+  * Old tax documents (2016) - safe to review for deletion
 
 Archive Ready:
-  - 23 documents past retention can be archived
-  - Run with --archive flag to move to cold storage
+
+  * 23 documents past retention can be archived
+
+  * Run with --archive flag to move to cold storage
 ```
 
 ---
@@ -301,14 +332,19 @@ bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts delete \
 You are requesting deletion of 12 documents:
 
 1. Old Invoice #1 (2018) - 7 year retention EXPIRED
+
 2. Old Receipt #2 (2018) - 7 year retention EXPIRED
+
 [...]
 
 ⚠ SAFETY CHECK ⚠
 
 The Deletion Auditor agent requires:
+
 1. Confirmation that retention periods have expired
+
 2. Verification that documents are not needed for audit
+
 3. Explicit approval phrase to proceed
 
 To confirm deletion, type: "I understand this cannot be undone"
@@ -325,8 +361,11 @@ To confirm deletion, type: "I understand this cannot be undone"
 Now that you've completed the quickstart:
 
 1. **Explore the User Guide** - Learn about daily workflows
+
 2. **Configure Taxonomies** - Customize tags for your needs
+
 3. **Set Up Retention Rules** - Configure country-specific requirements
+
 4. **Try Tutorials** - Step-by-step guides for common tasks
 
 ---
@@ -386,27 +425,27 @@ For more documentation development workflows, see [CONTRIBUTING.md](../../CONTRI
 **Problem**: "Upload failed" error
 
 **Solutions**:
-- Verify paperless-ngx is accessible: `curl $MADEINOZ_RECORDMANAGER_PAPERLESS_URL`
-- Check API token permissions
-- Ensure file is a supported format
+*   Verify paperless-ngx is accessible: `curl $MADEINOZ_RECORDMANAGER_PAPERLESS_URL`
+*   Check API token permissions
+*   Ensure file is a supported format
 
 ### No Tags Applied
 
 **Problem**: Document uploaded but no tags suggested
 
 **Solutions**:
-- Check that OCR completed in paperless-ngx
-- Verify document contains readable text
-- Try manual tagging with the `tag` command
+*   Check that OCR completed in paperless-ngx
+*   Verify document contains readable text
+*   Try manual tagging with the `tag` command
 
 ### Search Returns No Results
 
 **Problem**: Can't find recently uploaded document
 
 **Solutions**:
-- Wait for OCR processing (usually 30-60 seconds)
-- Check spelling of search terms
-- Try broader search without specific tags
+*   Wait for OCR processing (usually 30-60 seconds)
+*   Check spelling of search terms
+*   Try broader search without specific tags
 
 ---
 
@@ -414,22 +453,22 @@ For more documentation development workflows, see [CONTRIBUTING.md](../../CONTRI
 
 In this quickstart, you learned:
 
-- [x] How to upload a document with intelligent tagging
-- [x] How automatic classification works
-- [x] How to search for documents by tags
-- [x] How to view document details
-- [x] How to add manual tags
-- [x] How to check retention status
-- [x] About deletion safety features
+*   - [x] How to upload a document with intelligent tagging
+*   - [x] How automatic classification works
+*   - [x] How to search for documents by tags
+*   - [x] How to view document details
+*   - [x] How to add manual tags
+*   - [x] How to check retention status
+*   - [x] About deletion safety features
 
 ---
 
 ## What's Next?
 
-- **[User Guide](../user-guide/)** - Learn daily workflows for document management
-- **[Configuration](../configuration/)** - Customize the skill for your needs
-- **[Tutorials](../tutorials/)** - Step-by-step guides for specific tasks
-- **[API Reference](../reference/)** - Complete CLI command documentation
+*   **[User Guide](../user-guide/)** - Learn daily workflows for document management
+*   **[Configuration](../configuration/)** - Customize the skill for your needs
+*   **[Tutorials](../tutorials/)** - Step-by-step guides for specific tasks
+*   **[API Reference](../reference/)** - Complete CLI command documentation
 
 ---
 
