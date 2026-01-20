@@ -325,3 +325,10 @@ Hop 3: "Analyze top candidates in detail"
 - Agent analyzes structure but not patterns → Ask for pattern analysis
 - Agent misses complexity assessment → Ask for difficulty ratings
 - Report feels incomplete (score <8) → Identify gaps and iterate
+
+## Active Technologies
+- N/A (asset generation, no code) + PAI Art skill (Generate.ts with gpt-image-1 or nano-banana-pro model) (002-pack-icon)
+- PNG file at `icons/madeinoz-recordmanager-skill.png` (002-pack-icon)
+
+## Recent Changes
+- 002-pack-icon: Added N/A (asset generation, no code) + PAI Art skill (Generate.ts with gpt-image-1 or nano-banana-pro model)
