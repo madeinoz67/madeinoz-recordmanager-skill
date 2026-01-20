@@ -1,7 +1,7 @@
 ---
 name: Records Manager Skill
-pack-id: madeinoz-recordmanager-skill-v1.0.0
-version: 1.0.0
+pack-id: madeinoz-recordmanager-skill-v1.1.0
+version: 1.1.0
 author: madeinoz
 description: Subject matter expert in record keeping and paperless-ngx API integration with country-specific taxonomies and deletion confirmation safeguards
 type: skill
@@ -422,6 +422,13 @@ export MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN="household"
 ---
 
 ## Changelog
+
+### 1.1.0 - 2026-01-20
+- Standardized env variables to `MADEINOZ_RECORDMANAGER_*` prefix
+- Fixed skill directory naming to TitleCase (`RecordsManager`)
+- Moved tool paths to skill-level (`skills/RecordsManager/Tools/`)
+- Added mandatory .env backup to installation workflow
+- Updated backup location to `~/.madeinoz-backup/recordsmanager/`
 
 ### 1.0.0 - 2026-01-17
 - Initial release
