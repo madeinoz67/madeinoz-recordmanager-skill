@@ -8,8 +8,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   deploy:
@@ -32,9 +30,4 @@ jobs:
 
       - run: pip install -r requirements-docs.txt
 
-      - run: mkdocs build
-
-      - name: Upload to GitHub Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./site
+      - run: mkdocs gh-deploy --force
