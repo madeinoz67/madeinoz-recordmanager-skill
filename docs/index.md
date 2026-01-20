@@ -27,10 +27,10 @@
 
     **Before using this tool, you MUST:**
 
-    1.  ✅ **Set up a dedicated PAI user** with limited permissions - see [Security Best Practices](configuration/paperless-setup.md#pai-user-security-best-practices)
-    2.  ✅ **Enable paperless-ngx backup and recovery** - see [paperless-ngx backup documentation](https://docs.paperless-ngx.com/advanced_usage/#backing-up-paperless-ngx)
-    3.  ✅ **Test the deletion confirmation workflow** in a safe environment
-    4.  ✅ **Understand that deleted documents cannot be recovered** without a backup
+    1. ✅ **Set up a dedicated PAI user** with limited permissions - see [Security Best Practices](configuration/paperless-setup.md#pai-user-security-best-practices)
+    2. ✅ **Enable paperless-ngx backup and recovery** - see [paperless-ngx backup documentation](https://docs.paperless-ngx.com/advanced_usage/#backing-up-paperless-ngx)
+    3. ✅ **Test the deletion confirmation workflow** in a safe environment
+    4. ✅ **Understand that deleted documents cannot be recovered** without a backup
 
     By using this software, you agree that you have read and understood this disclaimer, and that you have taken appropriate steps to protect your data.
 
