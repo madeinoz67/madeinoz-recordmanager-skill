@@ -1,0 +1,119 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Release version: $VERSION"
+
+      - name: Create release archive
+        run: |
+          FILENAME="madeinoz-recordmanager-skill-v${{ steps.version.outputs.version }}.zip"
+          echo "Creating archive: $FILENAME"
+
+          # Create zip with proper content
+          zip -r "$FILENAME" \
+            src/ \
+            SKILL.md \
+            AGENTS.md \
+            CLAUDE.md \
+            README.md \
+            LICENSE \
+            CHANGELOG.md \
+            CONTRIBUTING.md \
+            INSTALL.md \
+            -x "*.git*" \
+            -x "*node_modules*" \
+            -x "*.log" \
+            -x "site/*" \
+            -x "specs/*"
+
+          echo "Archive created: $FILENAME"
+          echo "filename=$FILENAME" >> $GITHUB_ENV
+
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          NOTES_FILE="release_notes_${VERSION}.md"
+
+          cat > "$NOTES_FILE" << 'EOF'
+          # Records Manager Skill v${VERSION}
+
+          ## 📦 Download
+
+          **Archive:** \`madeinoz-recordmanager-skill-v${VERSION}.zip\`
+
+          ## 🚀 Quick Start
+
+          1. **Download** the release zip file
+          2. **Extract** to your PAI Packs directory:
+             ```bash
+             mkdir -p ~/pai/Packs
+             unzip madeinoz-recordmanager-skill-v${VERSION}.zip -d ~/pai/Packs/
+             ```
+          3. **Open Claude Code** in the pack directory:
+             ```bash
+             cd ~/pai/Packs/madeinoz-recordmanager-skill
+             claude
+             ```
+          4. **Tell the AI**: "Install this pack"
+
+          ## ✨ What's Included
+
+          - Complete skill definition and workflows
+          - Paperless-ngx API integration
+          - Country-specific taxonomies (Australia, US, UK)
+          - Six specialized agents for document management
+          - Deletion confirmation safety workflow
+
+          ## 📚 Documentation
+
+          Full documentation: [https://madeinoz67.github.io/madeinoz-recordmanager-skill/](https://madeinoz67.github.io/madeinoz-recordmanager-skill/)
+
+          ## ⚠️ Important Notice
+
+          This tool can delete documents. Always backup your data before use.
+
+          ---
+
+          **Version:** ${VERSION}
+          **Released:** $(date -u +"%Y-%m-%d")
+          EOF
+
+          echo "notes_file=$NOTES_FILE" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.filename }}
+          body_path: ${{ env.notes_file }}
+          name: Release v${{ steps.version.outputs.version }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release summary
+        run: |
+          echo "✅ Release created successfully!"
+          echo "Version: ${{ steps.version.outputs.version }}"
+          echo "Archive: ${{ env.filename }}"
+          echo "Release URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.ref_name }}"
