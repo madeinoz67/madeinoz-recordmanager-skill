@@ -16,26 +16,26 @@ export PAI_DIR="${PAI_DIR:-$HOME/.claude}"
 echo "Checking file structure..."
 test -f "$PAI_DIR/lib/recordsmanager/PaperlessClient.ts" && echo "✓ PaperlessClient.ts exists" || echo "✗ PaperlessClient.ts missing"
 test -f "$PAI_DIR/lib/recordsmanager/TaxonomyExpert.ts" && echo "✓ TaxonomyExpert.ts exists" || echo "✗ TaxonomyExpert.ts missing"
-test -f "$PAI_DIR/tools/RecordManager.ts" && echo "✓ RecordManager.ts exists" || echo "✗ RecordManager.ts missing"
-test -f "$PAI_DIR/skills/RECORDSMANAGER/SKILL.md" && echo "✓ SKILL.md exists" || echo "✗ SKILL.md missing"
+test -f "$PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts" && echo "✓ RecordManager.ts exists" || echo "✗ RecordManager.ts missing"
+test -f "$PAI_DIR/skills/RecordsManager/SKILL.md" && echo "✓ SKILL.md exists" || echo "✗ SKILL.md missing"
 
 # 2. Check environment variables
 echo ""
 echo "Checking environment..."
-test -n "$PAPERLESS_URL" && echo "✓ PAPERLESS_URL set" || echo "✗ PAPERLESS_URL not set"
-test -n "$PAPERLESS_API_TOKEN" && echo "✓ PAPERLESS_API_TOKEN set" || echo "✗ PAPERLESS_API_TOKEN not set"
-test -n "$RECORDS_COUNTRY" && echo "✓ RECORDS_COUNTRY set" || echo "✗ RECORDS_COUNTRY not set"
-test -n "$RECORDS_DEFAULT_DOMAIN" && echo "✓ RECORDS_DEFAULT_DOMAIN set" || echo "✗ RECORDS_DEFAULT_DOMAIN not set"
+test -n "$MADEINOZ_RECORDMANAGER_PAPERLESS_URL" && echo "✓ MADEINOZ_RECORDMANAGER_PAPERLESS_URL set" || echo "✗ MADEINOZ_RECORDMANAGER_PAPERLESS_URL not set"
+test -n "$MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN" && echo "✓ MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN set" || echo "✗ MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN not set"
+test -n "$MADEINOZ_RECORDMANAGER_COUNTRY" && echo "✓ MADEINOZ_RECORDMANAGER_COUNTRY set" || echo "✗ MADEINOZ_RECORDMANAGER_COUNTRY not set"
+test -n "$MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN" && echo "✓ MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN set" || echo "✗ MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN not set"
 
 # 3. Test CLI tool
 echo ""
 echo "Testing CLI tool..."
-bun run "$PAI_DIR/tools/RecordManager.ts" --help > /dev/null 2>&1 && echo "✓ CLI tool executable" || echo "✗ CLI tool failed"
+bun run "$PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts" --help > /dev/null 2>&1 && echo "✓ CLI tool executable" || echo "✗ CLI tool failed"
 
 # 4. Test paperless-ngx connection
 echo ""
 echo "Testing paperless-ngx connection..."
-curl -s -f -I "$PAPERLESS_URL/api/" > /dev/null 2>&1 && echo "✓ paperless-ngx API reachable" || echo "⚠ paperless-ngx API not reachable (may need configuration)"
+curl -s -f -I "$MADEINOZ_RECORDMANAGER_PAPERLESS_URL/api/" > /dev/null 2>&1 && echo "✓ paperless-ngx API reachable" || echo "⚠ paperless-ngx API not reachable (may need configuration)"
 
 echo ""
 echo "Quick verification complete!"
@@ -59,10 +59,10 @@ echo ""
 FILES=(
   "lib/recordsmanager/PaperlessClient.ts"
   "lib/recordsmanager/TaxonomyExpert.ts"
-  "tools/RecordManager.ts"
-  "skills/RECORDSMANAGER/SKILL.md"
-  "skills/RECORDSMANAGER/Workflows/DeleteConfirmation.md"
-  "skills/RECORDSMANAGER/Context/TaxonomyReference.md"
+  "skills/RecordsManager/Tools/RecordManager.ts"
+  "skills/RecordsManager/SKILL.md"
+  "skills/RecordsManager/Workflows/DeleteConfirmation.md"
+  "skills/RecordsManager/Context/TaxonomyReference.md"
 )
 
 ALL_FILES_PRESENT=true
@@ -107,31 +107,31 @@ if test -f "$PAI_DIR/.env"; then
 
   # Verify required variables
   CONFIG_VALID=true
-  if [ -z "$PAPERLESS_URL" ]; then
-    echo "✗ PAPERLESS_URL not set"
+  if [ -z "$MADEINOZ_RECORDMANAGER_PAPERLESS_URL" ]; then
+    echo "✗ MADEINOZ_RECORDMANAGER_PAPERLESS_URL not set"
     CONFIG_VALID=false
   else
-    echo "✓ PAPERLESS_URL=$PAPERLESS_URL"
+    echo "✓ MADEINOZ_RECORDMANAGER_PAPERLESS_URL=$MADEINOZ_RECORDMANAGER_PAPERLESS_URL"
   fi
 
-  if [ -z "$PAPERLESS_API_TOKEN" ]; then
-    echo "✗ PAPERLESS_API_TOKEN not set"
+  if [ -z "$MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN" ]; then
+    echo "✗ MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN not set"
     CONFIG_VALID=false
   else
     # Don't echo the actual token, just confirm it's set
-    echo "✓ PAPERLESS_API_TOKEN set (${#PAPERLESS_API_TOKEN} chars)"
+    echo "✓ MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN set (${#MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN} chars)"
   fi
 
-  if [ -z "$RECORDS_COUNTRY" ]; then
-    echo "⚠ RECORDS_COUNTRY not set (will use default: Australia)"
+  if [ -z "$MADEINOZ_RECORDMANAGER_COUNTRY" ]; then
+    echo "⚠ MADEINOZ_RECORDMANAGER_COUNTRY not set (will use default: Australia)"
   else
-    echo "✓ RECORDS_COUNTRY=$RECORDS_COUNTRY"
+    echo "✓ MADEINOZ_RECORDMANAGER_COUNTRY=$MADEINOZ_RECORDMANAGER_COUNTRY"
   fi
 
-  if [ -z "$RECORDS_DEFAULT_DOMAIN" ]; then
-    echo "⚠ RECORDS_DEFAULT_DOMAIN not set (will use default: household)"
+  if [ -z "$MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN" ]; then
+    echo "⚠ MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN not set (will use default: household)"
   else
-    echo "✓ RECORDS_DEFAULT_DOMAIN=$RECORDS_DEFAULT_DOMAIN"
+    echo "✓ MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN=$MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN"
   fi
 else
   echo "✗ .env file does not exist"
@@ -147,15 +147,15 @@ else
   echo "To fix:"
   echo "1. Create or edit $PAI_DIR/.env"
   echo "2. Add required variables:"
-  echo "   PAPERLESS_URL=https://your-paperless-instance.com"
-  echo "   PAPERLESS_API_TOKEN=your-api-token"
-  echo "   RECORDS_COUNTRY=YourCountry"
-  echo "   RECORDS_DEFAULT_DOMAIN=household"
+  echo "   MADEINOZ_RECORDMANAGER_PAPERLESS_URL=https://your-paperless-instance.com"
+  echo "   MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN=your-api-token"
+  echo "   MADEINOZ_RECORDMANAGER_COUNTRY=YourCountry"
+  echo "   MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN=household"
   exit 1
 fi
 ```
 
-**Pass Criteria:** PAPERLESS_URL and PAPERLESS_API_TOKEN are set
+**Pass Criteria:** MADEINOZ_RECORDMANAGER_PAPERLESS_URL and MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN are set
 
 **Fail Action:** Configure environment variables in $PAI_DIR/.env
 
@@ -213,7 +213,7 @@ echo ""
 
 # Test help command
 echo "Testing help command..."
-if bun run "$PAI_DIR/tools/RecordManager.ts" --help 2>&1 | grep -q "Records Manager CLI"; then
+if bun run "$PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts" --help 2>&1 | grep -q "Records Manager CLI"; then
   echo "✓ Help command works"
 else
   echo "✗ Help command failed"
@@ -223,7 +223,7 @@ fi
 # Test retention command (doesn't require paperless-ngx connection)
 echo ""
 echo "Testing retention command (local only)..."
-if bun run "$PAI_DIR/tools/RecordManager.ts" retention 2>&1 | grep -q "Retention Requirements"; then
+if bun run "$PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts" retention 2>&1 | grep -q "Retention Requirements"; then
   echo "✓ Retention command works"
 else
   echo "✗ Retention command failed"
@@ -251,14 +251,14 @@ echo ""
 
 # Test API reachability
 echo "Testing API endpoint..."
-HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$PAPERLESS_URL/api/")
+HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$MADEINOZ_RECORDMANAGER_PAPERLESS_URL/api/")
 if [ "$HTTP_CODE" = "401" ] || [ "$HTTP_CODE" = "200" ]; then
   echo "✓ API endpoint reachable (HTTP $HTTP_CODE)"
 elif [ "$HTTP_CODE" = "000" ]; then
   echo "✗ Cannot reach API endpoint"
   echo ""
   echo "To fix:"
-  echo "1. Verify PAPERLESS_URL is correct: $PAPERLESS_URL"
+  echo "1. Verify MADEINOZ_RECORDMANAGER_PAPERLESS_URL is correct: $MADEINOZ_RECORDMANAGER_PAPERLESS_URL"
   echo "2. Check network connectivity"
   echo "3. Verify paperless-ngx is running"
   exit 1
@@ -269,10 +269,10 @@ fi
 # Test authentication
 echo ""
 echo "Testing API authentication..."
-if [ -n "$PAPERLESS_API_TOKEN" ]; then
+if [ -n "$MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN" ]; then
   AUTH_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
-    -H "Authorization: Token $PAPERLESS_API_TOKEN" \
-    "$PAPERLESS_URL/api/tags/?limit=1")
+    -H "Authorization: Token $MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN" \
+    "$MADEINOZ_RECORDMANAGER_PAPERLESS_URL/api/tags/?limit=1")
 
   if [ "$AUTH_CODE" = "200" ]; then
     echo "✓ API authentication successful"
@@ -282,11 +282,11 @@ if [ -n "$PAPERLESS_API_TOKEN" ]; then
     echo "To fix:"
     echo "1. Verify API token in paperless-ngx settings"
     echo "2. Regenerate token if needed"
-    echo "3. Update PAPERLESS_API_TOKEN in .env"
+    echo "3. Update MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN in .env"
     exit 1
   fi
 else
-  echo "⚠ PAPERLESS_API_TOKEN not set, skipping auth test"
+  echo "⚠ MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN not set, skipping auth test"
 fi
 
 echo ""
@@ -309,12 +309,12 @@ echo "=== Part 6: Taxonomy Expert ==="
 echo ""
 
 # Test country support
-echo "Testing country: ${RECORDS_COUNTRY:-Australia}"
+echo "Testing country: ${MADEINOZ_RECORDMANAGER_COUNTRY:-Australia}"
 echo ""
 
 # Test document types for domain
-echo "Document types for ${RECORDS_DEFAULT_DOMAIN:-household}:"
-DOC_TYPES=$(bun run "$PAI_DIR/tools/RecordManager.ts" retention --domain "${RECORDS_DEFAULT_DOMAIN:-household}" 2>&1 | grep -E "^[A-Z]" | head -5)
+echo "Document types for ${MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN:-household}:"
+DOC_TYPES=$(bun run "$PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts" retention --domain "${MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN:-household}" 2>&1 | grep -E "^[A-Z]" | head -5)
 if [ -n "$DOC_TYPES" ]; then
   echo "$DOC_TYPES"
   echo "✓ Document types available"
@@ -342,11 +342,11 @@ echo "=== Part 7: Skill Integration ==="
 echo ""
 
 # Check skill definition exists
-if [ -f "$PAI_DIR/skills/RECORDSMANAGER/SKILL.md" ]; then
+if [ -f "$PAI_DIR/skills/RecordsManager/SKILL.md" ]; then
   echo "✓ SKILL.md exists"
 
   # Check for required frontmatter
-  if grep -q "name:" "$PAI_DIR/skills/RECORDSMANAGER/SKILL.md"; then
+  if grep -q "name:" "$PAI_DIR/skills/RecordsManager/SKILL.md"; then
     echo "✓ Skill frontmatter present"
   else
     echo "✗ Skill frontmatter missing"
@@ -354,14 +354,14 @@ if [ -f "$PAI_DIR/skills/RECORDSMANAGER/SKILL.md" ]; then
   fi
 
   # Check for workflow routing
-  if grep -q "Workflow Routing" "$PAI_DIR/skills/RECORDSMANAGER/SKILL.md"; then
+  if grep -q "Workflow Routing" "$PAI_DIR/skills/RecordsManager/SKILL.md"; then
     echo "✓ Workflow routing documented"
   else
     echo "⚠ Workflow routing not documented (optional)"
   fi
 
   # Check for DeleteConfirmation workflow
-  if [ -f "$PAI_DIR/skills/RECORDSMANAGER/Workflows/DeleteConfirmation.md" ]; then
+  if [ -f "$PAI_DIR/skills/RecordsManager/Workflows/DeleteConfirmation.md" ]; then
     echo "✓ DeleteConfirmation workflow exists"
   else
     echo "✗ DeleteConfirmation workflow missing (REQUIRED)"
@@ -404,12 +404,12 @@ echo "Test document for Records Manager" | enscript -B -o - | ps2pdf - "$TEST_PD
 # Upload test document
 echo ""
 echo "Uploading test document..."
-bun run "$PAI_DIR/tools/RecordManager.ts upload "$TEST_PDF" --title "Records Manager Test" --domain household
+bun run "$PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts upload "$TEST_PDF" --title "Records Manager Test" --domain household
 
 # Search for the document
 echo ""
 echo "Searching for test document..."
-bun run "$PAI_DIR/tools/RecordManager.ts" search --query "Records Manager Test"
+bun run "$PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts" search --query "Records Manager Test"
 
 echo ""
 echo "✅ Integration test complete"
@@ -433,7 +433,7 @@ TOTAL_CHECKS=7
 PASSED_CHECKS=0
 
 # Quick file check
-if [ -f "$PAI_DIR/tools/RecordManager.ts" ]; then
+if [ -f "$PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts" ]; then
   ((PASSED_CHECKS++))
   echo "✅ File structure"
 else
@@ -441,7 +441,7 @@ else
 fi
 
 # Environment check
-if [ -n "$PAPERLESS_URL" ] && [ -n "$PAPERLESS_API_TOKEN" ]; then
+if [ -n "$MADEINOZ_RECORDMANAGER_PAPERLESS_URL" ] && [ -n "$MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN" ]; then
   ((PASSED_CHECKS++))
   echo "✅ Environment configuration"
 else
@@ -458,7 +458,7 @@ else
 fi
 
 # CLI tool
-if bun run "$PAI_DIR/tools/RecordManager.ts" --help > /dev/null 2>&1; then
+if bun run "$PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts" --help > /dev/null 2>&1; then
   ((PASSED_CHECKS++))
   echo "✅ CLI tool functional"
 else
@@ -466,7 +466,7 @@ else
 fi
 
 # Paperless connection
-if curl -s -f "$PAPERLESS_URL/api/" > /dev/null 2>&1; then
+if curl -s -f "$MADEINOZ_RECORDMANAGER_PAPERLESS_URL/api/" > /dev/null 2>&1; then
   ((PASSED_CHECKS++))
   echo "✅ paperless-ngx connection"
 else
@@ -474,7 +474,7 @@ else
 fi
 
 # Taxonomy
-if bun run "$PAI_DIR/tools/RecordManager.ts" retention > /dev/null 2>&1; then
+if bun run "$PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts" retention > /dev/null 2>&1; then
   ((PASSED_CHECKS++))
   echo "✅ Taxonomy expert"
 else
@@ -482,7 +482,7 @@ else
 fi
 
 # Skill files
-if [ -f "$PAI_DIR/skills/RECORDSMANAGER/SKILL.md" ]; then
+if [ -f "$PAI_DIR/skills/RecordsManager/SKILL.md" ]; then
   ((PASSED_CHECKS++))
   echo "✅ Skill integration"
 else
@@ -497,9 +497,9 @@ if [ $PASSED_CHECKS -eq $TOTAL_CHECKS ]; then
   echo "🎉 All verifications passed! Records Manager Skill is ready to use."
   echo ""
   echo "Quick start:"
-  echo "  bun run $PAI_DIR/tools/RecordManager.ts upload document.pdf"
-  echo "  bun run $PAI_DIR/tools/RecordManager.ts search --query \"invoice\""
-  echo "  bun run $PAI_DIR/tools/RecordManager.ts retention"
+  echo "  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts upload document.pdf"
+  echo "  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --query \"invoice\""
+  echo "  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts retention"
   exit 0
 else
   echo ""
@@ -527,13 +527,13 @@ mkdir -p $PAI_DIR/lib/recordsmanager
 cp Packs/madeinoz-recordmanager-skill/src/lib/*.ts $PAI_DIR/lib/recordsmanager/
 ```
 
-**Issue:** "PAPERLESS_URL not set"
+**Issue:** "MADEINOZ_RECORDMANAGER_PAPERLESS_URL not set"
 
 **Solution:** Environment not configured
 ```bash
 # Add to $PAI_DIR/.env
-echo "PAPERLESS_URL=https://your-instance.com" >> $PAI_DIR/.env
-echo "PAPERLESS_API_TOKEN=your-token" >> $PAI_DIR/.env
+echo "MADEINOZ_RECORDMANAGER_PAPERLESS_URL=https://your-instance.com" >> $PAI_DIR/.env
+echo "MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN=your-token" >> $PAI_DIR/.env
 # Source it
 source $PAI_DIR/.env
 ```
@@ -553,10 +553,10 @@ source $PAI_DIR/.env
 
 **Solution:** Taxonomy data missing for country
 ```bash
-# Set RECORDS_COUNTRY to a supported country
+# Set MADEINOZ_RECORDMANAGER_COUNTRY to a supported country
 # Supported: Australia, UnitedStates, UnitedKingdom
 nano $PAI_DIR/.env
-# Update: RECORDS_COUNTRY="Australia"
+# Update: MADEINOZ_RECORDMANAGER_COUNTRY="Australia"
 ```
 
 ---
@@ -567,10 +567,10 @@ Use this checklist for manual verification:
 
 - [ ] Files exist in correct locations
 - [ ] Environment variables configured (.env file)
-- [ ] PAPERLESS_URL is set and reachable
-- [ ] PAPERLESS_API_TOKEN is set and valid
-- [ ] RECORDS_COUNTRY is set (optional, has default)
-- [ ] RECORDS_DEFAULT_DOMAIN is set (optional, has default)
+- [ ] MADEINOZ_RECORDMANAGER_PAPERLESS_URL is set and reachable
+- [ ] MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN is set and valid
+- [ ] MADEINOZ_RECORDMANAGER_COUNTRY is set (optional, has default)
+- [ ] MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN is set (optional, has default)
 - [ ] Libraries compile without errors
 - [ ] CLI tool `--help` command works
 - [ ] CLI tool `retention` command works

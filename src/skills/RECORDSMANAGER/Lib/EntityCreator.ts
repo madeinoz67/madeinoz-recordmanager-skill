@@ -22,6 +22,7 @@ export interface EntityConfig {
   corporateConfig?: CorporateConfig;
   projectConfig?: ProjectConfig;
   householdConfig?: HouseholdConfig;
+  personConfig?: PersonConfig;
 }
 
 /**
@@ -33,7 +34,8 @@ export type EntityType =
   | 'unit-trust'
   | 'discretionary-trust'
   | 'family-trust'
-  | 'project';
+  | 'project'
+  | 'person';
 
 /**
  * Trust-specific configuration
@@ -76,6 +78,17 @@ export interface HouseholdConfig {
 }
 
 /**
+ * Person configuration (for individual family members)
+ */
+export interface PersonConfig {
+  fullName: string;
+  relationship: 'self' | 'spouse' | 'child' | 'parent' | 'sibling' | 'other';
+  dateOfBirth?: string;
+  email?: string;
+  phone?: string;
+}
+
+/**
  * Entity question for interactive creation
  */
 export interface EntityQuestion {
@@ -108,8 +121,8 @@ export class EntityCreator {
     this.taxonomyExpert = taxonomyExpert;
     // Use PAI_HOME for entity registry
     this.registryPath = process.env.PAI_HOME
-      ? `${process.env.PAI_HOME}/skills/RECORDSMANAGER/Context/entities.json`
-      : `${process.env.HOME}/.pai/skills/RECORDSMANAGER/Context/entities.json`;
+      ? `${process.env.PAI_HOME}/skills/RecordsManager/Context/entities.json`
+      : `${process.env.HOME}/.pai/skills/RecordsManager/Context/entities.json`;
   }
 
   /**
@@ -160,8 +173,8 @@ export class EntityCreator {
         config.storagePathId = storagePath.id;
       }
 
-      // Step 4: Create custom fields for trust entities
-      if (this.isTrustType(config.type)) {
+      // Step 4: Create custom fields for trust and person entities
+      if (this.isTrustType(config.type) || config.type === 'person') {
         const customFieldIds = await this.createCustomFields(config);
         config.customFieldIds = customFieldIds;
       }
@@ -468,6 +481,60 @@ export class EntityCreator {
           },
         },
       ],
+      person: [
+        {
+          key: 'fullName',
+          question: 'What is the person\'s full name?',
+          type: 'text',
+          required: true,
+          validation: (value: string) => {
+            if (!value || value.trim().length < 2) {
+              return { valid: false, error: 'Name must be at least 2 characters' };
+            }
+            return true;
+          },
+        },
+        {
+          key: 'relationship',
+          question: 'What is their relationship to you?',
+          type: 'select',
+          required: true,
+          options: ['self', 'spouse', 'child', 'parent', 'sibling', 'other'],
+        },
+        {
+          key: 'dateOfBirth',
+          question: 'Date of birth? (optional)',
+          type: 'date',
+          required: false,
+          validation: (value: string) => {
+            if (!value) return true;
+            const date = new Date(value);
+            if (isNaN(date.getTime())) {
+              return { valid: false, error: 'Invalid date format' };
+            }
+            return true;
+          },
+        },
+        {
+          key: 'email',
+          question: 'Email address? (optional)',
+          type: 'text',
+          required: false,
+          validation: (value: string) => {
+            if (!value) return true;
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+              return { valid: false, error: 'Invalid email format' };
+            }
+            return true;
+          },
+        },
+        {
+          key: 'phone',
+          question: 'Phone number? (optional)',
+          type: 'text',
+          required: false,
+        },
+      ],
     };
 
     return questions[entityType];
@@ -560,6 +627,23 @@ export class EntityCreator {
       }
     }
 
+    // Person validation
+    if (config.type === 'person') {
+      if (!config.personConfig) {
+        errors.push('Person configuration is required');
+      } else {
+        if (!config.personConfig.fullName) {
+          errors.push('Full name is required');
+        }
+        if (!config.personConfig.relationship) {
+          errors.push('Relationship is required');
+        }
+        if (config.personConfig.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.personConfig.email)) {
+          errors.push('Invalid email format');
+        }
+      }
+    }
+
     // Check for duplicate entity names
     const existingEntities = this.loadEntityRegistry();
     const duplicate = Object.values(existingEntities.entities).find(
@@ -632,6 +716,16 @@ export class EntityCreator {
           startDate: answers.startDate,
         };
         break;
+
+      case 'person':
+        config.personConfig = {
+          fullName: name,
+          relationship: answers.relationship as any,
+          dateOfBirth: answers.dateOfBirth,
+          email: answers.email,
+          phone: answers.phone,
+        };
+        break;
     }
 
     return config;
@@ -676,6 +770,7 @@ export class EntityCreator {
       'discretionary-trust': ['trust', 'discretionary-trust', 'governance'],
       'family-trust': ['trust', 'family-trust', 'fte', 'governance'],
       project: ['project'],
+      person: ['person', 'identity'],
     };
 
     const tags = requiredTags[entityType] || [];
@@ -696,6 +791,7 @@ export class EntityCreator {
       'discretionary-trust': (c) => `/Trusts/Discretionary Trusts/${c.name}`,
       'family-trust': (c) => `/Trusts/Family Trusts/${c.name}`,
       project: (c) => `/Projects/${c.name}`,
+      person: (c) => `/Household/People/${c.name}`,
     };
 
     const pathGenerator = pathMap[config.type];
@@ -706,40 +802,54 @@ export class EntityCreator {
   }
 
   /**
-   * Create custom fields for trust entities
+   * Create custom fields for trust and person entities
    */
   private async createCustomFields(config: EntityConfig): Promise<number[]> {
-    if (!config.trustConfig) return [];
-
     const fieldIds: number[] = [];
+    let fieldsToCreate: Array<{ name: string; data_type: 'text' | 'number' | 'date' }> = [];
 
-    // Common trust fields
-    const commonFields = [
-      { name: `ABN (${config.name})`, data_type: 'text' as const },
-      { name: `TFN (${config.name})`, data_type: 'text' as const },
-      { name: `Trustee Name (${config.name})`, data_type: 'text' as const },
-      { name: `Trust Deed Date (${config.name})`, data_type: 'date' as const },
-    ];
+    // Person-specific fields
+    if (config.type === 'person' && config.personConfig) {
+      fieldsToCreate = [
+        { name: `Full Name (${config.name})`, data_type: 'text' as const },
+        { name: `Relationship (${config.name})`, data_type: 'text' as const },
+        { name: `Date of Birth (${config.name})`, data_type: 'date' as const },
+        { name: `Email (${config.name})`, data_type: 'text' as const },
+        { name: `Phone (${config.name})`, data_type: 'text' as const },
+      ];
+    }
+    // Trust-specific fields
+    else if (config.trustConfig) {
+      // Common trust fields
+      const commonFields = [
+        { name: `ABN (${config.name})`, data_type: 'text' as const },
+        { name: `TFN (${config.name})`, data_type: 'text' as const },
+        { name: `Trustee Name (${config.name})`, data_type: 'text' as const },
+        { name: `Trust Deed Date (${config.name})`, data_type: 'date' as const },
+      ];
 
-    // Type-specific fields
-    let typeFields: Array<{ name: string; data_type: 'text' | 'number' | 'date' }> = [];
+      // Type-specific fields
+      let typeFields: Array<{ name: string; data_type: 'text' | 'number' | 'date' }> = [];
 
-    if (config.type === 'family-trust') {
-      typeFields = [
-        { name: `FTE Date (${config.name})`, data_type: 'date' as const },
-      ];
-    } else if (config.type === 'unit-trust') {
-      typeFields = [
-        { name: `Unit Count (${config.name})`, data_type: 'number' as const },
-      ];
-    } else if (config.type === 'discretionary-trust') {
-      typeFields = [
-        { name: `Beneficiaries (${config.name})`, data_type: 'text' as const },
-      ];
+      if (config.type === 'family-trust') {
+        typeFields = [
+          { name: `FTE Date (${config.name})`, data_type: 'date' as const },
+        ];
+      } else if (config.type === 'unit-trust') {
+        typeFields = [
+          { name: `Unit Count (${config.name})`, data_type: 'number' as const },
+        ];
+      } else if (config.type === 'discretionary-trust') {
+        typeFields = [
+          { name: `Beneficiaries (${config.name})`, data_type: 'text' as const },
+        ];
+      }
+
+      fieldsToCreate = [...commonFields, ...typeFields];
     }
 
     // Create all fields
-    for (const field of [...commonFields, ...typeFields]) {
+    for (const field of fieldsToCreate) {
       try {
         const createdField = await this.paperlessClient.createCustomField(field);
         fieldIds.push(createdField.id);
@@ -847,6 +957,7 @@ export class EntityCreator {
       'discretionary-trust': '#ffd93d',
       'family-trust': '#6bcb77',
       project: '#9b59b6',
+      person: '#e056fd',
     };
 
     return colors[type] || '#4a90d9';

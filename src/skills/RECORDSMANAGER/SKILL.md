@@ -107,7 +107,7 @@ User: "Validate Smith Family Trust documents"
 
 **CLI Command:**
 ```bash
-bun run $PAI_DIR/tools/RecordManager.ts upload <file> --domain <domain>
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts upload <file> --domain <domain>
 ```
 
 ---
@@ -129,7 +129,7 @@ bun run $PAI_DIR/tools/RecordManager.ts upload <file> --domain <domain>
 
 **CLI Command:**
 ```bash
-bun run $PAI_DIR/tools/RecordManager.ts search --query <text> --tags <tags> --type <type>
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --query <text> --tags <tags> --type <type>
 ```
 
 ---
@@ -152,7 +152,7 @@ bun run $PAI_DIR/tools/RecordManager.ts search --query <text> --tags <tags> --ty
 
 **CLI Command:**
 ```bash
-bun run $PAI_DIR/tools/RecordManager.ts organize --domain <domain> --apply
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts organize --domain <domain> --apply
 ```
 
 ---
@@ -173,7 +173,7 @@ bun run $PAI_DIR/tools/RecordManager.ts organize --domain <domain> --apply
 
 **CLI Command:**
 ```bash
-bun run $PAI_DIR/tools/RecordManager.ts tag <docIds> <tagNames>
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts tag <docIds> <tagNames>
 ```
 
 ---
@@ -210,7 +210,7 @@ I understand this cannot be undone and I want to proceed with deleting N documen
 **CLI Command:**
 ```bash
 # This command REFUSES to delete and points to the workflow
-bun run $PAI_DIR/tools/RecordManager.ts delete <query>
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts delete <query>
 ```
 
 **Why This Matters:**
@@ -239,7 +239,7 @@ Deleting records is catastrophic. Tax documents, legal papers, insurance policie
 
 **CLI Command:**
 ```bash
-bun run $PAI_DIR/tools/RecordManager.ts retention --domain <domain>
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts retention --domain <domain>
 ```
 
 ---
@@ -260,7 +260,7 @@ bun run $PAI_DIR/tools/RecordManager.ts retention --domain <domain>
 
 **CLI Command:**
 ```bash
-bun run $PAI_DIR/tools/RecordManager.ts info <docId>
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts info <docId>
 ```
 
 ---

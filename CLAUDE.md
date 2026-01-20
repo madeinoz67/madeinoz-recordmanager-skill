@@ -21,10 +21,10 @@ bun build src/lib/PaperlessClient.ts --outdir /tmp/test-build  # Verify TypeScri
 
 **Run the CLI tool (requires PAI installation):**
 ```bash
-bun run src/tools/RecordManager.ts --help
-bun run src/tools/RecordManager.ts upload <file> --domain household
-bun run src/tools/RecordManager.ts search --query "invoice"
-bun run src/tools/RecordManager.ts retention --domain corporate
+bun run src/skills/RecordsManager/Tools/RecordManager.ts --help
+bun run src/skills/RecordsManager/Tools/RecordManager.ts upload <file> --domain household
+bun run src/skills/RecordsManager/Tools/RecordManager.ts search --query "invoice"
+bun run src/skills/RecordsManager/Tools/RecordManager.ts retention --domain corporate
 ```
 
 ## Architecture

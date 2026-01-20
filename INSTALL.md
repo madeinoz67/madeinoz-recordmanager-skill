@@ -55,16 +55,16 @@ fi
 # 3. Check for existing Records Manager skill
 echo ""
 echo "Checking for existing Records Manager installation..."
-if [ -d "$PAI_CHECK/skills/RECORDSMANAGER" ]; then
-  echo "⚠️  RECORDSMANAGER skill directory already exists"
+if [ -d "$PAI_CHECK/skills/RecordsManager" ]; then
+  echo "⚠️  RecordsManager skill directory already exists"
   echo "Contents:"
-  ls -la "$PAI_CHECK/skills/RECORDSMANAGER" 2>/dev/null
+  ls -la "$PAI_CHECK/skills/RecordsManager" 2>/dev/null
 else
-  echo "✓ No existing RECORDSMANAGER skill (clean install)"
+  echo "✓ No existing RecordsManager skill (clean install)"
 fi
 
 # 4. Check for RecordManager tool
-if [ -f "$PAI_CHECK/tools/RecordManager.ts" ]; then
+if [ -f "$PAI_CHECK/skills/RecordsManager/Tools/RecordManager.ts" ]; then
   echo "⚠️  RecordManager.ts tool already exists"
 else
   echo "✓ No existing RecordManager tool"
@@ -73,16 +73,16 @@ fi
 # 5. Check environment variables for paperless-ngx
 echo ""
 echo "Environment variables:"
-echo "  PAPERLESS_URL: ${PAPERLESS_URL:-'NOT SET'}"
-echo "  PAPERLESS_API_TOKEN: ${PAPERLESS_API_TOKEN:+SET (hidden)}"
-echo "  RECORDS_COUNTRY: ${RECORDS_COUNTRY:-'NOT SET'}"
-echo "  RECORDS_DEFAULT_DOMAIN: ${RECORDS_DEFAULT_DOMAIN:-'NOT SET'}"
+echo "  MADEINOZ_RECORDMANAGER_PAPERLESS_URL: ${MADEINOZ_RECORDMANAGER_PAPERLESS_URL:-'NOT SET'}"
+echo "  MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN: ${MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN:+SET (hidden)}"
+echo "  MADEINOZ_RECORDMANAGER_COUNTRY: ${MADEINOZ_RECORDMANAGER_COUNTRY:-'NOT SET'}"
+echo "  MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN: ${MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN:-'NOT SET'}"
 
 # 6. Check if .env file exists
 if [ -f "$PAI_CHECK/.env" ]; then
   echo ""
   echo "⚠️  .env file EXISTS at: $PAI_CHECK/.env"
-  if grep -q "PAPERLESS_URL" "$PAI_CHECK/.env" 2>/dev/null; then
+  if grep -q "MADEINOZ_RECORDMANAGER_PAPERLESS_URL" "$PAI_CHECK/.env" 2>/dev/null; then
     echo "  ⚠️  Paperless-ngx variables already configured"
   fi
 else
@@ -106,18 +106,18 @@ else
 fi
 
 # Test paperless-ngx connectivity (if configured)
-if [ -n "$PAPERLESS_URL" ]; then
+if [ -n "$MADEINOZ_RECORDMANAGER_PAPERLESS_URL" ]; then
   echo ""
   echo "Testing paperless-ngx connection..."
-  if curl -s -f -I "$PAPERLESS_URL/api/" &> /dev/null; then
-    echo "✓ paperless-ngx API is accessible at $PAPERLESS_URL"
+  if curl -s -f -I "$MADEINOZ_RECORDMANAGER_PAPERLESS_URL/api/" &> /dev/null; then
+    echo "✓ paperless-ngx API is accessible at $MADEINOZ_RECORDMANAGER_PAPERLESS_URL"
   else
-    echo "⚠️  Cannot reach paperless-ngx API at $PAPERLESS_URL"
+    echo "⚠️  Cannot reach paperless-ngx API at $MADEINOZ_RECORDMANAGER_PAPERLESS_URL"
     echo "   You'll need to configure this during installation"
   fi
 else
   echo ""
-  echo "⚠️  PAPERLESS_URL not set - will configure during installation"
+  echo "⚠️  MADEINOZ_RECORDMANAGER_PAPERLESS_URL not set - will configure during installation"
 fi
 ```
 
@@ -129,31 +129,31 @@ Based on the detection above, follow the appropriate path:
 |----------|---------------|--------|
 | **Clean Install** | No PAI_DIR, no conflicts | Proceed normally with Step 1 |
 | **Directory Exists** | PAI_DIR has files | Review files, backup if needed, then proceed |
-| **Skill Exists** | RECORDSMANAGER skill present | Backup old skill, compare versions, then replace |
+| **Skill Exists** | RecordsManager skill present | Backup old skill, compare versions, then replace |
 | **Tool Exists** | RecordManager.ts present | Backup old tool, then replace |
 | **.env Exists** | Paperless variables configured | Review existing config, merge updates |
 
-### Step 0.4: Backup Existing Installation (If Needed)
+### Step 0.4: MANDATORY Backup Before Installation or Update
 
-If conflicts were detected, create a backup before proceeding:
+**ALWAYS create a backup before installing or updating.** This step is REQUIRED regardless of whether conflicts were detected:
 
 ```bash
-# Create timestamped backup
-BACKUP_DIR="$HOME/.recordsmanager-backup/$(date +%Y%m%d-%H%M%S)"
+# Create timestamped backup (follows madeinoz pack convention)
+BACKUP_DIR="$HOME/.madeinoz-backup/recordsmanager/$(date +%Y%m%d-%H%M%S)"
 mkdir -p "$BACKUP_DIR"
 PAI_CHECK="${PAI_DIR:-$HOME/.claude}"
 
 echo "Creating backup at: $BACKUP_DIR"
 
 # Backup skill directory if it exists
-if [ -d "$PAI_CHECK/skills/RECORDSMANAGER" ]; then
-  cp -r "$PAI_CHECK/skills/RECORDSMANAGER" "$BACKUP_DIR/"
-  echo "✓ Backed up RECORDSMANAGER skill"
+if [ -d "$PAI_CHECK/skills/RecordsManager" ]; then
+  cp -r "$PAI_CHECK/skills/RecordsManager" "$BACKUP_DIR/"
+  echo "✓ Backed up RecordsManager skill"
 fi
 
 # Backup tool if it exists
-if [ -f "$PAI_CHECK/tools/RecordManager.ts" ]; then
-  cp "$PAI_CHECK/tools/RecordManager.ts" "$BACKUP_DIR/"
+if [ -f "$PAI_CHECK/skills/RecordsManager/Tools/RecordManager.ts" ]; then
+  cp "$PAI_CHECK/skills/RecordsManager/Tools/RecordManager.ts" "$BACKUP_DIR/"
   echo "✓ Backed up RecordManager tool"
 fi
 
@@ -161,6 +161,12 @@ fi
 if [ -d "$PAI_CHECK/lib/recordsmanager" ]; then
   cp -r "$PAI_CHECK/lib/recordsmanager" "$BACKUP_DIR/"
   echo "✓ Backed up recordsmanager lib"
+fi
+
+# Backup .env file if it exists (contains paperless-ngx config)
+if [ -f "$PAI_CHECK/.env" ]; then
+  cp "$PAI_CHECK/.env" "$BACKUP_DIR/"
+  echo "✓ Backed up .env configuration"
 fi
 
 echo "Backup complete: $BACKUP_DIR"
@@ -192,7 +198,7 @@ echo "Backup complete: $BACKUP_DIR"
 export PAI_DIR="${PAI_DIR:-$HOME/.claude}"
 
 # Create skill directory
-mkdir -p "$PAI_DIR/skills/RECORDSMANAGER"/{Workflows,Taxonomies,Tools,Context}
+mkdir -p "$PAI_DIR/skills/RecordsManager"/{Workflows,Taxonomies,Tools,Context}
 
 # Create lib directory for shared libraries
 mkdir -p "$PAI_DIR/lib/recordsmanager"
@@ -202,7 +208,7 @@ mkdir -p "$PAI_DIR/tools"
 
 # Verify structure
 echo "Directory structure created:"
-ls -la "$PAI_DIR/skills/RECORDSMANAGER"
+ls -la "$PAI_DIR/skills/RecordsManager"
 ```
 
 Expected output:
@@ -342,39 +348,40 @@ Create or update `$PAI_DIR/.env` with paperless-ngx configuration:
 # Add these variables to your existing .env file
 
 # Paperless-ngx connection
-PAPERLESS_URL="https://paperless.example.com"
-PAPERLESS_API_TOKEN="your-api-token-here"
+MADEINOZ_RECORDMANAGER_PAPERLESS_URL="https://paperless.example.com"
+MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN="your-api-token-here"
 
 # Records Manager settings
-RECORDS_COUNTRY="Australia"
+MADEINOZ_RECORDMANAGER_COUNTRY="Australia"
+MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN="household"
 
 # Entity configuration (JSON array)
 # Example: Single household
-# RECORDS_ENTITIES='[{"type":"household","name":"Smith Household","startYear":"2020"}]'
+# MADEINOZ_RECORDMANAGER_ENTITIES='[{"type":"household","name":"Smith Household","startYear":"2020"}]'
 #
 # Example: Business + household
-# RECORDS_ENTITIES='[
+# MADEINOZ_RECORDMANAGER_ENTITIES='[
 #   {"type":"corporate","name":"Acme Corp","abn":"12345678901","businessType":"company"},
 #   {"type":"household","name":"Smith Household","startYear":"2020"}
 # ]'
 #
 # Example: Trust structure
-# RECORDS_ENTITIES='[
+# MADEINOZ_RECORDMANAGER_ENTITIES='[
 #   {"type":"family-trust","name":"Smith Family Trust","abn":"12345678901","tfn":"987654321","trustee":"Smith Pty Ltd","fteDate":"2020-01-15"},
 #   {"type":"unit-trust","name":"Jones Unit Trust","abn":"98765432101","tfn":"123456789","trustee":"Jones Pty Ltd","unitCount":"100"}
 # ]'
 
-RECORDS_ENTITIES='[{"type":"household","name":"My Household","startYear":"2020"}]'
+MADEINOZ_RECORDMANAGER_ENTITIES='[{"type":"household","name":"My Household","startYear":"2020"}]'
 
 # Optional: Custom retention periods (overrides defaults)
-# RECORDS_RETENTION_TAX_YEARS="7"
-# RECORDS_RETENTION_MEDICAL_YEARS="7"
-# RECORDS_RETENTION_INSURANCE_YEARS="10"
+# MADEINOZ_RECORDMANAGER_RETENTION_TAX_YEARS="7"
+# MADEINOZ_RECORDMANAGER_RETENTION_MEDICAL_YEARS="7"
+# MADEINOZ_RECORDMANAGER_RETENTION_INSURANCE_YEARS="10"
 ```
 
 **Entity Configuration Format:**
 
-The `RECORDS_ENTITIES` variable is a JSON array of entity objects. Each entity type has different fields:
+The `MADEINOZ_RECORDMANAGER_ENTITIES` variable is a JSON array of entity objects. Each entity type has different fields:
 
 **Household:**
 ```json
@@ -448,9 +455,9 @@ The `RECORDS_ENTITIES` variable is a JSON array of entity objects. Each entity t
 export $(grep -v '^#' $PAI_DIR/.env | xargs)
 
 # Verify
-echo "Paperless URL: $PAPERLESS_URL"
-echo "Records Country: $RECORDS_COUNTRY"
-echo "Entities: $RECORDS_ENTITIES"
+echo "Paperless URL: $MADEINOZ_RECORDMANAGER_PAPERLESS_URL"
+echo "Records Country: $MADEINOZ_RECORDMANAGER_COUNTRY"
+echo "Entities: $MADEINOZ_RECORDMANAGER_ENTITIES"
 ```
 
 ---
@@ -534,10 +541,10 @@ The Records Manager includes specialized expert agents:
 Create an entity registry file to track all configured entities:
 
 ```bash
-# File: $PAI_DIR/skills/RECORDSMANAGER/entities.json
+# File: $PAI_DIR/skills/RecordsManager/entities.json
 # This file is auto-generated during installation
 # You can edit it manually to add/modify entities
-cat > "$PAI_DIR/skills/RECORDSMANAGER/entities.json" << 'EOF'
+cat > "$PAI_DIR/skills/RecordsManager/entities.json" << 'EOF'
 {
   "entities": [],
   "created": null,
@@ -838,11 +845,11 @@ export class PaperlessClient {
  * Create client from environment variables
  */
 export function createClientFromEnv(): PaperlessClient {
-  const baseUrl = process.env.PAPERLESS_URL;
-  const apiToken = process.env.PAPERLESS_API_TOKEN;
+  const baseUrl = process.env.MADEINOZ_RECORDMANAGER_PAPERLESS_URL;
+  const apiToken = process.env.MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN;
 
   if (!baseUrl || !apiToken) {
-    throw new Error('PAPERLESS_URL and PAPERLESS_API_TOKEN must be set in environment');
+    throw new Error('MADEINOZ_RECORDMANAGER_PAPERLESS_URL and MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN must be set in environment');
   }
 
   return new PaperlessClient({ baseUrl, apiToken });
@@ -1338,8 +1345,8 @@ export class TaxonomyExpert {
  * Create expert from environment variables
  */
 export function createExpertFromEnv(): TaxonomyExpert {
-  const country = process.env.RECORDS_COUNTRY || 'Australia';
-  const defaultDomain = (process.env.RECORDS_DEFAULT_DOMAIN as Domain) || 'household';
+  const country = process.env.MADEINOZ_RECORDMANAGER_COUNTRY || 'Australia';
+  const defaultDomain = (process.env.MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN as Domain) || 'household';
 
   if (!TaxonomyExpert.isCountrySupported(country)) {
     console.warn(`Country ${country} not supported, falling back to Australia`);
@@ -1355,11 +1362,11 @@ export function createExpertFromEnv(): TaxonomyExpert {
 ### Step 5: Create RecordManager CLI Tool
 
 ```bash
-# File: $PAI_DIR/tools/RecordManager.ts
+# File: $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts
 ```
 
 ```typescript
-// $PAI_DIR/tools/RecordManager.ts
+// $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts
 #!/usr/bin/env bun
 /**
  * Records Manager CLI Tool
@@ -1681,7 +1688,7 @@ async function main() {
 Records Manager CLI - Document Management with Expert Taxonomies
 
 Usage:
-  bun run tools/RecordManager.ts <command> [options]
+  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts <command> [options]
 
 Commands:
   upload <file>              Upload document with intelligent tagging
@@ -1710,17 +1717,17 @@ Commands:
                              Must use DeleteConfirmation workflow
 
 Examples:
-  bun run tools/RecordManager.ts upload invoice.pdf --domain corporate
-  bun run tools/RecordManager.ts search --tags "tax,2024"
-  bun run tools/RecordManager.ts organize --domain household --apply
-  bun run tools/RecordManager.ts info 12345
-  bun run tools/RecordManager.ts retention --domain corporate
+  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts upload invoice.pdf --domain corporate
+  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --tags "tax,2024"
+  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts organize --domain household --apply
+  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts info 12345
+  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts retention --domain corporate
 
 Environment Variables:
-  PAPERLESS_URL              Your paperless-ngx instance URL
-  PAPERLESS_API_TOKEN        API token with read/write permissions
-  RECORDS_COUNTRY            Your country for compliance (default: Australia)
-  RECORDS_DEFAULT_DOMAIN     Default domain (default: household)
+  MADEINOZ_RECORDMANAGER_PAPERLESS_URL       Your paperless-ngx instance URL
+  MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN API token with read/write permissions
+  MADEINOZ_RECORDMANAGER_COUNTRY             Your country for compliance (default: Australia)
+  MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN      Default domain (default: household)
         `);
         process.exit(1);
     }
@@ -1739,7 +1746,7 @@ main();
 Make the tool executable:
 
 ```bash
-chmod +x $PAI_DIR/tools/RecordManager.ts
+chmod +x $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts
 ```
 
 ---
@@ -1747,7 +1754,7 @@ chmod +x $PAI_DIR/tools/RecordManager.ts
 ### Step 6: Create Skill Definition File
 
 ```bash
-# File: $PAI_DIR/skills/RECORDSMANAGER/SKILL.md
+# File: $PAI_DIR/skills/RecordsManager/SKILL.md
 ```
 
 See the next section for the complete skill file content. This file is created in Step 6.
@@ -1759,7 +1766,7 @@ See the next section for the complete skill file content. This file is created i
 #### 7.1: DeleteConfirmation Workflow
 
 ```bash
-# File: $PAI_DIR/skills/RECORDSMANAGER/Workflows/DeleteConfirmation.md
+# File: $PAI_DIR/skills/RecordsManager/Workflows/DeleteConfirmation.md
 ```
 
 ```markdown
@@ -1789,7 +1796,7 @@ Trigger this workflow when:
 
 ```bash
 # Show what will be deleted
-bun run $PAI_DIR/tools/RecordManager.ts search --query "<search_criteria>"
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --query "<search_criteria>"
 ```
 
 For each document:
@@ -1823,10 +1830,10 @@ I understand this cannot be undone and I want to proceed with deleting N documen
 ```typescript
 // Execute deletion via paperless-ngx API
 // Note: This is the ONLY place where deletion API calls are made
-const response = await fetch(`${PAPERLESS_URL}/api/documents/${id}/`, {
+const response = await fetch(`${process.env.MADEINOZ_RECORDMANAGER_PAPERLESS_URL}/api/documents/${id}/`, {
   method: 'DELETE',
   headers: {
-    'Authorization': `Token ${PAPERLESS_API_TOKEN}`,
+    'Authorization': `Token ${process.env.MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN}`,
   },
 });
 ```
@@ -1888,7 +1895,7 @@ When in doubt, **DO NOT DELETE**. Suggest:
 
 ### Step 7.2: Create Additional Workflows
 
-Create these additional workflow files in `$PAI_DIR/skills/RECORDSMANAGER/Workflows/`:
+Create these additional workflow files in `$PAI_DIR/skills/RecordsManager/Workflows/`:
 
 - **UploadWorkflow.md** - Document upload with intelligent tagging
 - **SearchWorkflow.md** - Document search and retrieval
@@ -1903,7 +1910,7 @@ Create these additional workflow files in `$PAI_DIR/skills/RECORDSMANAGER/Workfl
 
 ```bash
 # Create country-specific taxonomy directories
-mkdir -p "$PAI_DIR/skills/RECORDSMANAGER/Taxonomies"/{Australia,UnitedStates,UnitedKingdom}
+mkdir -p "$PAI_DIR/skills/RecordsManager/Taxonomies"/{Australia,UnitedStates,UnitedKingdom}
 ```
 
 Create taxonomy documentation files for each country with:
@@ -1923,39 +1930,39 @@ Run these verification steps:
 ls -la $PAI_DIR/lib/recordsmanager/
 # Should show: PaperlessClient.ts, TaxonomyExpert.ts
 
-ls -la $PAI_DIR/tools/RecordManager.ts
+ls -la $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts
 # Should show the CLI tool
 
-ls -la $PAI_DIR/skills/RECORDSMANAGER/
+ls -la $PAI_DIR/skills/RecordsManager/
 # Should show: SKILL.md, Workflows/, Taxonomies/, Tools/, Context/, entities.json
 
 # 2. Verify Bun can run the tool
-bun run $PAI_DIR/tools/RecordManager.ts --help
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts --help
 # Should show usage information
 
 # 3. Test paperless-ngx connection
-bun run $PAI_DIR/tools/RecordManager.ts search
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search
 # Should return documents or empty result set
 
 # 4. Check environment variables
-echo "PAPERLESS_URL: $PAPERLESS_URL"
-echo "RECORDS_COUNTRY: $RECORDS_COUNTRY"
+echo "PAPERLESS_URL: $MADEINOZ_RECORDMANAGER_PAPERLESS_URL"
+echo "COUNTRY: $MADEINOZ_RECORDMANAGER_COUNTRY"
 echo "Entities configured:"
-echo "$RECORDS_ENTITIES" | jq '.'
+echo "$MADEINOZ_RECORDMANAGER_ENTITIES" | jq '.'
 ```
 
 **Verify entity configuration:**
 
 ```bash
 # Check entities.json was created
-cat "$PAI_DIR/skills/RECORDSMANAGER/entities.json"
+cat "$PAI_DIR/skills/RecordsManager/entities.json"
 
 # Verify each entity has tags in paperless-ngx
 echo "Checking entity tags in paperless-ngx..."
-bun run $PAI_DIR/tools/RecordManager.ts search --tags "household"
-bun run $PAI_DIR/tools/RecordManager.ts search --tags "corporate"
-bun run $PAI_DIR/tools/RecordManager.ts search --tags "family-trust"
-bun run $PAI_DIR/tools/RecordManager.ts search --tags "unit-trust"
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --tags "household"
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --tags "corporate"
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --tags "family-trust"
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --tags "unit-trust"
 ```
 
 **Test entity-specific features:**
@@ -1963,7 +1970,7 @@ bun run $PAI_DIR/tools/RecordManager.ts search --tags "unit-trust"
 ```bash
 # Test trust-specific retention check
 echo "Testing trust retention for family trusts..."
-bun run $PAI_DIR/tools/RecordManager.ts retention --domain family-trust
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts retention --domain family-trust
 
 # Test workflow creation
 echo "Testing workflow analysis..."
@@ -1983,7 +1990,7 @@ After installation, you can add new entities or modify existing ones:
 **Option 1: Edit entities.json directly**
 ```bash
 # Edit the entity registry
-nano "$PAI_DIR/skills/RECORDSMANAGER/entities.json"
+nano "$PAI_DIR/skills/RecordsManager/entities.json"
 
 # Add new entity to the entities array
 {
@@ -2021,8 +2028,8 @@ nano "$PAI_DIR/skills/RECORDSMANAGER/entities.json"
 # Edit .env to add new entity
 nano $PAI_DIR/.env
 
-# Update RECORDS_ENTITIES to include new entity
-RECORDS_ENTITIES='[
+# Update MADEINOZ_RECORDMANAGER_ENTITIES to include new entity
+MADEINOZ_RECORDMANAGER_ENTITIES='[
   {"type":"family-trust","name":"Smith Family Trust","abn":"12345678901","tfn":"987654321","trustee":"Smith Pty Ltd","fteDate":"2020-01-15"},
   {"type":"unit-trust","name":"Jones Unit Trust","abn":"98765432101","tfn":"123456789","trustee":"Jones Pty Ltd"}
 ]'
@@ -2037,7 +2044,7 @@ If you have specific needs, create custom taxonomy files:
 
 ```bash
 # Create custom tags
-cat > $PAI_DIR/skills/RECORDSMANAGER/Taxonomies/${RECORDS_COUNTRY}/custom_tags.md << EOF
+cat > $PAI_DIR/skills/RecordsManager/Taxonomies/${MADEINOZ_RECORDMANAGER_COUNTRY}/custom_tags.md << EOF
 # Custom Tags for [Your Name]
 
 ## Household Specific Tags
@@ -2057,7 +2064,7 @@ EOF
 
 ```bash
 # Upload a tax document to Smith Family Trust
-bun run $PAI_DIR/tools/RecordManager.ts upload \
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts upload \
   tax_return_2024.pdf \
   --title "Smith Family Trust - Tax Return 2024" \
   --tags "family-trust,smith-family-trust,tax,2024"
@@ -2067,11 +2074,11 @@ bun run $PAI_DIR/tools/RecordManager.ts upload \
 
 ```bash
 # Search all documents for Jones Unit Trust
-bun run $PAI_DIR/tools/RecordManager.ts search \
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search \
   --tags "unit-trust,jones-unit-trust"
 
 # Search invoices across all corporate entities
-bun run $PAI_DIR/tools/RecordManager.ts search \
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search \
   --tags "corporate" \
   --type "Invoice"
 ```
@@ -2080,7 +2087,7 @@ bun run $PAI_DIR/tools/RecordManager.ts search \
 
 ```bash
 # Check retention for family trust documents
-bun run $PAI_DIR/tools/RecordManager.ts retention --domain family-trust
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts retention --domain family-trust
 
 # Output will show:
 # Family Trust Election: Keep 5+ years from FTE date
@@ -2092,10 +2099,10 @@ bun run $PAI_DIR/tools/RecordManager.ts retention --domain family-trust
 
 ```bash
 # Suggest tags for untagged documents (dry run)
-bun run $PAI_DIR/tools/RecordManager.ts organize --domain corporate
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts organize --domain corporate
 
 # Apply suggestions automatically
-bun run $PAI_DIR/tools/RecordManager.ts organize --domain corporate --apply
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts organize --domain corporate --apply
 ```
 
 ### Example 5: Create Workflow for Invoices
@@ -2163,8 +2170,8 @@ AI: "✓ Creating entity 'Brown Discretionary Trust'
 
 ```bash
 # Tag all documents for a specific trust
-bun run $PAI_DIR/tools/RecordManager.ts tag \
-  $(bun run $PAI_DIR/tools/RecordManager.ts search --query "Smith Family Trust" --output-ids) \
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts tag \
+  $(bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --query "Smith Family Trust" --output-ids) \
   "smith-family-trust,family-trust,trust"
 ```
 
@@ -2179,7 +2186,7 @@ bun run $PAI_DIR/tools/RecordManager.ts tag \
 **Solution:**
 1. Verify URL includes protocol (https:// or http://)
 2. Check API token has correct permissions
-3. Test connectivity: `curl -I $PAPERLESS_URL/api/`
+3. Test connectivity: `curl -I $MADEINOZ_RECORDMANAGER_PAPERLESS_URL/api/`
 
 ### Permission Errors
 
@@ -2207,13 +2214,13 @@ To remove the Records Manager Skill:
 
 ```bash
 # Remove skill directory
-rm -rf $PAI_DIR/skills/RECORDSMANAGER
+rm -rf $PAI_DIR/skills/RecordsManager
 
 # Remove libraries
 rm -rf $PAI_DIR/lib/recordsmanager
 
 # Remove tool
-rm $PAI_DIR/tools/RecordManager.ts
+rm $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts
 
 # Remove environment variables from .env
 nano $PAI_DIR/.env

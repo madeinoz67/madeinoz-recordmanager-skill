@@ -443,11 +443,11 @@ Before using agents in production, test their integration:
 
 ```bash
 # Test Records Keeper
-bun run $PAI_DIR/tools/RecordManager.ts organize --domain household
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts organize --domain household
 # Should trigger Records Keeper for taxonomy suggestions
 
 # Test Compliance Guardian
-bun run $PAI_DIR/tools/RecordManager.ts retention --domain corporate
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts retention --domain corporate
 # Should trigger Compliance Guardian for retention requirements
 
 # Test Archive Architect
@@ -455,7 +455,7 @@ bun run $PAI_DIR/tools/RecordManager.ts retention --domain corporate
 # Should trigger Archive Architect for strategic recommendations
 
 # Test Deletion Auditor
-bun run $PAI_DIR/tools/RecordManager.ts delete --query "old documents"
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts delete --query "old documents"
 # Should trigger Delete Auditor - REFUSES to delete without approval
 ### Scenario 3: Archive Planning
 

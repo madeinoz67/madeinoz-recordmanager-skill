@@ -1,4 +1,4 @@
-// $PAI_DIR/tools/RecordManager.ts
+// $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts
 #!/usr/bin/env bun
 /**
  * Records Manager CLI Tool
@@ -320,7 +320,7 @@ async function main() {
 Records Manager CLI - Document Management with Expert Taxonomies
 
 Usage:
-  bun run tools/RecordManager.ts <command> [options]
+  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts <command> [options]
 
 Commands:
   upload <file>              Upload document with intelligent tagging
@@ -349,17 +349,17 @@ Commands:
                              Must use DeleteConfirmation workflow
 
 Examples:
-  bun run tools/RecordManager.ts upload invoice.pdf --domain corporate
-  bun run tools/RecordManager.ts search --tags "tax,2024"
-  bun run tools/RecordManager.ts organize --domain household --apply
-  bun run tools/RecordManager.ts info 12345
-  bun run tools/RecordManager.ts retention --domain corporate
+  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts upload invoice.pdf --domain corporate
+  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --tags "tax,2024"
+  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts organize --domain household --apply
+  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts info 12345
+  bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts retention --domain corporate
 
 Environment Variables:
-  PAPERLESS_URL              Your paperless-ngx instance URL
-  PAPERLESS_API_TOKEN        API token with read/write permissions
-  RECORDS_COUNTRY            Your country for compliance (default: Australia)
-  RECORDS_DEFAULT_DOMAIN     Default domain (default: household)
+  MADEINOZ_RECORDMANAGER_PAPERLESS_URL        Your paperless-ngx instance URL
+  MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN  API token with read/write permissions
+  MADEINOZ_RECORDMANAGER_COUNTRY              Your country for compliance (default: Australia)
+  MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN       Default domain (default: household)
         `);
         process.exit(1);
     }

@@ -45,10 +45,10 @@ Please follow the installation instructions below to integrate this pack into yo
 
 | Component | File | Purpose |
 |-----------|------|---------|
-| Skill definition | `src/skills/RECORDSMANAGER/SKILL.md` | Main skill routing and workflow definitions |
+| Skill definition | `src/skills/RecordsManager/SKILL.md` | Main skill routing and workflow definitions |
 | Paperless API client | `src/lib/PaperlessClient.ts` | Complete paperless-ngx API integration |
 | Taxonomy expert | `src/lib/TaxonomyExpert.ts` | Country-specific record keeping taxonomies |
-| Record manager CLI | `src/tools/RecordManager.ts` | Main CLI tool for all record operations |
+| Record manager CLI | `src/skills/RecordsManager/Tools/RecordManager.ts` | Main CLI tool for all record operations |
 | Delete confirmation | `src/workflows/DeleteConfirmation.md` | Mandatory workflow for deletion approval |
 | Test suite | `src/tests/RecordManager.test.ts` | Comprehensive test coverage |
 | Environment template | `src/config/.env.template` | Configuration template with all variables |
@@ -160,7 +160,7 @@ User Request
    - Batch operations
    - **NO DELETE METHODS** (must use confirmation workflow)
 
-3. **RecordManager CLI** (`src/tools/RecordManager.ts`)
+3. **RecordManager CLI** (`src/skills/RecordsManager/Tools/RecordManager.ts`)
    - `upload` - Add documents with intelligent tagging
    - `search` - Find documents by tag, type, date, content
    - `organize` - Suggest and apply taxonomy improvements
@@ -277,7 +277,7 @@ Deletion requests ALWAYS route through `DeleteConfirmation` workflow which:
 
 ```bash
 # User: "Store this medical bill"
-bun run $PAI_DIR/tools/RecordManager.ts upload \
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts upload \
   --file "~/Downloads/medical-bill.pdf" \
   --domain household \
   --country Australia
@@ -294,7 +294,7 @@ bun run $PAI_DIR/tools/RecordManager.ts upload \
 
 ```bash
 # User: "Find all tax documents for 2024"
-bun run $PAI_DIR/tools/RecordManager.ts search \
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search \
   --tags "tax,financial,2024" \
   --domain household
 
@@ -305,7 +305,7 @@ bun run $PAI_DIR/tools/RecordManager.ts search \
 
 ```bash
 # User: "Delete old insurance documents"
-bun run $PAI_DIR/tools/RecordManager.ts delete \
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts delete \
   --query "tag:insurance, before:2020"
 
 # System invokes DeleteConfirmation workflow:
@@ -329,11 +329,11 @@ MADEINOZ_RECORDMANAGER_PAPERLESS_URL="https://paperless.example.com"
 MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN="your-api-token-here"
 
 # Records Manager settings
-RECORDS_COUNTRY="Australia"  # Your country for compliance
-MADEINOZ_RECORDMANAGER_RECORDS_DEFAULT_DOMAIN="household"  # household | corporate | projects
+MADEINOZ_RECORDMANAGER_COUNTRY="Australia"  # Your country for compliance
+MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN="household"  # household | corporate | projects
 
 # Optional: Custom taxonomy paths
-MADEINOZ_RECORDMANAGER_RECORDS_TAXONOMY_PATH="$PAI_DIR/skills/RECORDSMANAGER/Taxonomies/"
+MADEINOZ_RECORDMANAGER_TAXONOMY_PATH="$PAI_DIR/skills/RecordsManager/Taxonomies/"
 ```
 
 **Option 2: Shell profile** (for manual installation):
@@ -341,8 +341,8 @@ MADEINOZ_RECORDMANAGER_RECORDS_TAXONOMY_PATH="$PAI_DIR/skills/RECORDSMANAGER/Tax
 # Add to ~/.zshrc or ~/.bashrc
 export MADEINOZ_RECORDMANAGER_PAPERLESS_URL="https://paperless.example.com"
 export MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN="your-api-token-here"
-export MADEINOZ_RECORDMANAGER_RECORDS_COUNTRY="Australia"
-export MADEINOZ_RECORDMANAGER_RECORDS_DEFAULT_DOMAIN="household"
+export MADEINOZ_RECORDMANAGER_COUNTRY="Australia"
+export MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN="household"
 ```
 
 ---
@@ -359,7 +359,7 @@ export MADEINOZ_RECORDMANAGER_RECORDS_DEFAULT_DOMAIN="household"
 1. During setup, specify your country when prompted
 2. Review the suggested taxonomy structure for your domain
 3. Add custom tags specific to your situation (e.g., specific tax forms, insurance types)
-4. Save custom taxonomy to `$PAI_DIR/skills/RECORDSMANAGER/Taxonomies/{country}/{domain}/custom.md`
+4. Save custom taxonomy to `$PAI_DIR/skills/RecordsManager/Taxonomies/{country}/{domain}/custom.md`
 
 **Expected Outcome:** Record suggestions are highly relevant to your jurisdiction and situation, with accurate retention periods
 

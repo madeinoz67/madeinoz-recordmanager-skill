@@ -10,6 +10,81 @@ Ensure that document deletion is intentional, understood, and approved by the pr
 3. Requires explicit confirmation
 4. Logs the decision for audit trail
 
+## Agents Used (MANDATORY)
+
+This workflow **REQUIRES** the Deletion Auditor agent from `AGENTS.md`:
+
+| Agent | Role | Why Mandatory |
+|-------|------|---------------|
+| **Deletion Auditor 🛡️** | Risk assessment & safety checkpoint | CRITICAL - Must review ALL deletions before execution |
+| **Compliance Guardian ⚖️** | Retention verification | Validates documents are past retention period |
+| **Retention Monitor ⏰** | Time-based compliance | Checks retention deadlines before deletion |
+
+### Deletion Auditor Agent (MANDATORY)
+
+**Domain:** Security Expert + Communications (Risk Assessment & Safety)
+
+**Personality:** Skeptical, Cautious
+
+**Approach:** Adversarial, Exhaustive
+
+**Voice:** George (Warm, academic, intellectual - ID: JBFqnCBsd6RMkjVDRZzb)
+
+```typescript
+const { execSync } = require('child_process');
+const deletionAuditorPrompt = execSync(
+  `cd ~/.claude/skills/Agents && bun run Tools/AgentFactory.ts --traits "security,skeptical,cautious,adversarial"`,
+  { encoding: 'utf8', shell: true }
+).stdout.toString();
+
+Task({
+  prompt: deletionAuditorPrompt + `
+
+DELETION REVIEW REQUEST:
+Documents proposed for deletion: ${documentCount}
+Search criteria: ${searchCriteria}
+Document IDs: ${documentIds.join(', ')}
+
+Your task:
+1. Review each document for deletion safety
+2. Check retention requirements for each document type
+3. Identify ANY risks with this deletion
+4. Stress-test the deletion request (adversarial approach)
+5. Provide explicit recommendation: APPROVE or REJECT
+
+Be SKEPTICAL. When in doubt, REJECT.
+`,
+  subagent_type: "Intern",
+  model: "sonnet"
+});
+```
+
+### Compliance Guardian Agent (Supporting)
+
+For retention period verification:
+
+```typescript
+const complianceGuardianPrompt = execSync(
+  `cd ~/.claude/skills/Agents && bun run Tools/AgentFactory.ts --traits "legal,meticulous,cautious,thorough"`,
+  { encoding: 'utf8', shell: true }
+).stdout.toString();
+
+Task({
+  prompt: complianceGuardianPrompt + `
+
+RETENTION COMPLIANCE CHECK:
+Documents: ${documentIds.join(', ')}
+Document types: ${documentTypes.join(', ')}
+Country: ${country}
+
+Verify each document is PAST its retention period.
+Flag any documents still within retention.
+`,
+  subagent_type: "Intern",
+  model: "sonnet"
+});
+```
+
 ## When to Use
 
 Trigger this workflow when:
@@ -24,7 +99,7 @@ Trigger this workflow when:
 
 ```bash
 # Show what will be deleted
-bun run $PAI_DIR/tools/RecordManager.ts search --query "<search_criteria>"
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts search --query "<search_criteria>"
 ```
 
 For each document:
@@ -58,10 +133,10 @@ I understand this cannot be undone and I want to proceed with deleting N documen
 ```typescript
 // Execute deletion via paperless-ngx API
 // Note: This is the ONLY place where deletion API calls are made
-const response = await fetch(`${PAPERLESS_URL}/api/documents/${id}/`, {
+const response = await fetch(`${process.env.MADEINOZ_RECORDMANAGER_PAPERLESS_URL}/api/documents/${id}/`, {
   method: 'DELETE',
   headers: {
-    'Authorization': `Token ${PAPERLESS_API_TOKEN}`,
+    'Authorization': `Token ${process.env.MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN}`,
   },
 });
 ```

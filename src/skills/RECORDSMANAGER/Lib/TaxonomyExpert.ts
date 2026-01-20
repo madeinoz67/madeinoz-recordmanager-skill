@@ -68,15 +68,36 @@ const COUNTRY_TAXONOMIES: Record<string, CountryGuidelines> = {
           'Lease Agreement',
           'Mortgage Statement',
           'Rate Notice',
+          // Pet documents
+          'Pet Vaccination Record',
+          'Pet Medical Record',
+          'Pet Insurance Policy',
+          'Pet Microchip Registration',
+          'Pet Registration',
+          'Pet Adoption Record',
+          'Breeder Certificate',
+          // Identity documents
+          'Birth Certificate',
+          'Passport',
+          'Driver License',
+          'Medicare Card',
+          'Citizenship Certificate',
+          'Marriage Certificate',
+          'Divorce Decree',
+          'Death Certificate',
+          'Change of Name Certificate',
+          'Working With Children Check',
         ],
         tagCategories: {
           financial: ['tax', 'income', 'expense', 'investment', 'superannuation', 'dividend', 'loan', 'mortgage'],
           medical: ['doctor', 'hospital', 'pharmacy', 'insurance', 'receipt', 'referral', 'test-results', 'prescription', 'health-record'],
-          insurance: ['home', 'contents', 'vehicle', 'health', 'life', 'claim'],
+          insurance: ['home', 'contents', 'vehicle', 'health', 'life', 'claim', 'pet-insurance'],
           legal: ['contract', 'agreement', 'will', 'power-of-attorney', 'lease'],
           education: ['transcript', 'certificate', 'qualification'],
           household: ['utility', 'maintenance', 'warranty', 'manual', 'rate-notice'],
           vehicle: ['car', 'registration', 'lease', 'insurance'],
+          pet: ['vaccination', 'microchip', 'vet', 'pet-registration', 'desexing', 'breed', 'adoption'],
+          identity: ['birth-certificate', 'passport', 'license', 'medicare', 'citizenship', 'marriage', 'divorce', 'death', 'name-change', 'wwcc'],
         },
         retentionRules: {
           'Tax Return': {
@@ -178,6 +199,76 @@ const COUNTRY_TAXONOMIES: Record<string, CountryGuidelines> = {
           'Rate Notice': {
             years: 5,
             reason: 'ATO tax deduction + council record',
+          },
+          // Pet document retention
+          'Pet Vaccination Record': {
+            years: 10,
+            reason: 'Pet health history + vet records',
+          },
+          'Pet Medical Record': {
+            years: 10,
+            reason: 'Pet health history + vet records',
+          },
+          'Pet Insurance Policy': {
+            years: 10,
+            reason: 'Until policy expires + claims period',
+          },
+          'Pet Microchip Registration': {
+            years: 15,
+            reason: 'Proof of ownership - keep for pet lifetime',
+          },
+          'Pet Registration': {
+            years: 5,
+            reason: 'Local council registration requirement',
+          },
+          'Pet Adoption Record': {
+            years: 15,
+            reason: 'Proof of ownership - keep for pet lifetime',
+          },
+          'Breeder Certificate': {
+            years: 15,
+            reason: 'Proof of lineage and ownership',
+          },
+          // Identity document retention
+          'Birth Certificate': {
+            years: 15,
+            reason: 'Permanent personal record - keep indefinitely',
+          },
+          'Passport': {
+            years: 10,
+            reason: 'Keep until expired + visa/travel history evidence',
+          },
+          'Driver License': {
+            years: 5,
+            reason: 'Keep until renewed + proof of identity',
+          },
+          'Medicare Card': {
+            years: 5,
+            reason: 'Keep current card + health fund claims evidence',
+          },
+          'Citizenship Certificate': {
+            years: 15,
+            reason: 'Permanent personal record - keep indefinitely',
+          },
+          'Marriage Certificate': {
+            years: 15,
+            reason: 'Permanent personal record - legal name change evidence',
+          },
+          'Divorce Decree': {
+            years: 15,
+            reason: 'Permanent legal record - property and custody evidence',
+          },
+          'Death Certificate': {
+            years: 15,
+            reason: 'Permanent estate record - inheritance evidence',
+          },
+          'Change of Name Certificate': {
+            years: 15,
+            reason: 'Permanent legal record - identity evidence',
+          },
+          'Working With Children Check': {
+            years: 5,
+            reason: 'Employment/volunteer requirement - keep until renewed',
           },
         },
       },
@@ -961,6 +1052,22 @@ export class TaxonomyExpert {
         if (['Education Record'].includes(docType)) {
           if (!suggestion.tags.includes('education')) {
             suggestion.tags.push('education');
+          }
+        }
+        // Pet documents → pet tag
+        if (['Pet Vaccination Record', 'Pet Medical Record', 'Pet Insurance Policy',
+             'Pet Microchip Registration', 'Pet Registration', 'Pet Adoption Record',
+             'Breeder Certificate'].includes(docType)) {
+          if (!suggestion.tags.includes('pet')) {
+            suggestion.tags.push('pet');
+          }
+        }
+        // Identity documents → identity tag
+        if (['Birth Certificate', 'Passport', 'Driver License', 'Medicare Card',
+             'Citizenship Certificate', 'Marriage Certificate', 'Divorce Decree',
+             'Death Certificate', 'Change of Name Certificate', 'Working With Children Check'].includes(docType)) {
+          if (!suggestion.tags.includes('identity')) {
+            suggestion.tags.push('identity');
           }
         }
 
