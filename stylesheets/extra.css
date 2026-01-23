@@ -1,0 +1,87 @@
+/* Custom PAI Colors */
+:root,
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #4a90d9;
+  --md-primary-fg-color--light: #7ab0e6;
+  --md-primary-fg-color--dark: #3570b0;
+  --md-accent-fg-color: #8b5cf6;
+  --md-accent-fg-color--transparent: rgba(139, 92, 246, 0.1);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #5a9fe8;
+  --md-primary-fg-color--light: #8bbff0;
+  --md-primary-fg-color--dark: #4a90d9;
+  --md-accent-fg-color: #a78bfa;
+  --md-accent-fg-color--transparent: rgba(167, 139, 250, 0.1);
+  --md-hue: 220;
+}
+
+/* Make Mermaid diagrams wider and scrollable on mobile */
+.md-typeset .mermaid {
+  overflow-x: auto;
+  margin-left: -20px !important;
+  margin-right: -20px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  max-width: none !important;
+  width: auto !important;
+  transform: none !important;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  display: inline-block;
+  min-width: 90%;
+}
+
+/* Subtle hover effect that doesn't interfere with panzoom */
+.md-typeset .mermaid:hover {
+  border-color: rgba(74, 144, 217, 0.3);
+}
+
+/* Make SVG responsive - allow panzoom to handle interactions */
+.md-typeset .mermaid svg {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  min-width: 800px;
+}
+
+/* Ensure diagrams don't overflow viewport on mobile */
+@media (max-width: 768px) {
+  .md-typeset .mermaid {
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    min-width: 100%;
+  }
+
+  .md-typeset .mermaid svg {
+    min-width: 100%;
+  }
+}
+
+/* PanZoom indicator styles */
+.panzoom-glass {
+  cursor: grab;
+}
+
+.panzoom-glass:active {
+  cursor: grabbing;
+}
+
+/* Ensure panzoom hint is visible */
+.md-typeset .mermaid .panzoom-hint {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0.7;
+}
