@@ -18,7 +18,15 @@
       "mcp__playwright__browser_press_key",
       "mcp__playwright__browser_close",
       "mcp__playwright__browser_snapshot",
-      "mcp__zread__read_file"
+      "mcp__zread__read_file",
+      "mcp__codanna__search_documents",
+      "mcp__madeinoz-knowledge__get_status",
+      "mcp__madeinoz-knowledge__get_episodes",
+      "mcp__madeinoz-knowledge__search_nodes",
+      "mcp__madeinoz-knowledge__search_memory_facts",
+      "mcp__codanna__semantic_search_with_context",
+      "mcp__codanna__get_index_info",
+      "mcp__codanna__search_symbols"
     ]
   }
 }

@@ -24,6 +24,55 @@ Tax authorities and regulatory bodies mandate minimum retention periods:
 
 * Trust compliance issues
 
+## How FSA Classification Determines Retention (AUTOMATIC)
+
+**CRITICAL:** When you classify a document with an FSA (Function/Service/Activity) path, the system automatically determines and applies the correct retention period.
+
+### Automatic Retention Assignment
+
+**How it works:**
+
+1. You classify a document: `FSA/FinancialRecords/Banking/AccountStatements`
+2. System extracts Activity level: "AccountStatements"
+3. System looks up retention via `TaxonomyExpert.getRetentionForActivity()`
+4. System applies BOTH tags atomically:
+   - `FSA/FinancialRecords/Banking/AccountStatements`
+   - `RETENTION/7-years` (automatically determined)
+
+**Why this matters:**
+
+- **No manual retention selection** - Classification drives retention automatically
+- **Guaranteed compliance** - Retention based on legal requirements for Activity type
+- **Prevents gaps** - Every FSA-classified document MUST have retention tag
+- **Country-specific** - Retention varies by country (AUS/USA/GBR) but applied automatically
+- **Atomic application** - FSA path and retention tag applied together, never separately
+
+### Common FSA → Retention Mappings
+
+**Financial Records:**
+- `FSA/FinancialRecords/Banking/AccountStatements` → `RETENTION/7-years` (ATO)
+- `FSA/FinancialRecords/Tax/TaxReturns` → `RETENTION/7-years` (ATO)
+- `FSA/FinancialRecords/Investments/DividendStatements` → `RETENTION/7-years` (ATO)
+
+**Trust Administration:**
+- `FSA/TrustAdministration/LegalDocumentation/TrustDeed` → `RETENTION/permanent`
+- `FSA/TrustAdministration/Governance/TrusteeResolutions` → `RETENTION/7-years` (ATO)
+- `FSA/TrustAdministration/Compliance/FamilyTrustElection` → `RETENTION/5-years-from-FTE`
+
+**Health Management:**
+- `FSA/HealthManagement/MedicalCare/Consultations` → `RETENTION/7-years` (ATO medical expense)
+- `FSA/HealthManagement/DentalCare/Consultations` → `RETENTION/7-years` (ATO medical expense)
+- `FSA/HealthManagement/Prescriptions/Medications` → `RETENTION/5-years`
+
+**What this means for you:**
+
+When Records Manager suggests classifying a bank statement, you get:
+- Classification: `FSA/FinancialRecords/Banking/AccountStatements`
+- Retention: `RETENTION/7-years` (automatic, no input needed)
+- Legal basis: ATO Record Keeping Requirements
+
+You classify once, compliance is automatic.
+
 ## Retention Periods (Australia)
 
 ### Financial Documents (7 years)

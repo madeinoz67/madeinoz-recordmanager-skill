@@ -1,0 +1,616 @@
+{
+  "entityType": "project",
+  "country": "AUS",
+  "countryName": "Australia",
+  "version": "1.0.0",
+  "functions": {
+    "ProjectPlanning": {
+      "name": "ProjectPlanning",
+      "description": "Project initiation and planning documentation",
+      "icon": "📋",
+      "services": {
+        "ProjectInitiation": {
+          "name": "ProjectInitiation",
+          "description": "Starting a project",
+          "icon": "🚀",
+          "activities": {
+            "ProjectCharter": {
+              "name": "ProjectCharter",
+              "description": "Project authorization document",
+              "icon": "📜",
+              "documentTypes": [
+                "Project Charter",
+                "Project Brief",
+                "Initiation Document",
+                "Authorization Form",
+                "Scope Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "Sarbanes-Oxley" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["project charter", "project brief", "initiation", "authorization"]
+            },
+            "StakeholderAnalysis": {
+              "name": "StakeholderAnalysis",
+              "description": "Identifying stakeholders",
+              "documentTypes": [
+                "Stakeholder Register",
+                "Stakeholder Analysis",
+                "Interest Matrix",
+                "Communication Plan",
+                "Engagement Strategy"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project governance" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["stakeholder", "register", "analysis", "engagement"]
+            },
+            "BusinessCase": {
+              "name": "BusinessCase",
+              "description": "Justification for project",
+              "icon": "💼",
+              "documentTypes": [
+                "Business Case",
+                "Cost-Benefit Analysis",
+                "ROI Calculation",
+                "Feasibility Study",
+                "Investment Appraisal"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporate governance" },
+                "USA": { "years": 7, "authority": "Sarbanes-Oxley" },
+                "GBR": { "years": 6, "authority": "Corporate governance" }
+              },
+              "keywords": ["business case", "cost-benefit", "roi", "feasibility"]
+            }
+          }
+        },
+        "ProjectScheduling": {
+          "name": "ProjectScheduling",
+          "description": "Project timeline and milestones",
+          "icon": "📅",
+          "activities": {
+            "WorkBreakdown": {
+              "name": "WorkBreakdown",
+              "description": "Decomposing work",
+              "documentTypes": [
+                "Work Breakdown Structure",
+                "Task List",
+                "Activity List",
+                "Work Package",
+                "Deliverable List"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project records" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["wbs", "work breakdown", "task list", "deliverable"]
+            },
+            "ProjectSchedule": {
+              "name": "ProjectSchedule",
+              "description": "Timeline and milestones",
+              "icon": "📊",
+              "documentTypes": [
+                "Project Schedule",
+                "Gantt Chart",
+                "Milestone Chart",
+                "Critical Path Analysis",
+                "Timeline"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project records" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["schedule", "gantt", "milestone", "critical path"]
+            },
+            "ResourcePlanning": {
+              "name": "ResourcePlanning",
+              "description": "Resource allocation",
+              "documentTypes": [
+                "Resource Plan",
+                "Staffing Plan",
+                "Budget",
+                "Resource Calendar",
+                "Allocation Matrix"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project records" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["resource plan", "staffing", "budget", "allocation"]
+            }
+          }
+        }
+      }
+    },
+    "ProjectExecution": {
+      "name": "ProjectExecution",
+      "description": "Project implementation activities",
+      "icon": "⚙️",
+      "services": {
+        "TeamManagement": {
+          "name": "TeamManagement",
+          "description": "Managing project team",
+          "icon": "👥",
+          "activities": {
+            "TeamCommunication": {
+              "name": "TeamCommunication",
+              "description": "Team communications",
+              "documentTypes": [
+                "Meeting Minutes",
+                "Team Charter",
+                "Communication Log",
+                "Status Report",
+                "Newsletter"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporate law" },
+                "USA": { "years": 7, "authority": "Sarbanes-Oxley" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["meeting", "minutes", "status report", "communication"]
+            },
+            "PerformanceTracking": {
+              "name": "PerformanceTracking",
+              "description": "Monitoring performance",
+              "documentTypes": [
+                "Performance Report",
+                "KPI Dashboard",
+                "Metric Tracker",
+                "Scorecard",
+                "Performance Review"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project records" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["performance", "kpi", "dashboard", "scorecard"]
+            },
+            "IssueManagement": {
+              "name": "IssueManagement",
+              "description": "Tracking issues",
+              "icon": "🐛",
+              "documentTypes": [
+                "Issue Log",
+                "Issue Report",
+                "Problem Statement",
+                "Resolution",
+                "Escalation"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project records" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["issue", "problem", "resolution", "escalation"]
+            }
+          }
+        },
+        "QualityManagement": {
+          "name": "QualityManagement",
+          "description": "Quality assurance and control",
+          "icon": "✅",
+          "activities": {
+            "QualityPlanning": {
+              "name": "QualityPlanning",
+              "description": "Planning quality",
+              "documentTypes": [
+                "Quality Management Plan",
+                "Quality Standards",
+                "Acceptance Criteria",
+                "Quality Metrics",
+                "Checklist"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project records" },
+                "USA": { "years": 7, "authority": "ISO 9001" },
+                "GBR": { "years": 6, "authority": "ISO 9001" }
+              },
+              "keywords": ["quality plan", "standards", "acceptance criteria", "metrics"]
+            },
+            "QualityControl": {
+              "name": "QualityControl",
+              "description": "Quality inspections",
+              "documentTypes": [
+                "Quality Report",
+                "Inspection Report",
+                "Test Results",
+                "Audit Report",
+                "Non-Conformance Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project records" },
+                "USA": { "years": 7, "authority": "ISO 9001" },
+                "GBR": { "years": 6, "authority": "ISO 9001" }
+              },
+              "keywords": ["quality report", "inspection", "test", "audit"]
+            },
+            "ChangeControl": {
+              "name": "ChangeControl",
+              "description": "Managing changes",
+              "icon": "🔄",
+              "documentTypes": [
+                "Change Request",
+                "Change Log",
+                "Impact Analysis",
+                "Approval Record",
+                "Change Notification"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project governance" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["change request", "change log", "impact analysis", "approval"]
+            }
+          }
+        }
+      }
+    },
+    "ProjectMonitoring": {
+      "name": "ProjectMonitoring",
+      "description": "Tracking project progress",
+      "icon": "📊",
+      "services": {
+        "ProgressTracking": {
+          "name": "ProgressTracking",
+          "description": "Monitoring work progress",
+          "icon": "📈",
+          "activities": {
+            "StatusReporting": {
+              "name": "StatusReporting",
+              "description": "Project status updates",
+              "documentTypes": [
+                "Status Report",
+                "Progress Report",
+                "Dashboard",
+                "Executive Summary",
+                "Highlight Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project records" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["status", "progress", "dashboard", "executive summary"]
+            },
+            "MilestoneTracking": {
+              "name": "MilestoneTracking",
+              "description": "Tracking milestones",
+              "documentTypes": [
+                "Milestone Report",
+                "Milestone Review",
+                "Achievement Certificate",
+                "Delay Notice",
+                "Recovery Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project records" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["milestone", "achievement", "delay", "recovery"]
+            },
+            "BudgetTracking": {
+              "name": "BudgetTracking",
+              "description": "Financial monitoring",
+              "icon": "💰",
+              "documentTypes": [
+                "Budget Report",
+                "Cost Report",
+                "Variance Analysis",
+                "Forecast",
+                "Spend Analysis"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "Sarbanes-Oxley" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["budget", "cost", "variance", "forecast"]
+            }
+          }
+        },
+        "RiskManagement": {
+          "name": "RiskManagement",
+          "description": "Managing project risks",
+          "icon": "⚠️",
+          "activities": {
+            "RiskAssessment": {
+              "name": "RiskAssessment",
+              "description": "Identifying and analyzing risks",
+              "documentTypes": [
+                "Risk Register",
+                "Risk Assessment",
+                "Probability Impact Matrix",
+                "Risk Analysis",
+                "Risk Rating"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project governance" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["risk register", "risk assessment", "probability", "impact"]
+            },
+            "RiskMitigation": {
+              "name": "RiskMitigation",
+              "description": "Addressing risks",
+              "documentTypes": [
+                "Mitigation Plan",
+                "Contingency Plan",
+                "Risk Response",
+                "Risk Owner",
+                "Risk Review"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project records" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["mitigation", "contingency", "risk response", "risk owner"]
+            }
+          }
+        }
+      }
+    },
+    "ProjectClosure": {
+      "name": "ProjectClosure",
+      "description": "Closing out the project",
+      "icon": "🏁",
+      "services": {
+        "ProjectCompletion": {
+          "name": "ProjectCompletion",
+          "description": "Finalizing project",
+          "icon": "✅",
+          "activities": {
+            "Acceptance": {
+              "name": "Acceptance",
+              "description": "Formal acceptance",
+              "documentTypes": [
+                "Acceptance Certificate",
+                "Sign-off Form",
+                "Handover Document",
+                "Completion Certificate",
+                "Approval"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Contract law" },
+                "USA": { "years": 7, "authority": "Contract law" },
+                "GBR": { "years": 6, "authority": "Contract law" }
+              },
+              "keywords": ["acceptance", "sign-off", "handover", "completion"]
+            },
+            "LessonsLearned": {
+              "name": "LessonsLearned",
+              "description": "Capturing learnings",
+              "documentTypes": [
+                "Lessons Learned",
+                "Post-Implementation Review",
+                "Retrospective",
+                "Best Practices",
+                "Improvement Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Organizational learning" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["lessons learned", "post-implementation", "retrospective", "best practices"]
+            },
+            "ProjectArchive": {
+              "name": "ProjectArchive",
+              "description": "Archiving project records",
+              "icon": "📦",
+              "documentTypes": [
+                "Archive Index",
+                "File List",
+                "Custody Transfer",
+                "Retention Schedule",
+                "Disposal Authority"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Record keeping requirements" },
+                "USA": { "years": 7, "authority": "Sarbanes-Oxley" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["archive", "file list", "custody", "retention"]
+            }
+          }
+        },
+        "FinancialClosure": {
+          "name": "FinancialClosure",
+          "description": "Final financial activities",
+          "icon": "💰",
+          "activities": {
+            "FinalAccounts": {
+              "name": "FinalAccounts",
+              "description": "Project financial summary",
+              "documentTypes": [
+                "Final Accounts",
+                "Cost Summary",
+                "Final Budget",
+                "Financial Statement",
+                "Audit Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "Sarbanes-Oxley" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["final accounts", "cost summary", "financial statement", "audit"]
+            },
+            "ContractClosure": {
+              "name": "ContractClosure",
+              "description": "Closing contracts",
+              "documentTypes": [
+                "Contract Closure",
+                "Release Form",
+                "Final Payment",
+                "Warranty Certificate",
+                "Release of Liens"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Contract law" },
+                "USA": { "years": 7, "authority": "Contract law" },
+                "GBR": { "years": 6, "authority": "Contract law" }
+              },
+              "keywords": ["contract closure", "release", "final payment", "warranty"]
+            }
+          }
+        }
+      }
+    },
+    "StakeholderManagement": {
+      "name": "StakeholderManagement",
+      "description": "Managing stakeholder relationships",
+      "icon": "🤝",
+      "services": {
+        "CommunicationManagement": {
+          "name": "CommunicationManagement",
+          "description": "Project communications",
+          "icon": "📢",
+          "activities": {
+            "CommunicationPlan": {
+              "name": "CommunicationPlan",
+              "description": "Planning communications",
+              "documentTypes": [
+                "Communication Plan",
+                "Stakeholder Map",
+                "Information Distribution",
+                "Feedback Mechanism",
+                "Reporting Schedule"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project records" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["communication plan", "stakeholder map", "distribution", "feedback"]
+            },
+            "StakeholderEngagement": {
+              "name": "StakeholderEngagement",
+              "description": "Engaging stakeholders",
+              "documentTypes": [
+                "Engagement Plan",
+                "Consultation Record",
+                "Feedback Summary",
+                "Engagement Report",
+                "Satisfaction Survey"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project records" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["engagement", "consultation", "feedback", "satisfaction"]
+            }
+          }
+        },
+        "DocumentManagement": {
+          "name": "DocumentManagement",
+          "description": "Project documentation",
+          "icon": "📁",
+          "activities": {
+            "DocumentControl": {
+              "name": "DocumentControl",
+              "description": "Controlling documents",
+              "documentTypes": [
+                "Document Register",
+                "Version Control",
+                "Approval Matrix",
+                "Distribution Matrix",
+                "Document Log"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Project records" },
+                "USA": { "years": 7, "authority": "PMI standards" },
+                "GBR": { "years": 6, "authority": "PRINCE2" }
+              },
+              "keywords": ["document register", "version control", "approval", "distribution"]
+            },
+            "KnowledgeManagement": {
+              "name": "KnowledgeManagement",
+              "description": "Capturing knowledge",
+              "documentTypes": [
+                "Knowledge Base",
+                "Best Practices",
+                "Templates",
+                "Procedures",
+                "Guidelines"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Organizational learning" },
+                "USA": { "years": 7, "authority": "ISO 9001" },
+                "GBR": { "years": 6, "authority": "ISO 9001" }
+              },
+              "keywords": ["knowledge base", "best practices", "templates", "procedures"]
+            }
+          }
+        }
+      }
+    },
+    "ProcurementManagement": {
+      "name": "ProcurementManagement",
+      "description": "Managing project procurement",
+      "icon": "🛒",
+      "services": {
+        "VendorManagement": {
+          "name": "VendorManagement",
+          "description": "Managing vendors",
+          "icon": "🏢",
+          "activities": {
+            "VendorSelection": {
+              "name": "VendorSelection",
+              "description": "Selecting vendors",
+              "documentTypes": [
+                "RFP",
+                "RFQ",
+                "Vendor Evaluation",
+                "Selection Criteria",
+                "Contract Award"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Procurement law" },
+                "USA": { "years": 7, "authority": "Contract law" },
+                "GBR": { "years": 6, "authority": "Procurement regulations" }
+              },
+              "keywords": ["rfp", "rfq", "vendor evaluation", "contract award"]
+            },
+            "ContractManagement": {
+              "name": "ContractManagement",
+              "description": "Managing contracts",
+              "documentTypes": [
+                "Contract",
+                "Agreement",
+                "SOW",
+                "Amendment",
+                "Extension"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Contract law" },
+                "USA": { "years": 7, "authority": "Contract law" },
+                "GBR": { "years": 6, "authority": "Contract law" }
+              },
+              "keywords": ["contract", "agreement", "sow", "amendment"]
+            }
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "createdAt": "2026-01-22T00:00:00Z",
+    "updatedAt": "2026-01-22T00:00:00Z",
+    "createdBy": "system",
+    "source": "default-taxonomy"
+  }
+}

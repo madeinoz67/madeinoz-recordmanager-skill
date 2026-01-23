@@ -1,21 +1,21 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version Change: 1.1.1 → 1.1.2 (PATCH - added documents search command)
+Version Change: 1.1.2 → 1.1.3 (PATCH - added PAI_DIR pattern to environment standards)
 
 Modified Principles:
-- VII. Codanna-First Code Intelligence: Added `codanna documents search` for documentation lookup
+- V. Environment Variable Standards: Added mandatory PAI_DIR pattern requirement
 
 Added Sections: None
 
 Removed Sections: None
 
 Templates Requiring Updates:
-- ✅ plan-template.md - No changes needed
-- ✅ spec-template.md - No changes needed
-- ✅ tasks-template.md - No changes needed
-- ✅ checklist-template.md - No changes needed
-- ✅ agent-file-template.md - No changes needed
+- ✅ plan-template.md - No changes needed (generic guidance)
+- ✅ spec-template.md - No changes needed (feature-level, not implementation)
+- ✅ tasks-template.md - No changes needed (task organization unchanged)
+- ✅ checklist-template.md - No changes needed (validation patterns unchanged)
+- ✅ agent-file-template.md - No changes needed (agent structure unchanged)
 
 Follow-up TODOs: None
 -->
@@ -73,7 +73,12 @@ All configuration MUST follow the established prefix convention:
 - Country and domain defaults MUST be configurable without code changes
 - Sensitive credentials MUST NEVER be committed to version control
 
-**Rationale:** Consistent naming prevents conflicts with other PAI skills. Environment-based configuration enables secure deployment across different instances.
+**PAI Directory Resolution:**
+- All code MUST use the pattern: `process.env.PAI_DIR || '~/.claude'`
+- MUST NOT include `PAI_HOME` fallback (deprecated pattern)
+- This aligns with PAI core skills (Art, System) for consistency
+
+**Rationale:** Consistent naming prevents conflicts with other PAI skills. Environment-based configuration enables secure deployment across different instances. The PAI_DIR pattern matches core PAI conventions established in the broader ecosystem.
 
 ### VI. CLI-First Interface
 
@@ -177,4 +182,4 @@ This constitution supersedes all other practices for the Records Manager Skill:
 
 Use CLAUDE.md and SKILL.md for runtime development guidance.
 
-**Version**: 1.1.2 | **Ratified**: 2026-01-20 | **Last Amended**: 2026-01-20
+**Version**: 1.1.3 | **Ratified**: 2026-01-20 | **Last Amended**: 2026-01-23

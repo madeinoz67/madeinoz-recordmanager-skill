@@ -1,0 +1,304 @@
+[
+  {
+    "flatType": "Medical Bill",
+    "hierarchicalPath": "HealthManagement/MedicalCare/DoctorVisits/Doctor's Note",
+    "confidence": "high",
+    "rationale": "Medical bills typically relate to doctor visits and consultations"
+  },
+  {
+    "flatType": "Medical Prescription",
+    "hierarchicalPath": "HealthManagement/MedicalCare/Prescriptions/Prescription",
+    "confidence": "high",
+    "rationale": "Direct mapping to prescription documents"
+  },
+  {
+    "flatType": "Dental Bill",
+    "hierarchicalPath": "HealthManagement/DentalCare/DentalCheckups/Dental Receipt",
+    "confidence": "high",
+    "rationale": "Dental bills are receipts from dental checkups"
+  },
+  {
+    "flatType": "Pharmacy Receipt",
+    "hierarchicalPath": "HealthManagement/MedicalCare/Prescriptions/Pharmacy Receipt",
+    "confidence": "high",
+    "rationale": "Direct mapping to pharmacy receipts for prescriptions"
+  },
+  {
+    "flatType": "Tax Return",
+    "hierarchicalPath": "FinancialManagement/TaxCompliance/TaxReturns/Tax Return",
+    "confidence": "high",
+    "rationale": "Direct mapping to tax return documents"
+  },
+  {
+    "flatType": "Bank Statement",
+    "hierarchicalPath": "FinancialManagement/BankingServices/AccountManagement/Bank Statement",
+    "confidence": "high",
+    "rationale": "Bank statements are part of account management"
+  },
+  {
+    "flatType": "Credit Card Statement",
+    "hierarchicalPath": "FinancialManagement/BankingServices/AccountManagement/Credit Card Statement",
+    "confidence": "high",
+    "rationale": "Credit card statements are part of financial account management"
+  },
+  {
+    "flatType": "Utility Bill",
+    "hierarchicalPath": "PropertyManagement/Utilities/ElectricityService/Electricity Bill",
+    "confidence": "high",
+    "rationale": "Utility bills default to electricity service as most common utility",
+    "alternatives": [
+      "PropertyManagement/Utilities/GasService/Gas Bill",
+      "PropertyManagement/Utilities/WaterService/Water Bill"
+    ]
+  },
+  {
+    "flatType": "Electricity Bill",
+    "hierarchicalPath": "PropertyManagement/Utilities/ElectricityService/Electricity Bill",
+    "confidence": "high",
+    "rationale": "Direct mapping to electricity bills"
+  },
+  {
+    "flatType": "Gas Bill",
+    "hierarchicalPath": "PropertyManagement/Utilities/GasService/Gas Bill",
+    "confidence": "high",
+    "rationale": "Direct mapping to gas bills"
+  },
+  {
+    "flatType": "Water Bill",
+    "hierarchicalPath": "PropertyManagement/Utilities/WaterService/Water Bill",
+    "confidence": "high",
+    "rationale": "Direct mapping to water bills"
+  },
+  {
+    "flatType": "Internet Bill",
+    "hierarchicalPath": "PropertyManagement/Utilities/InternetService/Internet Bill",
+    "confidence": "high",
+    "rationale": "Direct mapping to internet service bills"
+  },
+  {
+    "flatType": "Insurance Document",
+    "hierarchicalPath": "AMBIGUOUS",
+    "confidence": "low",
+    "rationale": "Insurance documents could relate to health, vehicle, property, or life insurance - requires manual review",
+    "alternatives": [
+      "HealthManagement/Insurance/HealthInsurance/Health Insurance Policy",
+      "VehicleManagement/Insurance/VehicleInsurance/Vehicle Insurance Policy",
+      "PropertyManagement/Insurance/PropertyInsurance/Property Insurance Policy",
+      "Insurance/LifeInsurance/PolicyManagement/Life Insurance Policy"
+    ]
+  },
+  {
+    "flatType": "Insurance Policy",
+    "hierarchicalPath": "AMBIGUOUS",
+    "confidence": "low",
+    "rationale": "Insurance policies could relate to multiple types of insurance - requires manual review",
+    "alternatives": [
+      "HealthManagement/Insurance/HealthInsurance/Health Insurance Policy",
+      "VehicleManagement/Insurance/VehicleInsurance/Vehicle Insurance Policy",
+      "PropertyManagement/Insurance/PropertyInsurance/Property Insurance Policy",
+      "Insurance/LifeInsurance/PolicyManagement/Life Insurance Policy"
+    ]
+  },
+  {
+    "flatType": "Insurance Claim",
+    "hierarchicalPath": "AMBIGUOUS",
+    "confidence": "low",
+    "rationale": "Insurance claims require context to determine which insurance type",
+    "alternatives": [
+      "HealthManagement/Insurance/Claims/Insurance Claim",
+      "VehicleManagement/Insurance/Claims/Insurance Claim",
+      "PropertyManagement/Insurance/Claims/Insurance Claim"
+    ]
+  },
+  {
+    "flatType": "Vehicle Registration",
+    "hierarchicalPath": "VehicleManagement/Registration/VehicleRegistration/Registration Certificate",
+    "confidence": "high",
+    "rationale": "Direct mapping to vehicle registration documents"
+  },
+  {
+    "flatType": "Vehicle Document",
+    "hierarchicalPath": "VehicleManagement/Registration/VehicleRegistration/Registration Certificate",
+    "confidence": "high",
+    "rationale": "Vehicle documents default to registration as the most common document type",
+    "alternatives": [
+      "VehicleManagement/Insurance/VehicleInsurance/Vehicle Insurance Policy",
+      "VehicleManagement/Maintenance/ServiceRecords/Service Receipt"
+    ]
+  },
+  {
+    "flatType": "Property Document",
+    "hierarchicalPath": "PropertyManagement/PropertyOwnership/TitleDocuments/Property Title",
+    "confidence": "high",
+    "rationale": "Property documents default to ownership and title records as the most important documents",
+    "alternatives": [
+      "PropertyManagement/Mortgage/MortgageManagement/Mortgage Statement",
+      "PropertyManagement/Insurance/PropertyInsurance/Property Insurance Policy",
+      "PropertyManagement/Tax/PropertyTax/Property Tax Notice",
+      "PropertyManagement/Maintenance/RepairRecords/Repair Invoice"
+    ]
+  },
+  {
+    "flatType": "Mortgage Statement",
+    "hierarchicalPath": "PropertyManagement/Mortgage/MortgageManagement/Mortgage Statement",
+    "confidence": "high",
+    "rationale": "Direct mapping to mortgage statements"
+  },
+  {
+    "flatType": "Rent Receipt",
+    "hierarchicalPath": "PropertyManagement/RentManagement/RentPayments/Rent Receipt",
+    "confidence": "high",
+    "rationale": "Direct mapping to rent payment receipts"
+  },
+  {
+    "flatType": "Property Tax",
+    "hierarchicalPath": "PropertyManagement/Tax/PropertyTax/Property Tax Notice",
+    "confidence": "high",
+    "rationale": "Direct mapping to property tax documents"
+  },
+  {
+    "flatType": "School Receipt",
+    "hierarchicalPath": "Education/SchoolFees/FeePayments/School Fee Receipt",
+    "confidence": "high",
+    "rationale": "School receipts are typically for fee payments"
+  },
+  {
+    "flatType": "Education Document",
+    "hierarchicalPath": "Education/SchoolFees/FeePayments/School Fee Receipt",
+    "confidence": "medium",
+    "rationale": "Education documents typically refer to school fees, but could be reports or certificates",
+    "alternatives": [
+      "Education/AcademicRecords/ReportCards/School Report",
+      "Education/Certificates/Qualifications/Degree Certificate"
+    ]
+  },
+  {
+    "flatType": "Legal Document",
+    "hierarchicalPath": "AMBIGUOUS",
+    "confidence": "low",
+    "rationale": "Legal documents encompass many types - requires manual review",
+    "alternatives": [
+      "LegalAffairs/Contracts/AgreementManagement/Contract",
+      "LegalAffairs/CourtDocuments/CourtProceedings/Court Order",
+      "LegalAffairs/PowerOfAttorney/AuthorizationDocuments/Power of Attorney",
+      "EstatePlanning/Wills/WillManagement/Last Will and Testament"
+    ]
+  },
+  {
+    "flatType": "Will",
+    "hierarchicalPath": "EstatePlanning/Wills/WillManagement/Last Will and Testament",
+    "confidence": "high",
+    "rationale": "Direct mapping to will documents"
+  },
+  {
+    "flatType": "Contract",
+    "hierarchicalPath": "LegalAffairs/Contracts/AgreementManagement/Contract",
+    "confidence": "medium",
+    "rationale": "Contracts could be legal, property, or employment related",
+    "alternatives": [
+      "LegalAffairs/Contracts/AgreementManagement/Contract",
+      "PropertyManagement/Contracts/LeaseAgreements/Lease Agreement",
+      "LegalAffairs/EmploymentContracts/EmploymentAgreements/Employment Contract"
+    ]
+  },
+  {
+    "flatType": "Receipt",
+    "hierarchicalPath": "AMBIGUOUS",
+    "confidence": "low",
+    "rationale": "Generic receipt requires context to determine category",
+    "alternatives": [
+      "FinancialManagement/ExpenseTracking/Expenses/Expense Receipt",
+      "HealthManagement/MedicalCare/DoctorVisits/Consultation Summary",
+      "PropertyManagement/Maintenance/RepairRecords/Repair Invoice",
+      "VehicleManagement/Maintenance/ServiceRecords/Service Receipt"
+    ]
+  },
+  {
+    "flatType": "Invoice",
+    "hierarchicalPath": "FinancialManagement/ExpenseTracking/Expenses/Expense Receipt",
+    "confidence": "medium",
+    "rationale": "Invoices are typically expenses, but context matters",
+    "alternatives": [
+      "PropertyManagement/Maintenance/RepairRecords/Repair Invoice",
+      "VehicleManagement/Maintenance/ServiceRecords/Service Receipt",
+      "FinancialManagement/ExpenseTracking/Expenses/Expense Receipt"
+    ]
+  },
+  {
+    "flatType": "Travel Document",
+    "hierarchicalPath": "Travel/Bookings/FlightBookings/Flight Booking Confirmation",
+    "confidence": "medium",
+    "rationale": "Travel documents typically refer to bookings, but could be passports or itineraries",
+    "alternatives": [
+      "Travel/Passports/PassportManagement/Passport Copy",
+      "Travel/Itineraries/TripPlanning/Travel Itinerary",
+      "Travel/Bookings/AccommodationBookings/Hotel Booking Confirmation"
+    ]
+  },
+  {
+    "flatType": "Passport",
+    "hierarchicalPath": "Travel/Passports/PassportManagement/Passport Copy",
+    "confidence": "high",
+    "rationale": "Direct mapping to passport documents"
+  },
+  {
+    "flatType": "Visa",
+    "hierarchicalPath": "Travel/Visas/VisaApplications/Visa Copy",
+    "confidence": "high",
+    "rationale": "Direct mapping to visa documents"
+  },
+  {
+    "flatType": "Pet Document",
+    "hierarchicalPath": "PetCare/Veterinary/VeterinaryRecords/Veterinary Record",
+    "confidence": "medium",
+    "rationale": "Pet documents typically refer to veterinary records, but could be registration",
+    "alternatives": [
+      "PetCare/Veterinary/VeterinaryRecords/Veterinary Record",
+      "PetCare/Registration/PetRegistration/Pet Registration Certificate",
+      "PetCare/Insurance/PetInsurance/Pet Insurance Policy"
+    ]
+  },
+  {
+    "flatType": "Vaccination Certificate",
+    "hierarchicalPath": "HealthManagement/Vaccinations/VaccinationRecords/Vaccination Certificate",
+    "confidence": "high",
+    "rationale": "Direct mapping to vaccination certificates"
+  },
+  {
+    "flatType": "Investment Statement",
+    "hierarchicalPath": "FinancialManagement/InvestmentManagement/Portfolio/Investment Statement",
+    "confidence": "high",
+    "rationale": "Direct mapping to investment statements"
+  },
+  {
+    "flatType": "Superannuation Statement",
+    "hierarchicalPath": "FinancialManagement/Retirement/SuperannuationManagement/Superannuation Statement",
+    "confidence": "high",
+    "rationale": "Direct mapping to superannuation statements (Australian retirement savings)"
+  },
+  {
+    "flatType": "Credit Card",
+    "hierarchicalPath": "FinancialManagement/BankingServices/AccountManagement/Credit Card Statement",
+    "confidence": "high",
+    "rationale": "Credit card documents are financial account management statements"
+  },
+  {
+    "flatType": "Payslip",
+    "hierarchicalPath": "FinancialManagement/Income/EmploymentIncome/Payslip",
+    "confidence": "high",
+    "rationale": "Direct mapping to employment payslips"
+  },
+  {
+    "flatType": "Employment Contract",
+    "hierarchicalPath": "LegalAffairs/EmploymentContracts/EmploymentAgreements/Employment Contract",
+    "confidence": "high",
+    "rationale": "Direct mapping to employment contracts"
+  },
+  {
+    "flatType": "Miscellaneous",
+    "hierarchicalPath": "AMBIGUOUS",
+    "confidence": "low",
+    "rationale": "Miscellaneous documents require manual classification",
+    "alternatives": []
+  }
+]

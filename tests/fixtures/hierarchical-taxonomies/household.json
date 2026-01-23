@@ -1,0 +1,153 @@
+{
+  "entityType": "household",
+  "country": "AU",
+  "version": "1.0.0",
+  "functions": {
+    "HealthManagement": {
+      "name": "HealthManagement",
+      "description": "Health and medical care documentation for household members",
+      "icon": "🏥",
+      "services": {
+        "MedicalCare": {
+          "name": "MedicalCare",
+          "description": "Primary healthcare and specialist consultations",
+          "icon": "🩺",
+          "activities": {
+            "DoctorVisits": {
+              "name": "DoctorVisits",
+              "description": "Medical appointments and consultation records",
+              "icon": "👨‍⚕️",
+              "documentTypes": [
+                "Doctor's Note",
+                "Consultation Summary",
+                "Referral Letter",
+                "Test Order"
+              ],
+              "retention": {
+                "AU": {
+                  "years": 7,
+                  "authority": "Privacy Act 1988",
+                  "notes": "Medical records retention requirement"
+                },
+                "US": {
+                  "years": 6,
+                  "authority": "HIPAA",
+                  "notes": "Minimum retention for medical records"
+                },
+                "UK": {
+                  "years": 8,
+                  "authority": "NHS",
+                  "notes": "UK medical records guidance"
+                }
+              },
+              "keywords": ["doctor", "physician", "gp", "medical", "consultation"]
+            },
+            "TestResults": {
+              "name": "TestResults",
+              "description": "Laboratory test results and diagnostic reports",
+              "icon": "🔬",
+              "documentTypes": [
+                "Blood Test Results",
+                "X-Ray Report",
+                "MRI Results",
+                "Pathology Report"
+              ],
+              "retention": {
+                "AU": {
+                  "years": 7,
+                  "authority": "Privacy Act 1988"
+                },
+                "US": {
+                  "years": 6,
+                  "authority": "HIPAA"
+                },
+                "UK": {
+                  "years": 8,
+                  "authority": "NHS"
+                }
+              },
+              "keywords": ["lab", "test", "xray", "mri", "diagnostic"]
+            }
+          }
+        }
+      }
+    },
+    "FinancialManagement": {
+      "name": "FinancialManagement",
+      "description": "Household financial operations and compliance",
+      "icon": "💰",
+      "services": {
+        "BankingServices": {
+          "name": "BankingServices",
+          "description": "Bank account management and transactions",
+          "icon": "🏦",
+          "activities": {
+            "AccountManagement": {
+              "name": "AccountManagement",
+              "description": "Bank account opening and maintenance",
+              "documentTypes": [
+                "Bank Statement",
+                "Account Opening Form",
+                "Account Closure Letter"
+              ],
+              "retention": {
+                "AU": {
+                  "years": 5,
+                  "authority": "ATO"
+                },
+                "US": {
+                  "years": 7,
+                  "authority": "IRS"
+                },
+                "UK": {
+                  "years": 6,
+                  "authority": "HMRC"
+                }
+              },
+              "keywords": ["bank", "account", "statement"]
+            }
+          }
+        },
+        "TaxCompliance": {
+          "name": "TaxCompliance",
+          "description": "Tax return preparation and filing",
+          "icon": "📋",
+          "activities": {
+            "TaxReturns": {
+              "name": "TaxReturns",
+              "description": "Annual tax return filings",
+              "documentTypes": [
+                "Tax Return",
+                "Notice of Assessment",
+                "Tax Assessment"
+              ],
+              "retention": {
+                "AU": {
+                  "years": 7,
+                  "authority": "ATO Section 254 of Tax Administration Act 1953",
+                  "fromDate": "fy_end"
+                },
+                "US": {
+                  "years": 7,
+                  "authority": "IRS recommendation",
+                  "notes": "3 years minimum, 7 recommended"
+                },
+                "UK": {
+                  "years": 7,
+                  "authority": "HMRC self-assessment requirement"
+                }
+              },
+              "keywords": ["tax", "return", "assessment", "ato", "irs"]
+            }
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "createdAt": "2026-01-22T00:00:00Z",
+    "updatedAt": "2026-01-22T00:00:00Z",
+    "createdBy": "system",
+    "source": "default-taxonomy"
+  }
+}

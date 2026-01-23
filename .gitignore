@@ -71,8 +71,12 @@ credentials/
 .codanna/
 .fastembed_cache/
 
+# Test-generated audit logs
+src/skills/RecordsManager/Config/audit/
+
 
 # MkDocs build output
 site/
 
 .playwright-mcp
+

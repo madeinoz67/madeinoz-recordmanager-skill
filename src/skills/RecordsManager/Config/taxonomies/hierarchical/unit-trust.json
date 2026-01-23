@@ -1,0 +1,601 @@
+{
+  "entityType": "unit-trust",
+  "country": "AUS",
+  "countryName": "Australia",
+  "version": "1.0.0",
+  "functions": {
+    "TrustGovernance": {
+      "name": "TrustGovernance",
+      "description": "Unit trust governance",
+      "icon": "🏛️",
+      "services": {
+        "TrustFormation": {
+          "name": "TrustFormation",
+          "description": "Unit trust establishment",
+          "icon": "📜",
+          "activities": {
+            "TrustDeed": {
+              "name": "TrustDeed",
+              "description": "Trust deed creation",
+              "icon": "📄",
+              "documentTypes": [
+                "Unit Trust Deed",
+                "Trust Deed Variation",
+                "Stamping Certificate",
+                "Execution Copy",
+                "Certified Copy"
+              ],
+              "retention": {
+                "AUS": {
+                  "years": 0,
+                  "authority": "Permanent - Unit trust deed must be kept indefinitely per ATO guidance",
+                  "notes": "Permanent retention - fundamental trust document"
+                }
+              },
+              "keywords": ["trust deed", "unit trust", "establishment", "stamp duty"]
+            },
+            "TrusteeAppointment": {
+              "name": "TrusteeAppointment",
+              "description": "Trustee appointments",
+              "documentTypes": [
+                "Trustee Declaration",
+                "Acceptance",
+                "Deed of Appointment",
+                "Retirement",
+                "Removal"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["trustee", "appointment", "removal", "declaration"]
+            },
+            "TrustVariation": {
+              "name": "TrustVariation",
+              "description": "Modifying trust deed",
+              "documentTypes": [
+                "Deed of Variation",
+                "Unanimous Resolution",
+                "Unitholder Consent",
+                "Court Order",
+                "ASIC Notification"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 205 ITAA 1936" }
+              },
+              "keywords": ["variation", "deed of variation", "unanimous", "unitholder consent"]
+            },
+            "TrustDissolution": {
+              "name": "TrustDissolution",
+              "description": "Termination",
+              "documentTypes": [
+                "Dissolution Resolution",
+                "Final Distribution",
+                "Capital Account",
+                "Tax Clearance",
+                "ASIC Deregistration"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC Act" }
+              },
+              "keywords": ["dissolution", "winding up", "final distribution", "deregistration"]
+            }
+          }
+        }
+      }
+    },
+    "UnitholderManagement": {
+      "name": "UnitholderManagement",
+      "description": "Managing unitholders",
+      "icon": "👥",
+      "services": {
+        "UnitholderRecords": {
+          "name": "UnitholderRecords",
+          "description": "Unitholder documentation",
+          "icon": "📋",
+          "activities": {
+            "UnitRegistry": {
+              "name": "UnitRegistry",
+              "description": "Unit register",
+              "icon": "📋",
+              "documentTypes": [
+                "Unit Register",
+                "Unitholder List",
+                "Unit Certificate",
+                "Transfer Form",
+                "Transmission"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" }
+              },
+              "keywords": ["unit register", "unitholder", "unit certificate", "transfer"]
+            },
+            "UnitIssuance": {
+              "name": "UnitIssuance",
+              "description": "Issuing units",
+              "documentTypes": [
+                "Application Form",
+                "Subscription Agreement",
+                "Unit Allotment",
+                "Issue Price Notice",
+                "Holding Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" }
+              },
+              "keywords": ["issuance", "subscription", "allotment", "application"]
+            },
+            "UnitTransfer": {
+              "name": "UnitTransfer",
+              "description": "Transferring units",
+              "icon": "🔄",
+              "documentTypes": [
+                "Transfer Form",
+                "Transfer Advice",
+                "Settlement Statement",
+                "Stamping Certificate",
+                "Updated Unit Certificate"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" }
+              },
+              "keywords": ["transfer", "settlement", "stamp duty", "unit certificate"]
+            },
+            "UnitRedemption": {
+              "name": "UnitRedemption",
+              "description": "Redeeming units",
+              "documentTypes": [
+                "Redemption Request",
+                "Redemption Calculation",
+                "Payment Advice",
+                "Tax Statement",
+                "Updated Unit Register"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" }
+              },
+              "keywords": ["redemption", "withdrawal", "payment", "tax statement"]
+            }
+          }
+        },
+        "UnitholderCommunication": {
+          "name": "UnitholderCommunication",
+          "description": "Unitholder communications",
+          "icon": "📢",
+          "activities": {
+            "UnitholderMeetings": {
+              "name": "UnitholderMeetings",
+              "description": "Unit holder meetings",
+              "documentTypes": [
+                "Meeting Notice",
+                "Meeting Agenda",
+                "Proxy Form",
+                "Meeting Minutes",
+                "Resolution Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" }
+              },
+              "keywords": ["meeting", "notice", "agenda", "proxy", "minutes"]
+            },
+            "UnitholderReports": {
+              "name": "UnitholderReports",
+              "description": "Regular reporting",
+              "documentTypes": [
+                "Annual Report",
+                "Financial Statement",
+                "Distribution Statement",
+                "Tax Statement",
+                "Performance Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" }
+              },
+              "keywords": ["annual report", "financial statement", "distribution", "tax statement"]
+            },
+            "UnitholderNotices": {
+              "name": "UnitholderNotices",
+              "description": "Notices to unitholders",
+              "documentTypes": [
+                "Distribution Notice",
+                "Rights Issue Notice",
+                "Variation Notice",
+                "Meeting Notice",
+                "Important Event Notice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" }
+              },
+              "keywords": ["notice", "distribution", "rights issue", "variation", "meeting"]
+            }
+          }
+        }
+      }
+    },
+    "InvestmentManagement": {
+      "name": "InvestmentManagement",
+      "description": "Unit trust investments",
+      "icon": "📈",
+      "services": {
+        "PortfolioManagement": {
+          "name": "PortfolioManagement",
+          "description": "Managing investments",
+          "icon": "💼",
+          "activities": {
+            "InvestmentStrategy": {
+              "name": "InvestmentStrategy",
+              "description": "Investment policy",
+              "documentTypes": [
+                "Investment Strategy",
+                "Investment Policy",
+                "Asset Allocation",
+                "Risk Profile",
+                "Strategy Review"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" }
+              },
+              "keywords": ["investment strategy", "asset allocation", "risk profile", "policy"]
+            },
+            "InvestmentTransactions": {
+              "name": "InvestmentTransactions",
+              "description": "Investment buy/sell decisions",
+              "documentTypes": [
+                "Trade Confirmation",
+                "Brokerage Statement",
+                "Transaction Record",
+                "Settlement Advice",
+                "Rationale Memorandum"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporate law" }
+              },
+              "keywords": ["trade", "brokerage", "transaction", "settlement"]
+            },
+            "AssetHoldings": {
+              "name": "AssetHoldings",
+              "description": "Assets held",
+              "icon": "🏛️",
+              "documentTypes": [
+                "Asset Register",
+                "Title Deed",
+                "Share Certificate",
+                "Valuation Report",
+                "Asset Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" }
+              },
+              "keywords": ["asset register", "title deed", "share certificate", "valuation"]
+            },
+            "PerformanceReporting": {
+              "name": "PerformanceReporting",
+              "description": "Performance tracking",
+              "documentTypes": [
+                "Performance Report",
+                "Return Calculation",
+                "Benchmark Comparison",
+                "Annual Review",
+                "Investment Dashboard"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" }
+              },
+              "keywords": ["performance", "return", "benchmark", "annual review"]
+            }
+          }
+        }
+      }
+    },
+    "TaxCompliance": {
+      "name": "TaxCompliance",
+      "description": "Tax obligations",
+      "icon": "📊",
+      "services": {
+        "IncomeTax": {
+          "name": "IncomeTax",
+          "description": "Income tax compliance",
+          "icon": "💰",
+          "activities": {
+            "TaxReturnPreparation": {
+              "name": "TaxReturnPreparation",
+              "description": "Annual tax filings",
+              "icon": "📋",
+              "documentTypes": [
+                "Trust Tax Return",
+                "Tax Return Attachment",
+                "TFN Statement",
+                "Deduction Schedule",
+                "Tax Agent Advice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO Section 254 of Tax Administration Act 1953", "fromDate": "fy_end" }
+              },
+              "keywords": ["tax return", "deduction", "tax agent", "fy_end"]
+            },
+            "TFNManagement": {
+              "name": "TFNManagement",
+              "description": "Tax file numbers",
+              "documentTypes": [
+                "TFN Application",
+                "TFN Notice",
+                "TFN Register",
+                "Withholding Rate Notice",
+                "TFN Update"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 202A ITAA 1936" }
+              },
+              "keywords": ["tfn", "tax file number", "withholding", "abn"]
+            },
+            "Withholdings": {
+              "name": "Withholdings",
+              "description": "Tax withholding",
+              "documentTypes": [
+                "Withholding Statement",
+                "Payment Record",
+                "Variation Notice",
+                "Withholding Rate Notice",
+                "Unitholder Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 109 ITAA 1936" }
+              },
+              "keywords": ["withholding", "payment", "rate notice", "unitholder"]
+            },
+            "GSTCompliance": {
+              "name": "GSTCompliance",
+              "description": "Goods and services tax",
+              "documentTypes": [
+                "GST Return",
+                "GST Payable",
+                "GST Credit",
+                "Transaction Record",
+                "Annual GST Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "GST Law" }
+              },
+              "keywords": ["gst", "goods and services tax", "gst payable", "gst credit"]
+            },
+            "CapitalGains": {
+              "name": "CapitalGains",
+              "description": "Capital gains tracking",
+              "documentTypes": [
+                "Capital Gains Calculation",
+                "Asset Disposal Record",
+                "CGT Discount Record",
+                "Indexation Adjustment",
+                "CGT Event"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO CGT rules" }
+              },
+              "keywords": ["capital gains", "cgt", "asset disposal", "indexation"]
+            },
+            "Deductions": {
+              "name": "Deductions",
+              "description": "Tax deductions",
+              "documentTypes": [
+                "Deduction Schedule",
+                "Expense Evidence",
+                "Tax Ruling",
+                "Private Expense Apportionment",
+                "Deduction Certificate"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 8-1 ITAA 1936" }
+              },
+              "keywords": ["deduction", "expense", "private expense", "apportionment"]
+            }
+          }
+        }
+      }
+    },
+    "DistributionManagement": {
+      "name": "DistributionManagement",
+      "description": "Managing distributions",
+      "icon": "💰",
+      "services": {
+        "DistributionProcessing": {
+          "name": "DistributionProcessing",
+          "description": "Processing distributions",
+          "icon": "📊",
+          "activities": {
+            "IncomeDistribution": {
+              "name": "IncomeDistribution",
+              "description": "Income distribution to unitholders",
+              "documentTypes": [
+                "Distribution Statement",
+                "Distribution Calculation",
+                "Unitholder Share",
+                "Tax Withholding Certificate",
+                "Payment Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 109 ITAA 1936" }
+              },
+              "keywords": ["distribution", "unitholder share", "withholding", "payment"]
+            },
+            "CapitalDistribution": {
+              "name": "CapitalDistribution",
+              "description": "Capital distributions",
+              "icon": "💵",
+              "documentTypes": [
+                "Capital Distribution",
+                "Return of Capital",
+                "Redemption Payment",
+                "Unitholder Acknowledgment",
+                "Tax Clearance"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 104 ITAA 1936" }
+              },
+              "keywords": ["capital distribution", "return of capital", "redemption", "tax clearance"]
+            },
+            "DistributionReinvestment": {
+              "name": "DistributionReinvestment",
+              "description": "Reinvestment of distributions",
+              "documentTypes": [
+                "Reinvestment Plan",
+                "Reinvestment Instruction",
+                "Unit Allocation",
+                "Reinvestment Statement",
+                "Updated Unit Holding"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" }
+              },
+              "keywords": ["reinvestment", "reinvestment plan", "unit allocation", "reinvestment statement"]
+            }
+          }
+        }
+      }
+    },
+    "LegalAffairs": {
+      "name": "LegalAffairs",
+      "description": "Legal matters",
+      "icon": "⚖️",
+      "services": {
+        "LegalAdvice": {
+          "name": "LegalAdvice",
+          "description": "Legal counsel",
+          "icon": "👨‍⚖️",
+          "activities": {
+            "LegalOpinions": {
+              "name": "LegalOpinions",
+              "description": "Formal legal advice",
+              "documentTypes": [
+                "Legal Opinion",
+                "Advice Memorandum",
+                "Tax Ruling",
+                "ATO Private Ruling",
+                "Precedent Analysis"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Legal professional privilege" }
+              },
+              "keywords": ["legal opinion", "advice", "tax ruling", "precedent"]
+            },
+            "TrustFormationAdvice": {
+              "name": "TrustFormationAdvice",
+              "description": "Setting up trust structure",
+              "documentTypes": [
+                "Structure Advice",
+                "Deed Draft Review",
+                "Asset Protection Strategy",
+                "Estate Plan Review",
+                "Setup Checklist"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Legal professional privilege" }
+              },
+              "keywords": ["structure", "deed drafting", "asset protection", "estate plan"]
+            },
+            "DisputeResolution": {
+              "name": "DisputeResolution",
+              "description": "Managing disputes",
+              "documentTypes": [
+                "Dispute Notice",
+                "Mediation Record",
+                "Settlement Agreement",
+                "Court Filing",
+                "Correspondence"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust dispute records" }
+              },
+              "keywords": ["dispute", "mediation", "settlement", "court"]
+            }
+          }
+        }
+      }
+    },
+    "Operations": {
+      "name": "Operations",
+      "description": "Trust operations",
+      "icon": "⚙️",
+      "services": {
+        "AssetManagement": {
+          "name": "AssetManagement",
+          "description": "Managing trust assets",
+          "icon": "🏛️",
+          "activities": {
+            "AssetMaintenance": {
+              "name": "AssetMaintenance",
+              "description": "Asset upkeep",
+              "documentTypes": [
+                "Maintenance Schedule",
+                "Maintenance Record",
+                "Repair Invoice",
+                "Replacement Cost",
+                "Condition Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" }
+              },
+              "keywords": ["maintenance", "repair", "condition", "replacement"]
+            },
+            "AssetValuation": {
+              "name": "AssetValuation",
+              "description": "Valuing assets",
+              "documentTypes": [
+                "Valuation Report",
+                "Appraisal",
+                "Market Analysis",
+                "Fair Value Assessment",
+                "Revaluation"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" }
+              },
+              "keywords": ["valuation", "appraisal", "fair value", "revaluation"]
+            }
+          }
+        },
+        "Compliance": {
+          "name": "Compliance",
+          "description": "Regulatory compliance",
+          "icon": "⚖️",
+          "activities": {
+            "RegulatoryCompliance": {
+              "name": "RegulatoryCompliance",
+              "description": "Meeting regulatory requirements",
+              "documentTypes": [
+                "Compliance Report",
+                "ASIC Statement",
+                "Regulatory Filing",
+                "Compliance Certificate",
+                "Audit Response"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC Act" }
+              },
+              "keywords": ["compliance", "asic", "regulatory", "audit"]
+            },
+            "RiskManagement": {
+              "name": "RiskManagement",
+              "description": "Operational risk oversight",
+              "documentTypes": [
+                "Risk Register",
+                "Risk Assessment",
+                "Control Framework",
+                "Incident Report",
+                "Mitigation Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" }
+              },
+              "keywords": ["risk register", "risk assessment", "incident", "mitigation"]
+            }
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "createdAt": "2026-01-22T00:00:00Z",
+    "updatedAt": "2026-01-22T00:00:00Z",
+    "createdBy": "system",
+    "source": "default-taxonomy"
+  }
+}

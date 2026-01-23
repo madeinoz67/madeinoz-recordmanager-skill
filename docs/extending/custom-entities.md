@@ -95,14 +95,16 @@ interface LegalPracticeConfig {
 
 ---
 
-## Step 2: Register with TaxonomyExpert
+## Step 2: Register with Taxonomy System
 
-### 2.1 Extend the TaxonomyExpert
+### 2.1 Extend the Domain Type
 
-Modify the `TaxonomyExpert.ts` file to include your custom entity:
+Modify the `TaxonomyExpert.ts` file to include your custom entity domain:
+
+**File:** `src/skills/RecordsManager/Lib/TaxonomyExpert.ts`
 
 ```typescript
-// Add to Domain type
+// Add your custom domain to the Domain type (line ~11)
 export type Domain =
   | 'household'
   | 'corporate'
@@ -111,91 +113,109 @@ export type Domain =
   | 'discretionary-trust'
   | 'family-trust'
   | 'legal-practice';  // Your custom entity
-
-// Add to EntityCreator EntityType
-export type EntityType =
-  // ... existing types ...
-  | 'legal-practice';
 ```
 
-### 2.2 Define Taxonomy Structure
+### 2.2 Define Taxonomy in YAML
 
-Add your entity's taxonomy to the country-specific definitions:
+Add your entity's taxonomy to `Config/taxonomies.yaml`:
 
-```typescript
-// In COUNTRY_TAXONOMIES
-Australia: {
-  country: 'Australia',
-  domains: {
-    // ... existing domains ...
-    'legal-practice': {
-      documentTypes: [
-        'Client File',
-        'Court Filing',
-        'Legal Agreement',
-        'Billing Invoice',
-        'Cost Estimate',
-        'Legal Opinion',
-        'Barrister Brief',
-        'Evidence Document',
-        'Court Order',
-        'Subpoena',
-        'Affidavit',
-        'Will',
-        'Power of Attorney',
-        'Trust Deed',
-        'Property Contract',
-        'Shareholders Agreement',
-      ],
-      tagCategories: {
-        'legal-practice': ['client-matter', 'court-filing', 'billing', 'cost-estimate'],
-        'practice-area': ['corporate', 'litigation', 'family-law', 'property', 'wills-estates'],
-        'document-type': ['pleading', 'contract', 'opinion', 'evidence', 'administrative'],
-        'status': ['active', 'closed', 'archived', 'draft'],
-        'priority': ['urgent', 'normal', 'routine'],
-        'confidentiality': ['confidential', 'restricted', 'public'],
-      },
-      retentionRules: {
-        'Client File': {
-          years: 7,
-          reason: 'Legal professional requirements - statute of limitations'
-        },
-        'Court Filing': {
-          years: 15,
-          reason: 'Court record requirements - permanent file reference'
-        },
-        'Legal Agreement': {
-          years: 15,
-          reason: 'Contract statute of limitations + potential future disputes'
-        },
-        'Billing Invoice': {
-          years: 7,
-          reason: 'Tax requirements and billing dispute period'
-        },
-        'Cost Estimate': {
-          years: 7,
-          reason: 'Reference for billing and cost tracking'
-        },
-        'Legal Opinion': {
-          years: 15,
-          reason: 'Legal precedent and future reference'
-        },
-        'Court Order': {
-          years: 15,
-          reason: 'Court record - permanent legal reference'
-        },
-        'Will': {
-          years: 15,
-          reason: 'Estate planning - permanent document'
-        },
-        'Power of Attorney': {
-          years: 10,
-          reason: 'Validity period and potential challenges'
-        },
-      },
-    },
-  },
-},
+**File:** `src/skills/RecordsManager/Config/taxonomies.yaml`
+
+```yaml
+Australia:
+  country: Australia
+  domains:
+    # ... existing domains (household, corporate, etc.) ...
+
+    # Your custom entity
+    legal-practice:
+      documentTypes:
+        - Client File
+        - Court Filing
+        - Legal Agreement
+        - Billing Invoice
+        - Cost Estimate
+        - Legal Opinion
+        - Barrister Brief
+        - Evidence Document
+        - Court Order
+        - Subpoena
+        - Affidavit
+        - Will
+        - Power of Attorney
+        - Trust Deed
+        - Property Contract
+        - Shareholders Agreement
+
+      tagCategories:
+        legal-practice:
+          - client-matter
+          - court-filing
+          - billing
+          - cost-estimate
+          - legal-opinion
+        practice-area:
+          - corporate
+          - litigation
+          - family-law
+          - property
+          - wills-estates
+        document-type:
+          - pleading
+          - contract
+          - opinion
+          - evidence
+          - administrative
+        status:
+          - active
+          - closed
+          - archived
+          - draft
+        priority:
+          - urgent
+          - normal
+          - routine
+        confidentiality:
+          - confidential
+          - restricted
+          - public
+
+      retentionRules:
+        Client File:
+          years: 7
+          reason: "Legal professional requirements - statute of limitations"
+        Court Filing:
+          years: 15
+          reason: "Court record requirements - permanent file reference"
+        Legal Agreement:
+          years: 15
+          reason: "Contract statute of limitations + potential future disputes"
+        Billing Invoice:
+          years: 7
+          reason: "Tax requirements and billing dispute period"
+        Cost Estimate:
+          years: 7
+          reason: "Reference for billing and cost tracking"
+        Legal Opinion:
+          years: 15
+          reason: "Legal precedent and future reference"
+        Court Order:
+          years: 15
+          reason: "Court record - permanent legal reference"
+        Will:
+          years: 15
+          reason: "Estate planning - permanent document"
+        Power of Attorney:
+          years: 10
+          reason: "Validity period and potential challenges"
+```
+
+### 2.3 Install the Taxonomy
+
+After adding to YAML, install it to paperless-ngx:
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts install --country Australia
 ```
 
 ---
@@ -438,56 +458,79 @@ export interface MedicalPracticeConfig {
 
 ### Taxonomy Structure
 
-```typescript
-' medical-practice': {
-  documentTypes: [
-    'Patient Record',
-    'Medical Certificate',
-    'Pathology Report',
-    'Imaging Report',
-    'Referral Letter',
-    'Prescription',
-    'Bulk Bill',
-    'Private Invoice',
-    'Medicare Claim',
-    'Health Fund Claim',
-    'Consent Form',
-    'Treatment Plan',
-    'Discharge Summary',
-    'Specialist Report',
-    'Mental Health Plan',
-  ],
-  tagCategories: {
-    'medical-practice': ['patient-record', 'billing', 'pathology', 'imaging'],
-    'document-type': ['clinical', 'administrative', 'billing', 'compliance'],
-    'status': ['active', 'archived', 'review', 'completed'],
-    'priority': ['urgent', 'routine', 'follow-up'],
-    'confidentiality': ['confidential', 'restricted', 'public'],
-    'provider': ['doctor', 'specialist', 'nurse', 'admin'],
-  },
-  retentionRules: {
-    'Patient Record': {
-      years: 7,
-      reason: 'Privacy Act requirements - patient access rights'
-    },
-    'Pathology Report': {
-      years: 7,
-      reason: 'Medical necessity and potential future treatment'
-    },
-    'Consent Form': {
-      years: 10,
-      reason: 'Legal requirements - evidence of informed consent'
-    },
-    'Prescription': {
-      years: 3,
-      reason: 'Medical necessity and potential verification'
-    },
-    'Bulk Bill': {
-      years: 7,
-      reason: 'Medicare requirements and billing verification'
-    },
-  },
-},
+Add this to `Config/taxonomies.yaml` under Australia:
+
+```yaml
+medical-practice:
+  documentTypes:
+    - Patient Record
+    - Medical Certificate
+    - Pathology Report
+    - Imaging Report
+    - Referral Letter
+    - Prescription
+    - Bulk Bill
+    - Private Invoice
+    - Medicare Claim
+    - Health Fund Claim
+    - Consent Form
+    - Treatment Plan
+    - Discharge Summary
+    - Specialist Report
+    - Mental Health Plan
+
+  tagCategories:
+    medical-practice:
+      - patient-record
+      - billing
+      - pathology
+      - imaging
+    document-type:
+      - clinical
+      - administrative
+      - billing
+      - compliance
+    status:
+      - active
+      - archived
+      - review
+      - completed
+    priority:
+      - urgent
+      - routine
+      - follow-up
+    confidentiality:
+      - confidential
+      - restricted
+      - public
+    provider:
+      - doctor
+      - specialist
+      - nurse
+      - admin
+
+  retentionRules:
+    Patient Record:
+      years: 7
+      reason: "Privacy Act requirements - patient access rights"
+    Pathology Report:
+      years: 7
+      reason: "Medical necessity and potential future treatment"
+    Consent Form:
+      years: 10
+      reason: "Legal requirements - evidence of informed consent"
+    Prescription:
+      years: 3
+      reason: "Medical necessity and potential verification"
+    Bulk Bill:
+      years: 7
+      reason: "Medicare requirements and billing verification"
+```
+
+Then install the taxonomies:
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts install --country Australia
 ```
 
 ---

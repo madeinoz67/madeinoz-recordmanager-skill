@@ -1,339 +1,424 @@
-# Taxonomy Data Structure
+# Hierarchical Taxonomy Data Structure
 
-This reference describes the taxonomy data structures used by the Records Manager for document classification, tagging, and retention rules.
+This reference describes the hierarchical taxonomy data structures used by the Records Manager for document classification, tagging, and retention rules.
 
 ## Overview
 
-The taxonomy system provides country-specific record keeping guidelines with domain-specific document types, tag categories, and retention rules.
+The Records Manager uses a **4-level hierarchical taxonomy** system that provides structured, navigable classification for documents. This hierarchy mirrors natural organizational thinking and enables precise document classification while maintaining discoverability.
 
-## Type Definitions
+**Configuration Location:** Taxonomies are stored as JSON files in `src/skills/RECORDSMANAGER/Config/taxonomies/hierarchical/{domain}.json` and loaded by the TaxonomyExpert.
+
+**For extending taxonomies:** See [Adding Hierarchical Taxonomies](../../specs/003-default-taxonomies/ADDING-TAXONOMIES.md).
+
+## Hierarchical Structure
+
+```
+Function → Service → Activity → DocumentType
+```
+
+- **Function**: Top-level capability area (e.g., "HealthManagement", "FinancialManagement")
+- **Service**: Specific offering within a function (e.g., "MedicalCare", "DentalCare")
+- **Activity**: Discrete operational task (e.g., "Consultations", "Prescriptions")
+- **DocumentType**: Specific document types for the activity (e.g., "Medical Receipt", "Prescription")
+
+**Example:**
+```
+HealthManagement/MedicalCare/Consultations/MedicalReceipt
+```
+
+## TypeScript Type Definitions
+
+All types are defined in `src/lib/types/HierarchicalTaxonomy.ts`.
 
 ### Domain
 
-A domain represents a record keeping context (household, corporate, trusts, projects).
+Domains supported by the system:
 
 ```typescript
 type Domain =
-  | 'household'
-  | 'corporate'
-  | 'projects'
-  | 'unit-trust'
-  | 'discretionary-trust'
-  | 'family-trust';
+  | 'household'      // Personal and family records
+  | 'corporate'      // Business records
+  | 'unit-trust'     // Unit trust structures
+  | 'discretionary-trust'  // Discretionary family trusts
+  | 'family-trust'   // Family trusts with FTE
+  | 'hybrid-trust'   // Hybrid trust structures
+  | 'project'        // Project-based records
+  | 'person';        // Individual family member records
 ```
 
-### Taxonomy Suggestion
+### Country
 
-Result from analyzing a document for metadata suggestions.
+Supported countries with distinct retention rules (**ISO 3166-1 alpha-3**):
 
 ```typescript
-interface TaxonomySuggestion {
-  tags: string[];              // Suggested tag names
-  documentType?: string;       // Matching document type
-  retentionYears?: number;     // Suggested retention period
-  retentionReason?: string;    // Legal/regulatory reason
-  notes?: string;              // Additional notes/warnings
+type Country = 'AUS' | 'USA' | 'GBR';
+```
+
+- **AUS**: Australia
+- **USA**: United States
+- **GBR**: United Kingdom
+
+### TaxonomyMode
+
+Operation mode during the 12-month transition period:
+
+```typescript
+type TaxonomyMode = 'flat' | 'hierarchical' | 'hybrid';
+```
+
+- **flat**: Legacy flat document type system
+- **hierarchical**: New 4-level FSA structure
+- **hybrid**: Both systems active (transition period)
+
+### RetentionFromDate
+
+Date from which retention period calculation starts:
+
+```typescript
+type RetentionFromDate = 'creation' | 'fy_end' | 'fte_date' | 'distribution';
+```
+
+- **creation**: From document creation date
+- **fy_end**: From end of financial year
+- **fte_date**: From Family Trust Election date (trust-specific)
+- **distribution**: From distribution date (trust-specific)
+
+## Core Hierarchical Entities
+
+### HierarchicalTaxonomy
+
+Root entity representing the complete taxonomy for a domain:
+
+```typescript
+interface HierarchicalTaxonomy {
+  entityType: Domain;               // Domain (household, corporate, etc.)
+  country: Country;                 // Country code (AUS, USA, GBR)
+  countryName: string;              // Human-readable country name
+  version: string;                  // Semantic version (e.g., "1.0.0")
+  functions: Record<string, TaxonomyFunction>;  // Map of function definitions
+  metadata: TaxonomyMetadata;       // Creation and update metadata
 }
 ```
 
-### Domain Taxonomy
-
-Complete taxonomy definition for a domain.
-
-```typescript
-interface DomainTaxonomy {
-  documentTypes: string[];                    // Available document types
-  tagCategories: {                            // Tag category mappings
-    [category: string]: string[];             // category -> tags[]
-  };
-  retentionRules: {                           // Document type retention
-    [documentType: string]: {
-      years: number;                          // Retention period
-      reason: string;                         // Legal basis
-    };
-  };
+**Example:**
+```json
+{
+  "entityType": "household",
+  "country": "AUS",
+  "countryName": "Australia",
+  "version": "1.0.0",
+  "functions": { ... },
+  "metadata": { ... }
 }
 ```
 
-## Entity Types
+### TaxonomyFunction
 
-The Records Manager supports multiple entity types, each with specialized taxonomies.
+Top-level category representing a major area of activity:
 
-| Entity Type | Description | Use Case |
-|-------------|-------------|----------|
-| `household` | Personal and family records | Personal finance, medical, identity documents |
-| `corporate` | Business records | Invoices, payroll, contracts, compliance |
-| `unit-trust` | Unit trust structures | Unit registries, distributions, capital accounts |
-| `discretionary-trust` | Discretionary family trusts | Distribution minutes, beneficiary declarations |
-| `family-trust` | Family trusts with FTE | Family Trust Election, streaming resolutions |
-| `project` | Project-based records | Project documentation, deliverables |
-| `person` | Individual family members | Personal records, identity documents |
+```typescript
+interface TaxonomyFunction {
+  name: string;                     // Function name (PascalCase, unique)
+  description: string;              // Human-readable description
+  services: Record<string, TaxonomyService>;  // Map of service definitions
+  icon?: string;                    // Optional icon (emoji or identifier)
+}
+```
 
-## Tag Categories
+**Example:**
+```json
+{
+  "name": "HealthManagement",
+  "description": "Health and medical care documentation",
+  "icon": "🏥",
+  "services": { ... }
+}
+```
 
-Tags are organized into categories for consistent classification. Below are the standard categories by domain.
+### TaxonomyService
 
-### Household Tag Categories
+Mid-level category representing a service area:
 
-| Category | Tags |
-|----------|------|
-| `financial` | tax, income, expense, investment, superannuation, dividend, loan, mortgage |
-| `medical` | doctor, hospital, pharmacy, insurance, receipt, referral, test-results, prescription, health-record |
-| `insurance` | home, contents, vehicle, health, life, claim, pet-insurance |
-| `legal` | contract, agreement, will, power-of-attorney, lease |
-| `education` | transcript, certificate, qualification |
-| `household` | utility, maintenance, warranty, manual, rate-notice |
-| `vehicle` | car, registration, lease, insurance |
-| `pet` | vaccination, microchip, vet, pet-registration, desexing, breed, adoption |
-| `identity` | birth-certificate, passport, license, medicare, citizenship, marriage, divorce, death, name-change, wwcc |
+```typescript
+interface TaxonomyService {
+  name: string;                     // Service name (PascalCase, unique within function)
+  description: string;              // Human-readable description
+  activities: Record<string, TaxonomyActivity>;  // Map of activity definitions
+  icon?: string;                    // Optional icon
+}
+```
 
-### Corporate Tag Categories
+**Example:**
+```json
+{
+  "name": "MedicalCare",
+  "description": "Primary healthcare and specialist consultations",
+  "icon": "🩺",
+  "activities": { ... }
+}
+```
 
-| Category | Tags |
-|----------|------|
-| `financial` | accounts-payable, accounts-receivable, expense, revenue, purchase-order, credit-note, debit-note |
-| `legal` | contract, agreement, insurance, license, lease, loan |
-| `hr` | employee, payroll, leave, performance, pay-slip, timesheet, employee-contract, termination, warning |
-| `compliance` | audit, report, certificate, permit |
-| `corporate` | board, shareholder, meeting, resolution |
-| `reporting` | balance-sheet, cash-flow, income-statement, equity, statement-of-changes |
-| `vehicle` | car, registration, lease |
+### TaxonomyActivity
 
-### Trust Tag Categories (All Trust Types)
+Leaf-level category with document types and retention rules:
 
-| Category | Tags |
-|----------|------|
-| `financial` | income, expense, capital-gain, loss, gst, distribution |
-| `compliance` | tax, superannuation, gst, bas, actuarial |
-| `governance` | trustee, beneficiary, resolution, minutes, trust-deed, correspondence |
+```typescript
+interface TaxonomyActivity {
+  name: string;                     // Activity name (PascalCase, unique within service)
+  description: string;              // Human-readable description
+  documentTypes: string[];          // Document types for this activity
+  retention: Record<Country, RetentionRule>;  // Country-specific retention rules
+  icon?: string;                    // Optional icon
+  keywords?: string[];              // Search keywords for autocomplete
+}
+```
 
-### Unit Trust Specific Tags
+**Example:**
+```json
+{
+  "name": "DoctorVisits",
+  "description": "Medical appointments and consultation records",
+  "icon": "👨‍⚕️",
+  "documentTypes": [
+    "Doctor's Note",
+    "Consultation Summary",
+    "Referral Letter"
+  ],
+  "retention": {
+    "AUS": {
+      "years": 7,
+      "authority": "Privacy Act 1988",
+      "notes": "Medical records retention requirement"
+    }
+  },
+  "keywords": ["doctor", "physician", "gp", "medical", "consultation"]
+}
+```
 
-| Category | Tags |
-|----------|------|
-| `unit-trust` | unit-registry, distribution, unitholder, unit-transfer, capital-account, unit-statement |
+### RetentionRule
 
-### Discretionary Trust Specific Tags
+Country-specific retention requirement:
 
-| Category | Tags |
-|----------|------|
-| `discretionary-trust` | trustee-resolution, beneficiary, distribution, pre-eofy, streaming |
+```typescript
+interface RetentionRule {
+  years: number;                    // Retention period (0 = permanent)
+  authority: string;                // Legal authority or regulation
+  notes?: string;                   // Additional context
+  fromDate?: RetentionFromDate;     // Start date for retention period
+}
+```
 
-### Family Trust Specific Tags
+**Example:**
+```json
+{
+  "years": 7,
+  "authority": "ATO Section 254 of Tax Administration Act 1953",
+  "notes": "Tax deduction substantiation requirement",
+  "fromDate": "fy_end"
+}
+```
 
-| Category | Tags |
-|----------|------|
-| `family-trust` | fte, family-trust-election, beneficiary, trustee-resolution, interpositionary |
+### TaxonomyMetadata
 
-## Document Types
+Metadata about taxonomy creation and updates:
 
-### Household Document Types (Australia)
+```typescript
+interface TaxonomyMetadata {
+  createdAt: string;                // ISO 8601 timestamp
+  updatedAt: string;                // ISO 8601 timestamp
+  createdBy: string;                // Creator identifier
+  source: TaxonomySource;           // Data source
+  checksum?: string;                // SHA-256 content hash
+}
+```
 
-**Financial:** Tax Return, Tax Assessment, Bank Statement, Investment Statement, Superannuation Statement, Dividend Statement, Loan Document, Mortgage Statement, Rate Notice
+**TaxonomySource:**
+```typescript
+type TaxonomySource = 'default-taxonomy' | 'custom' | 'imported';
+```
 
-**Medical:** Medical Receipt, Health Record, Referral Letter, Test Results, Prescription
+## Navigation and Path Entities
 
-**Insurance:** Insurance Policy, Insurance Claim
+### TaxonomyPath
 
-**Legal:** Contract, Legal Document, Lease Agreement, Car Lease
+Complete navigation path through the hierarchy:
 
-**Identity:** Birth Certificate, Passport, Driver License, Medicare Card, Citizenship Certificate, Marriage Certificate, Divorce Decree, Death Certificate, Change of Name Certificate, Working With Children Check
+```typescript
+interface TaxonomyPath {
+  function: string;                 // Function name
+  service: string;                  // Service name
+  activity: string;                 // Activity name
+  fullPath: string;                 // Complete slash-delimited path
+}
+```
 
-**Household:** Utility Bill, Warranty Document, Education Record
-
-**Vehicle:** Car Registration
-
-**Pet:** Pet Vaccination Record, Pet Medical Record, Pet Insurance Policy, Pet Microchip Registration, Pet Registration, Pet Adoption Record, Breeder Certificate
-
-### Corporate Document Types (Australia)
-
-**Financial:** Invoice, Receipt, Purchase Order, Credit Note, Debit Note
-
-**Reporting:** Financial Statement, Balance Sheet, Cash Flow Statement, Income Statement, Statement of Changes, Equity Statement
-
-**HR:** Employee Record, Payroll Record, Pay Slip, Timesheet, Employee Contract, Termination Letter, Warning Letter
-
-**Legal:** Contract, Lease Agreement, Loan Agreement
-
-**Compliance:** Tax Document, Compliance Report, License, Permit, Insurance Certificate
-
-**Corporate:** Board Resolution, Shareholder Record
-
-**Vehicle:** Car Registration
-
-### Trust Document Types
-
-**Unit Trust:** Trust Deed, Unit Registry, Trustee Appointment, ABN Registration, TFN Registration, Annual Financial Statements, Unit Distribution Statement, Tax Return, Unit Transfer Form, Beneficiary Statement, Trustee Resolution, Trustee Minutes, GST Registration, Business Activity Statement, Capital Account Statement, Variation to Trust Deed, Unit Statement, Unitholder Statement, Trust Correspondence, Actuarial Certificate
-
-**Discretionary Trust:** Trust Deed, Trustee Resolution, Trustee Minutes, Beneficiary Declaration, Distribution Minutes, Annual Financial Statements, Tax Return, Beneficiary Consent, Trustee Appointment, Trustee Resignation, Variation to Trust Deed, Appointor Appointment, Appointor Resignation, Guardian Appointment, Income Distribution Statement, Capital Gains Tax Election, Streaming Resolution, Trust Correspondence, Actuarial Certificate
-
-**Family Trust:** Trust Deed, Family Trust Election, Trustee Resolution, Trustee Minutes, Beneficiary Declaration, Distribution Minutes, Annual Financial Statements, Tax Return, Beneficiary Consent, Trustee Appointment, Trustee Resignation, Variation to Trust Deed, Appointor Appointment, Appointor Resignation, Interpositionary Trust Election, Loss Trust Election, Revocation of Family Trust Election, Income Distribution Statement, Trust Correspondence, Actuarial Certificate
-
-## Retention Rules
-
-### Retention Rule Format
-
+**Example:**
 ```typescript
 {
-  years: number;      // 0 = keep forever/until expired
-  reason: string;     // Legal or regulatory basis
+  function: "HealthManagement",
+  service: "MedicalCare",
+  activity: "DoctorVisits",
+  fullPath: "HealthManagement/MedicalCare/DoctorVisits"
 }
 ```
 
-### Key Retention Periods (Australia)
+### NavigationBreadcrumb
 
-| Document Type | Years | Reason |
-|---------------|-------|--------|
-| Tax Returns | 7 | ATO Section 254 of Tax Administration Act 1953 |
-| Tax Assessments | 7 | ATO requirement |
-| Bank Statements | 5 | ATO evidence for income and deductions |
-| Investment Statements | 7 | ATO capital gains tax calculation |
-| Medical Receipts | 7 | ATO tax deduction substantiation |
-| Insurance Policies | 10 | Until expired + claims period |
-| Contracts | 10 | Statute of limitations |
-| Legal Documents | 15 | Indefinitely for wills, powers of attorney |
-| Warranties | 0 | Keep until warranty expires |
-| Birth Certificate | 15 | Permanent personal record |
-| Passport | 10 | Keep until expired + travel history |
-| Working With Children Check | 5 | Keep until renewed |
+Breadcrumb for CLI display during navigation:
 
-### Family Trust Election (FTE) - Critical Retention
+```typescript
+interface NavigationBreadcrumb {
+  function: string | null;          // Current function (null if at root)
+  service: string | null;           // Current service (null if function not selected)
+  activity: string | null;          // Current activity (null if service not selected)
+  display: string;                  // Formatted breadcrumb string
+}
+```
 
-**Family Trust Election documents require 5+ year retention from FTE date, NOT EOFY.**
+**Example:**
+```typescript
+{
+  function: "HealthManagement",
+  service: "MedicalCare",
+  activity: null,
+  display: "Health Management → Medical Care → [Select Activity]"
+}
+```
 
-| Document Type | Years | Reason |
-|---------------|-------|--------|
-| Family Trust Election | 5 | ATO Section 272-80 ITAA 1936 - 5 years from FTE date |
-| Interpositionary Trust Election | 5 | ATO Section 272-80 ITAA 1936 |
-| Loss Trust Election | 5 | ATO Section 272-80 ITAA 1936 |
-| Revocation of Family Trust Election | 5 | ATO Section 272-80 ITAA 1936 |
+### AutocompleteSuggestion
 
-### Trust Document Retention
+Autocomplete suggestion with ranking:
 
-| Document Type | Years | Reason |
-|---------------|-------|--------|
-| Trust Deed | 15 | Permanent trust record - foundational document |
-| Variation to Trust Deed | 15 | Permanent trust amendment record |
-| Trustee Appointment | 15 | Permanent governance record |
-| Appointor Appointment | 15 | Permanent governance - appointor controls trust |
-| Trustee Resolutions | 7 | ATO distribution substantiation |
-| Annual Financial Statements | 7 | ATO income tax substantiation |
-| Unit/Income Distribution Statements | 7 | ATO CGT calculation |
+```typescript
+interface AutocompleteSuggestion {
+  value: string;                    // Full path or component name
+  display: string;                  // Display text for user
+  score: number;                    // Match quality (0-1, higher is better)
+  matchType: 'exact' | 'prefix' | 'abbreviated' | 'fuzzy';  // Match type
+}
+```
 
-## Validation Requirements
+**Example:**
+```typescript
+{
+  value: "HealthManagement/MedicalCare/DoctorVisits",
+  display: "Health Management / Medical Care / Doctor Visits",
+  score: 0.95,
+  matchType: "prefix"
+}
+```
 
-### Entity Validation
+## File Locations
 
-Each entity type has specific validation requirements:
+| Domain | File Path |
+|--------|-----------|
+| household | `src/skills/RECORDSMANAGER/Config/taxonomies/hierarchical/household.json` |
+| corporate | `src/skills/RECORDSMANAGER/Config/taxonomies/hierarchical/corporate.json` |
+| unit-trust | `src/skills/RECORDSMANAGER/Config/taxonomies/hierarchical/unit-trust.json` |
+| discretionary-trust | `src/skills/RECORDSMANAGER/Config/taxonomies/hierarchical/discretionary-trust.json` |
+| family-trust | `src/skills/RECORDSMANAGER/Config/taxonomies/hierarchical/family-trust.json` |
+| hybrid-trust | `src/skills/RECORDSMANAGER/Config/taxonomies/hierarchical/hybrid-trust.json` |
+| project | `src/skills/RECORDSMANAGER/Config/taxonomies/hierarchical/project.json` |
+| person | `src/skills/RECORDSMANAGER/Config/taxonomies/hierarchical/person.json` |
 
-#### Household
+## API Usage
 
-*   `householdName` (required, 2+ characters)
+### Loading Taxonomy
 
-*   `startYear` (optional, valid year)
+```typescript
+import { TaxonomyExpert } from './src/skills/RECORDSMANAGER/Lib/TaxonomyExpert';
 
-#### Corporate
+// Create expert for household entity in Australia using hierarchical mode
+const expert = new TaxonomyExpert('AUS', 'household', 'hierarchical');
 
-*   `businessName` (required, 2+ characters)
+// Get all functions
+const functions = expert.getFunctions('household');
+// Returns: TaxonomyFunction[]
 
-*   `abn` (optional, 11 digits if provided)
+// Get services for a function
+const services = expert.getServices('household', 'HealthManagement');
+// Returns: TaxonomyService[]
 
-*   `businessType` (required: sole-trader, company, partnership)
+// Get activities for a service
+const activities = expert.getActivities('household', 'HealthManagement', 'MedicalCare');
+// Returns: TaxonomyActivity[]
 
-#### Unit Trust
+// Get document types for an activity
+const docTypes = expert.getDocumentTypesForActivity(
+  'household',
+  'HealthManagement',
+  'MedicalCare',
+  'DoctorVisits'
+);
+// Returns: string[]
 
-*   `trustName` (required, 2+ characters)
+// Get retention rules for an activity
+const retention = expert.getRetentionForActivity(
+  'household',
+  'HealthManagement',
+  'MedicalCare',
+  'DoctorVisits'
+);
+// Returns: Record<Country, RetentionRule>
+```
 
-*   `trusteeName` (required, 2+ characters)
+### Path Operations
 
-*   `abn` (required, 11 digits)
+```typescript
+// Validate a path
+const validation = expert.validatePath('household', 'HealthManagement/MedicalCare/DoctorVisits');
+// Returns: { valid: boolean; errors?: string[] }
 
-*   `tfn` (optional, 8-9 digits)
+// Parse a path
+const parsed = expert.parsePath('household', 'HealthManagement/MedicalCare/DoctorVisits');
+// Returns: TaxonomyPath
 
-*   `unitCount` (optional, positive number)
+// Autocomplete partial path
+const suggestions = expert.autocomplete('household', 'Health/Med', { maxResults: 10 });
+// Returns: AutocompleteSuggestion[]
 
-#### Discretionary Trust
+// Generate hierarchical tags
+const tags = expert.generateHierarchicalTags(
+  'household',
+  'HealthManagement',
+  'MedicalCare',
+  'DoctorVisits'
+);
+// Returns: string[] (e.g., ['HealthManagement', 'MedicalCare', 'DoctorVisits', ...])
 
-*   `trustName` (required, 2+ characters)
+// Generate storage path
+const storagePath = expert.generateStoragePath(
+  'household',
+  'HealthManagement',
+  'MedicalCare',
+  'DoctorVisits'
+);
+// Returns: string (e.g., '/Household/Health Management/Medical Care/Doctor Visits')
+```
 
-*   `trusteeName` (required, 2+ characters)
+## Performance Characteristics
 
-*   `abn` (required, 11 digits)
+Based on validation testing (Phase 11, Task T147):
 
-*   `tfn` (optional, 8-9 digits)
+| Operation | Average Time | Notes |
+|-----------|--------------|-------|
+| Initial taxonomy load | 0.91ms | Cold start, all 8 domains |
+| getFunctions | <0.001ms | Cached, sub-millisecond |
+| getServices | <0.001ms | Cached, sub-millisecond |
+| getActivities | <0.001ms | Cached, sub-millisecond |
+| validatePath | 0.001ms | Path validation |
+| parsePath | 0.001ms | Path parsing |
+| autocomplete | 0.02-0.21ms | Depends on input length |
+| searchByKeyword | 0.31ms | Keyword-based search |
+| generateHierarchicalTags | 0.002ms | Tag generation |
+| generateStoragePath | 0.002ms | Path generation |
+| Full traversal (8 domains) | 6.87ms | Complete hierarchy navigation |
 
-*   `beneficiaries` (optional, comma-separated list)
+**Memory:** No memory leaks detected. Cache stable at 0MB growth on 1,000 repeated loads (Phase 11, Task T148).
 
-#### Family Trust
+## See Also
 
-*   `trustName` (required, 2+ characters)
-
-*   `trusteeName` (required, 2+ characters)
-
-*   `abn` (required, 11 digits)
-
-*   `tfn` (optional, 8-9 digits)
-
-*   `fteDate` (required, valid date) - **CRITICAL for retention**
-
-#### Project
-
-*   `projectName` (required, 2+ characters)
-
-*   `projectType` (required: software, construction, research, creative, other)
-
-*   `startDate` (optional, valid date)
-
-#### Person
-
-*   `fullName` (required, 2+ characters)
-
-*   `relationship` (required: self, spouse, child, parent, sibling, other)
-
-*   `dateOfBirth` (optional, valid date)
-
-*   `email` (optional, valid email format)
-
-*   `phone` (optional)
-
-### Storage Path Mapping
-
-Each entity type has a default storage path:
-
-| Entity Type | Storage Path |
-|-------------|--------------|
-| `household` | `/Household/{name}` |
-| `corporate` | `/Corporate/{name}` |
-| `unit-trust` | `/Trusts/Unit Trusts/{name}` |
-| `discretionary-trust` | `/Trusts/Discretionary Trusts/{name}` |
-| `family-trust` | `/Trusts/Family Trusts/{name}` |
-| `project` | `/Projects/{name}` |
-| `person` | `/Household/People/{name}` |
-
-### Tag Color Mapping
-
-Each entity type has an associated tag color:
-
-| Entity Type | Color |
-|-------------|-------|
-| `household` | #4a90d9 (blue) |
-| `corporate` | #50c878 (green) |
-| `unit-trust` | #ff6b6b (red) |
-| `discretionary-trust` | #ffd93d (yellow) |
-| `family-trust` | #6bcb77 (light green) |
-| `project` | #9b59b6 (purple) |
-| `person` | #e056fd (magenta) |
-
-## Country Support
-
-| Country | Household | Corporate | Trusts |
-|---------|-----------|-----------|--------|
-| Australia | Full | Full | Full (all types) |
-| United States | Full | Planned | Planned |
-| United Kingdom | Full | Planned | Planned |
-
-## Related Documentation
-
-*   [CLI Command Reference](cli.md) - Using taxonomies from the CLI
-*   [Entity Management](../user-guide/entity-management.md) - Creating and managing entities
-*   [Trust Documents](../user-guide/trust-documents.md) - Trust-specific document handling
+- [Hierarchical Taxonomies User Guide](../user-guide/hierarchical-taxonomies.md)
+- [Adding Hierarchical Taxonomies](../../specs/003-default-taxonomies/ADDING-TAXONOMIES.md)
+- [Developer Quickstart](../../specs/003-default-taxonomies/quickstart.md)
+- [Type Contracts](../../specs/003-default-taxonomies/contracts/taxonomy-api.ts)

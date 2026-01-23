@@ -1,0 +1,1157 @@
+{
+  "entityType": "household",
+  "country": "AUS",
+  "countryName": "Australia",
+  "version": "1.0.0",
+  "functions": {
+    "HealthManagement": {
+      "name": "HealthManagement",
+      "description": "Health and medical care documentation for household members",
+      "icon": "🏥",
+      "services": {
+        "MedicalCare": {
+          "name": "MedicalCare",
+          "description": "Primary healthcare and specialist consultations",
+          "icon": "🩺",
+          "activities": {
+            "DoctorVisits": {
+              "name": "DoctorVisits",
+              "description": "Medical appointments and consultation records",
+              "icon": "👨‍⚕️",
+              "documentTypes": [
+                "Doctor's Note",
+                "Consultation Summary",
+                "Referral Letter",
+                "Test Order",
+                "Specialist Report"
+              ],
+              "retention": {
+                "AUS": {
+                  "years": 7,
+                  "authority": "Privacy Act 1988",
+                  "notes": "Medical records retention requirement"
+                },
+                "USA": {
+                  "years": 6,
+                  "authority": "HIPAA",
+                  "notes": "Minimum retention for medical records"
+                },
+                "GBR": {
+                  "years": 8,
+                  "authority": "NHS",
+                  "notes": "UK medical records guidance"
+                }
+              },
+              "keywords": ["doctor", "physician", "gp", "medical", "consultation"]
+            },
+            "TestResults": {
+              "name": "TestResults",
+              "description": "Laboratory test results and diagnostic reports",
+              "icon": "🔬",
+              "documentTypes": [
+                "Blood Test Results",
+                "X-Ray Report",
+                "MRI Results",
+                "CT Scan Results",
+                "Pathology Report",
+                "Ultrasound Results"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Privacy Act 1988" },
+                "USA": { "years": 6, "authority": "HIPAA" },
+                "GBR": { "years": 8, "authority": "NHS" }
+              },
+              "keywords": ["lab", "test", "xray", "mri", "diagnostic", "pathology"]
+            },
+            "Prescriptions": {
+              "name": "Prescriptions",
+              "description": "Prescription medications and management",
+              "icon": "💊",
+              "documentTypes": [
+                "Prescription",
+                "Pharmacy Receipt",
+                "Medication List",
+                "Dosage Instructions"
+              ],
+              "retention": {
+                "AUS": {
+                  "years": 5,
+                  "authority": "ATO",
+                  "notes": "Medical expense tax deduction substantiation"
+                },
+                "USA": { "years": 6, "authority": "HIPAA" },
+                "GBR": { "years": 8, "authority": "NHS" }
+              },
+              "keywords": ["prescription", "medication", "pharmacy", "medicine"]
+            }
+          }
+        },
+        "DentalCare": {
+          "name": "DentalCare",
+          "description": "Dental health services",
+          "icon": "🦷",
+          "activities": {
+            "DentalCheckups": {
+              "name": "DentalCheckups",
+              "description": "Routine dental examinations and cleanings",
+              "documentTypes": [
+                "Dental Receipt",
+                "Treatment Plan",
+                "X-Ray Results",
+                "Dental Certificate"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 6, "authority": "HIPAA" },
+                "GBR": { "years": 8, "authority": "NHS" }
+              },
+              "keywords": ["dentist", "dental", "checkup", "cleaning"]
+            },
+            "Orthodontics": {
+              "name": "Orthodontics",
+              "description": "Orthodontic treatment records",
+              "documentTypes": [
+                "Orthodontic Treatment Plan",
+                "Progress Report",
+                "Payment Plan",
+                "X-Ray Results"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO", "notes": "Extended treatment period" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 8, "authority": "HMRC" }
+              },
+              "keywords": ["orthodontics", "braces", "retainer", "alignment"]
+            }
+          }
+        },
+        "VisionCare": {
+          "name": "VisionCare",
+          "description": "Eye care and vision correction",
+          "icon": "👓",
+          "activities": {
+            "EyeExaminations": {
+              "name": "EyeExaminations",
+              "description": "Eye tests and vision assessments",
+              "documentTypes": [
+                "Eye Test Report",
+                "Prescription",
+                "Optometrist Receipt",
+                "Vision Certificate"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["eye", "vision", "optometrist", "test"]
+            },
+            "GlassesContacts": {
+              "name": "GlassesContacts",
+              "description": "Prescription glasses and contact lenses",
+              "documentTypes": [
+                "Receipt",
+                "Prescription",
+                "Warranty",
+                "Purchase Agreement"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["glasses", "contacts", "lenses", "frames"]
+            }
+          }
+        },
+        "PharmacyCare": {
+          "name": "PharmacyCare",
+          "description": "Pharmacy services and medications",
+          "icon": "💊",
+          "activities": {
+            "MedicationPurchases": {
+              "name": "MedicationPurchases",
+              "description": "Over-the-counter and prescription purchases",
+              "documentTypes": [
+                "Pharmacy Receipt",
+                "Prescription Record",
+                "Medication List",
+                "Immunization Record"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 6, "authority": "HIPAA" },
+                "GBR": { "years": 8, "authority": "NHS" }
+              },
+              "keywords": ["pharmacy", "medication", "prescription", "immunization"]
+            }
+          }
+        },
+        "MentalHealthCare": {
+          "name": "MentalHealthCare",
+          "description": "Mental health services and counseling",
+          "icon": "🧠",
+          "activities": {
+            "TherapySessions": {
+              "name": "TherapySessions",
+              "description": "Counseling and therapy appointments",
+              "documentTypes": [
+                "Therapist Note",
+                "Treatment Plan",
+                "Progress Report",
+                "Invoice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Privacy Act 1988" },
+                "USA": { "years": 7, "authority": "HIPAA" },
+                "GBR": { "years": 8, "authority": "NHS" }
+              },
+              "keywords": ["therapy", "counseling", "mental health", "psychologist"]
+            }
+          }
+        }
+      }
+    },
+    "FinancialManagement": {
+      "name": "FinancialManagement",
+      "description": "Household financial operations and compliance",
+      "icon": "💰",
+      "services": {
+        "BankingServices": {
+          "name": "BankingServices",
+          "description": "Bank account management and transactions",
+          "icon": "🏦",
+          "activities": {
+            "AccountManagement": {
+              "name": "AccountManagement",
+              "description": "Bank account opening and maintenance",
+              "documentTypes": [
+                "Bank Statement",
+                "Account Opening Form",
+                "Account Closure Letter",
+                "Account Agreement",
+                "Direct Debit Form"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["bank", "account", "statement", "direct debit"]
+            },
+            "TransferPayments": {
+              "name": "TransferPayments",
+              "description": "Electronic transfers and payments",
+              "documentTypes": [
+                "Transfer Receipt",
+                "Payment Confirmation",
+                "Transaction Record",
+                "Receipt"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["transfer", "payment", "transaction", "eft"]
+            }
+          }
+        },
+        "TaxCompliance": {
+          "name": "TaxCompliance",
+          "description": "Tax return preparation and filing",
+          "icon": "📋",
+          "activities": {
+            "TaxReturns": {
+              "name": "TaxReturns",
+              "description": "Annual tax return filings",
+              "documentTypes": [
+                "Tax Return",
+                "Notice of Assessment",
+                "Tax Assessment",
+                "Payment Summary",
+                "Tax Agent Certificate"
+              ],
+              "retention": {
+                "AUS": {
+                  "years": 7,
+                  "authority": "ATO Section 254 of Tax Administration Act 1953",
+                  "fromDate": "fy_end",
+                  "notes": "From financial year end"
+                },
+                "USA": {
+                  "years": 7,
+                  "authority": "IRS",
+                  "notes": "3 years minimum, 7 recommended for safety"
+                },
+                "GBR": {
+                  "years": 7,
+                  "authority": "HMRC",
+                  "notes": "Self-assessment requirement"
+                }
+              },
+              "keywords": ["tax", "return", "assessment", "ato", "irs", "hmrc"]
+            },
+            "DeductionRecords": {
+              "name": "DeductionRecords",
+              "description": "Tax-deductible expense records",
+              "documentTypes": [
+                "Receipt",
+                "Invoice",
+                "Donation Receipt",
+                "Expense Report",
+                "Work-Related Expense Record"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["deduction", "receipt", "expense", "donation"]
+            }
+          }
+        },
+        "Budgeting": {
+          "name": "Budgeting",
+          "description": "Household budget and expense tracking",
+          "icon": "📊",
+          "activities": {
+            "ExpenseTracking": {
+              "name": "ExpenseTracking",
+              "description": "Daily expense records",
+              "documentTypes": [
+                "Receipt",
+                "Invoice",
+                "Expense Record",
+                "Budget Spreadsheet",
+                "Monthly Summary"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["budget", "expense", "tracking", "spending"]
+            }
+          }
+        },
+        "InvestmentManagement": {
+          "name": "InvestmentManagement",
+          "description": "Investment portfolio management",
+          "icon": "📈",
+          "activities": {
+            "InvestmentRecords": {
+              "name": "InvestmentRecords",
+              "description": "Investment transaction records",
+              "documentTypes": [
+                "Investment Statement",
+                "Dividend Statement",
+                "Capital Gains Record",
+                "Portfolio Summary",
+                "Brokerage Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["investment", "shares", "dividend", "capital gains"]
+            }
+          }
+        },
+        "InsuranceClaims": {
+          "name": "InsuranceClaims",
+          "description": "Insurance policy management and claims",
+          "icon": "🛡️",
+          "activities": {
+            "PolicyManagement": {
+              "name": "PolicyManagement",
+              "description": "Insurance policy documents",
+              "documentTypes": [
+                "Insurance Policy",
+                "Certificate of Insurance",
+                "Policy Schedule",
+                "Renewal Notice",
+                "Disclosure Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "General insurance requirement" },
+                "USA": { "years": 7, "authority": "State insurance regulations" },
+                "GBR": { "years": 6, "authority": "FCA guidelines" }
+              },
+              "keywords": ["insurance", "policy", "coverage", "premium"]
+            },
+            "ClaimsProcessing": {
+              "name": "ClaimsProcessing",
+              "description": "Insurance claim submissions and records",
+              "documentTypes": [
+                "Claim Form",
+                "Claim Assessment",
+                "Payment Record",
+                "Supporting Documentation",
+                "Settlement Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "General insurance requirement" },
+                "USA": { "years": 7, "authority": "State insurance regulations" },
+                "GBR": { "years": 6, "authority": "FCA guidelines" }
+              },
+              "keywords": ["claim", "settlement", "assessment", "payout"]
+            }
+          }
+        },
+        "ExpenseTracking": {
+          "name": "ExpenseTracking",
+          "description": "Daily expense categorization and tracking",
+          "icon": "💳",
+          "activities": {
+            "TransactionRecords": {
+              "name": "TransactionRecords",
+              "description": "Credit card and expense transactions",
+              "documentTypes": [
+                "Credit Card Statement",
+                "Receipt",
+                "Invoice",
+                "Transaction Record",
+                "Expense Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["credit card", "transaction", "expense", "payment"]
+            }
+          }
+        }
+      }
+    },
+    "PropertyManagement": {
+      "name": "PropertyManagement",
+      "description": "Real estate and property documentation",
+      "icon": "🏠",
+      "services": {
+        "Mortgage": {
+          "name": "Mortgage",
+          "description": "Home loan and mortgage management",
+          "icon": "🏦",
+          "activities": {
+            "LoanManagement": {
+              "name": "LoanManagement",
+              "description": "Mortgage loan documents",
+              "documentTypes": [
+                "Loan Agreement",
+                "Mortgage Statement",
+                "Repayment Schedule",
+                "Valuation Report",
+                "Settlement Statement"
+              ],
+              "retention": {
+                "AUS": {
+                  "years": 7,
+                  "authority": "ATO",
+                  "notes": "After loan finalization"
+                },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["mortgage", "loan", "home loan", "repayment"]
+            }
+          }
+        },
+        "Maintenance": {
+          "name": "Maintenance",
+          "description": "Property maintenance and repairs",
+          "icon": "🔧",
+          "activities": {
+            "Repairs": {
+              "name": "Repairs",
+              "description": "Home repair records",
+              "documentTypes": [
+                "Invoice",
+                "Receipt",
+                "Quote",
+                "Contractor Agreement",
+                "Warranty Document"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["repair", "maintenance", "contractor", "warranty"]
+            },
+            "Improvements": {
+              "name": "Improvements",
+              "description": "Home improvement projects",
+              "documentTypes": [
+                "Quote",
+                "Invoice",
+                "Permit",
+                "Completion Certificate",
+                "Before/After Photos"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO", "notes": "Capital improvements" },
+                "USA": { "years": 7, "authority": "IRS", "notes": "Capital improvements added to basis" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["renovation", "improvement", "capital", "upgrade"]
+            }
+          }
+        },
+        "Utilities": {
+          "name": "Utilities",
+          "description": "Utility services and payments",
+          "icon": "⚡",
+          "activities": {
+            "UtilityPayments": {
+              "name": "UtilityPayments",
+              "description": "Electricity, gas, water, internet bills",
+              "documentTypes": [
+                "Utility Bill",
+                "Payment Receipt",
+                "Usage Statement",
+                "Connection Notice",
+                "Disconnection Notice"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["electricity", "gas", "water", "internet", "bill"]
+            }
+          }
+        },
+        "Insurance": {
+          "name": "Insurance",
+          "description": "Property insurance coverage",
+          "icon": "🛡️",
+          "activities": {
+            "HomeInsurance": {
+              "name": "HomeInsurance",
+              "description": "Home and contents insurance",
+              "documentTypes": [
+                "Insurance Policy",
+                "Certificate of Insurance",
+                "Premium Notice",
+                "Claim Record",
+                "Valuation Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "General insurance requirement" },
+                "USA": { "years": 7, "authority": "State insurance regulations" },
+                "GBR": { "years": 6, "authority": "FCA guidelines" }
+              },
+              "keywords": ["home insurance", "contents", "building", "premium"]
+            }
+          }
+        },
+        "Improvements": {
+          "name": "Improvements",
+          "description": "Property upgrades and renovations",
+          "icon": "🔨",
+          "activities": {
+            "Renovations": {
+              "name": "Renovations",
+              "description": "Major renovation projects",
+              "documentTypes": [
+                "Building Permit",
+                "Architect Plans",
+                "Contractor Agreement",
+                "Progress Payments",
+                "Completion Certificate"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO", "notes": "Capital improvements" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["renovation", "extension", "building", "permit"]
+            }
+          }
+        },
+        "RentManagement": {
+          "name": "RentManagement",
+          "description": "Rental property management",
+          "icon": "🔑",
+          "activities": {
+            "LeaseManagement": {
+              "name": "LeaseManagement",
+              "description": "Rental lease documents",
+              "documentTypes": [
+                "Lease Agreement",
+                "Rent Receipt",
+                "Bond Statement",
+                "Inspection Report",
+                "Lease Renewal"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "State tenancy authority" },
+                "USA": { "years": 7, "authority": "State landlord-tenant laws" },
+                "GBR": { "years": 6, "authority": "Tenancy deposit scheme" }
+              },
+              "keywords": ["lease", "rent", "tenancy", "bond", "landlord"]
+            }
+          }
+        }
+      }
+    },
+    "VehicleManagement": {
+      "name": "VehicleManagement",
+      "description": "Vehicle ownership and maintenance",
+      "icon": "🚗",
+      "services": {
+        "Maintenance": {
+          "name": "Maintenance",
+          "description": "Vehicle servicing and repairs",
+          "icon": "🔧",
+          "activities": {
+            "ServiceRecords": {
+              "name": "ServiceRecords",
+              "description": "Regular vehicle servicing",
+              "documentTypes": [
+                "Service Receipt",
+                "Mechanic Report",
+                "Service Schedule",
+                "Warranty Document",
+                "Parts Invoice"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["service", "mechanic", "maintenance", "warranty"]
+            },
+            "Repairs": {
+              "name": "Repairs",
+              "description": "Vehicle repair records",
+              "documentTypes": [
+                "Repair Invoice",
+                "Parts Receipt",
+                "Insurance Claim",
+                "Assessment Report",
+                "Quote"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["repair", "parts", "insurance claim", "accident"]
+            }
+          }
+        },
+        "Registration": {
+          "name": "Registration",
+          "description": "Vehicle registration and compliance",
+          "icon": "📋",
+          "activities": {
+            "RegistrationRecords": {
+              "name": "RegistrationRecords",
+              "description": "Vehicle registration documents",
+              "documentTypes": [
+                "Registration Certificate",
+                "Renewal Notice",
+                "Insurance Certificate",
+                "Roadworthiness Certificate",
+                "Payment Receipt"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "State transport authority" },
+                "USA": { "years": 5, "authority": "DMV" },
+                "GBR": { "years": 6, "authority": "DVLA" }
+              },
+              "keywords": ["registration", "renewal", "roadworthiness", "dmv"]
+            }
+          }
+        },
+        "FuelManagement": {
+          "name": "FuelManagement",
+          "description": "Fuel and charging records",
+          "icon": "⛽",
+          "activities": {
+            "FuelRecords": {
+              "name": "FuelRecords",
+              "description": "Fuel purchase receipts",
+              "documentTypes": [
+                "Fuel Receipt",
+                "Charging Record",
+                "Fuel Card Statement",
+                "Mileage Log"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["fuel", "petrol", "charging", "mileage", "logbook"]
+            }
+          }
+        },
+        "Insurance": {
+          "name": "Insurance",
+          "description": "Vehicle insurance coverage",
+          "icon": "🛡️",
+          "activities": {
+            "VehicleInsurance": {
+              "name": "VehicleInsurance",
+              "description": "Car insurance policy and claims",
+              "documentTypes": [
+                "Insurance Policy",
+                "Certificate of Insurance",
+                "Claim Record",
+                "Assessment Report",
+                "No-Claim Bonus Certificate"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "State insurance authority" },
+                "USA": { "years": 7, "authority": "State insurance regulations" },
+                "GBR": { "years": 6, "authority": "FCA guidelines" }
+              },
+              "keywords": ["car insurance", "ctp", "comprehensive", "claim"]
+            }
+          }
+        }
+      }
+    },
+    "PetCare": {
+      "name": "PetCare",
+      "description": "Pet ownership and veterinary records",
+      "icon": "🐾",
+      "services": {
+        "VeterinaryCare": {
+          "name": "VeterinaryCare",
+          "description": "Veterinary services and treatments",
+          "icon": "🏥",
+          "activities": {
+            "VetVisits": {
+              "name": "VetVisits",
+              "description": "Veterinary consultations",
+              "documentTypes": [
+                "Vet Report",
+                "Consultation Summary",
+                "Treatment Plan",
+                "Prescription",
+                "Invoice"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["vet", "veterinary", "pet", "consultation"]
+            },
+            "Vaccinations": {
+              "name": "Vaccinations",
+              "description": "Pet vaccination records",
+              "documentTypes": [
+                "Vaccination Certificate",
+                "Vaccination Record",
+                "Microchip Registration",
+                "Council Registration"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Local council requirement" },
+                "USA": { "years": 5, "authority": "State/local requirement" },
+                "GBR": { "years": 6, "authority": "Local council" }
+              },
+              "keywords": ["vaccination", "microchip", "registration", "council"]
+            }
+          }
+        },
+        "PetInsurance": {
+          "name": "PetInsurance",
+          "description": "Pet insurance coverage",
+          "icon": "🛡️",
+          "activities": {
+            "InsuranceManagement": {
+              "name": "InsuranceManagement",
+              "description": "Pet insurance policy and claims",
+              "documentTypes": [
+                "Insurance Policy",
+                "Claim Form",
+                "Claim Assessment",
+                "Payment Record",
+                "Renewal Notice"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "General insurance requirement" },
+                "USA": { "years": 5, "authority": "State insurance regulations" },
+                "GBR": { "years": 6, "authority": "FCA guidelines" }
+              },
+              "keywords": ["pet insurance", "claim", "premium", "policy"]
+            }
+          }
+        },
+        "EndOfLifeCare": {
+          "name": "EndOfLifeCare",
+          "description": "End-of-life arrangements and memorial documentation for pets",
+          "icon": "🕊️",
+          "activities": {
+            "Euthanasia": {
+              "name": "Euthanasia",
+              "description": "Euthanasia procedures and veterinary reports",
+              "documentTypes": [
+                "Euthanasia Certificate",
+                "Vet Euthanasia Report",
+                "Consent Form",
+                "Quality of Life Assessment"
+              ],
+              "retention": {
+                "AUS": { "years": "indefinite", "authority": "Sentimental memorial document", "notes": "No legal retention requirement - keep for emotional value" },
+                "USA": { "years": "indefinite", "authority": "Sentimental memorial document", "notes": "No legal retention requirement - keep for emotional value" },
+                "GBR": { "years": "indefinite", "authority": "Sentimental memorial document", "notes": "No legal retention requirement - keep for emotional value" }
+              },
+              "keywords": ["euthanasia", "put down", "put to sleep", "humane", "end of life"]
+            },
+            "Cremation": {
+              "name": "Cremation",
+              "description": "Pet cremation services and certificates",
+              "documentTypes": [
+                "Pet Cremation Certificate",
+                "Cremation Service Invoice",
+                "Ashes Collection Receipt",
+                "Memorial Certificate"
+              ],
+              "retention": {
+                "AUS": { "years": "indefinite", "authority": "Sentimental memorial document", "notes": "No legal retention requirement - keep for emotional value" },
+                "USA": { "years": "indefinite", "authority": "Sentimental memorial document", "notes": "No legal retention requirement - keep for emotional value" },
+                "GBR": { "years": "indefinite", "authority": "Sentimental memorial document", "notes": "No legal retention requirement - keep for emotional value" }
+              },
+              "keywords": ["cremation", "cremated", "ashes", "memorial", "crematorium"]
+            },
+            "Burial": {
+              "name": "Burial",
+              "description": "Pet burial arrangements and cemetery records",
+              "documentTypes": [
+                "Pet Burial Certificate",
+                "Pet Cemetery Plot Deed",
+                "Burial Service Invoice",
+                "Plot Map",
+                "Memorial Marker Receipt"
+              ],
+              "retention": {
+                "AUS": { "years": "indefinite", "authority": "Sentimental memorial document", "notes": "No legal retention requirement - keep for emotional value" },
+                "USA": { "years": "indefinite", "authority": "Sentimental memorial document", "notes": "No legal retention requirement - keep for emotional value" },
+                "GBR": { "years": "indefinite", "authority": "Sentimental memorial document", "notes": "No legal retention requirement - keep for emotional value" }
+              },
+              "keywords": ["burial", "buried", "cemetery", "plot", "interment"]
+            }
+          }
+        }
+      }
+    },
+    "Education": {
+      "name": "Education",
+      "description": "Education and training records",
+      "icon": "📚",
+      "services": {
+        "FormalEducation": {
+          "name": "FormalEducation",
+          "description": "School and university education",
+          "icon": "🎓",
+          "activities": {
+            "EnrollmentRecords": {
+              "name": "EnrollmentRecords",
+              "description": "School enrollment documents",
+              "documentTypes": [
+                "Enrollment Certificate",
+                "Academic Transcript",
+                "Qualification Certificate",
+                "Student Card",
+                "Fee Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Education records retention" },
+                "USA": { "years": 7, "authority": "FERPA" },
+                "GBR": { "years": 6, "authority": "Department for Education" }
+              },
+              "keywords": ["enrollment", "transcript", "certificate", "qualification"]
+            },
+            "StudentExpenses": {
+              "name": "StudentExpenses",
+              "description": "Education-related expenses",
+              "documentTypes": [
+                "Tuition Receipt",
+                "Textbook Invoice",
+                "Supply Receipt",
+                "Equipment Invoice",
+                "Expense Summary"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO", "notes": "Self-education expenses" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["tuition", "textbook", "education expense", "student"]
+            }
+          }
+        },
+        "ProfessionalDevelopment": {
+          "name": "ProfessionalDevelopment",
+          "description": "Professional training and certification",
+          "icon": "💼",
+          "activities": {
+            "TrainingRecords": {
+              "name": "TrainingRecords",
+              "description": "Professional training courses",
+              "documentTypes": [
+                "Completion Certificate",
+                "Training Receipt",
+                "Course Outline",
+                "Assessment Result",
+                "Professional Development Log"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO", "notes": "Work-related self-education" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["training", "certificate", "professional development", "course"]
+            }
+          }
+        }
+      }
+    },
+    "LegalAffairs": {
+      "name": "LegalAffairs",
+      "description": "Legal documents and affairs",
+      "icon": "⚖️",
+      "services": {
+        "Contracts": {
+          "name": "Contracts",
+          "description": "Legal agreements and contracts",
+          "icon": "📝",
+          "activities": {
+            "ContractManagement": {
+              "name": "ContractManagement",
+              "description": "Personal contracts and agreements",
+              "documentTypes": [
+                "Contract",
+                "Agreement",
+                "Amendment",
+                "Termination Notice",
+                "Legal Advice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Statute of limitations" },
+                "USA": { "years": 7, "authority": "State statute of limitations" },
+                "GBR": { "years": 6, "authority": "Limitation Act 1980" }
+              },
+              "keywords": ["contract", "agreement", "legal", "amendment"]
+            }
+          }
+        },
+        "WillsEstates": {
+          "name": "WillsEstates",
+          "description": "Will and estate planning documents",
+          "icon": "📜",
+          "activities": {
+            "EstatePlanning": {
+              "name": "EstatePlanning",
+              "description": "Will and estate documents",
+              "documentTypes": [
+                "Will",
+                "Power of Attorney",
+                "Estate Plan",
+                "Trust Deed",
+                "Executor Appointment"
+              ],
+              "retention": {
+                "AUS": { "years": 0, "authority": "Permanent", "notes": "Keep indefinitely" },
+                "USA": { "years": 0, "authority": "Permanent", "notes": "Keep indefinitely" },
+                "GBR": { "years": 0, "authority": "Permanent", "notes": "Keep indefinitely" }
+              },
+              "keywords": ["will", "estate", "power of attorney", "executor"]
+            }
+          }
+        }
+      }
+    },
+    "TaxCompliance": {
+      "name": "TaxCompliance",
+      "description": "Tax compliance and reporting",
+      "icon": "📊",
+      "services": {
+        "IncomeTax": {
+          "name": "IncomeTax",
+          "description": "Personal income tax reporting",
+          "icon": "💰",
+          "activities": {
+            "TaxFiling": {
+              "name": "TaxFiling",
+              "description": "Annual tax filing documents",
+              "documentTypes": [
+                "Tax Return",
+                "Notice of Assessment",
+                "Payment Summary",
+                "Deduction Schedule",
+                "Tax Agent Advice"
+              ],
+              "retention": {
+                "AUS": {
+                  "years": 7,
+                  "authority": "ATO Section 254 of Tax Administration Act 1953",
+                  "fromDate": "fy_end"
+                },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 7, "authority": "HMRC" }
+              },
+              "keywords": ["tax return", "assessment", "deduction", "agent"]
+            }
+          }
+        }
+      }
+    },
+    "EstatePlanning": {
+      "name": "EstatePlanning",
+      "description": "Estate planning and inheritance",
+      "icon": "🏛️",
+      "services": {
+        "AssetDistribution": {
+          "name": "AssetDistribution",
+          "description": "Asset distribution planning",
+          "icon": "📋",
+          "activities": {
+            "DistributionRecords": {
+              "name": "DistributionRecords",
+              "description": "Asset distribution documentation",
+              "documentTypes": [
+                "Asset Inventory",
+                "Distribution Plan",
+                "Beneficiary Designation",
+                "Transfer Documents",
+                "Valuation Report"
+              ],
+              "retention": {
+                "AUS": { "years": 0, "authority": "Permanent", "notes": "Keep indefinitely" },
+                "USA": { "years": 0, "authority": "Permanent", "notes": "Keep indefinitely" },
+                "GBR": { "years": 0, "authority": "Permanent", "notes": "Keep indefinitely" }
+              },
+              "keywords": ["estate", "inheritance", "beneficiary", "distribution"]
+            }
+          }
+        }
+      }
+    },
+    "Travel": {
+      "name": "Travel",
+      "description": "Travel documentation and records",
+      "icon": "✈️",
+      "services": {
+        "TravelDocuments": {
+          "name": "TravelDocuments",
+          "description": "Passports and travel documents",
+          "icon": "🛂",
+          "activities": {
+            "PassportVisa": {
+              "name": "PassportVisa",
+              "description": "Passport and visa documents",
+              "documentTypes": [
+                "Passport",
+                "Visa",
+                "Travel Insurance Policy",
+                "Itinerary",
+                "Booking Confirmation"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Travel document requirements" },
+                "USA": { "years": 7, "authority": "State Department guidelines" },
+                "GBR": { "years": 6, "authority": "Home Office guidelines" }
+              },
+              "keywords": ["passport", "visa", "travel", "itinerary", "booking"]
+            },
+            "TravelExpenses": {
+              "name": "TravelExpenses",
+              "description": "Travel expense records",
+              "documentTypes": [
+                "Receipt",
+                "Invoice",
+                "Expense Report",
+                "Foreign Exchange Record",
+                "Travel Diary"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["travel", "expense", "receipt", "foreign exchange"]
+            }
+          }
+        }
+      }
+    },
+    "Entertainment": {
+      "name": "Entertainment",
+      "description": "Entertainment and leisure records",
+      "icon": "🎬",
+      "services": {
+        "Memberships": {
+          "name": "Memberships",
+          "description": "Club and membership subscriptions",
+          "icon": "🎫",
+          "activities": {
+            "MembershipRecords": {
+              "name": "MembershipRecords",
+              "description": "Membership documentation",
+              "documentTypes": [
+                "Membership Certificate",
+                "Subscription Receipt",
+                "Renewal Notice",
+                "Terms and Conditions",
+                "Cancellation Notice"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["membership", "subscription", "club", "renewal"]
+            }
+          }
+        }
+      }
+    },
+    "Insurance": {
+      "name": "Insurance",
+      "description": "General insurance coverage",
+      "icon": "🛡️",
+      "services": {
+        "GeneralInsurance": {
+          "name": "GeneralInsurance",
+          "description": "Various insurance policies",
+          "icon": "📋",
+          "activities": {
+            "PolicyManagement": {
+              "name": "PolicyManagement",
+              "description": "Insurance policy documents",
+              "documentTypes": [
+                "Insurance Policy",
+                "Certificate of Insurance",
+                "Product Disclosure Statement",
+                "Claim Form",
+                "Assessment Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "General insurance requirement" },
+                "USA": { "years": 7, "authority": "State insurance regulations" },
+                "GBR": { "years": 6, "authority": "FCA guidelines" }
+              },
+              "keywords": ["insurance", "policy", "claim", "premium", "coverage"]
+            }
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "createdAt": "2026-01-22T00:00:00Z",
+    "updatedAt": "2026-01-22T00:00:00Z",
+    "createdBy": "system",
+    "source": "default-taxonomy"
+  }
+}

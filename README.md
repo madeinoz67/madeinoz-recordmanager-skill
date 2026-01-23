@@ -1,14 +1,14 @@
 ---
 name: Records Manager Skill
-pack-id: madeinoz-recordmanager-skill-v1.2.0
-version: 1.2.0
+pack-id: madeinoz-recordmanager-skill-v2.0.0
+version: 2.0.0
 author: madeinoz67
-description: Subject matter expert in record keeping and paperless-ngx API integration with country-specific taxonomies and deletion confirmation safeguards
+description: Expert record keeping system with paperless-ngx integration, hierarchical taxonomies, and intelligent document management
 type: skill
 purpose-type: [productivity, automation, organization]
 platform: agnostic
 dependencies: []
-keywords: [records, management, paperless-ngx, documents, taxonomy, archiving, household, corporate, compliance]
+keywords: [records, management, paperless-ngx, documents, hierarchical-taxonomy, archiving, household, corporate, compliance]
 ---
 
 <p align="center">
@@ -19,7 +19,7 @@ keywords: [records, management, paperless-ngx, documents, taxonomy, archiving, h
 
 [![Documentation](https://github.com/madeinoz67/madeinoz-recordmanager-skill/actions/workflows/docs.yml/badge.svg)](https://github.com/madeinoz67/madeinoz-recordmanager-skill/actions/workflows/docs.yml)
 
-> Expert record keeping system with paperless-ngx integration, country-specific taxonomies, and intelligent document management
+> Expert record keeping system with **hierarchical taxonomies**, paperless-ngx integration, country-specific compliance, and intelligent document management
 
 ## Quick Start
 
@@ -39,12 +39,13 @@ bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts --help
 
 ## Features
 
-- **Intelligent Document Organization** - Automatic tagging, categorization, and taxonomic structure
-- **Country-Specific Compliance** - Record keeping guidelines for Australia, US, and UK
-- **Safe Operations** - Deletion confirmation workflow prevents catastrophic data loss
-- **Search Optimization** - Data structures optimized for finding relevant documents quickly
-- **Expert Taxonomies** - Household, corporate, trust, and project management record structures
-- **Specialized Agents** - Records Keeper, Compliance Guardian, Archive Architect, Deletion Auditor, Sensitivity Scanner, and Retention Monitor
+- **🌳 Hierarchical Taxonomies (NEW v2.0)** - Navigate documents through a 4-level structure: Function → Service → Activity → DocumentType
+- **🔍 Intelligent Classification** - Autocomplete, fuzzy matching, and keyword search for precise document categorization
+- **⚖️ Country-Specific Compliance** - Record keeping guidelines for Australia, US, and UK with legal citations
+- **🛡️ Safe Operations** - Deletion confirmation workflow prevents catastrophic data loss
+- **📊 Smart Organization** - Automatic tagging, hierarchical storage paths, and retention tracking
+- **🤖 Specialized Agents** - Records Keeper, Compliance Guardian, Archive Architect, Deletion Auditor, Sensitivity Scanner, and Retention Monitor
+- **🔄 Migration Support** - Seamless migration from flat to hierarchical taxonomies with 90%+ automatic mapping
 
 ## How It Works
 
@@ -58,32 +59,105 @@ The Records Manager Skill uses a **three-layer architecture**:
 
 ## Example Usage
 
-```bash
-# Upload document with intelligent tagging
-bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts upload \
-  --file ~/Downloads/invoice.pdf \
-  --domain household
+### Hierarchical Classification (v2.0)
 
+```bash
+# Upload with hierarchical path
+bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts upload \
+  --file ~/Downloads/medical-receipt.pdf \
+  --domain household \
+  --path "HealthManagement/MedicalCare/Consultations/MedicalReceipt"
+
+# Autocomplete partial paths
+bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts taxonomy autocomplete \
+  --domain household \
+  --path "health/med/cons"
+
+# Search by keywords
+bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts taxonomy search \
+  --domain household \
+  --keywords "dental invoice"
+
+# Navigate hierarchy interactively
+bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts taxonomy functions --domain household
+bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts taxonomy services --domain household --function HealthManagement
+```
+
+### Traditional Operations
+
+```bash
 # Search for documents
 bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts search \
-  --tags "invoice,2024" \
+  --tags "Function:HealthManagement,DocumentType:MedicalReceipt" \
   --domain household
 
 # Check retention status
 bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts retention \
-  --domain household
+  --domain household \
+  --path "HealthManagement/MedicalCare/Consultations/MedicalReceipt"
 ```
 
 **Deletion Safety**: All deletions require explicit confirmation through the Deletion Auditor agent - cannot be bypassed.
+
+**What's New in v2.0**: Hierarchical taxonomies provide 4-level classification (Function → Service → Activity → DocumentType) with autocomplete, fuzzy matching, and automatic tag generation. See [Hierarchical Taxonomies Guide](https://madeinoz67.github.io/madeinoz-recordmanager-skill/user-guide/hierarchical-taxonomies/) for details.
+
+## Taxonomy Management
+
+Keep your paperless-ngx instance synchronized with the latest taxonomy definitions:
+
+```bash
+# Check for available updates (read-only, safe to run anytime)
+bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts check-updates \
+  --country Australia
+
+# Apply updates WITHOUT retention changes
+bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts sync-taxonomies \
+  --country Australia
+
+# Apply updates WITH retention changes (requires explicit approval)
+bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts sync-taxonomies \
+  --country Australia \
+  --approve-retention-changes
+
+# View taxonomy version history
+bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts diff-taxonomies
+```
+
+**Why This Matters:**
+- **Compliance Safety** - Retention changes require explicit approval to prevent accidental compliance violations
+- **Atomic Updates** - All changes rollback on failure (no partial state)
+- **Audit Trail** - All changes logged to `$PAI_HOME/MEMORY/RECORDSMANAGER/`
+- **Single Source of Truth** - All taxonomies come from `src/skills/RecordsManager/Config/taxonomies.yaml`
+
+**CRITICAL**: Never bypass these commands by:
+- ❌ Making direct API calls to create tags/document types
+- ❌ Manually adding taxonomies through paperless-ngx UI
+- ❌ Writing custom scripts that bypass the CLI
+- ❌ Using TaxonomyInstaller methods directly without CLI wrapper
+
+See [Taxonomy Update Workflow](https://madeinoz67.github.io/madeinoz-recordmanager-skill/workflows/taxonomy-update/) for complete documentation.
 
 ## Documentation
 
 📖 **[Full Documentation](https://madeinoz67.github.io/madeinoz-recordmanager-skill/)**
 
+### Getting Started
 - **[Installation Guide](https://madeinoz67.github.io/madeinoz-recordmanager-skill/getting-started/installation/)** - Complete setup instructions
+- **[Developer Quickstart](https://madeinoz67.github.io/madeinoz-recordmanager-skill/getting-started/developer-quickstart/)** - 10-minute quick start for developers
+
+### User Guides
+- **[Hierarchical Taxonomies](https://madeinoz67.github.io/madeinoz-recordmanager-skill/user-guide/hierarchical-taxonomies/)** - NEW v2.0: 4-level classification system
 - **[User Guide](https://madeinoz67.github.io/madeinoz-recordmanager-skill/user-guide/)** - Daily workflows and operations
+- **[Retention & Compliance](https://madeinoz67.github.io/madeinoz-recordmanager-skill/user-guide/retention/)** - Country-specific requirements
+
+### Reference
+- **[API Reference](https://madeinoz67.github.io/madeinoz-recordmanager-skill/reference/api-reference/)** - TaxonomyExpert complete API
 - **[CLI Reference](https://madeinoz67.github.io/madeinoz-recordmanager-skill/reference/cli/)** - Complete command documentation
 - **[Architecture](https://madeinoz67.github.io/madeinoz-recordmanager-skill/architecture/)** - System design and diagrams
+
+### Tutorials
+- **[Migration Guide](https://madeinoz67.github.io/madeinoz-recordmanager-skill/tutorials/migration-guide/)** - Migrate from flat to hierarchical taxonomies
+- **[Contributing Taxonomies](https://madeinoz67.github.io/madeinoz-recordmanager-skill/extending/contributing-taxonomies/)** - Add new hierarchical paths
 - **[Tutorials](https://madeinoz67.github.io/madeinoz-recordmanager-skill/tutorials/)** - Step-by-step guides
 
 ## For AI Assistants 🤖
@@ -156,12 +230,28 @@ MIT License - see [LICENSE](LICENSE) for details
 
 See [CHANGELOG.md](./CHANGELOG.md) or [Changelog Documentation](https://madeinoz67.github.io/madeinoz-recordmanager-skill/reference/changelog/) for version history.
 
-### Latest Release: v1.2.0 (2026-01-20)
+### Latest Release: v2.0.0 (2026-01-22)
 
-- Added `status` command for connection testing
-- Added StatusCheck workflow for skill-based verification
-- Updated documentation with MkDocs Material theme
-- Added comprehensive architecture diagrams
+**Major Features:**
+- 🌳 **Hierarchical Taxonomy System** - 4-level classification: Function → Service → Activity → DocumentType
+- 🔍 **Smart Classification** - Autocomplete, fuzzy matching, and keyword search
+- 📊 **Automatic Tag Generation** - Hierarchical tags and filesystem-safe storage paths
+- 🔄 **Migration Support** - 90%+ automatic mapping from flat to hierarchical taxonomies
+- ⚖️ **Enhanced Retention** - Full hierarchical context for retention requirements
+
+**Documentation:**
+- Comprehensive API reference for TaxonomyExpert (31 methods)
+- Developer quickstart guide (10-minute setup)
+- Migration guide for existing installations
+- Contributing guide for new taxonomies
+- Troubleshooting section for hierarchical taxonomies
+
+**Breaking Changes:**
+- Country codes normalized to ISO 3166-1 alpha-3 (AU→AUS, US→USA, UK→GBR)
+- Hierarchical taxonomy is now the default mode
+- Flat taxonomy methods deprecated (12-month transition period)
+
+**See [Migration Guide](https://madeinoz67.github.io/madeinoz-recordmanager-skill/tutorials/migration-guide/) for upgrade instructions.**
 
 ---
 

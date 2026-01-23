@@ -244,6 +244,144 @@ bun run src/skills/RecordsManager/Tools/RecordManager.ts status
 
 ---
 
+### install
+
+Install default country-specific taxonomies during initial setup.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts install [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--country` | string | Country for taxonomy installation (default: Australia) |
+| `--json` | flag | Output JSON format for scripting |
+
+**Example:**
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts install --country Australia
+```
+
+**Output:**
+
+* Country installed
+* Entity types installed
+* Tags created count
+* Document types created count
+* Storage paths created count
+* Custom fields created count
+* Skipped resources (existing)
+
+---
+
+### check-updates
+
+Check for available taxonomy updates from YAML definitions.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts check-updates [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--country` | string | Country to check updates for (default: Australia) |
+
+**Example:**
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts check-updates --country Australia
+```
+
+**Output:**
+
+* **New Tags**: Tags that will be created
+* **New Document Types**: Document types that will be created
+* **New Storage Paths**: Storage paths that will be created
+* **New Custom Fields**: Custom fields that will be created
+* **⚠️ Retention Rule Changes**: Changes requiring manual review (if any)
+
+**Note:** This command performs a dry-run and does not modify your paperless-ngx instance.
+
+---
+
+### sync-taxonomies
+
+Synchronize taxonomies by applying detected updates.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts sync-taxonomies [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--country` | string | Country to synchronize (default: Australia) |
+| `--approve-retention-changes` | flag | **Required** if retention rule changes are detected |
+
+**Examples:**
+
+```bash
+# Apply updates without retention changes
+bun run src/skills/RecordsManager/Tools/RecordManager.ts sync-taxonomies --country Australia
+
+# Apply updates WITH retention changes (requires explicit approval)
+bun run src/skills/RecordsManager/Tools/RecordManager.ts sync-taxonomies --country Australia --approve-retention-changes
+```
+
+**Output:**
+
+* Applied changes summary:
+  * Tags created
+  * Document types created
+  * Storage paths created
+  * Custom fields created
+  * Retention rules updated (if approved)
+
+**Safety Features:**
+
+* Atomic transaction with rollback on failure
+* Manual review required for retention rule changes
+* Preserves existing user customizations
+
+---
+
+### diff-taxonomies
+
+Display taxonomy version history and changelog.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts diff-taxonomies
+```
+
+**Output:**
+
+* Current taxonomy version
+* Last update date
+* Complete changelog with all versions:
+  * Version number
+  * Release date
+  * List of changes
+
+**Example Output:**
+
+```
+📋 Taxonomy Version History
+
+Current Version: 1.0.0
+Last Updated: 2026-01-22
+
+📜 Changelog:
+
+Version 1.0.0 (2026-01-22)
+   • Initial taxonomy definitions for Australia, United States, United Kingdom
+   • Complete household, corporate, and trust domain taxonomies
+   • Country-specific retention rules with legal citations
+```
+
+---
+
+---
+
 ### delete
 
 **WARNING:** Direct deletion is not supported through the CLI.
@@ -263,6 +401,472 @@ All commands return exit code `1` on error with descriptive error messages:
 ❌ Error: Document 12345 not found
 ❌ Error: Invalid domain: invalid-domain
 ```
+
+---
+
+## Hierarchical Taxonomy Commands (v2.0)
+
+The following commands support the new hierarchical taxonomy system with 4-level classification: Function → Service → Activity → DocumentType.
+
+### taxonomy functions
+
+Get all functions (top-level categories) for a domain.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy functions [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--domain` | string | Domain to query (defaults to `$MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN`) |
+
+**Example:**
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy functions --domain household
+```
+
+**Output:**
+
+```
+Functions for household:
+• HealthManagement - Health and medical records management
+• FinanceManagement - Financial records and tax documentation
+• PropertyManagement - Property ownership and maintenance
+• VehicleManagement - Vehicle ownership and maintenance
+• EducationManagement - Education and training records
+• LegalManagement - Legal documents and compliance
+```
+
+---
+
+### taxonomy services
+
+Get all services within a function.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy services [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--domain` | string | Domain to query |
+| `--function` | string | Function name (e.g., 'HealthManagement') |
+
+**Example:**
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy services \
+  --domain household \
+  --function HealthManagement
+```
+
+**Output:**
+
+```
+Services in HealthManagement:
+• MedicalCare - General medical and healthcare services
+• DentalCare - Dental health services
+• VisionCare - Vision and eye care services
+```
+
+---
+
+### taxonomy activities
+
+Get all activities within a service.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy activities [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--domain` | string | Domain to query |
+| `--function` | string | Function name |
+| `--service` | string | Service name (e.g., 'MedicalCare') |
+
+**Example:**
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy activities \
+  --domain household \
+  --function HealthManagement \
+  --service MedicalCare
+```
+
+**Output:**
+
+```
+Activities in HealthManagement/MedicalCare:
+• Consultations - Medical consultations and visits
+• Prescriptions - Medication prescriptions and receipts
+• TestResults - Medical test results and reports
+```
+
+---
+
+### taxonomy documenttypes
+
+Get all document types for an activity.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy documenttypes [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--domain` | string | Domain to query |
+| `--path` | string | Hierarchical path to activity (Format: `Function/Service/Activity`) |
+
+**Example:**
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy documenttypes \
+  --domain household \
+  --path "HealthManagement/MedicalCare/Consultations"
+```
+
+**Output:**
+
+```
+Document Types in HealthManagement/MedicalCare/Consultations:
+• Medical Receipt
+• Referral Letter
+• Specialist Referral
+```
+
+---
+
+### taxonomy autocomplete
+
+Get autocomplete suggestions for a partial hierarchical path.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy autocomplete [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--domain` | string | Domain to query |
+| `--path` | string | Partial hierarchical path (supports fuzzy matching) |
+
+**Features:**
+- Case-insensitive matching
+- Fuzzy substring matching
+- Progressive path completion
+
+**Examples:**
+
+```bash
+# Partial function name
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy autocomplete \
+  --domain household \
+  --path "health"
+
+# Output:
+# Suggestions for "health":
+# • HealthManagement/MedicalCare/Consultations/MedicalReceipt
+# • HealthManagement/MedicalCare/Prescriptions/Prescription
+# • HealthManagement/DentalCare/Consultations/DentalInvoice
+# ...
+
+# Multiple levels
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy autocomplete \
+  --domain household \
+  --path "health/med/cons"
+
+# Output:
+# Suggestions for "health/med/cons":
+# • HealthManagement/MedicalCare/Consultations/MedicalReceipt
+# • HealthManagement/MedicalCare/Consultations/ReferralLetter
+# • HealthManagement/MedicalCare/Consultations/SpecialistReferral
+```
+
+---
+
+### taxonomy search
+
+Search for hierarchical paths by keywords (natural language).
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy search [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--domain` | string | Domain to query |
+| `--keywords` | string | Space-separated keywords describing the document |
+
+**Example:**
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy search \
+  --domain household \
+  --keywords "dental invoice consultation"
+```
+
+**Output:**
+
+```
+Search results for "dental invoice consultation":
+1. HealthManagement/DentalCare/Consultations/DentalInvoice (score: 0.95)
+   Matched keywords: dental, invoice, consultation
+2. HealthManagement/DentalCare/Consultations/TreatmentPlan (score: 0.65)
+   Matched keywords: dental, consultation
+```
+
+---
+
+### taxonomy validate
+
+Validate a hierarchical path exists in the taxonomy.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy validate [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--domain` | string | Domain to query |
+| `--path` | string | Full hierarchical path to validate (Format: `Function/Service/Activity/DocumentType`) |
+
+**Example:**
+
+```bash
+# Valid path
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy validate \
+  --domain household \
+  --path "HealthManagement/MedicalCare/Consultations/MedicalReceipt"
+
+# Output:
+# ✓ Path is valid
+# Components:
+#   Function: HealthManagement
+#   Service: MedicalCare
+#   Activity: Consultations
+#   DocumentType: MedicalReceipt
+
+# Invalid path
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy validate \
+  --domain household \
+  --path "HealthManagement/InvalidService/Test/Doc"
+
+# Output:
+# ✗ Invalid path
+# Reason: Service "InvalidService" not found in function "HealthManagement"
+# Suggestion: Did you mean: MedicalCare, DentalCare, VisionCare?
+```
+
+---
+
+### taxonomy generate-tags
+
+Generate hierarchical tags from a validated path.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy generate-tags [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--path` | string | Full hierarchical path |
+
+**Example:**
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy generate-tags \
+  --path "HealthManagement/MedicalCare/Consultations/MedicalReceipt"
+```
+
+**Output:**
+
+```
+Hierarchical tags for: HealthManagement/MedicalCare/Consultations/MedicalReceipt
+• Function:HealthManagement
+• Service:MedicalCare
+• Activity:Consultations
+• DocumentType:MedicalReceipt
+```
+
+---
+
+### taxonomy generate-path
+
+Generate a filesystem-safe storage path from a hierarchical path.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy generate-path [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--path` | string | Full hierarchical path |
+
+**Example:**
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy generate-path \
+  --path "HealthManagement/MedicalCare/Consultations/MedicalReceipt"
+```
+
+**Output:**
+
+```
+Storage path for: HealthManagement/MedicalCare/Consultations/MedicalReceipt
+→ Health_Management/Medical_Care/Consultations/Medical_Receipt
+
+(Filesystem-safe: PascalCase → Snake_Case)
+```
+
+---
+
+### taxonomy retention
+
+Get retention requirements for a specific document type.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy retention [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--domain` | string | Domain to query |
+| `--path` | string | Full hierarchical path to document type |
+
+**Example:**
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts taxonomy retention \
+  --domain household \
+  --path "HealthManagement/MedicalCare/Consultations/MedicalReceipt"
+```
+
+**Output:**
+
+```
+Retention requirements for: HealthManagement/MedicalCare/Consultations/MedicalReceipt
+
+Country: Australia
+Retention Period: 7 years
+Legal Citation: ATO Record Keeping Requirements - Medical Expenses
+Reasoning: Medical expenses may be claimed as tax deductions for 7 years
+
+Example document from 2019:
+  Can delete: No
+  Reason: Document from 2019 must be kept until 2026 (7 years)
+```
+
+---
+
+### upload (with hierarchical path)
+
+Upload a document with hierarchical classification. Updated in v2.0.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts upload <file> [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--title` | string | Custom document title (defaults to filename) |
+| `--domain` | string | Domain: `household`, `corporate`, etc. |
+| `--path` | string | **NEW v2.0:** Full hierarchical path for classification |
+
+**Example:**
+
+```bash
+# Upload with hierarchical path
+bun run src/skills/RecordsManager/Tools/RecordManager.ts upload medical-receipt.pdf \
+  --domain household \
+  --path "HealthManagement/MedicalCare/Consultations/MedicalReceipt"
+```
+
+**Output:**
+
+```
+Uploading: medical-receipt.pdf
+Domain: household
+Hierarchical Path: HealthManagement/MedicalCare/Consultations/MedicalReceipt
+
+Generated tags:
+• Function:HealthManagement
+• Service:MedicalCare
+• Activity:Consultations
+• DocumentType:MedicalReceipt
+
+Storage path: Health_Management/Medical_Care/Consultations/Medical_Receipt
+Retention: 7 years (ATO Record Keeping Requirements)
+
+✓ Document uploaded successfully (ID: 12345)
+```
+
+---
+
+### migration status
+
+Check migration status from flat to hierarchical taxonomies.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts migration status [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--domain` | string | Domain to check |
+
+**Example:**
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts migration status --domain household
+```
+
+**Output:**
+
+```
+Migration Status for household:
+Total Documents: 1000
+With Hierarchical Tags: 950 (95%)
+With Storage Paths: 950 (95%)
+Missing Mappings: 50 (5%)
+
+Status: Migration 95% complete
+Remaining: 50 documents need manual review
+```
+
+---
+
+### migration verify
+
+Verify migration completeness.
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts migration verify [options]
+```
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `--domain` | string | Domain to verify |
+
+**Example:**
+
+```bash
+bun run src/skills/RecordsManager/Tools/RecordManager.ts migration verify --domain household
+```
+
+**Output:**
+
+```
+✓ Migration Verification Results:
+  Total Documents: 1000
+  With Hierarchical Tags: 1000 (100%)
+  With Storage Paths: 1000 (100%)
+  Missing Mappings: 0 (0%)
+
+✓ All documents successfully migrated
+```
+
+---
 
 ## Environment Variable Reference
 

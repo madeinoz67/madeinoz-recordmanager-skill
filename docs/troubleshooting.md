@@ -324,6 +324,222 @@ mkdocs serve -a localhost:8001
 
 ---
 
+## Hierarchical Taxonomy Issues
+
+### Path Validation Fails
+
+**Problem**: `Error: Invalid path` when trying to classify a document
+
+**Example**:
+```
+❌ Invalid path: HealthManagement/InvalidService/SomeActivity/Document
+```
+
+**Solutions**:
+
+1. **Use autocomplete to find valid paths**:
+   ```bash
+   bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts taxonomy autocomplete \
+     --domain household \
+     --path "HealthManagement/"
+   ```
+
+2. **Check path structure**:
+   - Must have all 4 levels: `Function/Service/Activity/DocumentType`
+   - Use exact names (case-sensitive)
+   - No spaces around slashes
+
+3. **Browse available functions**:
+   ```bash
+   bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts taxonomy functions \
+     --domain household
+   ```
+
+---
+
+### Can't Find the Right Document Type
+
+**Problem**: Don't know which hierarchical path to use for a document
+
+**Solutions**:
+
+1. **Use keyword search**:
+   ```bash
+   bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts taxonomy search \
+     --domain household \
+     --keywords "medical receipt consultation"
+   ```
+   Returns matching paths with relevance scores.
+
+2. **Navigate step-by-step**:
+   ```bash
+   # Step 1: Get functions
+   bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts taxonomy functions --domain household
+
+   # Step 2: Get services within a function
+   bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts taxonomy services \
+     --domain household \
+     --function HealthManagement
+
+   # Step 3: Get activities within a service
+   bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts taxonomy activities \
+     --domain household \
+     --function HealthManagement \
+     --service MedicalCare
+
+   # Step 4: Get document types for an activity
+   bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts taxonomy documenttypes \
+     --domain household \
+     --path "HealthManagement/MedicalCare/Consultations"
+   ```
+
+3. **Use fuzzy matching**:
+   - Type partial paths: `health/med/cons` matches `HealthManagement/MedicalCare/Consultations`
+   - Case-insensitive: `HEALTH` matches `HealthManagement`
+   - Autocomplete suggests completions
+
+---
+
+### Hierarchical Tags Not Generated
+
+**Problem**: Document uploaded but no hierarchical tags applied
+
+**Solutions**:
+
+1. **Verify hierarchical taxonomy is enabled**:
+   ```typescript
+   const expert = new TaxonomyExpert('AUS', 'household');
+   console.log(expert.isHierarchicalAvailable());  // Should return true
+   ```
+
+2. **Check path was provided during upload**:
+   ```bash
+   # Upload with hierarchical path
+   bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts upload \
+     /path/to/document.pdf \
+     --domain household \
+     --path "HealthManagement/MedicalCare/Consultations/MedicalReceipt"
+   ```
+
+3. **Manually generate tags for existing document**:
+   ```typescript
+   const tags = expert.generateHierarchicalTags('HealthManagement/MedicalCare/Consultations/MedicalReceipt');
+   // Apply tags to document via paperless API
+   ```
+
+---
+
+### Storage Path Generation Fails
+
+**Problem**: Can't generate filesystem-safe storage path
+
+**Solutions**:
+
+1. **Validate path first**:
+   ```typescript
+   const validation = expert.validatePath('household', 'HealthManagement/MedicalCare/Consultations/MedicalReceipt');
+   if (!validation.valid) {
+     console.error(validation.reason);
+   }
+   ```
+
+2. **Generate storage path from validated hierarchical path**:
+   ```typescript
+   const storagePath = expert.generateStoragePath('HealthManagement/MedicalCare/Consultations/MedicalReceipt');
+   // Returns: 'Health_Management/Medical_Care/Consultations/Medical_Receipt'
+   ```
+
+3. **Ensure path has all 4 levels**:
+   - Incomplete paths won't generate storage paths
+   - Must specify: Function/Service/Activity/DocumentType
+
+---
+
+### Retention Requirements Unclear
+
+**Problem**: Don't know how long to keep a document with hierarchical path
+
+**Solutions**:
+
+1. **Get retention with full hierarchical context**:
+   ```typescript
+   const retention = expert.getRetentionForActivity(
+     'household',
+     'HealthManagement',
+     'MedicalCare',
+     'Consultations',
+     'Medical Receipt'
+   );
+   console.log(retention.legalCitation);  // Shows legal basis
+   console.log(retention.years);  // Retention period
+   console.log(retention.reason);  // Why it can't be deleted
+   ```
+
+2. **Check country-specific retention**:
+   - Australia: 7 years for medical expenses (ATO requirement)
+   - United States: Varies by state and document type
+   - United Kingdom: 6 years for tax documents (HMRC requirement)
+
+3. **Verify retention enforcement**:
+   ```bash
+   bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts retention \
+     --domain household \
+     --path "HealthManagement/MedicalCare/Consultations/MedicalReceipt"
+   ```
+
+---
+
+### Migration from Flat Taxonomies
+
+**Problem**: Need to migrate existing flat-tagged documents to hierarchical structure
+
+**Solutions**:
+
+1. **Follow the migration guide**:
+   - See [Migration Guide](tutorials/migration-guide.md) for step-by-step instructions
+   - Automatic mapping for 90%+ of documents
+   - Manual review for edge cases
+
+2. **Check migration status**:
+   ```bash
+   bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts migration status \
+     --domain household
+   ```
+
+3. **Use dual-mode during transition**:
+   - Hierarchical taxonomies support backward compatibility
+   - Flat and hierarchical can coexist during migration period
+   - Legacy queries still work with flat tags
+
+---
+
+### Autocomplete Not Working
+
+**Problem**: Autocomplete doesn't suggest paths as expected
+
+**Solutions**:
+
+1. **Check input format**:
+   - Use forward slashes: `HealthManagement/MedicalCare`
+   - No spaces around slashes
+   - Case-insensitive matching supported
+
+2. **Try partial path**:
+   ```bash
+   # Works with partial matches
+   bun run ~/.claude/skills/RecordsManager/Tools/RecordManager.ts taxonomy autocomplete \
+     --domain household \
+     --path "health"
+   # Suggests: HealthManagement/...
+   ```
+
+3. **Verify domain is correct**:
+   - Different domains have different taxonomies
+   - `household` vs `corporate` vs `unit-trust`
+   - Check domain supports the function you're searching for
+
+---
+
 ## Getting Help
 
 ### Still Having Issues?
