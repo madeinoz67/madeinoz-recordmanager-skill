@@ -1,0 +1,477 @@
+{
+  "entityType": "hybrid-trust",
+  "country": "AUS",
+  "countryName": "Australia",
+  "version": "1.0.0",
+  "functions": {
+    "TrustGovernance": {
+      "name": "TrustGovernance",
+      "description": "Hybrid trust governance",
+      "icon": "🏛️",
+      "services": {
+        "TrustFormation": {
+          "name": "TrustFormation",
+          "description": "Hybrid trust establishment",
+          "icon": "📜",
+          "activities": {
+            "TrustDeed": {
+              "name": "TrustDeed",
+              "description": "Trust deed creation",
+              "icon": "📄",
+              "documentTypes": [
+                "Trust Deed",
+                "Hybrid Trust Deed Variation",
+                "Stamping Certificate",
+                "Execution Copy",
+                "Certified Copy"
+              ],
+              "retention": {
+                "AUS": {
+                  "years": 0,
+                  "authority": "Permanent - Hybrid trust deed must be kept indefinitely per ATO guidance",
+                  "notes": "Permanent retention - fundamental trust document"
+                }
+              },
+              "keywords": ["trust deed", "hybrid trust", "establishment", "stamp duty"]
+            },
+            "TrusteeAppointment": {
+              "name": "TrusteeAppointment",
+              "description": "Trustee appointments",
+              "documentTypes": [
+                "Trustee Declaration",
+                "Acceptance",
+                "Deed of Appointment",
+                "Retirement",
+                "Removal"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["trustee", "appointment", "removal", "declaration"]
+            },
+            "AppointorDocumentation": {
+              "name": "AppointorDocumentation",
+              "description": "Appointor records",
+              "documentTypes": [
+                "Appointor Declaration",
+                "Acceptance to Act",
+                "Appointor Change",
+                "Resignation",
+                "Succession"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["appointor", "appointment", "succession", "resignation"]
+            },
+            "TrustVariation": {
+              "name": "TrustVariation",
+              "description": "Modifying trust deed",
+              "documentTypes": [
+                "Deed of Variation",
+                "Unanimous Resolution",
+                "Beneficiary Consent",
+                "ASIC Notification",
+                "Court Order"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 205 ITAA 1936" }
+              },
+              "keywords": ["variation", "deed of variation", "unanimous", "court order"]
+            },
+            "TrustDissolution": {
+              "name": "TrustDissolution",
+              "description": "Termination",
+              "documentTypes": [
+                "Dissolution Resolution",
+                "Final Distribution",
+                "Capital Account",
+                "Tax Clearance",
+                "ASIC Deregistration"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC Act" }
+              },
+              "keywords": ["dissolution", "winding up", "final distribution", "deregistration"]
+            },
+            "ConstitutionalDocuments": {
+              "name": "ConstitutionalDocuments",
+              "description": "Constitutional documents",
+              "icon": "📋",
+              "documentTypes": [
+                "Trust Constitution",
+                "Trust Rules",
+                "Beneficiary Rules",
+                "Distribution Policy",
+                "Investment Guidelines"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["constitution", "trust rules", "distribution policy", "investment guidelines"]
+            }
+          }
+        }
+      }
+    },
+    "InvestmentManagement": {
+      "name": "InvestmentManagement",
+      "description": "Hybrid trust investments",
+      "icon": "📈",
+      "services": {
+        "PortfolioManagement": {
+          "name": "PortfolioManagement",
+          "description": "Managing investments",
+          "icon": "💼",
+          "activities": {
+            "InvestmentStrategy": {
+              "name": "InvestmentStrategy",
+              "description": "Investment policy",
+              "documentTypes": [
+                "Investment Strategy",
+                "Investment Policy",
+                "Asset Allocation",
+                "Risk Profile",
+                "Strategy Review"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" }
+              },
+              "keywords": ["investment strategy", "asset allocation", "risk profile", "policy"]
+            },
+            "AssetAcquisition": {
+              "name": "AssetAcquisition",
+              "description": "Buying assets",
+              "icon": "🏛️",
+              "documentTypes": [
+                "Asset Purchase Agreement",
+                "Title Deed",
+                "Acquisition Report",
+                "Valuation Report",
+                "Due Diligence Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" }
+              },
+              "keywords": ["acquisition", "title deed", "valuation", "due diligence"]
+            },
+            "AssetHoldings": {
+              "name": "AssetHoldings",
+              "description": "Assets held",
+              "icon": "📋",
+              "documentTypes": [
+                "Asset Register",
+                "Title Deed",
+                "Share Certificate",
+                "Valuation Report",
+                "Asset Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" }
+              },
+              "keywords": ["asset register", "title deed", "share certificate", "valuation"]
+            },
+            "PerformanceReporting": {
+              "name": "PerformanceReporting",
+              "description": "Performance tracking",
+              "documentTypes": [
+                "Performance Report",
+                "Return Calculation",
+                "Benchmark Comparison",
+                "Annual Review",
+                "Investment Dashboard"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" }
+              },
+              "keywords": ["performance", "return", "benchmark", "dashboard"]
+            },
+            "InvestmentReview": {
+              "name": "InvestmentReview",
+              "description": "Reviewing decisions",
+              "documentTypes": [
+                "Investment Review",
+                "Decision Log",
+                "Rationale Memorandum",
+                "Conflict of Interest Check",
+                "Approval Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["investment review", "decision log", "rationale", "conflict of interest"]
+            }
+          }
+        }
+      }
+    },
+    "BeneficiaryManagement": {
+      "name": "BeneficiaryManagement",
+      "description": "Managing beneficiaries",
+      "icon": "👥",
+      "services": {
+        "BeneficiaryRecords": {
+          "name": "BeneficiaryRecords",
+          "description": "Beneficiary documentation",
+          "icon": "📋",
+          "activities": {
+            "BeneficiaryIdentification": {
+              "name": "BeneficiaryIdentification",
+              "description": "Recording beneficiaries",
+              "documentTypes": [
+                "Beneficiary List",
+                "Beneficiary Notice",
+                "Identification Form",
+                "Beneficiary Consent",
+                "TFN Declaration"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Privacy Act 1988" }
+              },
+              "keywords": ["beneficiary", "notice", "identification", "consent"]
+            },
+            "BeneficiaryClass": {
+              "name": "BeneficiaryClass",
+              "description": "Default beneficiaries",
+              "icon": "👤",
+              "documentTypes": [
+                "Default Beneficiary Notice",
+                "Primary Beneficiary Class",
+                "Income Distribution Notice",
+                "Capital Distribution Notice",
+                "General Class Notice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["default beneficiary", "primary class", "income distribution", "capital distribution"]
+            },
+            "InterestClasses": {
+              "name": "InterestClasses",
+              "description": "Interest beneficiaries",
+              "icon": "🔄",
+              "documentTypes": [
+                "Interest Class Notice",
+                "Class Definition",
+                "Allocation Percentage",
+                "Distribution Record",
+                "Vesting Schedule"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["interest class", "vesting", "allocation percentage"]
+            }
+          }
+        }
+      }
+    },
+    "TaxCompliance": {
+      "name": "TaxCompliance",
+      "description": "Tax obligations",
+      "icon": "📊",
+      "services": {
+        "IncomeTax": {
+          "name": "IncomeTax",
+          "description": "Income tax compliance",
+          "icon": "💰",
+          "activities": {
+            "TaxReturnPreparation": {
+              "name": "TaxReturnPreparation",
+              "description": "Annual tax filings",
+              "icon": "📋",
+              "documentTypes": [
+                "Trust Tax Return",
+                "Tax Return Attachment",
+                "TFN Statement",
+                "Deduction Schedule",
+                "Tax Agent Advice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO Section 254 of Tax Administration Act 1953", "fromDate": "fy_end" }
+              },
+              "keywords": ["tax return", "deduction", "tax agent", "fy_end"]
+            },
+            "TFNManagement": {
+              "name": "TFNManagement",
+              "description": "Tax file numbers",
+              "documentTypes": [
+                "TFN Application",
+                "TFN Notice",
+                "TFN Register",
+                "Withholding Rate Notice",
+                "TFN Update"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 202A ITAA 1936" }
+              },
+              "keywords": ["tfn", "tax file number", "withholding", "abn"]
+            },
+            "Withholdings": {
+              "name": "Withholdings",
+              "description": "Tax withholding",
+              "documentTypes": [
+                "Withholding Statement",
+                "Payment Record",
+                "Variation Notice",
+                "Withholding Rate Notice",
+                "Beneficiary Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 109 ITAA 1936" }
+              },
+              "keywords": ["withholding", "payment", "rate notice", "beneficiary"]
+            },
+            "GSTCompliance": {
+              "name": "GSTCompliance",
+              "description": "Goods and services tax",
+              "documentTypes": [
+                "GST Return",
+                "GST Payable",
+                "GST Credit",
+                "Transaction Record",
+                "Annual GST Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "GST Law" }
+              },
+              "keywords": ["gst", "goods and services tax", "gst payable", "gst credit"]
+            },
+            "CapitalGains": {
+              "name": "CapitalGains",
+              "description": "Capital gains tracking",
+              "documentTypes": [
+                "Capital Gains Calculation",
+                "Asset Disposal Record",
+                "CGT Discount Record",
+                "Indexation Adjustment",
+                "CGT Event"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO CGT rules" }
+              },
+              "keywords": ["capital gains", "cgt", "asset disposal", "indexation"]
+            },
+            "Deductions": {
+              "name": "Deductions",
+              "description": "Tax deductions",
+              "documentTypes": [
+                "Deduction Schedule",
+                "Expense Evidence",
+                "Tax Ruling",
+                "Private Expense Apportionment",
+                "Deduction Certificate"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 8-1 ITAA 1936" }
+              },
+              "keywords": ["deduction", "expense", "private expense", "apportionment"]
+            }
+          }
+        },
+        "ComplianceMonitoring": {
+          "name": "ComplianceMonitoring",
+          "description": "Ongoing compliance",
+          "icon": "⚖️",
+          "activities": {
+            "AnnualCompliance": {
+              "name": "AnnualCompliance",
+              "description": "Yearly requirements",
+              "documentTypes": [
+                "Annual Return",
+                "ASIC Statement",
+                "Distribution Record",
+                "TFN Report",
+                "Compliance Checklist"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC Act" }
+              },
+              "keywords": ["annual return", "asic", "distribution", "tfn"]
+            },
+            "ASICFilings": {
+              "name": "ASICFilings",
+              "description": "ASIC filings",
+              "documentTypes": [
+                "ASIC Form 484",
+                "ASIC Form 485",
+                "ASIC Form 486",
+                "Change Notification",
+                "Deregistration"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC Act" }
+              },
+              "keywords": ["asic", "form 484", "form 485", "change notification"]
+            }
+          }
+        }
+      }
+    },
+    "LegalAffairs": {
+      "name": "LegalAffairs",
+      "description": "Legal matters",
+      "icon": "⚖️",
+      "services": {
+        "LegalAdvice": {
+          "name": "LegalAdvice",
+          "description": "Legal counsel",
+          "icon": "👨‍⚖️",
+          "activities": {
+            "TrustFormationAdvice": {
+              "name": "TrustFormationAdvice",
+              "description": "Setting up trust",
+              "documentTypes": [
+                "Structure Advice",
+                "Deed Draft Review",
+                "Beneficiary Advice",
+                "Asset Protection Strategy",
+                "Estate Plan Review"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Legal professional privilege" }
+              },
+              "keywords": ["structure", "deed drafting", "asset protection", "estate plan"]
+            },
+            "DisputeResolution": {
+              "name": "DisputeResolution",
+              "description": "Managing disputes",
+              "documentTypes": [
+                "Dispute Notice",
+                "Mediation Record",
+                "Settlement Agreement",
+                "Court Filing",
+                "Correspondence"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust dispute records" }
+              },
+              "keywords": ["dispute", "mediation", "settlement", "court"]
+            },
+            "LegislativeMonitoring": {
+              "name": "LegislativeMonitoring",
+              "description": "Tracking legislation",
+              "documentTypes": [
+                "Legislative Update",
+                "Impact Analysis",
+                "Change Summary",
+                "Compliance Review",
+                "Recommendation"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["legislation", "regulation", "compliance", "impact analysis"]
+            }
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "createdAt": "2026-01-22T00:00:00Z",
+    "updatedAt": "2026-01-22T00:00:00Z",
+    "createdBy": "system",
+    "source": "default-taxonomy"
+  }
+}

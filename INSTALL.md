@@ -164,7 +164,7 @@ Show the user:
   "Existing configuration found in .env:"
   "  PAPERLESS_URL: https://paperless.example.com/"
   "  API_TOKEN: ******** (configured)"
-  "  COUNTRY: Australia"
+  "  COUNTRY: AUS (Australia)"
   "  DEFAULT_DOMAIN: household"
 
 AskUserQuestion:
@@ -293,7 +293,7 @@ The installation wizard needs to collect this information. Use `AskUserQuestion`
 
 1. **Paperless-ngx URL**: The base URL of your paperless-ngx instance
 2. **API Token**: Your paperless-ngx API token with read/write permissions
-3. **Country**: Your country for record keeping compliance (e.g., Australia, United States, United Kingdom)
+3. **Country**: Your country for record keeping compliance (e.g., AUS, USA, GBR or Australia, United States, United Kingdom)
 4. **Entities**: All entities you want to manage (households, businesses, trusts, projects)
 
 **Interactive Setup Prompt:**
@@ -451,7 +451,7 @@ echo "Checking paperless-ngx configuration..."
 
 PAPERLESS_URL=$(check_env_var "MADEINOZ_RECORDMANAGER_PAPERLESS_URL" "Paperless-ngx URL" "" "false")
 PAPERLESS_TOKEN=$(check_env_var "MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN" "API Token" "" "true")
-RECORDS_COUNTRY=$(check_env_var "MADEINOZ_RECORDMANAGER_COUNTRY" "Country for compliance" "Australia" "false")
+RECORDS_COUNTRY=$(check_env_var "MADEINOZ_RECORDMANAGER_COUNTRY" "Country for compliance" "AUS" "false")
 DEFAULT_DOMAIN=$(check_env_var "MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN" "Default domain" "household" "false")
 
 echo ""
@@ -504,7 +504,7 @@ MADEINOZ_RECORDMANAGER_PAPERLESS_URL="https://paperless.example.com"
 MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN="your-api-token-here"
 
 # Records Manager settings
-MADEINOZ_RECORDMANAGER_COUNTRY="Australia"
+MADEINOZ_RECORDMANAGER_COUNTRY="AUS"
 MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN="household"
 
 # Entity configuration (JSON array)
@@ -1055,8 +1055,8 @@ export interface DomainTaxonomy {
  * Country-specific taxonomies
  */
 const COUNTRY_TAXONOMIES: Record<string, CountryGuidelines> = {
-  Australia: {
-    country: 'Australia',
+  AUS: {
+    country: 'AUS',
     domains: {
       household: {
         documentTypes: [
@@ -1497,12 +1497,12 @@ export class TaxonomyExpert {
  * Create expert from environment variables
  */
 export function createExpertFromEnv(): TaxonomyExpert {
-  const country = process.env.MADEINOZ_RECORDMANAGER_COUNTRY || 'Australia';
+  const country = process.env.MADEINOZ_RECORDMANAGER_COUNTRY || 'AUS';
   const defaultDomain = (process.env.MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN as Domain) || 'household';
 
   if (!TaxonomyExpert.isCountrySupported(country)) {
-    console.warn(`Country ${country} not supported, falling back to Australia`);
-    return new TaxonomyExpert('Australia', defaultDomain);
+    console.warn(`Country ${country} not supported, falling back to AUS`);
+    return new TaxonomyExpert('AUS', defaultDomain);
   }
 
   return new TaxonomyExpert(country, defaultDomain);
@@ -1878,7 +1878,7 @@ Examples:
 Environment Variables:
   MADEINOZ_RECORDMANAGER_PAPERLESS_URL       Your paperless-ngx instance URL
   MADEINOZ_RECORDMANAGER_PAPERLESS_API_TOKEN API token with read/write permissions
-  MADEINOZ_RECORDMANAGER_COUNTRY             Your country for compliance (default: Australia)
+  MADEINOZ_RECORDMANAGER_COUNTRY             Your country for compliance (default: AUS)
   MADEINOZ_RECORDMANAGER_DEFAULT_DOMAIN      Default domain (default: household)
         `);
         process.exit(1);
@@ -2175,13 +2175,106 @@ If any verification check fails:
 | API unreachable | Check URL, network, firewall |
 | Auth failed (6) | Token may be expired or invalid, regenerate in paperless-ngx |
 | Data access (7-9) | Check token has read permissions |
-| Taxonomy (10) | Verify COUNTRY is supported (Australia, UnitedStates, UnitedKingdom) |
+| Taxonomy (10) | Verify COUNTRY is supported (AUS, USA, GBR or Australia, United States, United Kingdom) |
 | CLI (11) | Check shebang line is first line in RecordManager.ts |
 | Files missing (12) | Re-run copy steps |
 | Connection test (13) | Run `status` command manually, check for specific error |
 | Skill invocation (14) | Verify SKILL.md is in correct location, check skill triggers |
 
 Only after ALL 14 checks pass should you declare installation complete.
+
+---
+
+### Step 10: Bootstrap Default Taxonomies
+
+**⚠️ IMPORTANT:** After installing the skill, you must bootstrap your paperless-ngx instance with default taxonomies. This populates paperless-ngx with country-specific tags, document types, storage paths, and custom fields.
+
+#### What the Install Command Does
+
+The `install` command reads from `taxonomies.yaml` and creates:
+- **Tags** - Category tags (financial, legal, insurance, medical, etc.)
+- **Document Types** - Invoice, Receipt, Contract, Tax Return, etc.
+- **Storage Paths** - Organized by entity type (/household, /corporate, /unit-trust, etc.)
+- **Custom Fields** - For trust entities (ABN, TFN, trustee, beneficiaries)
+
+#### Running the Install Command
+
+```bash
+# Bootstrap with default country (from MADEINOZ_RECORDMANAGER_COUNTRY env var)
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts install
+
+# Or specify a country explicitly
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts install --country AUS
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts install --country "United States"
+bun run $PAI_DIR/skills/RecordsManager/Tools/RecordManager.ts install --country "United Kingdom"
+```
+
+#### Expected Output
+
+```
+📦 Installing Taxonomies for Australia
+
+──────────────────────────────────────────────────
+
+✅ Installation complete for Australia
+
+📊 Installation Summary:
+
+   Entity Types: household, corporate, projects, unit-trust, discretionary-trust, family-trust
+
+   Installed Resources:
+     - Tags: 42
+     - Document Types: 89
+     - Storage Paths: 6
+     - Custom Fields: 3
+
+   ⏭️  Skipped (already exist):
+     - Tags: 0
+     - Document Types: 0
+
+✨ Your paperless-ngx instance is now configured with Australia taxonomies!
+```
+
+#### Important Notes
+
+1. **Safe to run multiple times** - The install command uses a skip strategy. If tags/document types already exist, they won't be created again.
+
+2. **Automatic rollback** - If installation fails partway through, all changes are automatically rolled back to prevent partial state.
+
+3. **Country-specific** - Each country has its own retention rules and document types tailored to local regulations.
+
+4. **Extensible** - You can add custom countries/domains by editing `Config/taxonomies.yaml`.
+
+#### Supported Countries
+
+Currently supported:
+- **Australia** - ATO compliance, trust structures, EOFY retention
+- **United States** - IRS requirements, federal/state retention rules
+- **United Kingdom** - HMRC compliance, UK trust structures
+
+To add support for other countries, see the documentation header in `Config/taxonomies.yaml`.
+
+#### Troubleshooting
+
+**Problem:** "Country X not supported, falling back to Australia"
+
+**Solution:**
+- Check spelling of country name (must match exactly as shown above)
+- Or add your country to `Config/taxonomies.yaml` following the template
+
+**Problem:** "Installation failed and was rolled back"
+
+**Solution:**
+- Check paperless-ngx API connectivity with `status` command
+- Verify API token has "Read/Write" permissions
+- Check error message for specific failure point (tags, document types, etc.)
+
+**Problem:** "All resources already exist (0 installed)"
+
+**Solution:**
+- This is normal if you've already run `install` before
+- The skip strategy prevents duplicates
+- To force reinstall, manually delete resources in paperless-ngx first
 
 ---
 
@@ -2437,9 +2530,10 @@ nano $PAI_DIR/.env
 
 ## Next Steps
 
-1. **Test the installation:** Run a few test commands to ensure everything works
-2. **Customize your taxonomy:** Add country-specific tags and retention rules
+1. **Bootstrap taxonomies:** Run the `install` command to populate paperless-ngx with default tags and document types (see Step 10)
+2. **Test the installation:** Run a few test commands to ensure everything works
 3. **Upload some documents:** Try uploading with intelligent tagging
 4. **Review retention requirements:** Understand how long to keep different document types
+5. **Customize your taxonomy:** Add country-specific tags and retention rules to `Config/taxonomies.yaml`
 
 For detailed verification, see [VERIFY.md](./VERIFY.md)

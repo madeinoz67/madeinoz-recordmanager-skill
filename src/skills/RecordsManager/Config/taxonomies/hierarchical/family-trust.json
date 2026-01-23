@@ -1,0 +1,922 @@
+{
+  "entityType": "family-trust",
+  "country": "AUS",
+  "countryName": "Australia",
+  "version": "1.0.0",
+  "functions": {
+    "TrustGovernance": {
+      "name": "TrustGovernance",
+      "description": "Trust establishment and governance documentation",
+      "icon": "🏛️",
+      "services": {
+        "TrustFormation": {
+          "name": "TrustFormation",
+          "description": "Trust establishment documents",
+          "icon": "📜",
+          "activities": {
+            "TrustDeed": {
+              "name": "TrustDeed",
+              "description": "Trust deed establishment",
+              "icon": "📄",
+              "documentTypes": [
+                "Trust Deed",
+                "Trust Deed Variation",
+                "Stamping Certificate",
+                "Execution Copy",
+                "Certified Copy"
+              ],
+              "retention": {
+                "AUS": {
+                  "years": 0,
+                  "authority": "Permanent - Trust deed must be kept indefinitely per ATO guidance",
+                  "notes": "Permanent retention - fundamental trust document"
+                }
+              },
+              "keywords": ["trust deed", "trust establishment", "trust variation", "stamp duty"]
+            },
+            "FamilyTrustElection": {
+              "name": "FamilyTrustElection",
+              "description": "Family trust election records",
+              "icon": "🗳️",
+              "documentTypes": [
+                "Family Trust Election",
+                "Notice of Election",
+                "ATO Confirmation",
+                "Revocation",
+                "Variation"
+              ],
+              "retention": {
+                "AUS": {
+                  "years": 5,
+                  "authority": "Section 272-80 ITAA 1936",
+                  "fromDate": "fte_date",
+                  "notes": "5 years FROM the date of the election, not EOFY"
+                }
+              },
+              "keywords": ["fte", "family trust election", "section 272-80", "trust election", "ato"]
+            },
+            "TrusteeAppointment": {
+              "name": "TrusteeAppointment",
+              "description": "Trustee appointment and removal",
+              "documentTypes": [
+                "Trustee Declaration",
+                "Acceptance",
+                "Deed of Appointment",
+                "Retirement",
+                "Removal"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["trustee", "appointment", "removal", "declaration"]
+            },
+            "AppointorDocumentation": {
+              "name": "AppointorDocumentation",
+              "description": "Appointor records and consents",
+              "documentTypes": [
+                "Appointor Declaration",
+                "Consent to Act",
+                "Appointment Form",
+                "Resignation",
+                "Succession"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["appointor", "guardian", "consent", "succession"]
+            },
+            "TrustVariation": {
+              "name": "TrustVariation",
+              "description": "Trust deed variations",
+              "documentTypes": [
+                "Deed of Variation",
+                "Unanimous Resolution",
+                "Beneficiary Consent",
+                "ATO Notification",
+                "Court Order"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 205 ITAA 1936" }
+              },
+              "keywords": ["variation", "deed of variation", "unanimous resolution"]
+            },
+            "TrustDissolution": {
+              "name": "TrustDissolution",
+              "description": "Trust termination records",
+              "documentTypes": [
+                "Dissolution Plan",
+                "Final Distribution",
+                "Capital Account",
+                "Tax Clearance",
+                "ASIC Deregistration"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporate law" }
+              },
+              "keywords": ["dissolution", "winding up", "final distribution", "capital account"]
+            }
+          }
+        },
+        "ComplianceMonitoring": {
+          "name": "ComplianceMonitoring",
+          "description": "Ongoing trust compliance",
+          "icon": "⚖️",
+          "activities": {
+            "AnnualCompliance": {
+              "name": "AnnualCompliance",
+              "description": "Yearly compliance requirements",
+              "icon": "📋",
+              "documentTypes": [
+                "Annual Return",
+                "ASIC Statement",
+                "Trust Distribution Record",
+                "TFN Report",
+                "Compliance Checklist"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC Act" }
+              },
+              "keywords": ["annual return", "asic", "trust distribution", "tfn"]
+            },
+            "DistributionRecords": {
+              "name": "DistributionRecords",
+              "description": "Trust distribution documentation",
+              "icon": "💰",
+              "documentTypes": [
+                "Distribution Resolution",
+                "Distribution Minute",
+                "Beneficiary Consent",
+                "Payment Record",
+                "Tax Certificate"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 109 ITAA 1936" }
+              },
+              "keywords": ["distribution", "beneficiary", "minute", "resolution"]
+            },
+            "TaxFileNumber": {
+              "name": "TaxFileNumber",
+              "description": "TFN management",
+              "documentTypes": [
+                "TFN Application",
+                "TFN Notification",
+                "TFN Update",
+                "Withholding Rate Notice",
+                "TFN Register"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 202A ITAA 1936" }
+              },
+              "keywords": ["tfn", "tax file number", "withholding", "abn"]
+            },
+            "TrustResolutions": {
+              "name": "TrustResolutions",
+              "description": "Trustee resolutions",
+              "documentTypes": [
+                "Trustee Resolution",
+                "Unanimous Resolution",
+                "Minute",
+                "Written Resolution",
+                "Beneficiary Notice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["resolution", "minute", "unanimous", "trustee decision"]
+            },
+            "FinancialStatements": {
+              "name": "FinancialStatements",
+              "description": "Trust financial reporting",
+              "documentTypes": [
+                "Financial Statement",
+                "Balance Sheet",
+                "Income Statement",
+                "Capital Account",
+                "Accountant Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" }
+              },
+              "keywords": ["financial statement", "balance sheet", "capital account", "trust income"]
+            },
+            "ASICFilings": {
+              "name": "ASICFilings",
+              "description": "Regulatory filings",
+              "documentTypes": [
+                "ASIC Form 484",
+                "ASIC Form 485",
+                "ASIC Form 486",
+                "Change Notification",
+                "Deregistration"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC Act" }
+              },
+              "keywords": ["asic", "form 484", "form 485", "change notification"]
+            }
+          }
+        }
+      }
+    },
+    "BeneficiaryManagement": {
+      "name": "BeneficiaryManagement",
+      "description": "Beneficiary records and management",
+      "icon": "👨‍👩‍👧",
+      "services": {
+        "BeneficiaryRecords": {
+          "name": "BeneficiaryRecords",
+          "description": "Beneficiary documentation",
+          "icon": "📋",
+          "activities": {
+            "BeneficiaryIdentification": {
+              "name": "BeneficiaryIdentification",
+              "description": "Recording beneficiary details",
+              "icon": "📝",
+              "documentTypes": [
+                "Beneficiary List",
+                "Beneficiary Notice",
+                "Identification Form",
+                "Beneficiary Consent",
+                "TFN Declaration"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Privacy Act 1988" }
+              },
+              "keywords": ["beneficiary", "notice", "identification", "consent"]
+            },
+            "PrimaryBeneficiary": {
+              "name": "PrimaryBeneficiary",
+              "description": "Primary beneficiary management",
+              "documentTypes": [
+                "Primary Beneficiary Election",
+                "Default Notice",
+                "Income Interest",
+                "Capital Interest",
+                "Appointment Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["primary beneficiary", "default", "income interest", "capital interest"]
+            },
+            "ContingentBeneficiary": {
+              "name": "ContingentBeneficiary",
+              "description": "Contingent beneficiaries",
+              "icon": "🔄",
+              "documentTypes": [
+                "Contingent Beneficiary Notice",
+                "Vesting Schedule",
+                "Vesting Declaration",
+                "Confirmation",
+                "Release of Contingent Interest"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["contingent", "vesting", "conditional interest", "released"]
+            },
+            "BeneficiaryChanges": {
+              "name": "BeneficiaryChanges",
+              "description": "Beneficiary modifications",
+              "documentTypes": [
+                "Addition of Beneficiary",
+                "Removal of Beneficiary",
+                "Variation",
+                "Consent to Variation",
+                "ATO Notification"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 103B ITAA 1936" }
+              },
+              "keywords": ["addition", "removal", "variation", "beneficiary consent"]
+            },
+            "MinorBeneficiaries": {
+              "name": "MinorBeneficiaries",
+              "description": "Minor beneficiary provisions",
+              "documentTypes": [
+                "Guardian Appointment",
+                "Minor Beneficiary Notice",
+                "Income Advance Request",
+                "Legal Expense Account",
+                "Court Approval"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["minor", "guardian", "legal expense", "income advance"]
+            },
+            "NonResidentBeneficiaries": {
+              "name": "NonResidentBeneficiaries",
+              "description": "International beneficiaries",
+              "icon": "🌍",
+              "documentTypes": [
+                "Foreign Beneficiary Notice",
+                "TFN Application",
+                "Withholding Declaration",
+                " residency Status",
+                "ATO Disclosure"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Foreign resident tax rules" }
+              },
+              "keywords": ["non-resident", "foreign beneficiary", "withholding", "residency"]
+            }
+          }
+        },
+        "DistributionManagement": {
+          "name": "DistributionManagement",
+          "description": "Managing trust distributions",
+          "icon": "💰",
+          "activities": {
+            "IncomeDistribution": {
+              "name": "IncomeDistribution",
+              "description": "Income distribution to beneficiaries",
+              "icon": "📊",
+              "documentTypes": [
+                "Distribution Statement",
+                "Distribution Calculation",
+                "Beneficiary Share",
+                "Tax Withholding Certificate",
+                "Payment Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 109 ITAA 1936" }
+              },
+              "keywords": ["income distribution", "share", "withholding", "beneficiary share"]
+            },
+            "CapitalDistribution": {
+              "name": "CapitalDistribution",
+              "description": "Capital distributions",
+              "icon": "💵",
+              "documentTypes": [
+                "Capital Distribution",
+                "Redemption Payment",
+                "Capital Reduction",
+                "Beneficiary Acknowledgment",
+                "Tax Clearance"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 104 ITAA 1936" }
+              },
+              "keywords": ["capital distribution", "redemption", "capital reduction", "tax clearance"]
+            },
+            "Streaming": {
+              "name": "Streaming",
+              "description": "Income streaming arrangements",
+              "icon": "📈",
+              "documentTypes": [
+                "Streaming Agreement",
+                "Streaming Resolution",
+                "Streaming Notice",
+                "Streaming Minutes",
+                "Varying Stream"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["streaming", "income streaming", "stream resolution", "minutes"]
+            },
+            "LoanBeneficiary": {
+              "name": "LoanBeneficiary",
+              "description": "Beneficiary loan arrangements",
+              "documentTypes": [
+                "Loan Agreement",
+                "Promissory Note",
+                "Repayment Schedule",
+                "Interest Statement",
+                "Variation"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 109 ITAA 1936" }
+              },
+              "keywords": ["loan", "beneficiary loan", "promissory note", "repayment"]
+            },
+            "UnpaidPresentEntitlement": {
+              "name": "UnpaidPresentEntitlement",
+              "description": "UPE records",
+              "icon": "📋",
+              "documentTypes": [
+                "UPE Resolution",
+                "UPE Record",
+                "Beneficiary Acknowledgment",
+                "UPE Release",
+                "Forfeiture Notice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO UPE rules" }
+              },
+              "keywords": ["upe", "unpaid present entitlement", "forfeiture", "release"]
+            },
+            "DistributionReinvestment": {
+              "name": "DistributionReinvestment",
+              "description": "Reinvestment of distributions",
+              "documentTypes": [
+                "Reinvestment Resolution",
+                "Reinvestment Direction",
+                "Election Notice",
+                "Beneficiary Consent",
+                "Authority Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 109U ITAA 1936" }
+              },
+              "keywords": ["reinvestment", "election", "authority", "beneficiary consent"]
+            }
+          }
+        }
+      }
+    },
+    "InvestmentManagement": {
+      "name": "InvestmentManagement",
+      "description": "Trust investment activities",
+      "icon": "📈",
+      "services": {
+        "PortfolioManagement": {
+          "name": "PortfolioManagement",
+          "description": "Investment portfolio oversight",
+          "icon": "💼",
+          "activities": {
+            "InvestmentStrategy": {
+              "name": "InvestmentStrategy",
+              "description": "Investment policy and strategy",
+              "documentTypes": [
+                "Investment Strategy",
+                "Investment Policy",
+                "Asset Allocation",
+                "Risk Profile",
+                "Strategy Review"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" }
+              },
+              "keywords": ["investment strategy", "asset allocation", "risk profile", "policy"]
+            },
+            "InvestmentTransactions": {
+              "name": "InvestmentTransactions",
+              "description": "Investment buy/sell decisions",
+              "documentTypes": [
+                "Trade Confirmation",
+                "Brokerage Statement",
+                "Transaction Record",
+                "Settlement Advice",
+                "Rationale Memorandum"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporate law" }
+              },
+              "keywords": ["trade", "brokerage", "transaction", "settlement"]
+            },
+            "AssetHoldings": {
+              "name": "AssetHoldings",
+              "description": "Assets held by trust",
+              "icon": "🏛️",
+              "documentTypes": [
+                "Asset Register",
+                "Title Deed",
+                "Share Certificate",
+                "Valuation Report",
+                "Asset Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" }
+              },
+              "keywords": ["asset register", "title deed", "share certificate", "valuation"]
+            },
+            "PerformanceReporting": {
+              "name": "PerformanceReporting",
+              "description": "Investment performance tracking",
+              "documentTypes": [
+                "Performance Report",
+                "Return Calculation",
+                "Benchmark Comparison",
+                "Annual Review",
+                "Investment Dashboard"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" }
+              },
+              "keywords": ["performance", "return", "benchmark", "annual review"]
+            },
+            "InvestmentAdvisory": {
+              "name": "InvestmentAdvisory",
+              "description": "Professional investment advice",
+              "documentTypes": [
+                "Advice Record",
+                "SOA",
+                "Fee Disclosure",
+                "Recommendation Report",
+                "Opt-in Notice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" }
+              },
+              "keywords": ["soa", "statement of advice", "fee disclosure", "recommendation"]
+            }
+          }
+        },
+        "AssetProtection": {
+          "name": "AssetProtection",
+          "description": "Protecting trust assets",
+          "icon": "🛡️",
+          "activities": {
+            "AssetLoans": {
+              "name": "AssetLoans",
+              "description": "Lending to related parties",
+              "documentTypes": [
+                "Loan Agreement",
+                "Promissory Note",
+                "Security Agreement",
+                "Guarantee",
+                "Interest Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 109 ITAA 1936" }
+              },
+              "keywords": ["asset loan", "related party", "security", "guarantee"]
+            },
+            "RiskManagement": {
+              "name": "RiskManagement",
+              "description": "Investment risk oversight",
+              "documentTypes": [
+                "Risk Register",
+                "Risk Assessment",
+                "Risk Matrix",
+                "Mitigation Strategy",
+                "Monitoring Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" }
+              },
+              "keywords": ["risk register", "assessment", "mitigation", "monitoring"]
+            },
+            "ComplianceReview": {
+              "name": "ComplianceReview",
+              "description": "Sole purpose test compliance",
+              "icon": "⚖️",
+              "documentTypes": [
+                "Sole Purpose Test",
+                "Compliance Certificate",
+                "ATO Review Record",
+                "Legal Opinion",
+                "Adjustment Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO Sole Purpose Test guidance" }
+              },
+              "keywords": ["sole purpose test", "spt", "compliance", "adjustment"]
+            },
+            "InvestmentReview": {
+              "name": "InvestmentReview",
+              "description": "Reviewing investment decisions",
+              "documentTypes": [
+                "Investment Review",
+                "Decision Log",
+                "Rationale Memorandum",
+                "Conflict of Interest Check",
+                "Approval Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust law" }
+              },
+              "keywords": ["investment review", "decision log", "rationale", "conflict of interest"]
+            }
+          }
+        }
+      }
+    },
+    "TaxCompliance": {
+      "name": "TaxCompliance",
+      "description": "Tax obligations and compliance",
+      "icon": "📊",
+      "services": {
+        "IncomeTax": {
+          "name": "IncomeTax",
+          "description": "Trust income tax obligations",
+          "icon": "💰",
+          "activities": {
+            "TaxReturnPreparation": {
+              "name": "TaxReturnPreparation",
+              "description": "Annual tax filings",
+              "icon": "📋",
+              "documentTypes": [
+                "Trust Tax Return",
+                "Tax Return Attachment",
+                "TFN Statement",
+                "Deduction Schedule",
+                "Tax Agent Advice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO Section 254 of Tax Administration Act 1953", "fromDate": "fy_end" }
+              },
+              "keywords": ["tax return", "deduction", "tax agent", "fy_end"]
+            },
+            "TFNManagement": {
+              "name": "TFNManagement",
+              "description": "Tax file number operations",
+              "documentTypes": [
+                "TFN Application",
+                "TFN Notice",
+                "TFN Register",
+                "Withholding Rate Notice",
+                "TFN Update"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 202A ITAA 1936" }
+              },
+              "keywords": ["tfn", "tax file number", "withholding", "abn"]
+            },
+            "Withholdings": {
+              "name": "Withholdings",
+              "description": "Tax withholding management",
+              "documentTypes": [
+                "Withholding Statement",
+                "Payment Record",
+                "Variation Notice",
+                "Withholding Rate Notice",
+                "Beneficiary Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 109 ITAA 1936" }
+              },
+              "keywords": ["withholding", "payment", "rate notice", "beneficiary"]
+            },
+            "GSTCompliance": {
+              "name": "GSTCompliance",
+              "description": "Goods and services tax",
+              "documentTypes": [
+                "GST Return",
+                "GST Payable",
+                "GST Credit",
+                "Transaction Record",
+                "Annual GST Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "GST Law" }
+              },
+              "keywords": ["gst", "goods and services tax", "gst payable", "gst credit"]
+            },
+            "CapitalGains": {
+              "name": "CapitalGains",
+              "description": "Capital gains tracking",
+              "documentTypes": [
+                "Capital Gains Calculation",
+                "Asset Disposal Record",
+                "CGT Discount Record",
+                "Indexation Adjustment",
+                "CGT Event"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO CGT rules" }
+              },
+              "keywords": ["capital gains", "cgt", "asset disposal", "indexation"]
+            },
+            "Deductions": {
+              "name": "Deductions",
+              "description": "Trust expense deductions",
+              "documentTypes": [
+                "Deduction Schedule",
+                "Expense Evidence",
+                "Tax Ruling",
+                "Private Expense Apportionment",
+                "Deduction Certificate"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 8-1 ITAA 1936" }
+              },
+              "keywords": ["deduction", "expense", "private expense", "apportionment"]
+            }
+          }
+        },
+        "FTEManagement": {
+          "name": "FTEManagement",
+          "description": "Family Trust Election management",
+          "icon": "📅",
+          "activities": {
+            "ElectionMaintenance": {
+              "name": "ElectionMaintenance",
+              "description": "FTE validity and compliance",
+              "documentTypes": [
+                "FTE Validity Check",
+                "Family Group Test",
+                "ATO Correspondence",
+                "Compliance Review",
+                "Maintenance Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 272-80 ITAA 1936" }
+              },
+              "keywords": ["fte", "family trust election", "validity", "family group"]
+            },
+            "FamilyGroup": {
+              "name": "FamilyGroup",
+              "description": "Family group definition",
+              "documentTypes": [
+                "Family Group Declaration",
+                "Family Group Members",
+                "Family Group Change",
+                "ATO Acknowledgment",
+                "Group List Update"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 272-80 ITAA 1936" }
+              },
+              "keywords": ["family group", "family group test", "members", "definition"]
+            },
+            "ElectionRevocation": {
+              "name": "ElectionRevocation",
+              "description": "Revoking FTE status",
+              "documentTypes": [
+                "FTE Revocation",
+                "ATO Acknowledgment",
+                "Effective Date Notice",
+                "Reason for Revocation",
+                "Trustee Declaration"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Section 272-80 ITAA 1936" }
+              },
+              "keywords": ["revocation", "fte revocation", "effective date", "termination"]
+            },
+            "YearRoundCompliance": {
+              "name": "YearRoundCompliance",
+              "description": "Ongoing FTE requirements",
+              "documentTypes": [
+                "Compliance Checklist",
+                "Income Distribution Record",
+                "Beneficiary Status Report",
+                "Family Group Status",
+                "ATO Monitoring Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO FTE guidance" }
+              },
+              "keywords": ["year-round", "compliance checklist", "monitoring", "family group"]
+            }
+          }
+        }
+      }
+    },
+    "LegalAffairs": {
+      "name": "LegalAffairs",
+      "description": "Legal matters and documentation",
+      "icon": "⚖️",
+      "services": {
+        "LegalAdvice": {
+          "name": "LegalAdvice",
+          "description": "Legal counsel and advice",
+          "icon": "👨‍⚖️",
+          "activities": {
+            "LegalOpinions": {
+              "name": "LegalOpinions",
+              "description": "Formal legal advice",
+              "documentTypes": [
+                "Legal Opinion",
+                "Advice Memorandum",
+                "Tax Ruling",
+                "ATO Private Ruling",
+                "Precedent Analysis"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Legal professional privilege" }
+              },
+              "keywords": ["legal opinion", "advice", "tax ruling", "precedent"]
+            },
+            "TrustFormationAdvice": {
+              "name": "TrustFormationAdvice",
+              "description": "Setting up trust structure",
+              "documentTypes": [
+                "Structure Advice",
+                "Deed Draft Review",
+                "Election Guidance",
+                "Asset Protection Strategy",
+                "Estate Plan Review"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Legal professional privilege" }
+              },
+              "keywords": ["structure", "deed drafting", "asset protection", "estate plan"]
+            },
+            "DisputeResolution": {
+              "name": "DisputeResolution",
+              "description": "Managing disputes",
+              "documentTypes": [
+                "Dispute Notice",
+                "Mediation Record",
+                "Settlement Agreement",
+                "Court Filing",
+                "Correspondence"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust dispute records" }
+              },
+              "keywords": ["dispute", "mediation", "settlement", "court"]
+            },
+            "LegislativeMonitoring": {
+              "name": "LegislativeMonitoring",
+              "description": "Tracking tax law changes",
+              "documentTypes": [
+                "Legislative Update",
+                "Impact Analysis",
+                "Change Summary",
+                "Compliance Review",
+                "Recommendation"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["legislation", "tax law", "change", "impact analysis"]
+            }
+          }
+        },
+        "DocumentManagement": {
+          "name": "DocumentManagement",
+          "description": "Trust record keeping",
+          "icon": "📁",
+          "activities": {
+            "DocumentRegister": {
+              "name": "DocumentRegister",
+              "description": "Tracking trust documents",
+              "documentTypes": [
+                "Document Register",
+                "Document List",
+                "Custody Schedule",
+                "Archive List",
+                "Destruction Log"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trust record keeping requirements" }
+              },
+              "keywords": ["document register", "custody", "archive", "destruction"]
+            },
+            "RecordRetention": {
+              "name": "RecordRetention",
+              "description": "Managing retention schedules",
+              "documentTypes": [
+                "Retention Schedule",
+                "Retention Review",
+                "Disposal Authority",
+                "Destruction Certificate",
+                "Archive Transfer"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Record keeping requirements" }
+              },
+              "keywords": ["retention", "disposal", "archive", "destruction"]
+            },
+            "TrustAccounting": {
+              "name": "TrustAccounting",
+              "description": "Trust accounting records",
+              "documentTypes": [
+                "Accounting Records",
+                "Journal Entries",
+                "Ledger",
+                "Trial Balance",
+                "Accountant Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" }
+              },
+              "keywords": ["accounting", "journal", "ledger", "trial balance"]
+            },
+            "ArchivalSystem": {
+              "name": "ArchivalSystem",
+              "description": "Document archival",
+              "documentTypes": [
+                "Archive Policy",
+                "Archive Storage",
+                "Retrieval Record",
+                "Digitization Log",
+                "Access Log"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporate governance" }
+              },
+              "keywords": ["archive", "storage", "retrieval", "digitization"]
+            },
+            "PrivilegeReview": {
+              "name": "PrivilegeReview",
+              "description": "Legal privilege assessment",
+              "documentTypes": [
+                "Privilege Claim",
+                "Waiver",
+                "Privilege Ruling",
+                "Disclosure Decision",
+                "Redaction Log"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Legal professional privilege" }
+              },
+              "keywords": ["privilege", "waiver", "disclosure", "legal professional privilege"]
+            }
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "createdAt": "2026-01-22T00:00:00Z",
+    "updatedAt": "2026-01-22T00:00:00Z",
+    "createdBy": "system",
+    "source": "default-taxonomy"
+  }
+}

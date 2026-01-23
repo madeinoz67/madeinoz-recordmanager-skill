@@ -1,0 +1,978 @@
+# ⚠️ DEPRECATED: This flat taxonomy file is deprecated and maintained for backward compatibility only.
+# ⚠️ New implementations should use the hierarchical FSA (Function/Service/Activity) taxonomy
+# ⚠️ located in Config/taxonomies/hierarchical/*.json
+# ⚠️ See documentation for migration guide from flat to hierarchical taxonomy.
+#
+# Country-Specific Taxonomy Definitions
+# This file defines document types, tags, and retention rules for each country and domain
+#
+# HOW TO ADD A NEW COUNTRY:
+# 1. Add a new top-level key with the country name (e.g., "Canada:")
+# 2. Set the country property to the full country name
+# 3. Define domains under the "domains:" key
+# 4. Each domain should have: documentTypes, tagCategories, retentionRules
+#
+# HOW TO ADD A NEW ENTITY TYPE (DOMAIN):
+# 1. Add a new key under "domains:" (e.g., "partnership:")
+# 2. Define documentTypes as a list of document type names
+# 3. Define tagCategories as categories with tag lists
+# 4. Define retentionRules with years and legal reasons for each document type
+#
+# HOW TO ADD A NEW DOCUMENT TYPE:
+# 1. Add the document type name to the documentTypes list
+# 2. Add appropriate tags to relevant tagCategories
+# 3. Add a retention rule with years and legal citation reason
+#
+# RETENTION RULES FORMAT:
+# DocumentTypeName:
+#   years: <number>  # Use 0 for "keep until event", 15 for "permanent/indefinite"
+#   reason: "Legal citation or business reason for retention period"
+#
+# LEGAL CITATIONS SHOULD REFERENCE:
+# - Australia: ATO requirements, Tax Administration Act, Fair Work Act, Corporations Act
+# - United States: IRS regulations, state statutes
+# - United Kingdom: HMRC requirements, FCA guidance, Consumer Rights Act
+#
+# EXAMPLE:
+# Germany:
+#   country: Germany
+#   domains:
+#     household:
+#       documentTypes:
+#         - Tax Return
+#       tagCategories:
+#         financial:
+#           - tax
+#       retentionRules:
+#         Tax Return:
+#           years: 10
+#           reason: "German Tax Code Section 147 - 10 year retention"
+
+# TAXONOMY VERSION METADATA
+# Track changes to taxonomies for update detection and audit trail
+metadata:
+  version: "1.0.0"
+  lastUpdated: "2026-01-22"
+  changelog:
+    - version: "1.0.0"
+      date: "2026-01-22"
+      changes:
+        - "Initial taxonomy definitions for Australia, United States, United Kingdom"
+        - "Complete household, corporate, and trust domain taxonomies"
+        - "Country-specific retention rules with legal citations"
+
+AUS:
+  country: AUS
+  domains:
+    household:
+      documentTypes:
+        - Tax Return
+        - Tax Assessment
+        - Medical Receipt
+        - Insurance Policy
+        - Insurance Claim
+        - Warranty Document
+        - Education Record
+        - Bank Statement
+        - Investment Statement
+        - Utility Bill
+        - Receipt
+        - Contract
+        - Legal Document
+        - Car Lease
+        - Car Registration
+        - Health Record
+        - Referral Letter
+        - Test Results
+        - Prescription
+        - Superannuation Statement
+        - Dividend Statement
+        - Loan Document
+        - Lease Agreement
+        - Mortgage Statement
+        - Rate Notice
+        # Pet documents
+        - Pet Vaccination Record
+        - Pet Medical Record
+        - Pet Insurance Policy
+        - Pet Microchip Registration
+        - Pet Registration
+        - Pet Adoption Record
+        - Breeder Certificate
+        # Identity documents
+        - Birth Certificate
+        - Passport
+        - Driver License
+        - Medicare Card
+        - Citizenship Certificate
+        - Marriage Certificate
+        - Divorce Decree
+        - Death Certificate
+        - Change of Name Certificate
+        - Working With Children Check
+
+      tagCategories:
+        financial:
+          - tax
+          - income
+          - expense
+          - investment
+          - superannuation
+          - dividend
+          - loan
+          - mortgage
+        medical:
+          - doctor
+          - hospital
+          - pharmacy
+          - insurance
+          - receipt
+          - referral
+          - test-results
+          - prescription
+          - health-record
+        insurance:
+          - home
+          - contents
+          - vehicle
+          - health
+          - life
+          - claim
+          - pet-insurance
+        legal:
+          - contract
+          - agreement
+          - will
+          - power-of-attorney
+          - lease
+        education:
+          - transcript
+          - certificate
+          - qualification
+        household:
+          - utility
+          - maintenance
+          - warranty
+          - manual
+          - rate-notice
+        vehicle:
+          - car
+          - registration
+          - lease
+          - insurance
+        pet:
+          - vaccination
+          - microchip
+          - vet
+          - pet-registration
+          - desexing
+          - breed
+          - adoption
+        identity:
+          - birth-certificate
+          - passport
+          - license
+          - medicare
+          - citizenship
+          - marriage
+          - divorce
+          - death
+          - name-change
+          - wwcc
+
+      retentionRules:
+        Tax Return:
+          years: 7
+          reason: "ATO requirement - Section 254 of Tax Administration Act 1953"
+        Tax Assessment:
+          years: 7
+          reason: "ATO requirement"
+        Medical Receipt:
+          years: 7
+          reason: "ATO tax deduction substantiation"
+        Insurance Policy:
+          years: 10
+          reason: "Until expired + cover for potential claims period"
+        Insurance Claim:
+          years: 7
+          reason: "ATO tax deduction + potential claim dispute period"
+        Warranty Document:
+          years: 0
+          reason: "Keep until warranty expires"
+        Education Record:
+          years: 10
+          reason: "Long-term personal record"
+        Bank Statement:
+          years: 5
+          reason: "ATO evidence for income and deductions"
+        Investment Statement:
+          years: 7
+          reason: "ATO capital gains tax calculation"
+        Utility Bill:
+          years: 2
+          reason: "Proof of address, tax deductions"
+        Receipt:
+          years: 5
+          reason: "Consumer guarantees, tax deductions"
+        Contract:
+          years: 10
+          reason: "Statute of limitations in most states"
+        Legal Document:
+          years: 15
+          reason: "Indefinitely for wills, powers of attorney"
+        Car Lease:
+          years: 5
+          reason: "Until lease expires + residual value disputes"
+        Car Registration:
+          years: 5
+          reason: "Current registration period + proof of ownership"
+        Health Record:
+          years: 10
+          reason: "Long-term personal health history"
+        Referral Letter:
+          years: 5
+          reason: "Medical treatment substantiation"
+        Test Results:
+          years: 7
+          reason: "Medical history and tax deduction substantiation"
+        Prescription:
+          years: 5
+          reason: "Medical expense tax deduction substantiation"
+        Superannuation Statement:
+          years: 7
+          reason: "ATO superannuation contribution and balance records"
+        Dividend Statement:
+          years: 7
+          reason: "ATO investment income and franking credit substantiation"
+        Loan Document:
+          years: 7
+          reason: "ATO interest deduction + contract statute of limitations"
+        Lease Agreement:
+          years: 7
+          reason: "Contract statute of limitations + bond disputes"
+        Mortgage Statement:
+          years: 7
+          reason: "ATO interest deduction substantiation"
+        Rate Notice:
+          years: 5
+          reason: "ATO tax deduction + council record"
+        # Pet document retention
+        Pet Vaccination Record:
+          years: 10
+          reason: "Pet health history + vet records"
+        Pet Medical Record:
+          years: 10
+          reason: "Pet health history + vet records"
+        Pet Insurance Policy:
+          years: 10
+          reason: "Until policy expires + claims period"
+        Pet Microchip Registration:
+          years: 15
+          reason: "Proof of ownership - keep for pet lifetime"
+        Pet Registration:
+          years: 5
+          reason: "Local council registration requirement"
+        Pet Adoption Record:
+          years: 15
+          reason: "Proof of ownership - keep for pet lifetime"
+        Breeder Certificate:
+          years: 15
+          reason: "Proof of lineage and ownership"
+        # Identity document retention
+        Birth Certificate:
+          years: 15
+          reason: "Permanent personal record - keep indefinitely"
+        Passport:
+          years: 10
+          reason: "Keep until expired + visa/travel history evidence"
+        Driver License:
+          years: 5
+          reason: "Keep until renewed + proof of identity"
+        Medicare Card:
+          years: 5
+          reason: "Keep current card + health fund claims evidence"
+        Citizenship Certificate:
+          years: 15
+          reason: "Permanent personal record - keep indefinitely"
+        Marriage Certificate:
+          years: 15
+          reason: "Permanent personal record - legal name change evidence"
+        Divorce Decree:
+          years: 15
+          reason: "Permanent legal record - property and custody evidence"
+        Death Certificate:
+          years: 15
+          reason: "Permanent estate record - inheritance evidence"
+        Change of Name Certificate:
+          years: 15
+          reason: "Permanent legal record - identity evidence"
+        Working With Children Check:
+          years: 5
+          reason: "Employment/volunteer requirement - keep until renewed"
+
+    corporate:
+      documentTypes:
+        - Invoice
+        - Receipt
+        - Contract
+        - Employee Record
+        - Payroll Record
+        - Tax Document
+        - Financial Statement
+        - Balance Sheet
+        - Cash Flow Statement
+        - Income Statement
+        - Statement of Changes
+        - Equity Statement
+        - Insurance Certificate
+        - Insurance Claim
+        - License
+        - Permit
+        - Compliance Report
+        - Board Resolution
+        - Shareholder Record
+        - Purchase Order
+        - Credit Note
+        - Debit Note
+        - Car Registration
+        - Lease Agreement
+        - Loan Agreement
+        - Pay Slip
+        - Timesheet
+        - Employee Contract
+        - Termination Letter
+        - Warning Letter
+        - Proposal
+        - Report
+        - Presentation
+        - Workflow Document
+        - Business Plan
+
+      tagCategories:
+        financial:
+          - invoice
+          - accounts-payable
+          - accounts-receivable
+          - expense
+          - revenue
+          - purchase-order
+          - credit-note
+          - debit-note
+          - vendor
+        legal:
+          - contract
+          - agreement
+          - insurance
+          - license
+          - lease
+          - loan
+        hr:
+          - employee
+          - payroll
+          - leave
+          - performance
+          - pay-slip
+          - timesheet
+          - employee-contract
+          - termination
+          - warning
+        compliance:
+          - audit
+          - report
+          - certificate
+          - permit
+        corporate:
+          - board
+          - shareholder
+          - meeting
+          - resolution
+        reporting:
+          - balance-sheet
+          - cash-flow
+          - income-statement
+          - equity
+          - statement-of-changes
+        vehicle:
+          - car
+          - registration
+          - lease
+
+      retentionRules:
+        Invoice:
+          years: 7
+          reason: "ATO requirement plus limitations period"
+        Receipt:
+          years: 7
+          reason: "ATO expense substantiation"
+        Contract:
+          years: 10
+          reason: "Statute of limitations + potential disputes"
+        Employee Record:
+          years: 7
+          reason: "Fair Work Act requirements"
+        Payroll Record:
+          years: 7
+          reason: "ATO requirement"
+        Tax Document:
+          years: 7
+          reason: "ATO requirement"
+        Financial Statement:
+          years: 7
+          reason: "Corporations Act requirements"
+        Balance Sheet:
+          years: 7
+          reason: "ATO requirement - Corporations Act"
+        Cash Flow Statement:
+          years: 7
+          reason: "ATO requirement - Corporations Act"
+        Income Statement:
+          years: 7
+          reason: "ATO requirement - Corporations Act"
+        Statement of Changes:
+          years: 7
+          reason: "ATO requirement - Corporations Act"
+        Equity Statement:
+          years: 7
+          reason: "ATO requirement - Corporations Act"
+        Insurance Certificate:
+          years: 10
+          reason: "Current + expired policy period"
+        Insurance Claim:
+          years: 7
+          reason: "ATO tax deduction + potential claim dispute period"
+        License:
+          years: 5
+          reason: "Current license period"
+        Permit:
+          years: 5
+          reason: "Until renewal required"
+        Compliance Report:
+          years: 7
+          reason: "Regulatory body requirements"
+        Board Resolution:
+          years: 15
+          reason: "Corporate record permanence"
+        Shareholder Record:
+          years: 15
+          reason: "Corporate register requirements"
+        Purchase Order:
+          years: 7
+          reason: "ATO expense substantiation + audit trail"
+        Credit Note:
+          years: 7
+          reason: "ATO adjustment substantiation"
+        Debit Note:
+          years: 7
+          reason: "ATO adjustment substantiation"
+        Car Registration:
+          years: 5
+          reason: "Current registration period + business asset records"
+        Lease Agreement:
+          years: 7
+          reason: "Contract statute of limitations + lease disputes"
+        Loan Agreement:
+          years: 7
+          reason: "ATO interest deduction + contract statute of limitations"
+        Pay Slip:
+          years: 7
+          reason: "Fair Work Act + ATO requirement"
+        Timesheet:
+          years: 7
+          reason: "Fair Work Act + payroll substantiation"
+        Employee Contract:
+          years: 7
+          reason: "Fair Work Act + employment disputes"
+        Termination Letter:
+          years: 7
+          reason: "Fair Work Act + potential disputes"
+        Warning Letter:
+          years: 7
+          reason: "Fair Work Act + performance management evidence"
+        Proposal:
+          years: 7
+          reason: "Business records - contract formation and commercial negotiations"
+        Report:
+          years: 7
+          reason: "Business records - operational documentation and analysis"
+        Presentation:
+          years: 3
+          reason: "Business records - marketing and communication materials"
+        Workflow Document:
+          years: 3
+          reason: "Business process documentation - operational reference"
+        Business Plan:
+          years: 10
+          reason: "Strategic planning - long-term business direction and compliance"
+
+    unit-trust:
+      documentTypes:
+        - Trust Deed
+        - Unit Registry
+        - Trustee Appointment
+        - ABN Registration
+        - TFN Registration
+        - Annual Financial Statements
+        - Unit Distribution Statement
+        - Tax Return
+        - Unit Transfer Form
+        - Beneficiary Statement
+        - Trustee Resolution
+        - Trustee Minutes
+        - GST Registration
+        - Business Activity Statement
+        - Capital Account Statement
+        - Variation to Trust Deed
+        - Unit Statement
+        - Unitholder Statement
+        - Trust Correspondence
+        - Actuarial Certificate
+
+      tagCategories:
+        unit-trust:
+          - unit-registry
+          - distribution
+          - unitholder
+          - unit-transfer
+          - capital-account
+          - unit-statement
+        financial:
+          - income
+          - expense
+          - capital-gain
+          - loss
+          - gst
+        compliance:
+          - tax
+          - superannuation
+          - gst
+          - bas
+          - actuarial
+        governance:
+          - trustee
+          - beneficiary
+          - resolution
+          - minutes
+          - trust-deed
+          - correspondence
+
+      retentionRules:
+        Trust Deed:
+          years: 15
+          reason: "Permanent trust record - foundational document"
+        Unit Registry:
+          years: 15
+          reason: "Permanent ownership record - unit holdings evidence"
+        Trustee Appointment:
+          years: 15
+          reason: "Permanent governance record"
+        ABN Registration:
+          years: 7
+          reason: "ATO business registration requirement"
+        TFN Registration:
+          years: 7
+          reason: "ATO tax file number requirement"
+        Annual Financial Statements:
+          years: 7
+          reason: "ATO requirement - income tax substantiation"
+        Unit Distribution Statement:
+          years: 7
+          reason: "ATO capital gains calculation - CGT event records"
+        Tax Return:
+          years: 7
+          reason: "ATO requirement - Section 254 of Tax Administration Act 1953"
+        Unit Transfer Form:
+          years: 7
+          reason: "Ownership change evidence - CGT records"
+        Beneficiary Statement:
+          years: 7
+          reason: "Income distribution evidence"
+        Trustee Resolution:
+          years: 7
+          reason: "Trust governance and decision evidence"
+        Trustee Minutes:
+          years: 7
+          reason: "Trust governance and decision evidence"
+        GST Registration:
+          years: 7
+          reason: "ATO GST compliance requirement"
+        Business Activity Statement:
+          years: 7
+          reason: "ATO GST and tax reporting requirement"
+        Capital Account Statement:
+          years: 7
+          reason: "CGT calculation and tax basis evidence"
+        Variation to Trust Deed:
+          years: 15
+          reason: "Permanent trust amendment record"
+        Unit Statement:
+          years: 7
+          reason: "ATO capital gains calculation - CGT event records"
+        Unitholder Statement:
+          years: 7
+          reason: "Income distribution evidence"
+        Trust Correspondence:
+          years: 7
+          reason: "ATO audit trail + governance evidence"
+        Actuarial Certificate:
+          years: 7
+          reason: "ATO tax deduction substantiation"
+
+    discretionary-trust:
+      documentTypes:
+        - Trust Deed
+        - Trustee Resolution
+        - Trustee Minutes
+        - Beneficiary Declaration
+        - Distribution Minutes
+        - Annual Financial Statements
+        - Tax Return
+        - Beneficiary Consent
+        - Trustee Appointment
+        - Trustee Resignation
+        - Variation to Trust Deed
+        - Appointor Appointment
+        - Appointor Resignation
+        - Guardian Appointment
+        - Income Distribution Statement
+        - Capital Gains Tax Election
+        - Streaming Resolution
+        - Trust Correspondence
+        - Actuarial Certificate
+
+      tagCategories:
+        discretionary-trust:
+          - trustee-resolution
+          - beneficiary
+          - distribution
+          - pre-eofy
+          - streaming
+        financial:
+          - income
+          - expense
+          - distribution
+          - capital-gain
+        compliance:
+          - tax
+          - gst
+          - bas
+          - actuarial
+        governance:
+          - trustee
+          - appointor
+          - guardian
+          - beneficiary
+          - resolution
+          - minutes
+          - correspondence
+
+      retentionRules:
+        Trust Deed:
+          years: 15
+          reason: "Permanent trust record - foundational document"
+        Trustee Resolution:
+          years: 7
+          reason: "ATO distribution substantiation - Section 100A ITAA 1936 compliance"
+        Trustee Minutes:
+          years: 7
+          reason: "ATO distribution substantiation - governance evidence"
+        Beneficiary Declaration:
+          years: 7
+          reason: "Beneficiary entitlement evidence"
+        Distribution Minutes:
+          years: 7
+          reason: "ATO distribution evidence - income allocation substantiation"
+        Annual Financial Statements:
+          years: 7
+          reason: "ATO income tax substantiation"
+        Tax Return:
+          years: 7
+          reason: "ATO requirement - Section 254 of Tax Administration Act 1953"
+        Beneficiary Consent:
+          years: 7
+          reason: "Beneficiary agreement evidence"
+        Trustee Appointment:
+          years: 15
+          reason: "Permanent governance record"
+        Trustee Resignation:
+          years: 15
+          reason: "Permanent governance record"
+        Variation to Trust Deed:
+          years: 15
+          reason: "Permanent trust amendment record"
+        Appointor Appointment:
+          years: 15
+          reason: "Permanent governance record - appointor controls trust"
+        Appointor Resignation:
+          years: 15
+          reason: "Permanent governance record"
+        Guardian Appointment:
+          years: 15
+          reason: "Permanent governance record"
+        Income Distribution Statement:
+          years: 7
+          reason: "ATO distribution evidence"
+        Capital Gains Tax Election:
+          years: 7
+          reason: "ATO CGT streaming evidence"
+        Streaming Resolution:
+          years: 7
+          reason: "ATO streaming election evidence"
+        Trust Correspondence:
+          years: 7
+          reason: "ATO audit trail + governance evidence"
+        Actuarial Certificate:
+          years: 7
+          reason: "ATO tax deduction substantiation"
+
+    family-trust:
+      documentTypes:
+        - Trust Deed
+        - Family Trust Election
+        - Trustee Resolution
+        - Trustee Minutes
+        - Beneficiary Declaration
+        - Distribution Minutes
+        - Annual Financial Statements
+        - Tax Return
+        - Beneficiary Consent
+        - Trustee Appointment
+        - Trustee Resignation
+        - Variation to Trust Deed
+        - Appointor Appointment
+        - Appointor Resignation
+        - Interpositionary Trust Election
+        - Loss Trust Election
+        - Revocation of Family Trust Election
+        - Income Distribution Statement
+        - Trust Correspondence
+        - Actuarial Certificate
+
+      tagCategories:
+        family-trust:
+          - fte
+          - family-trust-election
+          - beneficiary
+          - trustee-resolution
+          - interpositionary
+        financial:
+          - income
+          - expense
+          - distribution
+          - capital-gain
+        compliance:
+          - tax
+          - gst
+          - bas
+          - actuarial
+        governance:
+          - trustee
+          - appointor
+          - beneficiary
+          - resolution
+          - minutes
+          - correspondence
+
+      retentionRules:
+        Trust Deed:
+          years: 15
+          reason: "Permanent trust record - foundational document"
+        Family Trust Election:
+          years: 5
+          reason: "ATO Family Trust Election requirement - Section 272-80 ITAA 1936 - 5 years from FTE date"
+        Trustee Resolution:
+          years: 7
+          reason: "ATO distribution substantiation - Section 100A ITAA 1936 compliance"
+        Trustee Minutes:
+          years: 7
+          reason: "ATO distribution substantiation - governance evidence"
+        Beneficiary Declaration:
+          years: 7
+          reason: "Beneficiary entitlement evidence"
+        Distribution Minutes:
+          years: 7
+          reason: "ATO distribution evidence - income allocation substantiation"
+        Annual Financial Statements:
+          years: 7
+          reason: "ATO income tax substantiation"
+        Tax Return:
+          years: 7
+          reason: "ATO requirement - Section 254 of Tax Administration Act 1953"
+        Beneficiary Consent:
+          years: 7
+          reason: "Beneficiary agreement evidence"
+        Trustee Appointment:
+          years: 15
+          reason: "Permanent governance record"
+        Trustee Resignation:
+          years: 15
+          reason: "Permanent governance record"
+        Variation to Trust Deed:
+          years: 15
+          reason: "Permanent trust amendment record"
+        Appointor Appointment:
+          years: 15
+          reason: "Permanent governance record - appointor controls trust"
+        Appointor Resignation:
+          years: 15
+          reason: "Permanent governance record"
+        Interpositionary Trust Election:
+          years: 5
+          reason: "ATO interpositionary trust election - Section 272-80 ITAA 1936"
+        Loss Trust Election:
+          years: 5
+          reason: "ATO loss trust election - Section 272-80 ITAA 1936"
+        Revocation of Family Trust Election:
+          years: 5
+          reason: "ATO revocation evidence - Section 272-80 ITAA 1936"
+        Income Distribution Statement:
+          years: 7
+          reason: "ATO distribution evidence"
+        Trust Correspondence:
+          years: 7
+          reason: "ATO audit trail + governance evidence"
+        Actuarial Certificate:
+          years: 7
+          reason: "ATO tax deduction substantiation"
+
+USA:
+  country: USA
+  domains:
+    household:
+      documentTypes:
+        - Tax Return
+        - Tax Document
+        - Medical Record
+        - Insurance Policy
+        - Warranty
+        - Receipt
+        - Bank Statement
+        - Investment Statement
+        - Contract
+        - Legal Document
+
+      tagCategories:
+        financial:
+          - tax
+          - income
+          - expense
+          - investment
+          - retirement
+        medical:
+          - doctor
+          - hospital
+          - pharmacy
+          - insurance
+          - bill
+        insurance:
+          - home
+          - auto
+          - health
+          - life
+        legal:
+          - contract
+          - agreement
+          - will
+          - power-of-attorney
+        household:
+          - utility
+          - maintenance
+          - warranty
+          - receipt
+
+      retentionRules:
+        Tax Return:
+          years: 7
+          reason: "IRS recommendation - 3 years minimum, 7 for safety"
+        Tax Document:
+          years: 7
+          reason: "IRS supporting documentation"
+        Medical Record:
+          years: 10
+          reason: "Long-term health history"
+        Insurance Policy:
+          years: 10
+          reason: "Until expired + claims period"
+        Warranty:
+          years: 0
+          reason: "Keep until warranty expires"
+        Receipt:
+          years: 7
+          reason: "Tax deductions, proof of purchase"
+        Bank Statement:
+          years: 7
+          reason: "IRS income verification"
+        Investment Statement:
+          years: 7
+          reason: "IRS capital gains reporting"
+        Contract:
+          years: 10
+          reason: "State statute of limitations"
+        Legal Document:
+          years: 15
+          reason: "Indefinitely for estate planning documents"
+
+GBR:
+  country: GBR
+  domains:
+    household:
+      documentTypes:
+        - Tax Return
+        - SA302
+        - P60
+        - P11D
+        - Medical Record
+        - Insurance Policy
+        - Utility Bill
+        - Receipt
+        - Bank Statement
+
+      tagCategories:
+        financial:
+          - tax
+          - income
+          - expense
+          - savings
+          - pension
+        medical:
+          - gp
+          - hospital
+          - prescription
+          - nhs
+        insurance:
+          - home
+          - car
+          - life
+          - travel
+        household:
+          - utility
+          - council-tax
+          - tv-licence
+
+      retentionRules:
+        Tax Return:
+          years: 7
+          reason: "HMRC requirement for self-assessment"
+        SA302:
+          years: 7
+          reason: "HMRC mortgage income verification"
+        P60:
+          years: 7
+          reason: "HMRC tax year summary"
+        P11D:
+          years: 7
+          reason: "HMRC benefits documentation"
+        Medical Record:
+          years: 10
+          reason: "NHS and personal health history"
+        Insurance Policy:
+          years: 10
+          reason: "FCA guidance"
+        Utility Bill:
+          years: 2
+          reason: "Proof of address"
+        Receipt:
+          years: 7
+          reason: "Consumer Rights Act"
+        Bank Statement:
+          years: 7
+          reason: "HMRC income verification"

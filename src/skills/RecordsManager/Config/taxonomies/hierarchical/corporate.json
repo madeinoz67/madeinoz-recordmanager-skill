@@ -1,0 +1,3475 @@
+{
+  "entityType": "corporate",
+  "country": "AUS",
+  "countryName": "Australia",
+  "version": "1.0.0",
+  "functions": {
+    "FinanceAccounting": {
+      "name": "FinanceAccounting",
+      "description": "Financial management and accounting operations",
+      "icon": "💰",
+      "services": {
+        "AccountsPayable": {
+          "name": "AccountsPayable",
+          "description": "Managing money owed to suppliers",
+          "icon": "💸",
+          "activities": {
+            "InvoiceProcessing": {
+              "name": "InvoiceProcessing",
+              "description": "Processing supplier invoices",
+              "icon": "📄",
+              "documentTypes": [
+                "Supplier Invoice",
+                "Purchase Order",
+                "Payment Receipt",
+                "Vendor Statement",
+                "Credit Note",
+                "Debit Note"
+              ],
+              "retention": {
+                "AUS": {
+                  "years": 7,
+                  "authority": "ATO Section 254 of Tax Administration Act 1953",
+                  "fromDate": "fy_end"
+                },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC Companies Act" }
+              },
+              "keywords": ["invoice", "supplier", "accounts payable", "creditor"]
+            },
+            "VendorManagement": {
+              "name": "VendorManagement",
+              "description": "Supplier relationship management",
+              "documentTypes": [
+                "Vendor Agreement",
+                "Contract",
+                "W9 Form",
+                "Insurance Certificate",
+                "Vendor Profile"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["vendor", "supplier", "contract", "agreement"]
+            },
+            "ExpenseReimbursement": {
+              "name": "ExpenseReimbursement",
+              "description": "Employee expense reimbursements",
+              "documentTypes": [
+                "Expense Report",
+                "Receipt",
+                "Reimbursement Approval",
+                "Payment Record",
+                "Expense Policy"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["expense", "reimbursement", "employee", "receipt"]
+            },
+            "PaymentProcessing": {
+              "name": "PaymentProcessing",
+              "description": "Processing payments to vendors",
+              "documentTypes": [
+                "Payment Instruction",
+                "Bank Transfer Record",
+                "Payment Confirmation",
+                "EFT Record",
+                "Stop Payment Order"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["payment", "eft", "transfer", "disbursement"]
+            },
+            "VendorOnboarding": {
+              "name": "VendorOnboarding",
+              "description": "New supplier setup",
+              "documentTypes": [
+                "Vendor Application",
+                "Tax Form",
+                "Bank Details",
+                "Insurance Certificate",
+                "Approval Form"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["onboarding", "new vendor", "setup", "registration"]
+            },
+            "StatementReconciliation": {
+              "name": "StatementReconciliation",
+              "description": "Reconciling vendor statements",
+              "documentTypes": [
+                "Vendor Statement",
+                "Reconciliation Report",
+                "Discrepancy Report",
+                "Aging Report",
+                "Confirmation Letter"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["reconciliation", "statement", "aging", "discrepancy"]
+            }
+          }
+        },
+        "AccountsReceivable": {
+          "name": "AccountsReceivable",
+          "description": "Managing money owed by customers",
+          "icon": "📥",
+          "activities": {
+            "CustomerInvoicing": {
+              "name": "CustomerInvoicing",
+              "description": "Billing customers for goods/services",
+              "documentTypes": [
+                "Customer Invoice",
+                "Credit Note",
+                "Debit Note",
+                "Statement",
+                "Dunning Letter"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["invoice", "customer", "billing", "accounts receivable"]
+            },
+            "Collections": {
+              "name": "Collections",
+              "description": "Collecting overdue payments",
+              "documentTypes": [
+                "Collection Letter",
+                "Payment Plan Agreement",
+                "Legal Notice",
+                "Collection Record",
+                "Final Demand"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["collection", "overdue", "payment plan", "dunning"]
+            },
+            "CustomerManagement": {
+              "name": "CustomerManagement",
+              "description": "Customer account management",
+              "documentTypes": [
+                "Customer Profile",
+                "Credit Application",
+                "Credit Agreement",
+                "Account Statement",
+                "Correspondence"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Privacy Act" },
+                "USA": { "years": 7, "authority": "State commercial code" },
+                "GBR": { "years": 6, "authority": "GDPR" }
+              },
+              "keywords": ["customer", "credit", "account", "profile"]
+            },
+            "RevenueRecognition": {
+              "name": "RevenueRecognition",
+              "description": "Recording and recognizing revenue",
+              "documentTypes": [
+                "Revenue Report",
+                "Accrual Schedule",
+                "Recognition Policy",
+                "Audit Trail",
+                "Adjustment Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Accounting Standards" },
+                "USA": { "years": 7, "authority": "GAAP" },
+                "GBR": { "years": 6, "authority": "IFRS" }
+              },
+              "keywords": ["revenue", "recognition", "accrual", "gaap"]
+            },
+            "CashApplication": {
+              "name": "CashApplication",
+              "description": "Applying payments to invoices",
+              "documentTypes": [
+                "Remittance Advice",
+                "Payment Allocation",
+                "Unapplied Cash Report",
+                "Receipt",
+                "Application Log"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["cash application", "remittance", "payment", "allocation"]
+            }
+          }
+        },
+        "Payroll": {
+          "name": "Payroll",
+          "description": "Employee compensation processing",
+          "icon": "💳",
+          "activities": {
+            "PayrollProcessing": {
+              "name": "PayrollProcessing",
+              "description": "Running payroll cycles",
+              "documentTypes": [
+                "Payroll Register",
+                "Payslip",
+                "Direct Deposit Form",
+                "Tax Certificate",
+                "Payment Summary"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Act" },
+                "USA": { "years": 7, "authority": "Fair Labor Standards Act" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["payroll", "payslip", "salary", "wages"]
+            },
+            "TaxReporting": {
+              "name": "TaxReporting",
+              "description": "Payroll tax filings",
+              "documentTypes": [
+                "PAYG Summary",
+                "W-2 Form",
+                "941 Form",
+                "Annual Report",
+                "Tax Filing Confirmation"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["payg", "w2", "941", "payroll tax", "withholding"]
+            },
+            "BenefitsAdministration": {
+              "name": "BenefitsAdministration",
+              "description": "Managing employee benefits",
+              "documentTypes": [
+                "Benefits Enrollment",
+                "Insurance Certificate",
+                "Retirement Contribution",
+                "Leave Balance",
+                "Benefits Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Act" },
+                "USA": { "years": 7, "authority": "ERISA" },
+                "GBR": { "years": 6, "authority": "Employment Rights Act" }
+              },
+              "keywords": ["benefits", "superannuation", "retirement", "leave"]
+            },
+            "TimeTracking": {
+              "name": "TimeTracking",
+              "description": "Employee time and attendance",
+              "documentTypes": [
+                "Timesheet",
+                "Leave Application",
+                "Overtime Record",
+                "Attendance Report",
+                "Roster"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Act" },
+                "USA": { "years": 7, "authority": "FLSA" },
+                "GBR": { "years": 6, "authority": "Working Time Regulations" }
+              },
+              "keywords": ["timesheet", "leave", "overtime", "attendance"]
+            },
+            "WorkerClassification": {
+              "name": "WorkerClassification",
+              "description": "Employee vs contractor classification",
+              "documentTypes": [
+                "Contractor Agreement",
+                "Worker Classification",
+                "Independent Contractor Determination",
+                "ABN Form",
+                "Tax File Declaration"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Ombudsman" },
+                "USA": { "years": 7, "authority": "IRS Form SS-8" },
+                "GBR": { "years": 6, "authority": "HMRC Employment Status" }
+              },
+              "keywords": ["contractor", "employee", "classification", "abn", "w2"]
+            },
+            "Superannuation": {
+              "name": "Superannuation",
+              "description": "Retirement fund contributions (Australia)",
+              "documentTypes": [
+                "Superannuation Contribution Record",
+                "Fund Choice Form",
+                "Super Statement",
+                "Compliance Certificate",
+                "Payment Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Superannuation Guarantee Act" },
+                "USA": { "years": 7, "authority": "IRS 401k" },
+                "GBR": { "years": 6, "authority": "Pension Regulator" }
+              },
+              "keywords": ["superannuation", "retirement", "pension", "401k"]
+            }
+          }
+        },
+        "FinancialReporting": {
+          "name": "FinancialReporting",
+          "description": "Financial statement preparation",
+          "icon": "📊",
+          "activities": {
+            "GeneralLedger": {
+              "name": "GeneralLedger",
+              "description": "Maintaining general ledger",
+              "documentTypes": [
+                "Trial Balance",
+                "General Ledger",
+                "Journal Entry",
+                "Adjustment Entry",
+                "Account Analysis"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "SEC" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["general ledger", "trial balance", "journal", "accounting"]
+            },
+            "FinancialStatements": {
+              "name": "FinancialStatements",
+              "description": "Preparing financial reports",
+              "documentTypes": [
+                "Balance Sheet",
+                "Income Statement",
+                "Cash Flow Statement",
+                "Statement of Changes in Equity",
+                "Notes to Financial Statements"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "SEC" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["balance sheet", "income statement", "cash flow", "financials"]
+            },
+            "Budgeting": {
+              "name": "Budgeting",
+              "description": "Budget preparation and tracking",
+              "documentTypes": [
+                "Annual Budget",
+                "Forecast",
+                "Budget Variance Report",
+                "Capital Expenditure Budget",
+                "Operating Budget"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" },
+                "USA": { "years": 5, "authority": "Sarbanes-Oxley" },
+                "GBR": { "years": 5, "authority": "Corporate Governance Code" }
+              },
+              "keywords": ["budget", "forecast", "variance", "capex", "opex"]
+            },
+            "AuditPreparation": {
+              "name": "AuditPreparation",
+              "description": "Preparing for financial audits",
+              "documentTypes": [
+                "Audit Workpapers",
+                "Confirmation Letter",
+                "Audit Schedule",
+                "Representations Letter",
+                "Audit Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "PCAOB" },
+                "GBR": { "years": 6, "authority": "FRC" }
+              },
+              "keywords": ["audit", "workpaper", "confirmation", "audit report"]
+            },
+            "TaxCompliance": {
+              "name": "TaxCompliance",
+              "description": "Corporate tax filings",
+              "documentTypes": [
+                "Business Activity Statement",
+                "Company Tax Return",
+                "Fringe Benefits Tax Return",
+                "Installment Activity Statement",
+                "Tax Assessment"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["bas", "tax return", "fbt", "gst", "company tax"]
+            },
+            "ManagementReporting": {
+              "name": "ManagementReporting",
+              "description": "Internal management reports",
+              "documentTypes": [
+                "Dashboard Report",
+                "KPI Report",
+                "Performance Report",
+                "Trend Analysis",
+                "Executive Summary"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" },
+                "USA": { "years": 5, "authority": "Sarbanes-Oxley" },
+                "GBR": { "years": 5, "authority": "Corporate governance" }
+              },
+              "keywords": ["kpi", "dashboard", "performance", "management report"]
+            }
+          }
+        },
+        "Treasury": {
+          "name": "Treasury",
+          "description": "Cash and liquidity management",
+          "icon": "🏦",
+          "activities": {
+            "CashManagement": {
+              "name": "CashManagement",
+              "description": "Managing cash position",
+              "documentTypes": [
+                "Cash Position Report",
+                "Bank Reconciliation",
+                "Cash Forecast",
+                "Liquidity Report",
+                "Bank Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" },
+                "USA": { "years": 5, "authority": "Treasury policy" },
+                "GBR": { "years": 5, "authority": "Corporate governance" }
+              },
+              "keywords": ["cash", "liquidity", "treasury", "bank reconciliation"]
+            },
+            "ForeignExchange": {
+              "name": "ForeignExchange",
+              "description": "Managing foreign currency",
+              "documentTypes": [
+                "FX Trade Confirmation",
+                "Currency Position",
+                "Hedge Documentation",
+                "FX Revaluation",
+                "Exchange Rate Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["forex", "fx", "currency", "hedge", "exchange"]
+            },
+            "BankingRelations": {
+              "name": "BankingRelations",
+              "description": "Managing banking relationships",
+              "documentTypes": [
+                "Bank Facility Agreement",
+                "Credit Line Agreement",
+                "Correspondence",
+                "Fee Schedule",
+                "Collateral Document"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "Banking regulations" },
+                "GBR": { "years": 6, "authority": "PRA" }
+              },
+              "keywords": ["bank", "credit facility", "loan", "collateral"]
+            },
+            "InvestmentManagement": {
+              "name": "InvestmentManagement",
+              "description": "Corporate investment portfolio",
+              "documentTypes": [
+                "Investment Policy",
+                "Portfolio Statement",
+                "Trade Confirmation",
+                "Investment Report",
+                "Valuation Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" },
+                "USA": { "years": 7, "authority": "SEC" },
+                "GBR": { "years": 6, "authority": "FCA" }
+              },
+              "keywords": ["investment", "portfolio", "securities", "trading"]
+            }
+          }
+        }
+      }
+    },
+    "HumanResources": {
+      "name": "HumanResources",
+      "description": "Human capital management",
+      "icon": "👥",
+      "services": {
+        "Recruitment": {
+          "name": "Recruitment",
+          "description": "Hiring new employees",
+          "icon": "🔍",
+          "activities": {
+            "CandidateSourcing": {
+              "name": "CandidateSourcing",
+              "description": "Finding and attracting candidates",
+              "documentTypes": [
+                "Job Advertisement",
+                "Candidate Resume",
+                "Sourcing Report",
+                "Referral",
+                "LinkedIn Profile"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Act" },
+                "USA": { "years": 7, "authority": "EEOC" },
+                "GBR": { "years": 6, "authority": "Equality Act" }
+              },
+              "keywords": ["recruitment", "candidate", "resume", "job ad", "sourcing"]
+            },
+            "InterviewProcess": {
+              "name": "InterviewProcess",
+              "description": "Interviewing candidates",
+              "documentTypes": [
+                "Interview Schedule",
+                "Interview Feedback",
+                "Assessment Form",
+                "Reference Check",
+                "Background Check"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Privacy Act" },
+                "USA": { "years": 7, "authority": "FCRA" },
+                "GBR": { "years": 6, "authority": "Data Protection Act" }
+              },
+              "keywords": ["interview", "feedback", "reference", "background check"]
+            },
+            "JobOffers": {
+              "name": "JobOffers",
+              "description": "Making employment offers",
+              "documentTypes": [
+                "Offer Letter",
+                "Employment Agreement",
+                "Salary Package",
+                "Benefits Summary",
+                "Acceptance Letter"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Act" },
+                "USA": { "years": 7, "authority": "State labor law" },
+                "GBR": { "years": 6, "authority": "Employment Rights Act" }
+              },
+              "keywords": ["offer", "employment agreement", "salary", "acceptance"]
+            },
+            "Onboarding": {
+              "name": "Onboarding",
+              "description": "New employee orientation",
+              "documentTypes": [
+                "Onboarding Checklist",
+                "Tax File Declaration",
+                "Superannuation Form",
+                "Policy Acknowledgment",
+                "IT Setup Form"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Act" },
+                "USA": { "years": 7, "authority": "I-9 requirements" },
+                "GBR": { "years": 6, "authority": "Home Office" }
+              },
+              "keywords": ["onboarding", "orientation", "new hire", "checklist"]
+            }
+          }
+        },
+        "PerformanceManagement": {
+          "name": "PerformanceManagement",
+          "description": "Employee performance evaluation",
+          "icon": "📈",
+          "activities": {
+            "GoalSetting": {
+              "name": "GoalSetting",
+              "description": "Setting performance objectives",
+              "documentTypes": [
+                "Performance Plan",
+                "SMART Goals",
+                "KPI Document",
+                "Objectives List",
+                "Development Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Fair Work Act" },
+                "USA": { "years": 5, "authority": "State employment law" },
+                "GBR": { "years": 5, "authority": "Employment Rights Act" }
+              },
+              "keywords": ["goals", "kpi", "objectives", "performance plan"]
+            },
+            "PerformanceReviews": {
+              "name": "PerformanceReviews",
+              "description": "Conducting performance evaluations",
+              "documentTypes": [
+                "Performance Review",
+                "360 Feedback",
+                "Self-Assessment",
+                "Manager Assessment",
+                "Rating Summary"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Act" },
+                "USA": { "years": 7, "authority": "State employment law" },
+                "GBR": { "years": 6, "authority": "Employment Rights Act" }
+              },
+              "keywords": ["performance review", "feedback", "assessment", "rating"]
+            },
+            "ImprovementPlans": {
+              "name": "ImprovementPlans",
+              "description": "Managing underperformance",
+              "documentTypes": [
+                "Performance Improvement Plan",
+                "Warning Letter",
+                "Progress Report",
+                "Coaching Record",
+                "Termination Risk Notice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Commission" },
+                "USA": { "years": 7, "authority": "EEOC" },
+                "GBR": { "years": 6, "authority": "Employment Tribunal" }
+              },
+              "keywords": ["pip", "improvement", "warning", "performance", "coaching"]
+            },
+            "Recognition": {
+              "name": "Recognition",
+              "description": "Employee recognition programs",
+              "documentTypes": [
+                "Nomination Form",
+                "Award Certificate",
+                "Recognition Record",
+                "Bonus Calculation",
+                "Announcement"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["recognition", "award", "bonus", "employee of the month"]
+            }
+          }
+        },
+        "TrainingDevelopment": {
+          "name": "TrainingDevelopment",
+          "description": "Employee learning and development",
+          "icon": "📚",
+          "activities": {
+            "TrainingPrograms": {
+              "name": "TrainingPrograms",
+              "description": "Conducting training sessions",
+              "documentTypes": [
+                "Training Material",
+                "Attendance Record",
+                "Training Evaluation",
+                "Certificate",
+                "Curriculum"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Work Health and Safety" },
+                "USA": { "years": 5, "authority": "OSHA" },
+                "GBR": { "years": 5, "authority": "HSE" }
+              },
+              "keywords": ["training", "workshop", "curriculum", "attendance"]
+            },
+            "ProfessionalDevelopment": {
+              "name": "ProfessionalDevelopment",
+              "description": "Supporting employee growth",
+              "documentTypes": [
+                "Development Plan",
+                "Course Approval",
+                "Training Reimbursement",
+                "Certification Record",
+                "Conference Attendance"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["development", "certification", "conference", "reimbursement"]
+            },
+            "SkillsAssessment": {
+              "name": "SkillsAssessment",
+              "description": "Evaluating employee skills",
+              "documentTypes": [
+                "Skills Matrix",
+                "Competency Assessment",
+                "Training Needs Analysis",
+                "Skills Gap Report",
+                "Career Development Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["skills", "competency", "gap analysis", "training needs"]
+            }
+          }
+        },
+        "Compliance": {
+          "name": "Compliance",
+          "description": "Workplace compliance and safety",
+          "icon": "⚖️",
+          "activities": {
+            "WorkHealthSafety": {
+              "name": "WorkHealthSafety",
+              "description": "WHS compliance and incidents",
+              "documentTypes": [
+                "Incident Report",
+                "Hazard Assessment",
+                "Safe Work Method",
+                "Injury Claim",
+                "WHS Policy"
+              ],
+              "retention": {
+                "AUS": {
+                  "years": 7,
+                  "authority": "Work Health and Safety Act",
+                  "notes": "Incidents must be kept 7+ years"
+                },
+                "USA": { "years": 7, "authority": "OSHA" },
+                "GBR": { "years": 6, "authority": "HSE" }
+              },
+              "keywords": ["whs", "safety", "incident", "hazard", "workers comp"]
+            },
+            "EmploymentLaw": {
+              "name": "EmploymentLaw",
+              "description": "Employment law compliance",
+              "documentTypes": [
+                "Fair Work Instruments",
+                "Award Compliance",
+                "Enterprise Agreement",
+                "Modern Award",
+                "Compliance Certificate"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Act" },
+                "USA": { "years": 7, "authority": "FLSA" },
+                "GBR": { "years": 6, "authority": "Employment Rights Act" }
+              },
+              "keywords": ["fair work", "award", "enterprise agreement", "compliance"]
+            },
+            "DiversityInclusion": {
+              "name": "DiversityInclusion",
+              "description": "Diversity and inclusion initiatives",
+              "documentTypes": [
+                "Diversity Policy",
+                "Inclusion Report",
+                "Training Record",
+                "Complaint Process",
+                "Diversity Metrics"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Equal Opportunity Act" },
+                "USA": { "years": 5, "authority": "EEOC" },
+                "GBR": { "years": 5, "authority": "Equality Act" }
+              },
+              "keywords": ["diversity", "inclusion", "equal opportunity", "bias training"]
+            },
+            "DataPrivacy": {
+              "name": "DataPrivacy",
+              "description": "Employee data privacy compliance",
+              "documentTypes": [
+                "Privacy Policy",
+                "Data Collection Notice",
+                "Consent Form",
+                "Data Breach Response",
+                "Access Request"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Privacy Act 1988" },
+                "USA": { "years": 7, "authority": "State privacy laws" },
+                "GBR": { "years": 6, "authority": "GDPR" }
+              },
+              "keywords": ["privacy", "gdpr", "data breach", "consent"]
+            }
+          }
+        },
+        "EmployeeRelations": {
+          "name": "EmployeeRelations",
+          "description": "Employee relations and engagement",
+          "icon": "🤝",
+          "activities": {
+            "EmployeeEngagement": {
+              "name": "EmployeeEngagement",
+              "description": "Measuring and improving engagement",
+              "documentTypes": [
+                "Engagement Survey",
+                "Feedback Summary",
+                "Action Plan",
+                "Town Hall Notes",
+                "Suggestion Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["engagement", "survey", "feedback", "town hall"]
+            },
+            "GrievanceHandling": {
+              "name": "GrievanceHandling",
+              "description": "Managing employee complaints",
+              "documentTypes": [
+                "Grievance Form",
+                "Investigation Report",
+                "Resolution Letter",
+                "Appeal Document",
+                "Case File"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Commission" },
+                "USA": { "years": 7, "authority": "EEOC" },
+                "GBR": { "years": 6, "authority": "Employment Tribunal" }
+              },
+              "keywords": ["grievance", "complaint", "investigation", "resolution"]
+            },
+            "Discipline": {
+              "name": "Discipline",
+              "description": "Employee disciplinary actions",
+              "documentTypes": [
+                "Warning Letter",
+                "Disciplinary Notice",
+                "Investigation Report",
+                "Meeting Record",
+                "Outcome Letter"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Act" },
+                "USA": { "years": 7, "authority": "State employment law" },
+                "GBR": { "years": 6, "authority": "Employment Rights Act" }
+              },
+              "keywords": ["warning", "disciplinary", "misconduct", "investigation"]
+            },
+            "Termination": {
+              "name": "Termination",
+              "description": "Employee separation process",
+              "documentTypes": [
+                "Resignation Letter",
+                "Termination Notice",
+                "Separation Agreement",
+                "Final Pay",
+                "Exit Interview"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Act" },
+                "USA": { "years": 7, "authority": "WARN Act" },
+                "GBR": { "years": 6, "authority": "Employment Rights Act" }
+              },
+              "keywords": ["resignation", "termination", "separation", "exit interview"]
+            }
+          }
+        }
+      }
+    },
+    "Operations": {
+      "name": "Operations",
+      "description": "Core operational activities",
+      "icon": "⚙️",
+      "services": {
+        "Production": {
+          "name": "Production",
+          "description": "Manufacturing and production",
+          "icon": "🏭",
+          "activities": {
+            "ManufacturingProcess": {
+              "name": "ManufacturingProcess",
+              "description": "Production operations",
+              "documentTypes": [
+                "Production Report",
+                "Work Order",
+                "Quality Control Record",
+                "Batch Record",
+                "Yield Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Industry standards" },
+                "USA": { "years": 5, "authority": "Industry standards" },
+                "GBR": { "years": 5, "authority": "Industry standards" }
+              },
+              "keywords": ["production", "manufacturing", "batch", "yield"]
+            },
+            "QualityControl": {
+              "name": "QualityControl",
+              "description": "Quality assurance",
+              "documentTypes": [
+                "Inspection Report",
+                "Test Certificate",
+                "Non-Conformance Report",
+                "CAPA",
+                "Calibration Record"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ISO 9001" },
+                "USA": { "years": 5, "authority": "ISO 9001" },
+                "GBR": { "years": 5, "authority": "ISO 9001" }
+              },
+              "keywords": ["quality", "inspection", "non-conformance", "capa"]
+            },
+            "Maintenance": {
+              "name": "Maintenance",
+              "description": "Equipment maintenance",
+              "documentTypes": [
+                "Maintenance Log",
+                "Preventive Maintenance Schedule",
+                "Work Order",
+                "Breakdown Report",
+                "Spare Parts Record"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Work Health and Safety" },
+                "USA": { "years": 5, "authority": "OSHA" },
+                "GBR": { "years": 5, "authority": "HSE" }
+              },
+              "keywords": ["maintenance", "preventive", "breakdown", "spare parts"]
+            },
+            "InventoryManagement": {
+              "name": "InventoryManagement",
+              "description": "Stock control",
+              "documentTypes": [
+                "Inventory Report",
+                "Stock Take",
+                "Reorder Point",
+                "Obsolescence Report",
+                "Valuation Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 5, "authority": "HMRC" }
+              },
+              "keywords": ["inventory", "stock", "reorder", "obsolescence"]
+            },
+            "ProductionPlanning": {
+              "name": "ProductionPlanning",
+              "description": "Production scheduling",
+              "documentTypes": [
+                "Production Schedule",
+                "Capacity Plan",
+                "Demand Forecast",
+                "Shift Roster",
+                "Efficiency Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["schedule", "capacity", "forecast", "shift planning"]
+            },
+            "HealthSafety": {
+              "name": "HealthSafety",
+              "description": "Workplace health and safety",
+              "documentTypes": [
+                "Incident Report",
+                "Risk Assessment",
+                "Safe Work Procedure",
+                "Toolbox Talk Record",
+                "Safety Audit"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "WHS Act" },
+                "USA": { "years": 7, "authority": "OSHA" },
+                "GBR": { "years": 6, "authority": "HSE" }
+              },
+              "keywords": ["whs", "safety", "incident", "risk assessment"]
+            }
+          }
+        },
+        "SupplyChain": {
+          "name": "SupplyChain",
+          "description": "Supply chain management",
+          "icon": "🚚",
+          "activities": {
+            "Procurement": {
+              "name": "Procurement",
+              "description": "Purchasing goods and services",
+              "documentTypes": [
+                "Purchase Order",
+                "Requisition",
+                "Supplier Quote",
+                "Procurement Contract",
+                "Sole Source Justification"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "Uniform Commercial Code" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["procurement", "purchase order", "sourcing", "contract"]
+            },
+            "Logistics": {
+              "name": "Logistics",
+              "description": "Shipping and distribution",
+              "documentTypes": [
+                "Bill of Lading",
+                "Shipping Manifest",
+                "Delivery Docket",
+                "Freight Invoice",
+                "Tracking Record"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Industry standards" },
+                "USA": { "years": 5, "authority": "Industry standards" },
+                "GBR": { "years": 5, "authority": "Industry standards" }
+              },
+              "keywords": ["shipping", "logistics", "freight", "delivery"]
+            },
+            "Warehouse": {
+              "name": "Warehouse",
+              "description": "Warehouse operations",
+              "documentTypes": [
+                "Stock Report",
+                "Pick List",
+                "Pack List",
+                "Warehouse Receipt",
+                "Inventory Adjustment"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 5, "authority": "HMRC" }
+              },
+              "keywords": ["warehouse", "stock", "pick", "pack"]
+            },
+            "SupplierManagement": {
+              "name": "SupplierManagement",
+              "description": "Managing supplier relationships",
+              "documentTypes": [
+                "Supplier Agreement",
+                "Supplier Evaluation",
+                "Performance Report",
+                "Scorecard",
+                "Audit Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["supplier", "vendor", "evaluation", "performance"]
+            },
+            "DemandPlanning": {
+              "name": "DemandPlanning",
+              "description": "Forecasting demand",
+              "documentTypes": [
+                "Demand Forecast",
+                "Sales Plan",
+                "Capacity Plan",
+                "S&OP Report",
+                "Variance Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["demand", "forecast", "s&op", "planning"]
+            },
+            "QualityAssurance": {
+              "name": "QualityAssurance",
+              "description": "Supplier quality management",
+              "documentTypes": [
+                "Inspection Report",
+                "Certificate of Analysis",
+                "Non-Conformance",
+                "Supplier Audit",
+                "Quality Agreement"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ISO 9001" },
+                "USA": { "years": 5, "authority": "ISO 9001" },
+                "GBR": { "years": 5, "authority": "ISO 9001" }
+              },
+              "keywords": ["quality", "supplier", "audit", "certificate"]
+            }
+          }
+        },
+        "Facilities": {
+          "name": "Facilities",
+          "description": "Facilities management",
+          "icon": "🏢",
+          "activities": {
+            "BuildingMaintenance": {
+              "name": "BuildingMaintenance",
+              "description": "Facility upkeep",
+              "documentTypes": [
+                "Work Order",
+                "Maintenance Log",
+                "Service Contract",
+                "Inspection Report",
+                "Capital Improvement Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Work Health and Safety" },
+                "USA": { "years": 5, "authority": "OSHA" },
+                "GBR": { "years": 5, "authority": "HSE" }
+              },
+              "keywords": ["maintenance", "facilities", "building", "contractor"]
+            },
+            "Utilities": {
+              "name": "Utilities",
+              "description": "Utility management",
+              "documentTypes": [
+                "Utility Bill",
+                "Consumption Report",
+                "Contract",
+                "Audit Report",
+                "Sustainability Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 5, "authority": "HMRC" }
+              },
+              "keywords": ["electricity", "gas", "water", "utilities", "consumption"]
+            },
+            "SpaceManagement": {
+              "name": "SpaceManagement",
+              "description": "Office space allocation",
+              "documentTypes": [
+                "Floor Plan",
+                "Space Allocation",
+                "Desk Assignment",
+                "Move Plan",
+                "Utilization Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["space", "floor plan", "desk", "allocation", "move"]
+            },
+            "Security": {
+              "name": "Security",
+              "description": "Building security",
+              "documentTypes": [
+                "Security Policy",
+                "Incident Report",
+                "Access Log",
+                "CCTV Record",
+                "Visitor Log"
+              ],
+              "retention": {
+                "AUS": { "years": 3, "authority": "Privacy Act" },
+                "USA": { "years": 3, "authority": "State privacy law" },
+                "GBR": { "years": 3, "authority": "Data Protection Act" }
+              },
+              "keywords": ["security", "access", "cctv", "visitor", "incident"]
+            },
+            "Leasing": {
+              "name": "Leasing",
+              "description": "Property lease management",
+              "documentTypes": [
+                "Lease Agreement",
+                "Rent Schedule",
+                "Landlord Correspondence",
+                "Renewal Notice",
+                "Fit-out Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "State property law" },
+                "GBR": { "years": 6, "authority": "Landlord and Tenant Act" }
+              },
+              "keywords": ["lease", "rent", "landlord", "property", "fit-out"]
+            }
+          }
+        },
+        "ProcessImprovement": {
+          "name": "ProcessImprovement",
+          "description": "Continuous improvement",
+          "icon": "📈",
+          "activities": {
+            "ProcessMapping": {
+              "name": "ProcessMapping",
+              "description": "Documenting processes",
+              "documentTypes": [
+                "Process Map",
+                "SOP",
+                "Workflow Diagram",
+                "Value Stream Map",
+                "Procedure"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["process", "sop", "workflow", "value stream"]
+            },
+            "LeanInitiatives": {
+              "name": "LeanInitiatives",
+              "description": "Lean improvement projects",
+              "documentTypes": [
+                "Kaizen Report",
+                "Waste Analysis",
+                "Improvement Plan",
+                "Before/After",
+                "Metrics Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["lean", "kaizen", "waste", "improvement", "six sigma"]
+            },
+            "Automation": {
+              "name": "Automation",
+              "description": "Process automation",
+              "documentTypes": [
+                "Automation Proposal",
+                "ROI Analysis",
+                "Implementation Plan",
+                "Test Results",
+                "User Guide"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["automation", "rpa", "roi", "implementation"]
+            },
+            "ChangeManagement": {
+              "name": "ChangeManagement",
+              "description": "Managing change",
+              "documentTypes": [
+                "Change Request",
+                "Impact Assessment",
+                "Communication Plan",
+                "Training Plan",
+                "Go-Live Checklist"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["change", "change management", "impact", "training"]
+            },
+            "KPIs": {
+              "name": "KPIs",
+              "description": "Performance measurement",
+              "documentTypes": [
+                "KPI Dashboard",
+                "Performance Report",
+                "Trend Analysis",
+                "Benchmark Report",
+                "Scorecard"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["kpi", "dashboard", "performance", "benchmark"]
+            }
+          }
+        }
+      }
+    },
+    "SalesMarketing": {
+      "name": "SalesMarketing",
+      "description": "Revenue generation and marketing",
+      "icon": "📢",
+      "services": {
+        "SalesOperations": {
+          "name": "SalesOperations",
+          "description": "Sales process management",
+          "icon": "💼",
+          "activities": {
+            "LeadManagement": {
+              "name": "LeadManagement",
+              "description": "Managing sales pipeline",
+              "documentTypes": [
+                "Lead Record",
+                "Pipeline Report",
+                "Qualification Criteria",
+                "Lead Source Report",
+                "Conversion Analysis"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Privacy Act" },
+                "USA": { "years": 5, "authority": "CAN-SPAM" },
+                "GBR": { "years": 5, "authority": "GDPR" }
+              },
+              "keywords": ["lead", "pipeline", "conversion", "prospect"]
+            },
+            "QuotationProcess": {
+              "name": "QuotationProcess",
+              "description": "Preparing quotes",
+              "documentTypes": [
+                "Sales Quote",
+                "Proposal",
+                "Pricing Sheet",
+                "Terms and Conditions",
+                "Quote Follow-up"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "UCC" },
+                "GBR": { "years": 6, "authority": "Sale of Goods Act" }
+              },
+              "keywords": ["quote", "proposal", "pricing", "terms"]
+            },
+            "OrderFulfillment": {
+              "name": "OrderFulfillment",
+              "description": "Processing orders",
+              "documentTypes": [
+                "Sales Order",
+                "Order Acknowledgment",
+                "Delivery Note",
+                "Packing Slip",
+                "Invoice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["order", "fulfillment", "delivery", "packing slip"]
+            },
+            "SalesReporting": {
+              "name": "SalesReporting",
+              "description": "Sales performance tracking",
+              "documentTypes": [
+                "Sales Report",
+                "Commission Report",
+                "Territory Analysis",
+                "Product Sales Report",
+                "Forecast vs Actual"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["sales report", "commission", "forecast", "territory"]
+            },
+            "ContractManagement": {
+              "name": "ContractManagement",
+              "description": "Customer contracts",
+              "documentTypes": [
+                "Sales Contract",
+                "Service Agreement",
+                "MSA",
+                "SOW",
+                "Amendment"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "UCC" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["contract", "agreement", "msa", "sow", "master service"]
+            },
+            "CustomerRelationship": {
+              "name": "CustomerRelationship",
+              "description": "CRM activities",
+              "documentTypes": [
+                "Account Plan",
+                "Call Report",
+                "Meeting Notes",
+                "CRM Record",
+                "Customer Profile"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Privacy Act" },
+                "USA": { "years": 5, "authority": "State privacy law" },
+                "GBR": { "years": 5, "authority": "GDPR" }
+              },
+              "keywords": ["crm", "account plan", "customer", "relationship"]
+            }
+          }
+        },
+        "Marketing": {
+          "name": "Marketing",
+          "description": "Marketing activities",
+          "icon": "📣",
+          "activities": {
+            "CampaignManagement": {
+              "name": "CampaignManagement",
+              "description": "Marketing campaigns",
+              "documentTypes": [
+                "Campaign Plan",
+                "Creative Brief",
+                "Campaign Report",
+                "Budget",
+                "ROI Analysis"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["campaign", "marketing plan", "roi", "creative"]
+            },
+            "ContentCreation": {
+              "name": "ContentCreation",
+              "description": "Marketing content",
+              "documentTypes": [
+                "Marketing Material",
+                "Brochure",
+                "White Paper",
+                "Case Study",
+                "Video Script"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["content", "brochure", "white paper", "case study"]
+            },
+            "DigitalMarketing": {
+              "name": "DigitalMarketing",
+              "description": "Online marketing",
+              "documentTypes": [
+                "SEO Report",
+                "Analytics Report",
+                "Ad Copy",
+                "Social Media Calendar",
+                "Email Campaign Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Privacy Act" },
+                "USA": { "years": 5, "authority": "FTC" },
+                "GBR": { "years": 5, "authority": "GDPR" }
+              },
+              "keywords": ["seo", "analytics", "social media", "email", "digital"]
+            },
+            "BrandManagement": {
+              "name": "BrandManagement",
+              "description": "Brand guidelines",
+              "documentTypes": [
+                "Brand Guidelines",
+                "Logo Usage",
+                "Style Guide",
+                "Brand Assets",
+                "Approval Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Trademark law" },
+                "USA": { "years": 7, "authority": "Lanham Act" },
+                "GBR": { "years": 6, "authority": "Trademark Act" }
+              },
+              "keywords": ["brand", "guidelines", "logo", "trademark"]
+            },
+            "MarketResearch": {
+              "name": "MarketResearch",
+              "description": "Research and analysis",
+              "documentTypes": [
+                "Market Analysis",
+                "Competitor Analysis",
+                "Survey Results",
+                "Focus Group Report",
+                "Trend Analysis"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["market research", "competitor", "survey", "focus group"]
+            },
+            "EventPlanning": {
+              "name": "EventPlanning",
+              "description": "Marketing events",
+              "documentTypes": [
+                "Event Plan",
+                "Trade Show Booth",
+                "Guest List",
+                "Event Brief",
+                "Post-Event Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["event", "trade show", "conference", "exhibition"]
+            }
+          }
+        },
+        "CustomerSupport": {
+          "name": "CustomerSupport",
+          "description": "Customer service",
+          "icon": "🎧",
+          "activities": {
+            "CustomerService": {
+              "name": "CustomerService",
+              "description": "Handling inquiries",
+              "documentTypes": [
+                "Ticket",
+                "Interaction Log",
+                "Resolution Summary",
+                "Escalation Record",
+                "Satisfaction Survey"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Privacy Act" },
+                "USA": { "years": 5, "authority": "State privacy law" },
+                "GBR": { "years": 5, "authority": "GDPR" }
+              },
+              "keywords": ["ticket", "customer service", "support", "inquiry"]
+            },
+            "TechnicalSupport": {
+              "name": "TechnicalSupport",
+              "description": "Technical assistance",
+              "documentTypes": [
+                "Support Ticket",
+                "Troubleshooting Guide",
+                "Knowledge Base Article",
+                "Resolution",
+                "Escalation"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["technical support", "troubleshooting", "kb", "knowledge base"]
+            },
+            "WarrantyClaims": {
+              "name": "WarrantyClaims",
+              "description": "Warranty processing",
+              "documentTypes": [
+                "Warranty Claim",
+                "Proof of Purchase",
+                "Assessment",
+                "Approval",
+                "Replacement Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Australian Consumer Law" },
+                "USA": { "years": 7, "authority": "Magnuson-Moss Warranty Act" },
+                "GBR": { "years": 6, "authority": "Consumer Rights Act" }
+              },
+              "keywords": ["warranty", "claim", "refund", "replacement"]
+            },
+            "Returns": {
+              "name": "Returns",
+              "description": "Product returns",
+              "documentTypes": [
+                "Return Authorization",
+                "Refund Record",
+                "Restocking Report",
+                "Reason Code",
+                "Credit Note"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "FTC" },
+                "GBR": { "years": 5, "authority": "Consumer Rights Act" }
+              },
+              "keywords": ["return", "refund", "credit", "restock"]
+            },
+            "Complaints": {
+              "name": "Complaints",
+              "description": "Customer complaints",
+              "documentTypes": [
+                "Complaint Record",
+                "Investigation",
+                "Resolution",
+                "Compensation",
+                "Follow-up"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" },
+                "USA": { "years": 7, "authority": "Consumer protection agency" },
+                "GBR": { "years": 6, "authority": "Trading Standards" }
+              },
+              "keywords": ["complaint", "dispute", "compensation", "resolution"]
+            }
+          }
+        }
+      }
+    },
+    "ProductDevelopment": {
+      "name": "ProductDevelopment",
+      "description": "Product R&D and development",
+      "icon": "🔬",
+      "services": {
+        "ResearchDevelopment": {
+          "name": "ResearchDevelopment",
+          "description": "R&D activities",
+          "icon": "🔬",
+          "activities": {
+            "ResearchProjects": {
+              "name": "ResearchProjects",
+              "description": "Research initiatives",
+              "documentTypes": [
+                "Research Proposal",
+                "Literature Review",
+                "Experimental Data",
+                "Research Report",
+                "Patent Application"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "IP Australia" },
+                "USA": { "years": 7, "authority": "USPTO" },
+                "GBR": { "years": 6, "authority": "UK Intellectual Property Office" }
+              },
+              "keywords": ["research", "rd", "patent", "experimental", "innovation"]
+            },
+            "Prototyping": {
+              "name": "Prototyping",
+              "description": "Product prototyping",
+              "documentTypes": [
+                "Design Sketch",
+                "Prototype Specification",
+                "Test Results",
+                "Iteration Log",
+                "User Feedback"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporate policy" },
+                "USA": { "years": 7, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["prototype", "design", "iteration", "user testing"]
+            },
+            "ProductTesting": {
+              "name": "ProductTesting",
+              "description": "Testing products",
+              "documentTypes": [
+                "Test Plan",
+                "Test Report",
+                "QC Results",
+                "Certification",
+                "Compliance Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Product liability laws" },
+                "USA": { "years": 7, "authority": "Product liability laws" },
+                "GBR": { "years": 6, "authority": "Consumer Protection Act" }
+              },
+              "keywords": ["testing", "qc", "certification", "compliance"]
+            }
+          }
+        },
+        "Design": {
+          "name": "Design",
+          "description": "Product design",
+          "icon": "🎨",
+          "activities": {
+            "ProductDesign": {
+              "name": "ProductDesign",
+              "description": "Product specifications",
+              "documentTypes": [
+                "Product Specification",
+                "Design Document",
+                "CAD File",
+                "Bill of Materials",
+                "Assembly Drawing"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "IP Australia" },
+                "USA": { "years": 7, "authority": "USPTO" },
+                "GBR": { "years": 6, "authority": "UKIPO" }
+              },
+              "keywords": ["design", "specification", "cad", "bom", "drawing"]
+            },
+            "UXDesign": {
+              "name": "UXDesign",
+              "description": "User experience design",
+              "documentTypes": [
+                "Wireframe",
+                "Mockup",
+                "User Flow",
+                "Usability Test",
+                "Design System"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["ux", "wireframe", "mockup", "usability", "design system"]
+            },
+            "Packaging": {
+              "name": "Packaging",
+              "description": "Product packaging",
+              "documentTypes": [
+                "Package Design",
+                "Label Design",
+                "Regulatory Compliance",
+                "Mockup",
+                "Dieline"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "TPG" },
+                "USA": { "years": 7, "authority": "FDA" },
+                "GBR": { "years": 6, "authority": "Trading Standards" }
+              },
+              "keywords": ["packaging", "label", "compliance", "dieline"]
+            }
+          }
+        },
+        "LifecycleManagement": {
+          "name": "LifecycleManagement",
+          "description": "Product lifecycle",
+          "icon": "📊",
+          "activities": {
+            "ProductLaunch": {
+              "name": "ProductLaunch",
+              "description": "Launching products",
+              "documentTypes": [
+                "Launch Plan",
+                "Go-to-Market Strategy",
+                "Marketing Brief",
+                "Sales Training",
+                "Launch Checklist"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["launch", "gtm", "marketing brief", "go-to-market"]
+            },
+            "ProductManagement": {
+              "name": "ProductManagement",
+              "description": "Managing product portfolio",
+              "documentTypes": [
+                "Product Roadmap",
+                "Backlog",
+                "Feature Request",
+                "Prioritization",
+                "Release Notes"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["roadmap", "backlog", "feature", "prioritization"]
+            },
+            "EndOfLife": {
+              "name": "EndOfLife",
+              "description": "Product discontinuation",
+              "documentTypes": [
+                "EOL Notice",
+                "Migration Guide",
+                "Support Plan",
+                "Last Time Buy",
+                "Discontinuation Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Consumer law" },
+                "USA": { "years": 7, "authority": "Consumer protection law" },
+                "GBR": { "years": 6, "authority": "Consumer Rights Act" }
+              },
+              "keywords": ["eol", "end of life", "discontinuation", "migration"]
+            },
+            "VersionControl": {
+              "name": "VersionControl",
+              "description": "Version management",
+              "documentTypes": [
+                "Version History",
+                "Release Notes",
+                "Changelog",
+                "Upgrade Guide",
+                "Compatibility Matrix"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["version", "release", "changelog", "upgrade"]
+            }
+          }
+        }
+      }
+    },
+    "ITTechnology": {
+      "name": "ITTechnology",
+      "description": "Information technology",
+      "icon": "💻",
+      "services": {
+        "Infrastructure": {
+          "name": "Infrastructure",
+          "description": "IT infrastructure",
+          "icon": "🖥️",
+          "activities": {
+            "NetworkManagement": {
+              "name": "NetworkManagement",
+              "description": "Network operations",
+              "documentTypes": [
+                "Network Diagram",
+                "Configuration",
+                "Incident Log",
+                "Performance Report",
+                "Capacity Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["network", "infrastructure", "configuration", "capacity"]
+            },
+            "ServerManagement": {
+              "name": "ServerManagement",
+              "description": "Server administration",
+              "documentTypes": [
+                "Server Inventory",
+                "Maintenance Log",
+                "Patch Record",
+                "Backup Report",
+                "Disaster Recovery Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["server", "maintenance", "patch", "backup", "dr plan"]
+            },
+            "CloudServices": {
+              "name": "CloudServices",
+              "description": "Cloud service management",
+              "documentTypes": [
+                "Cloud Architecture",
+                "Service Agreement",
+                "Usage Report",
+                "Cost Analysis",
+                "Security Assessment"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["cloud", "aws", "azure", "saas", "iaas"]
+            },
+            "Cybersecurity": {
+              "name": "Cybersecurity",
+              "description": "Security management",
+              "documentTypes": [
+                "Security Policy",
+                "Incident Response",
+                "Risk Assessment",
+                "Penetration Test",
+                "Compliance Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Privacy Act" },
+                "USA": { "years": 5, "authority": "State data breach law" },
+                "GBR": { "years": 5, "authority": "GDPR" }
+              },
+              "keywords": ["security", "incident response", "risk assessment", "pentest"]
+            },
+            "DataBackup": {
+              "name": "DataBackup",
+              "description": "Backup and recovery",
+              "documentTypes": [
+                "Backup Schedule",
+                "Recovery Test",
+                "Retention Policy",
+                "Restore Log",
+                "Backup Verification"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporate policy" },
+                "USA": { "years": 7, "authority": "Corporate policy" },
+                "GBR": { "years": 6, "authority": "Corporate policy" }
+              },
+              "keywords": ["backup", "recovery", "restore", "disaster recovery"]
+            },
+            "ITCompliance": {
+              "name": "ITCompliance",
+              "description": "IT regulatory compliance",
+              "documentTypes": [
+                "Software License",
+                "Audit Report",
+                "Compliance Certificate",
+                "Policy Acknowledgment",
+                "Access Log"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Privacy Act" },
+                "USA": { "years": 7, "authority": "SOX" },
+                "GBR": { "years": 6, "authority": "GDPR" }
+              },
+              "keywords": ["license", "audit", "compliance", "software asset"]
+            }
+          }
+        },
+        "SoftwareDevelopment": {
+          "name": "SoftwareDevelopment",
+          "description": "Software engineering",
+          "icon": "💻",
+          "activities": {
+            "Development": {
+              "name": "Development",
+              "description": "Application development",
+              "documentTypes": [
+                "Technical Specification",
+                "Architecture Diagram",
+                "Code Review",
+                "Pull Request",
+                "Sprint Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "IP Australia" },
+                "USA": { "years": 5, "authority": "USPTO" },
+                "GBR": { "years": 5, "authority": "Copyright law" }
+              },
+              "keywords": ["development", "specification", "architecture", "code review"]
+            },
+            "Testing": {
+              "name": "Testing",
+              "description": "Software testing",
+              "documentTypes": [
+                "Test Plan",
+                "Test Case",
+                "Bug Report",
+                "Test Execution",
+                "QA Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["testing", "qa", "bug", "test case"]
+            },
+            "Deployment": {
+              "name": "Deployment",
+              "description": "Software deployment",
+              "documentTypes": [
+                "Release Notes",
+                "Deployment Plan",
+                "Rollback Plan",
+                "Environment Config",
+                "Deployment Log"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["deployment", "release", "rollback", "environment"]
+            },
+            "DevOps": {
+              "name": "DevOps",
+              "description": "DevOps practices",
+              "documentTypes": [
+                "CI/CD Pipeline",
+                "Infrastructure as Code",
+                "Monitoring Report",
+                "Alert Configuration",
+                "Incident Runbook"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["cicd", "devops", "infrastructure as code", "monitoring"]
+            },
+            "DatabaseManagement": {
+              "name": "DatabaseManagement",
+              "description": "Database administration",
+              "documentTypes": [
+                "Database Schema",
+                "Migration Script",
+                "Performance Report",
+                "Backup Log",
+                "Query Log"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["database", "schema", "migration", "query", "performance"]
+            },
+            "APIMangement": {
+              "name": "APIMangement",
+              "description": "API management",
+              "documentTypes": [
+                "API Documentation",
+                "API Key Registry",
+                "Usage Report",
+                "Deprecation Notice",
+                "Version Policy"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["api", "documentation", "swagger", "openapi", "rate limit"]
+            }
+          }
+        },
+        "ServiceDesk": {
+          "name": "ServiceDesk",
+          "description": "IT service desk",
+          "icon": "🎧",
+          "activities": {
+            "IncidentManagement": {
+              "name": "IncidentManagement",
+              "description": "IT incidents",
+              "documentTypes": [
+                "Incident Ticket",
+                "Incident Report",
+                "RCA",
+                "Resolution",
+                "SLA Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["incident", "ticket", "rca", "sla"]
+            },
+            "RequestManagement": {
+              "name": "RequestManagement",
+              "description": "Service requests",
+              "documentTypes": [
+                "Service Request",
+                "Fulfillment Record",
+                "Approval",
+                "Work Log",
+                "Satisfaction Survey"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["service request", "fulfillment", "approval"]
+            },
+            "ChangeManagement": {
+              "name": "ChangeManagement",
+              "description": "IT changes",
+              "documentTypes": [
+                "Change Request",
+                "Impact Assessment",
+                "CAB Approval",
+                "Change Log",
+                "Post-Implementation Review"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ITIL best practice" },
+                "USA": { "years": 5, "authority": "ITIL best practice" },
+                "GBR": { "years": 5, "authority": "ITIL best practice" }
+              },
+              "keywords": ["change", "cab", "itil", "impact assessment"]
+            },
+            "AssetManagement": {
+              "name": "AssetManagement",
+              "description": "IT assets",
+              "documentTypes": [
+                "Asset Register",
+                "Hardware Inventory",
+                "License Inventory",
+                "Depreciation Schedule",
+                "Retirement Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["asset", "inventory", "license", "depreciation"]
+            },
+            "KnowledgeManagement": {
+              "name": "KnowledgeManagement",
+              "description": "Knowledge base",
+              "documentTypes": [
+                "Knowledge Article",
+                "FAQ",
+                "How-To Guide",
+                "Troubleshooting Guide",
+                "Video Tutorial"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["kb", "knowledge", "faq", "how-to", "troubleshooting"]
+            },
+            "UserTraining": {
+              "name": "UserTraining",
+              "description": "IT training",
+              "documentTypes": [
+                "Training Material",
+                "User Guide",
+                "Quick Reference",
+                "Training Record",
+                "Assessment"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["training", "user guide", "manual", "onboarding"]
+            }
+          }
+        }
+      }
+    },
+    "LegalCompliance": {
+      "name": "LegalCompliance",
+      "description": "Legal and regulatory compliance",
+      "icon": "⚖️",
+      "services": {
+        "CorporateGovernance": {
+          "name": "CorporateGovernance",
+          "description": "Governance practices",
+          "icon": "🏛️",
+          "activities": {
+            "BoardMeetings": {
+              "name": "BoardMeetings",
+              "description": "Board of directors",
+              "documentTypes": [
+                "Board Agenda",
+                "Board Minutes",
+                "Board Pack",
+                "Resolution",
+                "Proxy Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "Delaware law" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["board", "minutes", "resolution", "proxy", "director"]
+            },
+            "ShareholderRelations": {
+              "name": "ShareholderRelations",
+              "description": "Shareholder communications",
+              "documentTypes": [
+                "Shareholder Notice",
+                "Annual Report",
+                "Meeting Minutes",
+                "Proxy Card",
+                "Voting Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "SEC" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["shareholder", "annual report", "proxy", "agm"]
+            },
+            "CorporateSecretarial": {
+              "name": "CorporateSecretarial",
+              "description": "Corporate records",
+              "documentTypes": [
+                "Constitution",
+                "Bylaws",
+                "Register",
+                "Corporate Filings",
+                "Compliance Certificate"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" },
+                "USA": { "years": 7, "authority": "State Secretary of State" },
+                "GBR": { "years": 6, "authority": "Companies House" }
+              },
+              "keywords": ["constitution", "bylaws", "register", "filings"]
+            },
+            "EthicsCompliance": {
+              "name": "EthicsCompliance",
+              "description": "Ethics program",
+              "documentTypes": [
+                "Code of Conduct",
+                "Conflict of Interest",
+                "Ethics Hotline",
+                "Training Record",
+                "Disclosure"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Sarbanes-Oxley" },
+                "GBR": { "years": 5, "authority": "Bribery Act" }
+              },
+              "keywords": ["ethics", "code of conduct", "conflict of interest", "sox"]
+            }
+          }
+        },
+        "Contracts": {
+          "name": "Contracts",
+          "description": "Contract management",
+          "icon": "📝",
+          "activities": {
+            "ContractLifecycle": {
+              "name": "ContractLifecycle",
+              "description": "Contract management",
+              "documentTypes": [
+                "Contract",
+                "Amendment",
+                "Extension",
+                "Renewal Notice",
+                "Termination"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Limitation period" },
+                "USA": { "years": 7, "authority": "State statute of limitations" },
+                "GBR": { "years": 6, "authority": "Limitation Act" }
+              },
+              "keywords": ["contract", "agreement", "amendment", "renewal"]
+            },
+            "VendorContracts": {
+              "name": "VendorContracts",
+              "description": "Supplier agreements",
+              "documentTypes": [
+                "MSA",
+                "SOW",
+                "NDA",
+                "Service Agreement",
+                "SLA"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "UCC" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["msa", "sow", "nda", "sla", "vendor agreement"]
+            },
+            "LegalReview": {
+              "name": "LegalReview",
+              "description": "Legal review of contracts",
+              "documentTypes": [
+                "Legal Opinion",
+                "Redline",
+                "Mark-up",
+                "Risk Assessment",
+                "Approval"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Legal professional privilege" },
+                "USA": { "years": 7, "authority": "Attorney-client privilege" },
+                "GBR": { "years": 6, "authority": "Legal professional privilege" }
+              },
+              "keywords": ["legal opinion", "redline", "risk", "privilege"]
+            }
+          }
+        },
+        "RegulatoryCompliance": {
+          "name": "RegulatoryCompliance",
+          "description": "Industry regulations",
+          "icon": "📋",
+          "activities": {
+            "IndustryRegulations": {
+              "name": "IndustryRegulations",
+              "description": "Sector-specific compliance",
+              "documentTypes": [
+                "Compliance Report",
+                "Audit Findings",
+                "Corrective Action",
+                "Certification",
+                "License"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Industry regulator" },
+                "USA": { "years": 7, "authority": "Industry regulator" },
+                "GBR": { "years": 6, "authority": "Industry regulator" }
+              },
+              "keywords": ["compliance", "audit", "certification", "licensing"]
+            },
+            "DataPrivacy": {
+              "name": "DataPrivacy",
+              "description": "Privacy compliance",
+              "documentTypes": [
+                "Privacy Policy",
+                "Data Mapping",
+                "DPIA",
+                "Breach Response",
+                "Consent Record"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Privacy Act 1988" },
+                "USA": { "years": 7, "authority": "CCPA" },
+                "GBR": { "years": 6, "authority": "GDPR" }
+              },
+              "keywords": ["privacy", "gdpr", "ccpa", "dpia", "breach"]
+            },
+            "EnvironmentalCompliance": {
+              "name": "EnvironmentalCompliance",
+              "description": "Environmental regulations",
+              "documentTypes": [
+                "Environmental Audit",
+                "Emissions Report",
+                "Waste Management",
+                "Sustainability Report",
+                "Permit"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "EPBC Act" },
+                "USA": { "years": 7, "authority": "EPA" },
+                "GBR": { "years": 6, "authority": "Environment Agency" }
+              },
+              "keywords": ["environmental", "emissions", "sustainability", "epa"]
+            }
+          }
+        },
+        "IntellectualProperty": {
+          "name": "IntellectualProperty",
+          "description": "IP management",
+          "icon": "©️",
+          "activities": {
+            "TrademarkManagement": {
+              "name": "TrademarkManagement",
+              "description": "Trademark portfolio",
+              "documentTypes": [
+                "Trademark Registration",
+                "Renewal Certificate",
+                "Opposition",
+                "License Agreement",
+                "Watch Notice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "IP Australia" },
+                "USA": { "years": 7, "authority": "USPTO" },
+                "GBR": { "years": 6, "authority": "UKIPO" }
+              },
+              "keywords": ["trademark", "registration", "opposition", "license"]
+            },
+            "PatentPortfolio": {
+              "name": "PatentPortfolio",
+              "description": "Patent management",
+              "documentTypes": [
+                "Patent Application",
+                "Patent Grant",
+                "Maintenance Fee",
+                "License Agreement",
+                "Infringement Notice"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "IP Australia" },
+                "USA": { "years": 7, "authority": "USPTO" },
+                "GBR": { "years": 6, "authority": "UKIPO" }
+              },
+              "keywords": ["patent", "application", "infringement", "license"]
+            },
+            "CopyrightManagement": {
+              "name": "CopyrightManagement",
+              "description": "Copyright protection",
+              "documentTypes": [
+                "Copyright Registration",
+                "License Agreement",
+                "Usage Rights",
+                "Infringement Notice",
+                "Cease and Desist"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Copyright Act" },
+                "USA": { "years": 7, "authority": "Copyright Act" },
+                "GBR": { "years": 6, "authority": "Copyright Designs and Patents Act" }
+              },
+              "keywords": ["copyright", "license", "infringement", "cease and desist"]
+            }
+          }
+        }
+      }
+    },
+    "CustomerService": {
+      "name": "CustomerService",
+      "description": "Customer support and success",
+      "icon": "🤝",
+      "services": {
+        "CustomerSupport": {
+          "name": "CustomerSupport",
+          "description": "Customer assistance",
+          "icon": "🎧",
+          "activities": {
+            "InquiryHandling": {
+              "name": "InquiryHandling",
+              "description": "Customer inquiries",
+              "documentTypes": [
+                "Support Ticket",
+                "Interaction Log",
+                "FAQ",
+                "Response Template",
+                "Escalation"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Privacy Act" },
+                "USA": { "years": 5, "authority": "State privacy law" },
+                "GBR": { "years": 5, "authority": "GDPR" }
+              },
+              "keywords": ["ticket", "inquiry", "support", "escalation"]
+            },
+            "TicketManagement": {
+              "name": "TicketManagement",
+              "description": "Issue tracking",
+              "documentTypes": [
+                "Ticket",
+                "SLA Report",
+                "Resolution",
+                "Closure",
+                "Survey"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["ticket", "sla", "resolution", "closure"]
+            },
+            "KnowledgeBase": {
+              "name": "KnowledgeBase",
+              "description": "Support documentation",
+              "documentTypes": [
+                "Knowledge Article",
+                "How-To Guide",
+                "FAQ",
+                "Video Tutorial",
+                "Troubleshooting Guide"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["kb", "knowledge", "faq", "how-to", "troubleshooting"]
+            }
+          }
+        },
+        "CustomerSuccess": {
+          "name": "CustomerSuccess",
+          "description": "Customer retention and growth",
+          "icon": "📈",
+          "activities": {
+            "Onboarding": {
+              "name": "Onboarding",
+              "description": "Customer onboarding",
+              "documentTypes": [
+                "Onboarding Plan",
+                "Welcome Package",
+                "Training Schedule",
+                "Progress Report",
+                "Go-Live"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["onboarding", "welcome", "training", "go-live"]
+            },
+            "CustomerHealth": {
+              "name": "CustomerHealth",
+              "description": "Account monitoring",
+              "documentTypes": [
+                "Health Score",
+                "Usage Report",
+                "Risk Assessment",
+                "QBR",
+                "Account Review"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["health score", "usage", "churn risk", "qbr"]
+            },
+            "Upselling": {
+              "name": "Upselling",
+              "description": "Expansion opportunities",
+              "documentTypes": [
+                "Expansion Plan",
+                "Quote",
+                "Proposal",
+                "Success Story",
+                "Referral"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["upsell", "cross-sell", "expansion", "opportunity"]
+            },
+            "Renewals": {
+              "name": "Renewals",
+              "description": "Subscription renewals",
+              "documentTypes": [
+                "Renewal Quote",
+                "Renewal Notice",
+                "Retention Plan",
+                "Churn Analysis",
+                "Win/Loss Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["renewal", "retention", "churn", "win/loss"]
+            }
+          }
+        },
+        "FeedbackManagement": {
+          "name": "FeedbackManagement",
+          "description": "Customer feedback",
+          "icon": "📝",
+          "activities": {
+            "Surveys": {
+              "name": "Surveys",
+              "description": "Customer surveys",
+              "documentTypes": [
+                "Survey",
+                "Response",
+                "Analysis Report",
+                "Action Plan",
+                "Trend Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["survey", "nps", "csat", "feedback"]
+            },
+            "Reviews": {
+              "name": "Reviews",
+              "description": "Customer reviews",
+              "documentTypes": [
+                "Review Response",
+                "Review Analysis",
+                "Testimonial",
+                "Rating Summary",
+                "Rebuttal"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Consumer law" },
+                "USA": { "years": 5, "authority": "FTC" },
+                "GBR": { "years": 5, "authority": "CMA" }
+              },
+              "keywords": ["review", "rating", "testimonial", "rebuttal"]
+            },
+            "Complaints": {
+              "name": "Complaints",
+              "description": "Customer complaints",
+              "documentTypes": [
+                "Complaint",
+                "Investigation",
+                "Resolution",
+                "Follow-up",
+                "Root Cause Analysis"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" },
+                "USA": { "years": 7, "authority": "Consumer protection agency" },
+                "GBR": { "years": 6, "authority": "Trading Standards" }
+              },
+              "keywords": ["complaint", "dispute", "root cause", "escalation"]
+            },
+            "VoC": {
+              "name": "VoC",
+              "description": "Voice of customer",
+              "documentTypes": [
+                "Interview Transcript",
+                "Insight Report",
+                "Theme Analysis",
+                "Presentation",
+                "Action Item"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["voc", "voice of customer", "interview", "insight"]
+            }
+          }
+        }
+      }
+    },
+    "Procurement": {
+      "name": "Procurement",
+      "description": "Purchasing and vendor management",
+      "icon": "🛒",
+      "services": {
+        "StrategicSourcing": {
+          "name": "StrategicSourcing",
+          "description": "Strategic purchasing",
+          "icon": "🎯",
+          "activities": {
+            "CategoryManagement": {
+              "name": "CategoryManagement",
+              "description": "Spend category management",
+              "documentTypes": [
+                "Category Plan",
+                "Spend Analysis",
+                "Market Analysis",
+                "Sourcing Strategy",
+                "Savings Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["category management", "spend", "sourcing", "savings"]
+            },
+            "SupplierDevelopment": {
+              "name": "SupplierDevelopment",
+              "description": "Growing supplier capability",
+              "documentTypes": [
+                "Supplier Assessment",
+                "Development Plan",
+                "Scorecard",
+                "Performance Review",
+                "Certification"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["supplier", "development", "assessment", "certification"]
+            },
+            "ContractNegotiation": {
+              "name": "ContractNegotiation",
+              "description": "Negotiating agreements",
+              "documentTypes": [
+                "RFP",
+                "Proposal",
+                "Negotiation Summary",
+                "Contract",
+                "Term Sheet"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "UCC" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["rfp", "negotiation", "contract", "terms"]
+            },
+            "SupplierDiversity": {
+              "name": "SupplierDiversity",
+              "description": "Diverse supplier program",
+              "documentTypes": [
+                "Diversity Report",
+                "Certification",
+                "Outreach Plan",
+                "Spend Analysis",
+                "Goal Tracking"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Equal Opportunity" },
+                "GBR": { "years": 5, "authority": "Equality Act" }
+              },
+              "keywords": ["diversity", "minority business", "supplier diversity", "msa"]
+            }
+          }
+        },
+        "OperationalProcurement": {
+          "name": "OperationalProcurement",
+          "description": "Day-to-day purchasing",
+          "icon": "📦",
+          "activities": {
+            "Requisition": {
+              "name": "Requisition",
+              "description": "Purchase requests",
+              "documentTypes": [
+                "Purchase Requisition",
+                "Approval",
+                "Budget Check",
+                "Specification",
+                "Priority Rating"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["requisition", "purchase order", "approval", "specification"]
+            },
+            "Purchasing": {
+              "name": "Purchasing",
+              "description": "Processing purchases",
+              "documentTypes": [
+                "Purchase Order",
+                "Invoice",
+                "Receipt",
+                "Goods Receipt",
+                "Acceptance"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["purchase order", "invoice", "receipt", "acceptance"]
+            },
+            "ExpensesManagement": {
+              "name": "ExpensesManagement",
+              "description": "Managing expenses",
+              "documentTypes": [
+                "Expense Report",
+                "Receipt",
+                "Reimbursement",
+                "Corporate Card",
+                "Policy"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ATO" },
+                "USA": { "years": 5, "authority": "IRS" },
+                "GBR": { "years": 5, "authority": "HMRC" }
+              },
+              "keywords": ["expense", "reimbursement", "corporate card", "policy"]
+            },
+            "VendorPayment": {
+              "name": "VendorPayment",
+              "description": "Paying vendors",
+              "documentTypes": [
+                "Payment Instruction",
+                "Remittance",
+                "Payment Confirmation",
+                "EFT Record",
+                "Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["payment", "remittance", "eft", "disbursement"]
+            }
+          }
+        },
+        "ContractManagement": {
+          "name": "ContractManagement",
+          "description": "Managing vendor contracts",
+          "icon": "📄",
+          "activities": {
+            "ContractLifecycle": {
+              "name": "ContractLifecycle",
+              "description": "Contract lifecycle",
+              "documentTypes": [
+                "Contract",
+                "MSA",
+                "SOW",
+                "Amendment",
+                "Renewal"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporations Act" },
+                "USA": { "years": 7, "authority": "UCC" },
+                "GBR": { "years": 6, "authority": "Companies Act" }
+              },
+              "keywords": ["contract", "msa", "sow", "amendment"]
+            },
+            "Compliance": {
+              "name": "Compliance",
+              "description": "Contract compliance",
+              "documentTypes": [
+                "Certificate of Insurance",
+                "W9 Form",
+                "Compliance Declaration",
+                "Audit Report",
+                "SLA Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["compliance", "insurance", "w9", "sla"]
+            },
+            "PerformanceManagement": {
+              "name": "PerformanceManagement",
+              "description": "Vendor performance",
+              "documentTypes": [
+                "Scorecard",
+                "KPI Report",
+                "Performance Review",
+                "Improvement Plan",
+                "Termination"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["performance", "scorecard", "kpi", "improvement"]
+            },
+            "SourcingEvents": {
+              "name": "SourcingEvents",
+              "description": "RFP/RFQ processes",
+              "documentTypes": [
+                "RFP",
+                "RFQ",
+                "EOI",
+                "Proposal",
+                "Evaluation Matrix"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["rfp", "rfq", "eoi", "proposal", "sourcing"]
+            }
+          }
+        }
+      }
+    },
+    "QualityAssurance": {
+      "name": "QualityAssurance",
+      "description": "Quality management",
+      "icon": "✅",
+      "services": {
+        "QualityManagement": {
+          "name": "QualityManagement",
+          "description": "QMS oversight",
+          "icon": "📋",
+          "activities": {
+            "QualityPolicy": {
+              "name": "QualityPolicy",
+              "description": "Quality framework",
+              "documentTypes": [
+                "Quality Policy",
+                "Quality Manual",
+                "Objectives",
+                "Process Maps",
+                "Procedures"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ISO 9001" },
+                "USA": { "years": 5, "authority": "ISO 9001" },
+                "GBR": { "years": 5, "authority": "ISO 9001" }
+              },
+              "keywords": ["quality policy", "qms", "iso 9001", "manual"]
+            },
+            "QualityAudits": {
+              "name": "QualityAudits",
+              "description": "Internal audits",
+              "documentTypes": [
+                "Audit Schedule",
+                "Audit Checklist",
+                "Audit Report",
+                "CAPA",
+                "Management Review"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ISO 9001" },
+                "USA": { "years": 5, "authority": "ISO 9001" },
+                "GBR": { "years": 5, "authority": "ISO 9001" }
+              },
+              "keywords": ["audit", "internal audit", "capa", "management review"]
+            },
+            "NonConformance": {
+              "name": "NonConformance",
+              "description": "Managing non-conformance",
+              "documentTypes": [
+                "NC Report",
+                "RCA",
+                "CAPA",
+                "Verification",
+                "Closure"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ISO 9001" },
+                "USA": { "years": 5, "authority": "ISO 9001" },
+                "GBR": { "years": 5, "authority": "ISO 9001" }
+              },
+              "keywords": ["nc", "non-conformance", "capa", "root cause"]
+            },
+            "CorrectivePreventive": {
+              "name": "CorrectivePreventive",
+              "description": "CAPA processes",
+              "documentTypes": [
+                "CAPA Plan",
+                "Root Cause Analysis",
+                "Effectiveness Check",
+                "Verification",
+                "Trend Analysis"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ISO 9001" },
+                "USA": { "years": 5, "authority": "ISO 9001" },
+                "GBR": { "years": 5, "authority": "ISO 9001" }
+              },
+              "keywords": ["capa", "corrective action", "preventive action"]
+            },
+            "ManagementReview": {
+              "name": "ManagementReview",
+              "description": "QMS reviews",
+              "documentTypes": [
+                "Review Minutes",
+                "Input Data",
+                "Action Items",
+                "Decisions",
+                "Follow-up"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ISO 9001" },
+                "USA": { "years": 5, "authority": "ISO 9001" },
+                "GBR": { "years": 5, "authority": "ISO 9001" }
+              },
+              "keywords": ["management review", "minutes", "action items"]
+            },
+            "Documentation": {
+              "name": "Documentation",
+              "description": "QMS documentation",
+              "documentTypes": [
+                "Procedure",
+                "Work Instruction",
+                "Form",
+                "Record",
+                "Template"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ISO 9001" },
+                "USA": { "years": 5, "authority": "ISO 9001" },
+                "GBR": { "years": 5, "authority": "ISO 9001" }
+              },
+              "keywords": ["procedure", "work instruction", "form", "template"]
+            },
+            "Training": {
+              "name": "Training",
+              "description": "Quality training",
+              "documentTypes": [
+                "Training Plan",
+                "Training Material",
+                "Competency Matrix",
+                "Attendance",
+                "Effectiveness"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ISO 9001" },
+                "USA": { "years": 5, "authority": "ISO 9001" },
+                "GBR": { "years": 5, "authority": "ISO 9001" }
+              },
+              "keywords": ["training", "competency", "qualification", "effectiveness"]
+            }
+          }
+        },
+        "QualityControl": {
+          "name": "QualityControl",
+          "description": "Product inspection",
+          "icon": "🔍",
+          "activities": {
+            "Inspection": {
+              "name": "Inspection",
+              "description": "Product inspection",
+              "documentTypes": [
+                "Inspection Plan",
+                "Checklist",
+                "Inspection Report",
+                "Defect Report",
+                "Release Decision"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ISO 9001" },
+                "USA": { "years": 5, "authority": "ISO 9001" },
+                "GBR": { "years": 5, "authority": "ISO 9001" }
+              },
+              "keywords": ["inspection", "quality check", "defect", "release"]
+            },
+            "Testing": {
+              "name": "Testing",
+              "description": "Product testing",
+              "documentTypes": [
+                "Test Plan",
+                "Test Result",
+                "Certificate",
+                "Calibration",
+                "Validation"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ISO 9001" },
+                "USA": { "years": 5, "authority": "ISO 9001" },
+                "GBR": { "years": 5, "authority": "ISO 9001" }
+              },
+              "keywords": ["testing", "validation", "calibration", "certificate"]
+            },
+            "Sampling": {
+              "name": "Sampling",
+              "description": "Quality sampling",
+              "documentTypes": [
+                "Sampling Plan",
+                "AQL Table",
+                "Sample Result",
+                "Statistical Analysis",
+                "Acceptance"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ISO 9001" },
+                "USA": { "years": 5, "authority": "ISO 9001" },
+                "GBR": { "years": 5, "authority": "ISO 9001" }
+              },
+              "keywords": ["sampling", "aql", "statistical", "acceptance"]
+            },
+            "SupplierQuality": {
+              "name": "SupplierQuality",
+              "description": "Supplier quality management",
+              "documentTypes": [
+                "Supplier Audit",
+                "Scorecard",
+                "Performance Report",
+                "Certification",
+                "Improvement Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ISO 9001" },
+                "USA": { "years": 5, "authority": "ISO 9001" },
+                "GBR": { "years": 5, "authority": "ISO 9001" }
+              },
+              "keywords": ["supplier quality", "audit", "scorecard", "performance"]
+            },
+            "CustomerComplaints": {
+              "name": "CustomerComplaints",
+              "description": "Quality complaints",
+              "documentTypes": [
+                "Complaint",
+                "Investigation",
+                "Resolution",
+                "CAPA",
+                "Preventive Action"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Consumer law" },
+                "USA": { "years": 7, "authority": "Consumer protection law" },
+                "GBR": { "years": 6, "authority": "Consumer Rights Act" }
+              },
+              "keywords": ["complaint", "investigation", "capa", "quality issue"]
+            }
+          }
+        },
+        "ContinuousImprovement": {
+          "name": "ContinuousImprovement",
+          "description": "CI initiatives",
+          "icon": "📈",
+          "activities": {
+            "LeanSixSigma": {
+              "name": "LeanSixSigma",
+              "description": "Process improvement",
+              "documentTypes": [
+                "Project Charter",
+                "DMAIC Report",
+                "Kaizen Report",
+                "Improvement Results",
+                "Savings Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["lean", "six sigma", "dmaic", "kaizen", "improvement"]
+            },
+            "ProcessOptimization": {
+              "name": "ProcessOptimization",
+              "description": "Process improvement",
+              "documentTypes": [
+                "Process Map",
+                "Value Stream Map",
+                "Future State",
+                "Implementation Plan",
+                "Results"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["process", "optimization", "value stream", "future state"]
+            },
+            "Benchmarking": {
+              "name": "Benchmarking",
+              "description": "Industry benchmarking",
+              "documentTypes": [
+                "Benchmark Study",
+                "Gap Analysis",
+                "Best Practice",
+                "Competitor Analysis",
+                "Adoption Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["benchmark", "gap analysis", "best practice", "competitor"]
+            },
+            "KPIs": {
+              "name": "KPIs",
+              "description": "Quality metrics",
+              "documentTypes": [
+                "KPI Dashboard",
+                "Quality Metrics",
+                "Trend Analysis",
+                "Scorecard",
+                "Executive Summary"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["kpi", "quality metrics", "dashboard", "scorecard"]
+            }
+          }
+        }
+      }
+    },
+    "StrategicPlanning": {
+      "name": "StrategicPlanning",
+      "description": "Strategic direction",
+      "icon": "🎯",
+      "services": {
+        "StrategyDevelopment": {
+          "name": "StrategyDevelopment",
+          "description": "Creating strategy",
+          "icon": "📋",
+          "activities": {
+            "StrategicPlanning": {
+              "name": "StrategicPlanning",
+              "description": "Strategic planning process",
+              "documentTypes": [
+                "Strategic Plan",
+                "Vision Statement",
+                "Mission Statement",
+                "Values Statement",
+                "Balanced Scorecard"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" },
+                "USA": { "years": 5, "authority": "Corporate governance" },
+                "GBR": { "years": 5, "authority": "Corporate Governance Code" }
+              },
+              "keywords": ["strategy", "vision", "mission", "balanced scorecard"]
+            },
+            "ScenarioPlanning": {
+              "name": "ScenarioPlanning",
+              "description": "Future scenarios",
+              "documentTypes": [
+                "Scenario Analysis",
+                "Contingency Plan",
+                "Risk Assessment",
+                "Sensitivity Analysis",
+                "Stress Test"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" },
+                "USA": { "years": 5, "authority": "Corporate governance" },
+                "GBR": { "years": 5, "authority": "Corporate governance" }
+              },
+              "keywords": ["scenario", "contingency", "sensitivity", "stress test"]
+            },
+            "MarketAnalysis": {
+              "name": "MarketAnalysis",
+              "description": "Market analysis",
+              "documentTypes": [
+                "Market Analysis",
+                "Competitor Analysis",
+                "Trend Analysis",
+                "SWOT",
+                "PESTLE"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["market analysis", "swot", "pestle", "competitor"]
+            },
+            "StrategicInitiatives": {
+              "name": "StrategicInitiatives",
+              "description": "Major initiatives",
+              "documentTypes": [
+                "Initiative Charter",
+                "Business Case",
+                "ROI Analysis",
+                "Implementation Plan",
+                "Status Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate policy" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["initiative", "business case", "roi", "implementation"]
+            }
+          }
+        },
+        "MergersAcquisitions": {
+          "name": "MergersAcquisitions",
+          "description": "M&A activities",
+          "icon": "🤝",
+          "activities": {
+            "DueDiligence": {
+              "name": "DueDiligence",
+              "description": "M&A due diligence",
+              "documentTypes": [
+                "Due Diligence Report",
+                "Financial Analysis",
+                "Legal Review",
+                "Risk Assessment",
+                "Valuation"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" },
+                "USA": { "years": 7, "authority": "SEC" },
+                "GBR": { "years": 6, "authority": "FRC" }
+              },
+              "keywords": ["due diligence", "m&a", "valuation", "risk"]
+            },
+            "Integration": {
+              "name": "Integration",
+              "description": "Post-merger integration",
+              "documentTypes": [
+                "Integration Plan",
+                "PMI Checklist",
+                "Synergy Report",
+                "Cultural Assessment",
+                "Progress Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" },
+                "USA": { "years": 7, "authority": "SEC" },
+                "GBR": { "years": 6, "authority": "FRC" }
+              },
+              "keywords": ["integration", "pmi", "synergy", "post-merger"]
+            },
+            "Valuation": {
+              "name": "Valuation",
+              "description": "Business valuation",
+              "documentTypes": [
+                "Valuation Report",
+                "Financial Model",
+                "Comparable Analysis",
+                "DCF Analysis",
+                "Asset Valuation"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" },
+                "USA": { "years": 7, "authority": "SEC" },
+                "GBR": { "years": 6, "authority": "FRC" }
+              },
+              "keywords": ["valuation", "dcf", "comparable", "financial model"]
+            },
+            "DealManagement": {
+              "name": "DealManagement",
+              "description": "Managing transactions",
+              "documentTypes": [
+                "LOI",
+                "Purchase Agreement",
+                "Disclosure Schedule",
+                "Closing Checklist",
+                "Post-Closing"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC" },
+                "USA": { "years": 7, "authority": "SEC" },
+                "GBR": { "years": 6, "authority": "FRC" }
+              },
+              "keywords": ["loi", "purchase agreement", "disclosure", "closing"]
+            }
+          }
+        },
+        "BusinessPlanning": {
+          "name": "BusinessPlanning",
+          "description": "Business planning cycles",
+          "icon": "📅",
+          "activities": {
+            "AnnualPlanning": {
+              "name": "AnnualPlanning",
+              "description": "Yearly planning",
+              "documentTypes": [
+                "Annual Plan",
+                "Budget",
+                "Forecast",
+                "Target Setting",
+                "Allocation"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" },
+                "USA": { "years": 5, "authority": "Sarbanes-Oxley" },
+                "GBR": { "years": 5, "authority": "Corporate Governance Code" }
+              },
+              "keywords": ["annual plan", "budget", "forecast", "target"]
+            },
+            "QuarterlyPlanning": {
+              "name": "QuarterlyPlanning",
+              "description": "Quarterly reviews",
+              "documentTypes": [
+                "Quarterly Review",
+                "Rolling Forecast",
+                "Variance Analysis",
+                "Outlook",
+                "Adjustment"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" },
+                "USA": { "years": 5, "authority": "Sarbanes-Oxley" },
+                "GBR": { "years": 5, "authority": "Corporate Governance Code" }
+              },
+              "keywords": ["quarterly", "rolling forecast", "variance", "outlook"]
+            },
+            "CapitalPlanning": {
+              "name": "CapitalPlanning",
+              "description": "Capital expenditure",
+              "documentTypes": [
+                "CAPEX Plan",
+                "Capital Request",
+                "Project Prioritization",
+                "Funding Plan",
+                "Authorization"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["capex", "capital plan", "funding", "prioritization"]
+            },
+            "PerformanceReporting": {
+              "name": "PerformanceReporting",
+              "description": "Performance reports",
+              "documentTypes": [
+                "Performance Report",
+                "Dashboard",
+                "KPI Summary",
+                "Narrative",
+                "Presentation"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate governance" }
+              },
+              "keywords": ["performance", "kpi", "dashboard", "presentation"]
+            }
+          }
+        },
+        "RiskManagement": {
+          "name": "RiskManagement",
+          "description": "Enterprise risk",
+          "icon": "⚠️",
+          "activities": {
+            "RiskAssessment": {
+              "name": "RiskAssessment",
+              "description": "Risk identification",
+              "documentTypes": [
+                "Risk Register",
+                "Risk Assessment",
+                "Impact Analysis",
+                "Likelihood Rating",
+                "Mitigation Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" },
+                "USA": { "years": 5, "authority": "COSO" },
+                "GBR": { "years": 5, "authority": "Corporate Governance Code" }
+              },
+              "keywords": ["risk register", "assessment", "impact", "likelihood"]
+            },
+            "RiskMonitoring": {
+              "name": "RiskMonitoring",
+              "description": "Ongoing risk tracking",
+              "documentTypes": [
+                "Risk Status",
+                "Trigger Event Log",
+                "Escalation Notice",
+                "Risk Report",
+                "Dashboard"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" },
+                "USA": { "years": 5, "authority": "COSO" },
+                "GBR": { "years": 5, "authority": "Corporate Governance Code" }
+              },
+              "keywords": ["risk monitoring", "trigger", "escalation", "dashboard"]
+            },
+            "BusinessContinuity": {
+              "name": "BusinessContinuity",
+              "description": "BCP planning",
+              "documentTypes": [
+                "BCP Plan",
+                "BIA",
+                "Recovery Strategy",
+                "Test Results",
+                "Incident Report"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Corporate governance" },
+                "USA": { "years": 5, "authority": "Corporate policy" },
+                "GBR": { "years": 5, "authority": "Corporate policy" }
+              },
+              "keywords": ["bcp", "business continuity", "bia", "recovery"]
+            },
+            "CrisisManagement": {
+              "name": "CrisisManagement",
+              "description": "Crisis response",
+              "documentTypes": [
+                "Crisis Plan",
+                "Communication Log",
+                "Incident Report",
+                "Post-Mortem",
+                "Lessons Learned"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporate policy" },
+                "USA": { "years": 7, "authority": "Corporate policy" },
+                "GBR": { "years": 6, "authority": "Corporate policy" }
+              },
+              "keywords": ["crisis", "incident", "post-mortem", "lessons learned"]
+            },
+            "Insurance": {
+              "name": "Insurance",
+              "description": "Corporate insurance",
+              "documentTypes": [
+                "Insurance Portfolio",
+                "Policy Schedule",
+                "Claims History",
+                "Coverage Analysis",
+                "Premium Optimization"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Corporate policy" },
+                "USA": { "years": 7, "authority": "Corporate policy" },
+                "GBR": { "years": 6, "authority": "Corporate policy" }
+              },
+              "keywords": ["insurance", "policy", "claims", "premium"]
+            }
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "createdAt": "2026-01-22T00:00:00Z",
+    "updatedAt": "2026-01-22T00:00:00Z",
+    "createdBy": "system",
+    "source": "default-taxonomy"
+  }
+}

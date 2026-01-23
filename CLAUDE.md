@@ -329,6 +329,8 @@ Hop 3: "Analyze top candidates in detail"
 ## Active Technologies
 - Python 3.11+ (MkDocs runtime), Markdown (content), YAML (configuration) + mkdocs-material, mkdocs-minify-plugin, mkdocs-git-revision-date-localized-plugin, pymdownx.superfences (Mermaid) (001-mkdocs-documentation)
 - Static files on GitHub Pages (no database) (001-mkdocs-documentation)
+- TypeScript with bun runtime (existing project standard) + Existing Records Manager Skill (TaxonomyExpert, PaperlessClient, RecordManager CLI) (003-default-taxonomies)
+- paperless-ngx PostgreSQL database via REST API (existing integration) (003-default-taxonomies)
 
 ## Recent Changes
 - 001-mkdocs-documentation: Added Python 3.11+ (MkDocs runtime), Markdown (content), YAML (configuration) + mkdocs-material, mkdocs-minify-plugin, mkdocs-git-revision-date-localized-plugin, pymdownx.superfences (Mermaid)

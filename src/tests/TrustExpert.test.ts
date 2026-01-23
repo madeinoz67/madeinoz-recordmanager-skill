@@ -434,7 +434,7 @@ describe('TrustExpert', () => {
 
     it('should not support other countries', () => {
       expect(expert.isCountrySupported('USA')).toBe(false);
-      expect(expert.isCountrySupported('UK')).toBe(false);
+      expect(expert.isCountrySupported('GBR')).toBe(false);
       expect(expert.isCountrySupported('')).toBe(false);
     });
 

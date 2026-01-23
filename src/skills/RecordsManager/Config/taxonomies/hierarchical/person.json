@@ -1,0 +1,752 @@
+{
+  "entityType": "person",
+  "country": "AUS",
+  "countryName": "Australia",
+  "version": "1.0.0",
+  "functions": {
+    "PersonalIdentification": {
+      "name": "PersonalIdentification",
+      "description": "Identity and citizenship documents",
+      "icon": "🪪",
+      "services": {
+        "IdentityDocuments": {
+          "name": "IdentityDocuments",
+          "description": "Proof of identity",
+          "icon": "📄",
+          "activities": {
+            "BirthCertificate": {
+              "name": "BirthCertificate",
+              "description": "Birth documentation",
+              "icon": "👶",
+              "documentTypes": [
+                "Birth Certificate",
+                "Certified Copy",
+                "Registration",
+                "Amendment",
+                "Replacement"
+              ],
+              "retention": {
+                "AUS": { "years": 0, "authority": "Permanent - Vital record", "notes": "Keep permanently" },
+                "USA": { "years": 0, "authority": "Permanent - Vital record", "notes": "Keep permanently" },
+                "GBR": { "years": 0, "authority": "Permanent - Vital record", "notes": "Keep permanently" }
+              },
+              "keywords": ["birth certificate", "vital record", "certified copy"]
+            },
+            "Citizenship": {
+              "name": "Citizenship",
+              "description": "Citizenship documents",
+              "icon": "🌐",
+              "documentTypes": [
+                "Citizenship Certificate",
+                "Naturalization Certificate",
+                "Citizenship Application",
+                "Oath Ceremony",
+                "Citizenship Test"
+              ],
+              "retention": {
+                "AUS": { "years": 0, "authority": "Permanent - Citizenship proof", "notes": "Keep permanently" },
+                "USA": { "years": 0, "authority": "Permanent - USCIS", "notes": "Keep permanently" },
+                "GBR": { "years": 0, "authority": "Permanent - Home Office", "notes": "Keep permanently" }
+              },
+              "keywords": ["citizenship", "naturalization", "oath", "ceremony"]
+            },
+            "Passport": {
+              "name": "Passport",
+              "description": "Travel documents",
+              "icon": "🛂",
+              "documentTypes": [
+                "Passport",
+                "Passport Renewal",
+                "Passport Photo",
+                "Application",
+                "Emergency Passport"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "Passport Act", "notes": "5 years after expiry" },
+                "USA": { "years": 5, "authority": "State Department", "notes": "5 years after expiry" },
+                "GBR": { "years": 5, "authority": "Home Office", "notes": "5 years after expiry" }
+              },
+              "keywords": ["passport", "travel document", "renewal", "application"]
+            },
+            "DriversLicense": {
+              "name": "DriversLicense",
+              "description": "Driving credentials",
+              "icon": "🚗",
+              "documentTypes": [
+                "Driver License",
+                "License Renewal",
+                "Driving Record",
+                "Traffic Citation",
+                "Suspension Notice"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "State road authority", "notes": "Until renewal" },
+                "USA": { "years": 5, "authority": "DMV", "notes": "Until renewal" },
+                "GBR": { "years": 5, "authority": "DVLA", "notes": "Until renewal" }
+              },
+              "keywords": ["driver license", "driving record", "renewal", "citation"]
+            }
+          }
+        }
+      }
+    },
+    "PersonalFinance": {
+      "name": "PersonalFinance",
+      "description": "Financial accounts and assets",
+      "icon": "💰",
+      "services": {
+        "Banking": {
+          "name": "Banking",
+          "description": "Bank accounts",
+          "icon": "🏦",
+          "activities": {
+            "BankAccounts": {
+              "name": "BankAccounts",
+              "description": "Account documentation",
+              "documentTypes": [
+                "Account Statement",
+                "Account Opening",
+                "Account Closure",
+                "Direct Debit",
+                "Standing Order"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ASIC" },
+                "USA": { "years": 5, "authority": "FDIC" },
+                "GBR": { "years": 5, "authority": "FCA" }
+              },
+              "keywords": ["bank statement", "account opening", "direct debit", "standing order"]
+            },
+            "CreditCards": {
+              "name": "CreditCards",
+              "description": "Credit card records",
+              "icon": "💳",
+              "documentTypes": [
+                "Card Statement",
+                "Card Agreement",
+                "Application",
+                "Closure Request",
+                "Dispute Form"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "ASIC" },
+                "USA": { "years": 5, "authority": "CFPB" },
+                "GBR": { "years": 5, "authority": "FCA" }
+              },
+              "keywords": ["credit card", "statement", "agreement", "application"]
+            },
+            "Loans": {
+              "name": "Loans",
+              "description": "Personal loans",
+              "documentTypes": [
+                "Loan Agreement",
+                "Promissory Note",
+                "Repayment Schedule",
+                "Discharge",
+                "Variation"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "National Credit Act" },
+                "USA": { "years": 7, "authority": "CFPB" },
+                "GBR": { "years": 6, "authority": "FCA" }
+              },
+              "keywords": ["loan", "promissory note", "repayment", "discharge"]
+            }
+          }
+        },
+        "Investments": {
+          "name": "Investments",
+          "description": "Investment accounts",
+          "icon": "📈",
+          "activities": {
+            "SharePortfolio": {
+              "name": "SharePortfolio",
+              "description": "Stock investments",
+              "documentTypes": [
+                "Share Certificate",
+                "Holding Statement",
+                "Trade Confirmation",
+                "Dividend Statement",
+                "Capital Gains Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO CGT rules" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["shares", "holding statement", "trade confirmation", "dividend"]
+            },
+            "Superannuation": {
+              "name": "Superannuation",
+              "description": "Retirement savings (AU)",
+              "icon": "🏖️",
+              "documentTypes": [
+                "Super Statement",
+                "Fund Choice",
+                "Insurance Election",
+                "Beneficiary Nomination",
+                "Pension Application"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Superannuation Industry Supervision Act" },
+                "USA": { "years": 7, "authority": "IRS 401k rules" },
+                "GBR": { "years": 6, "authority": "HMRC pension rules" }
+              },
+              "keywords": ["superannuation", "super", "pension", "retirement"]
+            }
+          }
+        },
+        "Taxation": {
+          "name": "Taxation",
+          "description": "Tax records",
+          "icon": "📊",
+          "activities": {
+            "TaxReturns": {
+              "name": "TaxReturns",
+              "description": "Tax filings",
+              "icon": "📋",
+              "documentTypes": [
+                "Tax Return",
+                "Notice of Assessment",
+                "Tax Agent Advice",
+                "Amendment",
+                "Objection"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO Section 254 Tax Administration Act 1953", "fromDate": "fy_end" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["tax return", "notice of assessment", "tax agent", "amendment"]
+            },
+            "TaxDocumentation": {
+              "name": "TaxDocumentation",
+              "description": "Supporting tax documents",
+              "documentTypes": [
+                "Payment Summary",
+                "Income Statement",
+                "Deduction Receipt",
+                "Investment Statement",
+                "Private Health Insurance Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ATO" },
+                "USA": { "years": 7, "authority": "IRS" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["payment summary", "income statement", "deduction", "receipt"]
+            }
+          }
+        }
+      }
+    },
+    "PersonalHealth": {
+      "name": "PersonalHealth",
+      "description": "Health and medical records",
+      "icon": "🏥",
+      "services": {
+        "MedicalRecords": {
+          "name": "MedicalRecords",
+          "description": "Health documentation",
+          "icon": "🩺",
+          "activities": {
+            "DoctorVisits": {
+              "name": "DoctorVisits",
+              "description": "Medical appointments",
+              "documentTypes": [
+                "Doctor's Note",
+                "Consultation Summary",
+                "Referral Letter",
+                "Prescription",
+                "Test Result"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Privacy Act 1988" },
+                "USA": { "years": 7, "authority": "HIPAA" },
+                "GBR": { "years": 8, "authority": "NHS" }
+              },
+              "keywords": ["doctor", "physician", "gp", "consultation", "prescription"]
+            },
+            "SpecialistCare": {
+              "name": "SpecialistCare",
+              "description": "Specialist treatment",
+              "documentTypes": [
+                "Specialist Report",
+                "Referral",
+                "Treatment Plan",
+                "Progress Note",
+                "Discharge Summary"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Privacy Act 1988" },
+                "USA": { "years": 7, "authority": "HIPAA" },
+                "GBR": { "years": 8, "authority": "NHS" }
+              },
+              "keywords": ["specialist", "referral", "treatment", "discharge"]
+            },
+            "HospitalRecords": {
+              "name": "HospitalRecords",
+              "description": "Hospital visits",
+              "icon": "🏥",
+              "documentTypes": [
+                "Admission Record",
+                "Discharge Summary",
+                "Operation Report",
+                "Anesthesia Record",
+                "Progress Notes"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Privacy Act 1988" },
+                "USA": { "years": 7, "authority": "HIPAA" },
+                "GBR": { "years": 8, "authority": "NHS" }
+              },
+              "keywords": ["hospital", "admission", "discharge", "operation"]
+            }
+          }
+        },
+        "HealthInsurance": {
+          "name": "HealthInsurance",
+          "description": "Health coverage",
+          "icon": "🏥",
+          "activities": {
+            "InsurancePolicy": {
+              "name": "InsurancePolicy",
+              "description": "Policy documents",
+              "documentTypes": [
+                "Policy Certificate",
+                "Product Disclosure Statement",
+                "Member Card",
+                "Claim Form",
+                "Explanation of Benefits"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Private Health Insurance Act" },
+                "USA": { "years": 7, "authority": "ACA" },
+                "GBR": { "years": 6, "authority": "NHS" }
+              },
+              "keywords": ["health insurance", "policy", "pds", "claim"]
+            },
+            "ClaimsRecords": {
+              "name": "ClaimsRecords",
+              "description": "Insurance claims",
+              "documentTypes": [
+                "Claim Submission",
+                "Claim Assessment",
+                "Payment Advice",
+                "Rejection Notice",
+                "Appeal"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Private Health Insurance Act" },
+                "USA": { "years": 7, "authority": "HIPAA" },
+                "GBR": { "years": 6, "authority": "Data Protection Act" }
+              },
+              "keywords": ["claim", "payment", "rejection", "appeal"]
+            }
+          }
+        }
+      }
+    },
+    "PersonalEmployment": {
+      "name": "PersonalEmployment",
+      "description": "Employment and career",
+      "icon": "💼",
+      "services": {
+        "EmploymentRecords": {
+          "name": "EmploymentRecords",
+          "description": "Job documentation",
+          "icon": "📋",
+          "activities": {
+            "EmploymentContract": {
+              "name": "EmploymentContract",
+              "description": "Employment agreement",
+              "documentTypes": [
+                "Employment Contract",
+                "Letter of Offer",
+                "Award Agreement",
+                "Work Agreement",
+                "Contract Variation"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Act" },
+                "USA": { "years": 7, "authority": "FERA" },
+                "GBR": { "years": 6, "authority": "Employment Rights Act" }
+              },
+              "keywords": ["employment contract", "offer", "award", "agreement"]
+            },
+            "Payslips": {
+              "name": "Payslips",
+              "description": "Payment records",
+              "icon": "💵",
+              "documentTypes": [
+                "Payslip",
+                "Payment Summary",
+                "Group Certificate",
+                "Pay Advice",
+                "Earnings Statement"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Act" },
+                "USA": { "years": 7, "authority": "FERA" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["payslip", "payment summary", "group certificate", "pay advice"]
+            },
+            "Performance": {
+              "name": "Performance",
+              "description": "Work performance",
+              "documentTypes": [
+                "Performance Review",
+                "Appraisal",
+                "Goal Setting",
+                "Feedback",
+                "Improvement Plan"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Fair Work Act" },
+                "USA": { "years": 7, "authority": "FERA" },
+                "GBR": { "years": 6, "authority": "Employment law" }
+              },
+              "keywords": ["performance review", "appraisal", "feedback", "goals"]
+            }
+          }
+        },
+        "CareerDevelopment": {
+          "name": "CareerDevelopment",
+          "description": "Career advancement",
+          "icon": "📈",
+          "activities": {
+            "Qualifications": {
+              "name": "Qualifications",
+              "description": "Educational credentials",
+              "icon": "🎓",
+              "documentTypes": [
+                "Degree Certificate",
+                "Diploma",
+                "Transcript",
+                "Academic Record",
+                "Testamur"
+              ],
+              "retention": {
+                "AUS": { "years": 0, "authority": "Permanent - Vital record", "notes": "Keep permanently" },
+                "USA": { "years": 0, "authority": "Permanent - Educational record", "notes": "Keep permanently" },
+                "GBR": { "years": 0, "authority": "Permanent - Educational record", "notes": "Keep permanently" }
+              },
+              "keywords": ["degree", "diploma", "transcript", "certificate"]
+            },
+            "ProfessionalDevelopment": {
+              "name": "ProfessionalDevelopment",
+              "description": "Training and development",
+              "documentTypes": [
+                "Certificate",
+                "Training Record",
+                "Course Completion",
+                "Professional Membership",
+                "License"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Professional standards" },
+                "USA": { "years": 7, "authority": "Professional standards" },
+                "GBR": { "years": 6, "authority": "Professional standards" }
+              },
+              "keywords": ["training", "certificate", "membership", "license"]
+            },
+            "Resume": {
+              "name": "Resume",
+              "description": "Job application materials",
+              "documentTypes": [
+                "Resume",
+                "CV",
+                "Cover Letter",
+                "Reference Letter",
+                "Portfolio"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Personal records" },
+                "USA": { "years": 7, "authority": "Personal records" },
+                "GBR": { "years": 6, "authority": "Personal records" }
+              },
+              "keywords": ["resume", "cv", "cover letter", "reference"]
+            }
+          }
+        }
+      }
+    },
+    "PersonalLegal": {
+      "name": "PersonalLegal",
+      "description": "Legal and estate documents",
+      "icon": "⚖️",
+      "services": {
+        "EstatePlanning": {
+          "name": "EstatePlanning",
+          "description": "Wills and estate documents",
+          "icon": "📜",
+          "activities": {
+            "Will": {
+              "name": "Will",
+              "description": "Last will and testament",
+              "icon": "📄",
+              "documentTypes": [
+                "Will",
+                "Codicil",
+                "Will Draft",
+                "Execution Copy",
+                "Probate Application"
+              ],
+              "retention": {
+                "AUS": { "years": 0, "authority": "Permanent - Estate planning", "notes": "Keep permanently, update as needed" },
+                "USA": { "years": 0, "authority": "Permanent - Estate planning", "notes": "Keep permanently, update as needed" },
+                "GBR": { "years": 0, "authority": "Permanent - Estate planning", "notes": "Keep permanently, update as needed" }
+              },
+              "keywords": ["will", "testament", "codicil", "probate", "estate"]
+            },
+            "PowerOfAttorney": {
+              "name": "PowerOfAttorney",
+              "description": "Legal representation",
+              "documentTypes": [
+                "Power of Attorney",
+                "Enduring Power of Attorney",
+                "Guardianship",
+                "Revocation",
+                "Acceptance"
+              ],
+              "retention": {
+                "AUS": { "years": 0, "authority": "Permanent - Active until revoked", "notes": "Keep while active" },
+                "USA": { "years": 0, "authority": "Permanent - Active until revoked", "notes": "Keep while active" },
+                "GBR": { "years": 0, "authority": "Permanent - Active until revoked", "notes": "Keep while active" }
+              },
+              "keywords": ["power of attorney", "epa", "guardianship", "revocation"]
+            },
+            "AdvanceDirective": {
+              "name": "AdvanceDirective",
+              "description": "Healthcare directives",
+              "icon": "🏥",
+              "documentTypes": [
+                "Living Will",
+                "Advance Care Directive",
+                "Healthcare Directive",
+                "Medical Power of Attorney",
+                "Organ Donation"
+              ],
+              "retention": {
+                "AUS": { "years": 0, "authority": "Permanent - Healthcare wishes", "notes": "Keep permanently" },
+                "USA": { "years": 0, "authority": "Permanent - Healthcare wishes", "notes": "Keep permanently" },
+                "GBR": { "years": 0, "authority": "Permanent - Healthcare wishes", "notes": "Keep permanently" }
+              },
+              "keywords": ["living will", "advance directive", "healthcare", "organ donation"]
+            }
+          }
+        },
+        "LegalMatters": {
+          "name": "LegalMatters",
+          "description": "Legal documentation",
+          "activities": {
+            "LegalAdvice": {
+              "name": "LegalAdvice",
+              "description": "Legal counsel records",
+              "documentTypes": [
+                "Legal Opinion",
+                "Advice Letter",
+                "Brief",
+                "Court Document",
+                "Correspondence"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Legal professional privilege" },
+                "USA": { "years": 7, "authority": "Attorney-client privilege" },
+                "GBR": { "years": 6, "authority": "Legal professional privilege" }
+              },
+              "keywords": ["legal advice", "opinion", "brief", "court"]
+            },
+            "DisputeResolution": {
+              "name": "DisputeResolution",
+              "description": "Conflict resolution",
+              "documentTypes": [
+                "Settlement Agreement",
+                "Mediation Record",
+                "Court Order",
+                "Judgment",
+                "Injunction"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Court records" },
+                "USA": { "years": 7, "authority": "Court records" },
+                "GBR": { "years": 6, "authority": "Court records" }
+              },
+              "keywords": ["settlement", "mediation", "court order", "judgment"]
+            }
+          }
+        }
+      }
+    },
+    "PersonalProperty": {
+      "name": "PersonalProperty",
+      "description": "Property and assets",
+      "icon": "🏠",
+      "services": {
+        "RealEstate": {
+          "name": "RealEstate",
+          "description": "Property ownership",
+          "icon": "🏡",
+          "activities": {
+            "PropertyPurchase": {
+              "name": "PropertyPurchase",
+              "description": "Buying property",
+              "documentTypes": [
+                "Contract of Sale",
+                "Settlement Statement",
+                "Title Deed",
+                "Mortgage Document",
+                "Transfer"
+              ],
+              "retention": {
+                "AUS": { "years": 0, "authority": "Permanent - Property ownership", "notes": "Keep while owning + 7 years" },
+                "USA": { "years": 0, "authority": "Permanent - Property ownership", "notes": "Keep while owning + 7 years" },
+                "GBR": { "years": 0, "authority": "Permanent - Land Registry", "notes": "Keep while owning + 6 years" }
+              },
+              "keywords": ["contract of sale", "settlement", "title deed", "mortgage"]
+            },
+            "PropertyOwnership": {
+              "name": "PropertyOwnership",
+              "description": "Ongoing ownership",
+              "documentTypes": [
+                "Title Deed",
+                "Council Rates",
+                "Land Tax Assessment",
+                "Water Rates",
+                "Strata Levy"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "State revenue office" },
+                "USA": { "years": 7, "authority": "Property tax authority" },
+                "GBR": { "years": 6, "authority": "HMRC" }
+              },
+              "keywords": ["title deed", "rates", "land tax", "strata"]
+            }
+          }
+        },
+        "Vehicles": {
+          "name": "Vehicles",
+          "description": "Vehicle ownership",
+          "icon": "🚗",
+          "activities": {
+            "VehicleRegistration": {
+              "name": "VehicleRegistration",
+              "description": "Vehicle documentation",
+              "documentTypes": [
+                "Registration",
+                "Renewal Notice",
+                "Insurance",
+                "Pink Slip",
+                "Transfer"
+              ],
+              "retention": {
+                "AUS": { "years": 5, "authority": "State road authority" },
+                "USA": { "years": 5, "authority": "DMV" },
+                "GBR": { "years": 5, "authority": "DVLA" }
+              },
+              "keywords": ["registration", "renewal", "insurance", "pink slip"]
+            }
+          }
+        }
+      }
+    },
+    "PersonalInsurance": {
+      "name": "PersonalInsurance",
+      "description": "Personal insurance coverage",
+      "icon": "🛡️",
+      "services": {
+        "GeneralInsurance": {
+          "name": "GeneralInsurance",
+          "description": "Asset insurance",
+          "icon": "🏠",
+          "activities": {
+            "HomeInsurance": {
+              "name": "HomeInsurance",
+              "description": "Property insurance",
+              "documentTypes": [
+                "Policy Schedule",
+                "Certificate of Insurance",
+                "Product Disclosure Statement",
+                "Claim Form",
+                "Assessment Report"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC Act" },
+                "USA": { "years": 7, "authority": "State insurance commission" },
+                "GBR": { "years": 6, "authority": "FCA" }
+              },
+              "keywords": ["home insurance", "policy", "claim", "pds"]
+            },
+            "VehicleInsurance": {
+              "name": "VehicleInsurance",
+              "description": "Auto insurance",
+              "icon": "🚗",
+              "documentTypes": [
+                "Policy Schedule",
+                "Certificate of Insurance",
+                "Claim Form",
+                "Accident Report",
+                "Assessment"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "ASIC Act" },
+                "USA": { "years": 7, "authority": "State insurance commission" },
+                "GBR": { "years": 6, "authority": "FCA" }
+              },
+              "keywords": ["car insurance", "ctp", "comprehensive", "claim"]
+            }
+          }
+        },
+        "LifeInsurance": {
+          "name": "LifeInsurance",
+          "description": "Life and disability insurance",
+          "icon": "❤️",
+          "activities": {
+            "LifePolicy": {
+              "name": "LifePolicy",
+              "description": "Life insurance",
+              "documentTypes": [
+                "Policy Schedule",
+                "Certificate of Insurance",
+                "Beneficiary Nomination",
+                "Medical Evidence",
+                "Claim Form"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Insurance Contracts Act" },
+                "USA": { "years": 7, "authority": "State insurance commission" },
+                "GBR": { "years": 6, "authority": "FCA" }
+              },
+              "keywords": ["life insurance", "beneficiary", "policy", "claim"]
+            },
+            "IncomeProtection": {
+              "name": "IncomeProtection",
+              "description": "Income protection",
+              "icon": "💰",
+              "documentTypes": [
+                "Policy Schedule",
+                "Certificate of Insurance",
+                "Waiting Period Notice",
+                "Claim Form",
+                "Medical Certificate"
+              ],
+              "retention": {
+                "AUS": { "years": 7, "authority": "Insurance Contracts Act" },
+                "USA": { "years": 7, "authority": "State insurance commission" },
+                "GBR": { "years": 6, "authority": "FCA" }
+              },
+              "keywords": ["income protection", "tpd", "disability", "claim"]
+            }
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "createdAt": "2026-01-22T00:00:00Z",
+    "updatedAt": "2026-01-22T00:00:00Z",
+    "createdBy": "system",
+    "source": "default-taxonomy"
+  }
+}

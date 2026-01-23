@@ -6,7 +6,7 @@ This guide explains how to create custom taxonomies with specialized document ty
 
 ## Configuration Overview
 
-Taxonomies are defined using YAML or JSON format that specifies:
+Taxonomies are defined in the YAML configuration file `Config/taxonomies.yaml` which specifies:
 
 * **Document Types**: Categories of documents you manage
 
@@ -18,17 +18,17 @@ Taxonomies are defined using YAML or JSON format that specifies:
 
 ```yaml
 entity_type_name:
-  document_types:
-*   Document Type Name
-*   Another Document Type
-  tag_categories:
+  documentTypes:
+    - Document Type Name
+    - Another Document Type
+  tagCategories:
     category_name:
-*   tag_name_1
-*   tag_name_2
+      - tag_name_1
+      - tag_name_2
     another_category:
-*   tag_a
-*   tag_b
-  retention_rules:
+      - tag_a
+      - tag_b
+  retentionRules:
     Document Type Name:
       years: 7
       reason: "Legal or business reason"
@@ -41,87 +41,76 @@ entity_type_name:
 
 ## Configuration Methods
 
-### Method 1: Direct File Extension (Recommended)
+### Method 1: Direct YAML Extension (Recommended)
 
-Add your taxonomy to the `COUNTRY_TAXONOMIES` object in `TaxonomyExpert.ts`:
+Edit the `Config/taxonomies.yaml` file to add your custom domain under the appropriate country:
 
-```typescript
-// In src/skills/RecordsManager/Lib/TaxonomyExpert.ts
-
-// Add to Australia.domains
-'legal-practice': {
-  documentTypes: [
-    'Client File',
-    'Court Filing',
-    'Legal Agreement',
-    // ... your document types
-  ],
-  tagCategories: {
-    'legal-practice': ['client-matter', 'court-filing', 'billing'],
-    // ... your tag categories
-  },
-  retentionRules: {
-    'Client File': {
-      years: 7,
-      reason: 'Legal professional requirements'
-    },
-    // ... your retention rules
-  },
-},
-```
-
-### Method 2: External Configuration File (Advanced)
-
-Create a separate configuration file that extends the base taxonomies:
+**Location:** `src/skills/RecordsManager/Config/taxonomies.yaml`
 
 ```yaml
-# custom-taxonomies.yaml
-extends: base-australia
+Australia:
+  country: Australia
+  domains:
+    # ... existing domains (household, corporate, etc.) ...
 
-extensions:
-  legal-practice:
-    document_types:
-*   Client File
-*   Court Filing
-*   Legal Agreement
-    tag_categories:
-      legal-practice:
-*   client-matter
-*   court-filing
-*   billing
-      document-type:
-*   pleading
-*   contract
-*   opinion
-    retention_rules:
-      Client File:
-        years: 7
-        reason: "Legal professional requirements"
-      Court Filing:
-        years: 15
-        reason: "Court record requirements"
+    # Add your custom domain
+    legal-practice:
+      documentTypes:
+        - Client File
+        - Court Filing
+        - Legal Agreement
+        # ... your document types
+      tagCategories:
+        legal-practice:
+          - client-matter
+          - court-filing
+          - billing
+        # ... your tag categories
+      retentionRules:
+        Client File:
+          years: 7
+          reason: "Legal professional requirements"
+        # ... your retention rules
 ```
 
-### Method 3: Runtime Configuration (Dynamic)
+**Steps:**
+1. Open `Config/taxonomies.yaml`
+2. Find your country section (e.g., `Australia:`)
+3. Add a new domain under `domains:`
+4. Define documentTypes, tagCategories, and retentionRules
+5. Run `install` command to populate paperless-ngx with new taxonomies
 
-Load taxonomies from environment variables or API calls:
+### Method 2: Add New Country
 
-```typescript
-// Load from environment
-const customTaxonomy = JSON.parse(process.env.CUSTOM_TAXONOMY || '{}');
+To add support for a country not yet in the system:
 
-// Merge with existing
-const extendedTaxonomies = {
-  ...COUNTRY_TAXONOMIES,
-  Australia: {
-    ...COUNTRY_TAXONOMIES.Australia,
-    domains: {
-      ...COUNTRY_TAXONOMIES.Australia.domains,
-      ...customTaxonomy.extensions,
-    },
-  },
-};
+```yaml
+# Add after existing countries in taxonomies.yaml
+
+Canada:
+  country: Canada
+  domains:
+    household:
+      documentTypes:
+        - Tax Return
+        - Medical Receipt
+        # ... your document types
+      tagCategories:
+        financial:
+          - tax
+          - income
+        # ... your categories
+      retentionRules:
+        Tax Return:
+          years: 6
+          reason: "CRA requirement - 6 years from filing date"
+        # ... your retention rules
 ```
+
+**Important:** After adding a new country, you must also:
+1. Update the `Domain` type in `TaxonomyExpert.ts` if adding new domain types
+2. Run the `install` command to bootstrap taxonomies
+3. Test metadata suggestions work correctly
 
 ---
 
@@ -129,65 +118,67 @@ const extendedTaxonomies = {
 
 ### Example 1: Legal Practice
 
+Add this to your country's domains in `Config/taxonomies.yaml`:
+
 ```yaml
 legal-practice:
-  document_types:
-*   Client File
-*   Court Filing
-*   Legal Agreement
-*   Billing Invoice
-*   Cost Estimate
-*   Legal Opinion
-*   Barrister Brief
-*   Evidence Document
-*   Court Order
-*   Subpoena
-*   Affidavit
-*   Will
-*   Power of Attorney
-*   Trust Deed
-*   Property Contract
-*   Shareholders Agreement
+  documentTypes:
+    - Client File
+    - Court Filing
+    - Legal Agreement
+    - Billing Invoice
+    - Cost Estimate
+    - Legal Opinion
+    - Barrister Brief
+    - Evidence Document
+    - Court Order
+    - Subpoena
+    - Affidavit
+    - Will
+    - Power of Attorney
+    - Trust Deed
+    - Property Contract
+    - Shareholders Agreement
 
-  tag_categories:
+  tagCategories:
     legal-practice:
-*   client-matter
-*   court-filing
-*   billing
-*   cost-estimate
-*   legal-opinion
+      - client-matter
+      - court-filing
+      - billing
+      - cost-estimate
+      - legal-opinion
     practice-area:
-*   corporate
-*   litigation
-*   family-law
-*   property
-*   wills-estates
-*   employment
+      - corporate
+      - litigation
+      - family-law
+      - property
+      - wills-estates
+      - employment
     document-type:
-*   pleading
-*   contract
-*   opinion
-*   evidence
-*   administrative
-*   correspondence
+      - pleading
+      - contract
+      - opinion
+      - evidence
+      - administrative
+      - correspondence
     status:
-*   active
-*   closed
-*   archived
-*   draft
-*   filed
+      - active
+      - closed
+      - archived
+      - draft
+      - filed
     priority:
-*   urgent
-*   normal
-*   routine
-*   follow-up
+      - urgent
+      - normal
+      - routine
+      - follow-up
     confidentiality:
-*   confidential
-*   restricted
-*   public
-*   internal-only
+      - confidential
+      - restricted
+      - public
+      - internal-only
 
-  retention_rules:
+  retentionRules:
     Client File:
       years: 7
       reason: "Legal professional requirements - statute of limitations"
@@ -240,83 +231,85 @@ legal-practice:
 
 ### Example 2: Medical Practice
 
+Add this to your country's domains in `Config/taxonomies.yaml`:
+
 ```yaml
 medical-practice:
-  document_types:
-*   Patient Record
-*   Medical Certificate
-*   Pathology Report
-*   Imaging Report
-*   Referral Letter
-*   Prescription
-*   Bulk Bill
-*   Private Invoice
-*   Medicare Claim
-*   Health Fund Claim
-*   Consent Form
-*   Treatment Plan
-*   Discharge Summary
-*   Specialist Report
-*   Mental Health Plan
-*   Immunization Record
-*   Surgical Report
-*   Pathology Request
-*   Blood Test Results
-*   X-Ray Report
-*   MRI Report
-*   CT Scan Report
-*   Ultrasound Report
-*   ECG Report
-*   Specialist Referral
-*   Care Plan
-*   Progress Note
+  documentTypes:
+    - Patient Record
+    - Medical Certificate
+    - Pathology Report
+    - Imaging Report
+    - Referral Letter
+    - Prescription
+    - Bulk Bill
+    - Private Invoice
+    - Medicare Claim
+    - Health Fund Claim
+    - Consent Form
+    - Treatment Plan
+    - Discharge Summary
+    - Specialist Report
+    - Mental Health Plan
+    - Immunization Record
+    - Surgical Report
+    - Pathology Request
+    - Blood Test Results
+    - X-Ray Report
+    - MRI Report
+    - CT Scan Report
+    - Ultrasound Report
+    - ECG Report
+    - Specialist Referral
+    - Care Plan
+    - Progress Note
 
-  tag_categories:
+  tagCategories:
     medical-practice:
-*   patient-record
-*   billing
-*   pathology
-*   imaging
-*   prescription
-*   referral
+      - patient-record
+      - billing
+      - pathology
+      - imaging
+      - prescription
+      - referral
     document-type:
-*   clinical
-*   administrative
-*   billing
-*   compliance
-*   diagnostic
-*   treatment
+      - clinical
+      - administrative
+      - billing
+      - compliance
+      - diagnostic
+      - treatment
     status:
-*   active
-*   archived
-*   review
-*   completed
-*   pending
-*   cancelled
+      - active
+      - archived
+      - review
+      - completed
+      - pending
+      - cancelled
     priority:
-*   urgent
-*   routine
-*   follow-up
-*   routine-review
+      - urgent
+      - routine
+      - follow-up
+      - routine-review
     confidentiality:
-*   confidential
-*   restricted
-*   public
-*   internal-only
+      - confidential
+      - restricted
+      - public
+      - internal-only
     provider:
-*   doctor
-*   specialist
-*   nurse
-*   admin
-*   pathologist
-*   radiologist
+      - doctor
+      - specialist
+      - nurse
+      - admin
+      - pathologist
+      - radiologist
     patient-type:
-*   new
-*   existing
-*   follow-up
-*   chronic-care
+      - new
+      - existing
+      - follow-up
+      - chronic-care
 
-  retention_rules:
+  retentionRules:
     Patient Record:
       years: 7
       reason: "Privacy Act requirements - patient access rights"
@@ -390,89 +383,91 @@ medical-practice:
 
 ### Example 3: Real Estate Agency
 
+Add this to your country's domains in `Config/taxonomies.yaml`:
+
 ```yaml
 real-estate:
-  document_types:
-*   Listing Agreement
-*   Sale Contract
-*   Purchase Contract
-*   Lease Agreement
-*   Property Inspection Report
-*   Building Inspection Report
-*   Pest Inspection Report
-*   Valuation Report
-*   Market Appraisal
-*   Vendor Statement
-*   Contract of Sale
-*   Cooling Off Notice
-*   Finance Approval
-*   Settlement Statement
-*   Transfer of Land
-*   Body Corporate Report
-*   Strata Report
-*   Council Rates
-*   Water Rates
-*   Land Tax Notice
-*   Rental Application
-*   Tenancy Agreement
-*   Bond lodgement
-*   Condition Report
-*   Rent Roll
-*   Commission Statement
-*   Marketing Material
-*   Photography Release
-*   Open House Register
-*   Buyer Profile
-*   Seller Profile
+  documentTypes:
+    - Listing Agreement
+    - Sale Contract
+    - Purchase Contract
+    - Lease Agreement
+    - Property Inspection Report
+    - Building Inspection Report
+    - Pest Inspection Report
+    - Valuation Report
+    - Market Appraisal
+    - Vendor Statement
+    - Contract of Sale
+    - Cooling Off Notice
+    - Finance Approval
+    - Settlement Statement
+    - Transfer of Land
+    - Body Corporate Report
+    - Strata Report
+    - Council Rates
+    - Water Rates
+    - Land Tax Notice
+    - Rental Application
+    - Tenancy Agreement
+    - Bond lodgement
+    - Condition Report
+    - Rent Roll
+    - Commission Statement
+    - Marketing Material
+    - Photography Release
+    - Open House Register
+    - Buyer Profile
+    - Seller Profile
 
-  tag_categories:
+  tagCategories:
     real-estate:
-*   listing
-*   sale
-*   lease
-*   inspection
-*   valuation
-*   marketing
+      - listing
+      - sale
+      - lease
+      - inspection
+      - valuation
+      - marketing
     transaction-type:
-*   sale
-*   purchase
-*   lease
-*   rental
-*   management
+      - sale
+      - purchase
+      - lease
+      - rental
+      - management
     property-type:
-*   house
-*   unit
-*   townhouse
-*   commercial
-*   industrial
-*   rural
+      - house
+      - unit
+      - townhouse
+      - commercial
+      - industrial
+      - rural
     document-type:
-*   agreement
-*   contract
-*   inspection
-*   valuation
-*   report
-*   application
-*   statement
-*   notice
+      - agreement
+      - contract
+      - inspection
+      - valuation
+      - report
+      - application
+      - statement
+      - notice
     status:
-*   active
-*   pending
-*   completed
-*   cancelled
-*   expired
+      - active
+      - pending
+      - completed
+      - cancelled
+      - expired
     priority:
-*   urgent
-*   normal
-*   routine
-*   follow-up
+      - urgent
+      - normal
+      - routine
+      - follow-up
     confidentiality:
-*   confidential
-*   restricted
-*   public
-*   client-only
+      - confidential
+      - restricted
+      - public
+      - client-only
 
-  retention_rules:
+  retentionRules:
     Listing Agreement:
       years: 7
       reason: "Agency agreement and commission entitlement"
@@ -637,142 +632,169 @@ real-estate:
 
 ### Validation Rules
 
-Add custom validation to ensure data quality:
+When creating custom taxonomies, ensure:
 
-```typescript
-// Validate document type existence
-validateDocumentType(documentType: string, entityType: string): boolean {
-  const taxonomy = this.getTaxonomy(entityType as Domain);
-  return taxonomy?.documentTypes.includes(documentType) || false;
-}
+1. **Document Types**:
+   - Use clear, descriptive names
+   - Start with capital letters
+   - Avoid duplicates within the same domain
 
-// Validate tag format
-validateTagFormat(tag: string): boolean {
-  const tagPattern = /^[a-z][a-z0-9-]*$/;
-  return tagPattern.test(tag);
-}
+2. **Tag Names**:
+   - Use lowercase with hyphens only
+   - Pattern: `^[a-z][a-z0-9-]*$`
+   - Examples: `client-matter`, `urgent`, `financial`
 
-// Validate retention periods
-validateRetentionRules(rules: RetentionRules): boolean {
-  for (const [docType, rule] of Object.entries(rules)) {
-    if (rule.years < 0) return false;
-    if (!rule.reason || rule.reason.trim().length < 10) return false;
-  }
-  return true;
-}
+3. **Retention Rules**:
+   - Years must be >= 0
+   - Use 0 for "keep until event" (e.g., warranties)
+   - Use 15 for "permanent/indefinite" retention
+   - Reason must be at least 10 characters and reference legal/business requirement
+
+4. **YAML Syntax**:
+   - Proper indentation (2 spaces per level)
+   - Use `-` for list items
+   - Use `:` for key-value pairs
+   - Quote strings containing special characters
+
+After editing `taxonomies.yaml`, validate the syntax:
+
+```bash
+# Check YAML syntax
+bun run src/skills/RecordsManager/Lib/TaxonomyExpert.ts
+
+# If it loads without error, the YAML is valid
 ```
 
 ---
 
 ## Integration and Testing
 
-### 1. Validate Configuration
+### 1. After Adding Custom Taxonomy
+
+After editing `Config/taxonomies.yaml`:
 
 ```bash
-# Validate taxonomy syntax
-bun run recordmanager validate --taxonomies --file custom-taxonomy.yaml
+# 1. Validate YAML loads correctly
+bun run src/skills/RecordsManager/Lib/TaxonomyExpert.ts
 
-# Test document type recognition
-bun run recordmanager test --recognize --file sample.pdf --domain legal-practice
+# 2. Install the new taxonomies to paperless-ngx
+bun run src/skills/RecordsManager/Tools/RecordManager.ts install --country Australia
 
-# Validate retention calculations
-bun run recordmanager test --retention --document-type "Client File" --domain legal-practice
+# 3. Test document type recognition
+bun run src/skills/RecordsManager/Tools/RecordManager.ts upload sample.pdf --domain legal-practice
+
+# 4. Check retention requirements
+bun run src/skills/RecordsManager/Tools/RecordManager.ts retention --domain legal-practice
 ```
 
 ### 2. Test Metadata Suggestions
 
 ```bash
-# Test automatic tagging
-bun run recordmanager test --suggest --file legal-agreement.pdf --domain legal-practice
+# Test automatic tagging with a sample document
+bun run src/skills/RecordsManager/Tools/RecordManager.ts upload legal-agreement.pdf --domain legal-practice
 
-# Verify category mapping
-bun run recordmanager test --categories --domain legal-practice
-
-# Test retention suggestions
-bun run recordmanager test --retention-suggest --file court-filing.pdf
+# Verify the document was tagged correctly
+bun run src/skills/RecordsManager/Tools/RecordManager.ts search --tags "legal-practice"
 ```
 
 ### 3. Integration Testing
 
 ```bash
 # Complete workflow test
-bun run recordmanager create --entity-type legal-practice
-bun run recordmanager upload --file client-file.pdf --domain legal-practice
-bun run recordmanager search --tags "client-matter,active" --domain legal-practice
-bun run recordmanager retention --domain legal-practice
+# 1. Upload various document types
+bun run src/skills/RecordsManager/Tools/RecordManager.ts upload client-file.pdf --domain legal-practice
+bun run src/skills/RecordsManager/Tools/RecordManager.ts upload court-filing.pdf --domain legal-practice
+
+# 2. Search by tags
+bun run src/skills/RecordsManager/Tools/RecordManager.ts search --tags "client-matter,active"
+
+# 3. Check retention requirements
+bun run src/skills/RecordsManager/Tools/RecordManager.ts retention --domain legal-practice
 ```
 
 ---
 
 ## Advanced Configuration
 
-### Conditional Rules
+### Multi-Country Support
 
-Define rules based on entity attributes:
-
-```yaml
-retention_rules:
-  Client File:
-    years:
-      base: 7
-      conditions:
-*   if: practice_area == "litigation"
-          years: 10
-          reason: "Extended litigation potential"
-*   if: priority == "urgent"
-          years: 10
-          reason: "High-priority matter"
-    reason: "Standard client file retention"
-```
-
-### Country-Specific Extensions
-
-Override rules for different jurisdictions:
+To support the same domain across multiple countries with different retention rules:
 
 ```yaml
-extends: base-australia
+# In taxonomies.yaml
 
-extensions:
-  legal-practice:
-    # Australian-specific rules
-    retention_rules:
-      Client File:
-        years: 7
-        reason: "Legal profession Act requirements"
+Australia:
+  country: Australia
+  domains:
+    legal-practice:
+      retentionRules:
+        Client File:
+          years: 7
+          reason: "Legal Profession Act - statute of limitations"
 
-  # Add US-specific version
-  legal-practice-us:
-    document_types:
-*   Attorney-Client Privilege
-*   Discovery Document
-    retention_rules:
-      Attorney-Client Privilege:
-        years: 15
-        reason: "Privilege protection - maintain confidentiality"
+"United States":
+  country: "United States"
+  domains:
+    legal-practice:
+      retentionRules:
+        Client File:
+          years: 7
+          reason: "State bar requirements and statute of limitations"
+        Attorney-Client Privilege:
+          years: 15
+          reason: "Privilege protection - maintain confidentiality"
+
+"United Kingdom":
+  country: "United Kingdom"
+  domains:
+    legal-practice:
+      retentionRules:
+        Client File:
+          years: 6
+          reason: "Solicitors Regulation Authority requirements"
 ```
 
-### Dynamic Tag Generation
+### Domain-Specific Document Types
 
-Generate tags based on document content:
+You can define completely different document types for the same domain name across countries:
+
+```yaml
+Australia:
+  domains:
+    medical-practice:
+      documentTypes:
+        - Medicare Claim
+        - Bulk Bill
+
+"United States":
+  domains:
+    medical-practice:
+      documentTypes:
+        - Insurance Claim
+        - Medicaid Claim
+        - Medicare Claim
+```
+
+### Using the TaxonomyExpert API
+
+Once your YAML is configured, the TaxonomyExpert will automatically load it. You can query it programmatically:
 
 ```typescript
-// Custom tag generation function
-generateDynamicTags(content: string, entityType: string): string[] {
-  const tags: string[] = [];
+import { TaxonomyExpert } from './TaxonomyExpert.js';
 
-  // Extract dates for time-based tagging
-  const dates = extractDates(content);
-  tags.push(`year-${dates.found ? dates.year : 'current'}`);
+// Create expert for specific country
+const expert = new TaxonomyExpert('Australia');
 
-  // Extract entity-specific information
-  if (entityType === 'legal-practice') {
-    const parties = extractParties(content);
-    tags.push(`client-${parties.client}`);
-    tags.push(`matter-${parties.matter}`);
-  }
+// Get document types for a domain
+const docTypes = expert.getDocumentTypes('legal-practice');
 
-  return tags;
-}
+// Get retention requirements
+const retention = expert.getRetentionRequirements('Client File', 'legal-practice');
+// Returns: { years: 7, reason: "..." }
+
+// Suggest metadata for a file
+const suggestions = expert.suggestMetadata('client-agreement.pdf', '', 'legal-practice');
+// Returns: { tags: [...], documentType: "Legal Agreement", retentionYears: 15, ... }
 ```
 
 ---
@@ -830,41 +852,69 @@ bun run recordmanager test --tags --file sample.pdf --domain legal-practice --sh
 1. **Backup Current Configuration**
 
    ```bash
-   cp TaxonomyExpert.ts TaxonomyExpert.ts.backup
+   cp src/skills/RecordsManager/Config/taxonomies.yaml src/skills/RecordsManager/Config/taxonomies.yaml.backup
    ```
 
 2. **Apply New Configuration**
 
+   Edit `Config/taxonomies.yaml` directly:
+   - Add new document types to the `documentTypes` list
+   - Add new tags to appropriate `tagCategories`
+   - Add retention rules for new document types
+
+3. **Install Updated Taxonomies**
+
    ```bash
-   # Merge new taxonomy with existing
-   python merge-taxonomies.py new-taxonomy.yaml >> TaxonomyExpert.ts
+   # Reinstall taxonomies to paperless-ngx
+   bun run src/skills/RecordsManager/Tools/RecordManager.ts install --country Australia
    ```
 
-3. **Validate Migration**
+   This will:
+   - Create any new tags that don't exist
+   - Create any new document types that don't exist
+   - Skip existing resources (safe to run multiple times)
+
+4. **Validate Changes**
 
    ```bash
-   bun run recordmanager validate --migration
-   bun run recordmanager test --integration
+   # Test that YAML loads correctly
+   bun run src/skills/RecordsManager/Lib/TaxonomyExpert.ts
+
+   # Test document recognition
+   bun run src/skills/RecordsManager/Tools/RecordManager.ts upload test-document.pdf --domain legal-practice
    ```
 
-4. **Update Documentation**
+5. **Update Documentation**
 
-   * Document new document types
-
-   * Update user guides
-
-   * Train team members
+   - Document new document types
+   - Update user guides
+   - Train team members
 
 ### Data Migration Considerations
 
-1. **Existing Documents**: Review metadata for affected documents
+1. **Existing Documents**: Review metadata for affected documents using search
 
 2. **Search Queries**: Update search strategies for new tags
 
-3. **Retention Policies**: Verify new rules don't conflict with existing
+3. **Retention Policies**: Verify new rules don't conflict with existing requirements
 
 4. **User Training**: Ensure users understand new categorization
 
+### Rollback Procedure
+
+If you need to rollback changes:
+
+```bash
+# 1. Restore backup
+cp src/skills/RecordsManager/Config/taxonomies.yaml.backup src/skills/RecordsManager/Config/taxonomies.yaml
+
+# 2. Manually delete any newly created tags/document types in paperless-ngx UI
+# (There is no automatic rollback for paperless-ngx resources)
+
+# 3. Verify rollback
+bun run src/skills/RecordsManager/Lib/TaxonomyExpert.ts
+```
+
 ---
 
-*Last Updated: 2026-01-20*
+*Last Updated: 2026-01-22*
